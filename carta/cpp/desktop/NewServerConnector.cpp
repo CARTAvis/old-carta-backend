@@ -33,6 +33,8 @@
 #include "CartaLib/Proto/raster_image.pb.h"
 #include "CartaLib/IImage.h"
 
+#include <CCfits/CCfits>
+
 /// \brief internal class of NewServerConnector, containing extra information we like
 ///  to remember with each view
 ///
@@ -292,7 +294,7 @@ void NewServerConnector::onTextMessage(QString message){
 void NewServerConnector::onBinaryMessage(char* message, size_t length){
     if (length < 36){
         qFatal("Illegal message.");
-        return;
+        //return;
     }
 
     int nullIndex = 0;
@@ -312,7 +314,7 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
 
     if (eventName == "REGISTER_VIEWER") {
         // The message should be handled in sessionDispatcher
-        qFatal("Illegal request in NewServerConnector. Please handle it in SessionDispatcher.");
+        //qFatal("Illegal request in NewServerConnector. Please handle it in SessionDispatcher.");
         return;
     }
     else if (eventName == "FILE_LIST_REQUEST"){
@@ -322,14 +324,72 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
         Carta::Data::DataLoader *dataLoader = objMan->createObject<Carta::Data::DataLoader>();
 
         CARTA::FileListRequest fileListRequest;
-        fileListRequest.ParseFromArray(message + 36, length - 36);
+        fileListRequest.ParseFromArray(message + 36, static_cast<int>(length) - 36);
         msg = dataLoader->getFileList(fileListRequest);
     }
     else if (eventName == "FILE_INFO_REQUEST") {
         respName = "FILE_INFO_RESPONSE";
 
-        // we cannot handle the request so far, return a fake response.
+        std::shared_ptr<CARTA::FileInfoRequest> _fileInfoRequest(new CARTA::FileInfoRequest());
+        _fileInfoRequest->ParseFromArray(message + 36, static_cast<int>(length) - 36);
+        auto _filename = _fileInfoRequest->file();
+        auto _folder = _fileInfoRequest->directory();
+        auto _file = _folder +"/" +_filename;
+
         std::shared_ptr<CARTA::FileInfoResponse> fileInfoResponse(new CARTA::FileInfoResponse());
+        fileInfoResponse->set_message(_file);
+        try {
+
+            std::shared_ptr<CCfits::FITS> pInfile(new CCfits::FITS(_file,CCfits::Read,false));
+            CCfits::PHDU& image = pInfile->pHDU();
+
+            // read all user-specifed, coordinate, and checksum keys in the image
+            image.readAllKeys();
+
+            auto _fileInfo = new CARTA::FileInfo();
+            _fileInfo->set_name(_filename);
+            _fileInfo->set_type(CARTA::FileType::FITS);
+            fileInfoResponse->set_allocated_file_info(_fileInfo); //Set file info
+
+            auto _fileInfoExt = new CARTA::FileInfoExtended();
+            _fileInfoExt->set_dimensions(static_cast<int>(image.axes()));
+                auto _headerEntryDim = _fileInfoExt->add_header_entries();
+                _headerEntryDim->set_name("Dimensions");
+                _headerEntryDim->set_value(std::to_string(image.axes()));
+            _fileInfoExt->set_width(static_cast<int>(image.axis(0)));
+                auto _headerEntryWidth = _fileInfoExt->add_header_entries();
+                _headerEntryWidth->set_name("Width");
+                _headerEntryWidth->set_value(std::to_string(image.axis(1)));
+            _fileInfoExt->set_height(static_cast<int>(image.axis(1)));
+                auto _headerEntryHeight = _fileInfoExt->add_header_entries();
+                _headerEntryHeight->set_name("Height");
+                _headerEntryHeight->set_value(std::to_string(image.axis(1)));
+            if (static_cast<int>(image.axes()) >= 3) {
+                _fileInfoExt->set_depth(static_cast<int>(image.axis(2)));
+                    auto _headerEntryDepth = _fileInfoExt->add_header_entries();
+                    _headerEntryDepth->set_name("Depth");
+                    _headerEntryDepth->set_value(std::to_string(image.axis(2)));
+            }
+            if (static_cast<int>(image.axes()) >= 4) {
+                _fileInfoExt->set_stokes(static_cast<int>(image.axis(3)));
+                    auto _headerEntryStoke = _fileInfoExt->add_header_entries();
+                    _headerEntryStoke->set_name("Stoke");
+                    _headerEntryStoke->set_value(std::to_string(image.axis(3)));
+            }
+
+            for(auto key : image.keyWord()){
+                auto _headerEntry = _fileInfoExt->add_header_entries();
+                _headerEntry->set_name(key.first);
+                string _keyvalue;
+                string _value;key.second->value(_keyvalue);
+                _headerEntry->set_value(_keyvalue);
+            }
+            fileInfoResponse->set_allocated_file_info_extended(_fileInfoExt); //Set file info ext
+
+        } catch (std::exception e) {
+            fileInfoResponse->set_success(false);
+        }
+
         fileInfoResponse->set_success(true);
         msg = fileInfoResponse;
     }
@@ -342,7 +402,7 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
         bool success;
 
         CARTA::OpenFile openFile;
-        openFile.ParseFromArray(message + 36, length - 36);
+        openFile.ParseFromArray(message + 36, static_cast<int>(length) - 36);
         controller->addData(QString::fromStdString(openFile.directory()) + "/" + QString::fromStdString(openFile.file()), &success);
 
         std::shared_ptr<Carta::Lib::Image::ImageInterface> image = controller->getImage();
@@ -359,7 +419,7 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
 
         const std::vector<int> dims = image->dims();
         CARTA::FileInfoExtended* fileInfoExt = new CARTA::FileInfoExtended();
-        fileInfoExt->set_dimensions(dims.size());
+        fileInfoExt->set_dimensions(static_cast<int>(dims.size()));
         fileInfoExt->set_width(dims[0]);
         fileInfoExt->set_height(dims[1]);
         if (dims.size() >= 3) {
@@ -383,10 +443,10 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
         Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
         QString controllerID = this->viewer.m_viewManager->registerView("pluginId:ImageViewer,index:0").split("/").last();
         Carta::Data::Controller* controller = dynamic_cast<Carta::Data::Controller*>( objMan->getObject(controllerID) );
-        bool success;
+        //bool success;
 
         CARTA::SetImageView viewSetting;
-        viewSetting.ParseFromArray(message + 36, length - 36);
+        viewSetting.ParseFromArray(message + 36, static_cast<int>(length) - 36);
 
         std::vector<int> frames = controller->getImageSlice();
         Carta::Lib::NdArray::RawViewInterface* view = controller->getRawData();
@@ -454,7 +514,7 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
         for (int i = ilb; i < nCols; i++) {
             rawData[i] = 0;
             int elems = mip * mip;
-            float denominator = 1.0 * elems;
+            float denominator = 1.0f * static_cast<float>(elems);
             for (int e = 0; e < elems; e++) {
                 int row = e / mip;
                 int col = e % mip;
@@ -504,7 +564,7 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
         auto & allCallbacks = m_messageCallbackMap[eventName];
 
         if( allCallbacks.size() == 0) {
-            qFatal("There is no event handler.");
+            //qFatal("There is no event handler.");
             return;
         }
 
@@ -516,12 +576,12 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
     size_t eventNameLength = 32;
     size_t eventIdLength = 4;
     int messageLength = msg->ByteSize();
-    size_t requiredSize = eventNameLength + eventIdLength + messageLength;
+    size_t requiredSize = eventNameLength + eventIdLength + static_cast<size_t>(messageLength);
     if (result.size() < requiredSize) {
         result.resize(requiredSize);
     }
     memset(result.data(), 0, eventNameLength);
-    memcpy(result.data(), respName.toStdString().c_str(), std::min<size_t>(respName.length(), eventNameLength));
+    memcpy(result.data(), respName.toStdString().c_str(), std::min<size_t>(static_cast<size_t>(respName.length()), eventNameLength));
     memcpy(result.data() + eventNameLength, message + eventNameLength, eventIdLength);
     if (msg) {
         msg->SerializeToArray(result.data() + eventNameLength + eventIdLength, messageLength);
