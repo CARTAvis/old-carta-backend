@@ -381,7 +381,7 @@ void NewServerConnector::onBinaryMessage(char* message, size_t length){
                 auto _headerEntry = _fileInfoExt->add_header_entries();
                 _headerEntry->set_name(key.first);
                 string _keyvalue;
-                string _value;key.second->value(_keyvalue);
+                key.second->value(_keyvalue);
                 _headerEntry->set_value(_keyvalue);
             }
             fileInfoResponse->set_allocated_file_info_extended(_fileInfoExt); //Set file info ext
