@@ -71,19 +71,19 @@ bool StatisticsCASAImage::_beamCompare( const casacore::GaussianBeam &a, const c
 
 void StatisticsCASAImage::_computeStats(const casacore::ImageInterface<casacore::Float>* image,
         QList<Carta::Lib::StatInfo>& stats ){
-    casa_mutex.lock();
+    //casa_mutex.lock();
 
     casacore::Vector<casacore::Int> shapeVector = image->shape().asVector();
     int dimCount = shapeVector.nelements();
     if (dimCount <= 0 ){
-        casa_mutex.unlock();
+        //casa_mutex.unlock();
 
         return;
     }
     _insertShape( shapeVector, stats );
 
     const casacore::CoordinateSystem cs = image->coordinates();
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     _insertRaDec( cs, shapeVector, stats );
 
@@ -97,11 +97,11 @@ void StatisticsCASAImage::_getStatsPlanar( const casacore::ImageInterface<casaco
         QList<Carta::Lib::StatInfo>& statsMap, int zIndex, int hIndex ) {
 
     try {
-        casa_mutex.lock();
+        //casa_mutex.lock();
 
         int dim = image->shape().nelements();
         if ( dim <= 2 ){
-            casa_mutex.unlock();
+            //casa_mutex.unlock();
 
             return;
         }
@@ -225,7 +225,7 @@ void StatisticsCASAImage::_getStatsPlanar( const casacore::ImageInterface<casaco
             info.setValue( QString::number( beamArea ) );
             statsMap.append( info );
         }
-        casa_mutex.unlock();
+        //casa_mutex.unlock();
     }
     catch (const casacore::AipsError& err) {
         std::string errMsg_ = err.getMesg();
@@ -343,7 +343,7 @@ void StatisticsCASAImage::_insertShape( const casacore::Vector<casacore::Int>& s
 void StatisticsCASAImage::_insertSpectral( const casacore::CoordinateSystem& cs,
         casacore::Vector<casacore::Int>& shapeVector, QList<Carta::Lib::StatInfo>& stats ){
     if ( cs.hasSpectralAxis( ) && shapeVector[cs.spectralAxisNumber( )] > 1 ) {
-        casa_mutex.lock();
+        //casa_mutex.lock();
         casacore::SpectralCoordinate spec = cs.spectralCoordinate( );
         casacore::Vector<casacore::String> specUnitVec = spec.worldAxisUnits( );
         if ( specUnitVec(0) == "Hz" ){
@@ -372,7 +372,7 @@ void StatisticsCASAImage::_insertSpectral( const casacore::CoordinateSystem& cs,
             }
 
         }
-        casa_mutex.unlock();
+        //casa_mutex.unlock();
 
         if ( frequencies.size() > 0 ){
             QString freqRange = QString::number( frequencies.front() ) + ", " +

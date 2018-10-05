@@ -197,7 +197,7 @@ public:
         // create an image interface instance and populate it with various
         // values from casacore::ImageInterface
         CCImage::SharedPtr img = std::make_shared < CCImage < PType > > ();
-        casa_mutex.lock();
+        //casa_mute.lock();
 
         img-> m_pixelType = Carta::Lib::Image::CType2PixelType < PType >::type;
         img-> m_dims      = casaImage-> shape().asStdVector();
@@ -212,7 +212,7 @@ public:
         // make our own copy of the coordinate system using 'clone'
         std::shared_ptr<casacore::CoordinateSystem> casaCS(
                     static_cast<casacore::CoordinateSystem *> (casaImage->coordinates().clone()));
-        casa_mutex.unlock();
+        //casa_mute.unlock();
 
         // construct a meta data instance
         img-> m_meta = std::make_shared < CCMetaDataInterface > ( htmlTitle, casaCS );

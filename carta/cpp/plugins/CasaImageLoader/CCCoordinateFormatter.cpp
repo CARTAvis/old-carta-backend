@@ -128,7 +128,7 @@ CCCoordinateFormatter *
 CCCoordinateFormatter::clone() const
 {
     CCCoordinateFormatter * res = new CCCoordinateFormatter( * this );
-//    casa_mutex.lock();
+//    casa_mute.lock();
     res->m_casaCS.reset( new casacore::CoordinateSystem( * m_casaCS ) );
 //    casa_mutex.unlock();
     return res;
@@ -153,7 +153,7 @@ CCCoordinateFormatter::formatFromPixelCoordinate( const CoordinateFormatterInter
     // convert freq to radio velocity
     int NumberofSpectralAxis = -1;
     casacore::Quantum<casacore::Double> velocity;
-    casa_mutex.lock();
+    //casa_mutex.lock();
     if(m_casaCS->hasSpectralAxis())
     {
 
@@ -163,7 +163,7 @@ CCCoordinateFormatter::formatFromPixelCoordinate( const CoordinateFormatterInter
         casaSpeSystem.pixelToVelocity(velocity,pixel(NumberofSpectralAxis));
 
     }
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
 
 
@@ -274,9 +274,9 @@ CCCoordinateFormatter::skyCS()
     }
     int which = m_casaCS->directionCoordinateNumber();
 
-    casa_mutex.lock();
+    //casa_mutex.lock();
     const casacore::DirectionCoordinate & dirCoord = m_casaCS->directionCoordinate( which );
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     casacore::MDirection::Types dirType = dirCoord.directionType( true );
     switch ( dirType )
@@ -311,7 +311,7 @@ CCCoordinateFormatter::setSkyCS( const KnownSkyCS & scs )
         return * this;
     }
 
-    casa_mutex.lock();
+    //casa_mutex.lock();
 
     // find out where the direction world coordinate lives
     int which = m_casaCS->directionCoordinateNumber();
@@ -358,11 +358,11 @@ CCCoordinateFormatter::setSkyCS( const KnownSkyCS & scs )
     dirCoordCopy.setReferenceConversion( mdir );
     if ( ! m_casaCS->replaceCoordinate( dirCoordCopy, which ) ) {
         qWarning() << "Could not set wcs because replaceCoordinate() failed";
-        casa_mutex.unlock();
+        //casa_mutex.unlock();
 
         return * this;
     }
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
 
     // now we need to adjust axisinfos, formatting and precision
@@ -437,7 +437,7 @@ CCCoordinateFormatter::parseCasaCSi( int pixelAxis )
     int coord; // this is the world coordinate
     int coord2; // this is the index within world coordinate (0 for all but latitude)
 
-    casa_mutex.lock();
+    //casa_mutex.lock();
 
     m_casaCS->findPixelAxis( coord, coord2, pixelAxis );
 
@@ -576,7 +576,7 @@ CCCoordinateFormatter::parseCasaCSi( int pixelAxis )
         // this should never happen that casacore didn't find world coordinates for
         // the given axis... but let's not panic and just leave it a default value
     }
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
 } // parseCasaCSi
 

@@ -312,6 +312,12 @@ private:
     void _getXYProfiles(Carta::Lib::NdArray::Double doubleView, const int imgWidth, const int imgHeight,
     const int x, const int y, std::vector<float> & xProfile, std::vector<float> & yProfile) const;
 
+    void _getXProfile(Carta::Lib::NdArray::Double doubleView, const int imgWidth,
+    const int y, std::vector<float> & xProfile) const;
+
+    void _getYProfile(Carta::Lib::NdArray::Double doubleView, const int imgHeight,
+    const int x, std::vector<float> & yProfile) const;
+
     bool _addProfile(std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData,
         const std::vector<float> & profile, const std::string coordinate) const;
 

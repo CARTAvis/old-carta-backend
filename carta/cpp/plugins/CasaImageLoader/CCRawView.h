@@ -198,14 +198,14 @@ CCRawView < PType >::get( const Carta::Lib::NdArray::RawViewInterface::VI & pos 
                        + p * m_appliedSlice.dims()[i].step;
     }
 
-    casa_mutex.lock();
+    //casa_mute.lock();
 
     // casacore::ImageInterface::operator() returns the result by value
     // so in order to return reference (to satisfy our API) we need to store this
     // in a buffer first...
     m_buff = m_ccimage-> m_casaII->
                  operator() ( m_destPos );
-    casa_mutex.unlock();
+    //casa_mute.unlock();
 
     return reinterpret_cast < const char * > ( & m_buff );
 } // get
@@ -251,7 +251,7 @@ CCRawView < PType >::forEach(
     }
     stepper.subSection( blc, trc, inc );
 
-    casa_mutex.lock();
+    //casa_mute.lock();
     casacore::RO_LatticeIterator < PType > iterator( * casaII, stepper );
 
     for ( iterator.reset() ; ! iterator.atEnd() ; iterator++ ) {
@@ -260,7 +260,7 @@ CCRawView < PType >::forEach(
             func( reinterpret_cast < const char * > ( & val ) );
         }
     }
-    casa_mutex.unlock();
+    //casa_mute.unlock();
 } // forEach
 
 template < typename PType >

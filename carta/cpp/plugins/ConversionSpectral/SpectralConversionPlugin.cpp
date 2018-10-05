@@ -40,7 +40,7 @@ SpectralConversionPlugin::handleHook( BaseHook & hookData ){
                     Carta::Lib::Image::MetaDataInterface::SharedPtr metaPtr = base->metaData();
                     CCMetaDataInterface* metaData = dynamic_cast<CCMetaDataInterface*>(metaPtr.get());
                     if ( metaData ){
-                        casa_mutex.lock();
+                        //casa_mutex.lock();
 
                         std::shared_ptr<casacore::CoordinateSystem> cs = metaData->getCoordinateSystem();
                         int spectralIndex = cs->findCoordinate(casacore::Coordinate::SPECTRAL,  -1);
@@ -73,7 +73,7 @@ SpectralConversionPlugin::handleHook( BaseHook & hookData ){
                             qWarning() << "Not converting spectral units, no spectral coordinate";
                         }
 
-                        casa_mutex.unlock();
+                        //casa_mutex.unlock();
 
                     }
                 }

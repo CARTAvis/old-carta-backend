@@ -95,14 +95,14 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
     if(filetype == casacore::ImageOpener::ImageTypes::AIPSPP) {
         qDebug() << "\t-opened as paged image";
 
-        casa_mutex.lock();
+        //casa_mute.lock();
         try {
             lat = casacore::ImageOpener::openPagedImage(fname.toStdString());
         } catch (...) {
             success = false;
             qDebug() << "\t-ERROR: open paged image failed.";
         }
-        casa_mutex.unlock();
+        //casa_mute.unlock();
     } else if (filetype != casacore::ImageOpener::ImageTypes::UNKNOWN) {
         qDebug() << "CasaImageLoader plugin tries to load non-casa image";
         if (filetype == casacore::ImageOpener::ImageTypes::FITS) {
@@ -113,14 +113,14 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
             qDebug() << "\t-opened as unpaged image";
         }
 
-        casa_mutex.lock();
+        //casa_mute.lock();
         try {
             lat = casacore::ImageOpener::openImage(fname.toStdString());
         } catch (...) {
             success = false;
             qDebug() << "\t-ERROR: open image failed.";
         }
-        casa_mutex.unlock();
+        //casa_mute.unlock();
     } else {
         success = false;
         qDebug() << "unknow format \t-out of ideas, bailing out";

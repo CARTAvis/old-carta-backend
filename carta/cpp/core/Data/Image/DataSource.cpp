@@ -128,7 +128,7 @@ std::vector<int> DataSource::_fitFramesToImage( const std::vector<int>& sourceFr
 
 std::vector<AxisInfo::KnownType> DataSource::_getAxisTypes() const {
     std::vector<AxisInfo::KnownType> types;
-    casa_mutex.lock();
+    //casa_mutex.lock();
     CoordinateFormatterInterface::SharedPtr cf(
                    m_image-> metaData()-> coordinateFormatter()-> clone() );
     int axisCount = cf->nAxes();
@@ -139,20 +139,20 @@ std::vector<AxisInfo::KnownType> DataSource::_getAxisTypes() const {
             types.push_back( axisInfo.knownType() );
         }
     }
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     return types;
 }
 
 void DataSource::_setCoordinateSystem( Carta::Lib::KnownSkyCS cs ){
-    casa_mutex.lock();
+    //casa_mutex.lock();
     m_coordinateFormatter->setSkyCS( cs );
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 }
 
 std::vector<AxisInfo> DataSource::_getAxisInfos() const {
     std::vector<AxisInfo> Infos;
-    casa_mutex.lock();
+    //casa_mutex.lock();
 
     int axisCount = m_coordinateFormatter->nAxes();
     for ( int axis = 0 ; axis < axisCount; axis++ ) {
@@ -162,7 +162,7 @@ std::vector<AxisInfo> DataSource::_getAxisInfos() const {
         }
     }
 
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     return Infos;
 }
@@ -170,7 +170,7 @@ std::vector<AxisInfo> DataSource::_getAxisInfos() const {
 
 AxisInfo::KnownType DataSource::_getAxisType( int index ) const {
     AxisInfo::KnownType type = AxisInfo::KnownType::OTHER;
-    casa_mutex.lock();
+    //casa_mutex.lock();
     CoordinateFormatterInterface::SharedPtr cf(
                        m_image-> metaData()-> coordinateFormatter()-> clone() );
     int axisCount = cf->nAxes();
@@ -178,7 +178,7 @@ AxisInfo::KnownType DataSource::_getAxisType( int index ) const {
         AxisInfo axisInfo = cf->axisInfo( index );
         type = axisInfo.knownType();
     }
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     return type;
 }
@@ -210,7 +210,7 @@ std::vector<AxisInfo::KnownType> DataSource::_getAxisZTypes() const {
 QStringList DataSource::_getCoordinates( double x, double y,
         Carta::Lib::KnownSkyCS system, const std::vector<int>& frames ) const{
     std::vector<int> mFrames = _fitFramesToImage( frames );
-    casa_mutex.lock();
+    //casa_mutex.lock();
     CoordinateFormatterInterface::SharedPtr cf( m_image-> metaData()-> coordinateFormatter()-> clone() );
     cf-> setSkyCS( system );
     int imageSize = m_image->dims().size();
@@ -229,19 +229,19 @@ QStringList DataSource::_getCoordinates( double x, double y,
         }
     }
     QStringList list = cf-> formatFromPixelCoordinate( pixel );
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
     return list;
 }
 
 QString DataSource::_getDefaultCoordinateSystem() const{
 
-    casa_mutex.lock();
+    //casa_mutex.lock();
 
     CoordinateFormatterInterface::SharedPtr cf(
             m_image-> metaData()-> coordinateFormatter()-> clone() );
 
     QString coordName = m_coords->getName( cf->skyCS() );
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     return coordName;
 }
@@ -263,7 +263,7 @@ QString DataSource::_getCursorText(bool isAutoClip, double minPercent, double ma
         QString round_imgX = QString::number(imgX, 'f', 2);
         QString round_imgY = QString::number(imgY, 'f', 2);
 
-        casa_mutex.lock();
+        //casa_mutex.lock();
 
         CoordinateFormatterInterface::SharedPtr cf(
                 m_image-> metaData()-> coordinateFormatter()-> clone() );
@@ -304,7 +304,7 @@ QString DataSource::_getCursorText(bool isAutoClip, double minPercent, double ma
             ais.push_back( ai );
         }
 
-        casa_mutex.unlock();
+        //casa_mutex.unlock();
 
         QStringList coordList = _getCoordinates( imgX, imgY, cs, frames);
         for ( size_t i = 0 ; i < ais.size() ; i++ ) {
@@ -839,6 +839,38 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
     raster->set_stokes(stokeFrame);
     raster->set_mip(mip);
 
+    // calculate histogram with thread
+    if (changeFrame) {
+        QFuture<void> histThread = QtConcurrent::run([&, this]() {
+            qDebug() << "[DataSource] calculating histogram...................";
+            // check if need to calculate the histogram data
+            RegionHistogramData result = this->_getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
+                                                            numberOfBins, converter);
+            // check if the calculation result is valid
+            if (result.bins.size() > 0) {
+                // add RegionHistogramData in the RasterImageData message
+                CARTA::RegionHistogramData* region_histogram_data = new CARTA::RegionHistogramData();
+                region_histogram_data->set_file_id(result.fileId);
+                region_histogram_data->set_region_id(result.regionId);
+                region_histogram_data->set_stokes(result.stokeFrame);
+                CARTA::Histogram* histogram = region_histogram_data->add_histograms();
+                histogram->set_channel(result.frameLow);
+                histogram->set_num_bins(result.num_bins);
+                histogram->set_bin_width(result.bin_width);
+                // the minimum value of pixels is the first bin center
+                histogram->set_first_bin_center(result.first_bin_center);
+                // fill in the vector of the histogram data
+                for (auto intensity : result.bins) {
+                    histogram->add_bins(intensity);
+                }
+                raster->set_allocated_channel_histogram_data(region_histogram_data);
+            }
+            // reset the m_changeFrame[fileId] = false; in the NewServerConnector obj
+            changeFrame = false;
+        });
+        histThread.waitForFinished();
+    }
+
     if (isZFP) {
         // use ZFP compression
         raster->set_compression_type(CARTA::CompressionType::ZFP);
@@ -928,6 +960,7 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
 
     qDebug() << "[DataSource] .......................................................................Done";
 
+    /*
     // check if need to calculate the histogram data
     if (changeFrame) {
         RegionHistogramData result = _getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
@@ -957,6 +990,7 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
         // reset the m_changeFrame[fileId] = false; in the NewServerConnector obj
         changeFrame = false;
     }
+    */
 
     return raster;
 }
@@ -1035,6 +1069,28 @@ PBMSharedPtr DataSource::_getXYProfiles(int fileId, int x, int y,
 void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const int imgWidth, const int imgHeight,
     const int x, const int y, std::vector<float> & xProfile, std::vector<float> & yProfile) const {
 
+    qDebug() << "===============[Multi-thread]================";
+    std::vector<QFuture<void> > futures;
+    QFuture<void> fx = QtConcurrent::run(
+        [&, this]() {
+            this->_getXProfile(doubleView, imgWidth, y, xProfile);
+    });
+    futures.push_back(fx);
+
+     QFuture<void> fy = QtConcurrent::run(
+        [&, this]() {
+            this->_getYProfile(doubleView, imgHeight, x, yProfile);
+    });
+    futures.push_back(fy);
+
+    // Wait for completed compression threads
+    for (auto future : futures) {
+        // Note that if the future finished BEFORE we call this, it will still work.
+        future.waitForFinished();
+    }
+
+    /*
+    qDebug() << "---------------[Single-thread]---------------";
     // get X profile
     for (int index = 0; index < imgWidth; index++) {
         float val = (float)doubleView.get({index,y});
@@ -1046,6 +1102,31 @@ void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const in
         float val = (float)doubleView.get({x,index});
         std::isfinite(val) ? yProfile.push_back(val) : yProfile.push_back(0);
     }
+    */
+}
+
+void DataSource::_getXProfile(Carta::Lib::NdArray::Double doubleView, const int imgWidth,
+    const int y, std::vector<float> & xProfile) const {
+
+    // get X profile
+    casa_mutex.lock();
+    for (int index = 0; index < imgWidth; index++) {
+        float val = (float)doubleView.get({index,y});
+        std::isfinite(val) ? xProfile.push_back(val) : xProfile.push_back(0);
+    }
+    casa_mutex.unlock();
+}
+
+void DataSource::_getYProfile(Carta::Lib::NdArray::Double doubleView, const int imgHeight,
+    const int x, std::vector<float> & yProfile) const {
+    
+    // get Y profile
+    casa_mutex.lock();
+    for (int index = 0; index < imgHeight; index++) {
+        float val = (float)doubleView.get({x,index});
+        std::isfinite(val) ? yProfile.push_back(val) : yProfile.push_back(0);
+    }
+    casa_mutex.unlock();
 }
 
 bool DataSource::_addProfile(std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData,
@@ -1223,7 +1304,7 @@ std::vector<double> DataSource::_getPercentiles( int frameLow, int frameHigh, st
 
 QPointF DataSource::_getPixelCoordinates( double ra, double dec, bool* valid ) const{
     QPointF result;
-    casa_mutex.lock();
+    //casa_mutex.lock();
     CoordinateFormatterInterface::SharedPtr cf( m_image-> metaData()-> coordinateFormatter()-> clone() );
     const CoordinateFormatterInterface::VD world { ra, dec };
     CoordinateFormatterInterface::VD pixel;
@@ -1231,7 +1312,7 @@ QPointF DataSource::_getPixelCoordinates( double ra, double dec, bool* valid ) c
     if ( *valid ){
         result = QPointF( pixel[0], pixel[1]);
     }
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     return result;
 }
@@ -1260,7 +1341,7 @@ QPointF DataSource::_getScreenPt( const QPointF& imagePt, const QPointF& pan,
 QPointF DataSource::_getWorldCoordinates( double pixelX, double pixelY,
         Carta::Lib::KnownSkyCS coordSys, bool* valid ) const{
     QPointF result;
-    casa_mutex.lock();
+    //casa_mutex.lock();
 
     CoordinateFormatterInterface::SharedPtr cf( m_image-> metaData()-> coordinateFormatter()-> clone() );
     cf->setSkyCS( coordSys );
@@ -1273,7 +1354,7 @@ QPointF DataSource::_getWorldCoordinates( double pixelX, double pixelY,
     if ( *valid ){
         result = QPointF( world[0], world[1]);
     }
-    casa_mutex.unlock();
+    //casa_mutex.unlock();
 
     return result;
 }

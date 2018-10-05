@@ -168,11 +168,11 @@ Histogram1::handleHook( BaseHook & hookData )
             return false;
         }
 
-        casa_mutex.lock();
+        //casa_mutex.lock();
         casacore::ImageInterface<casacore::Float> * casaImage = cartaII2casaII_float( image );
         if( ! casaImage) {
             qWarning() << "Histogram plugin: not an image created by casaimageloader...";
-            casa_mutex.unlock();
+            //casa_mutex.unlock();
             return false;
         }
         if ( !m_histogram ){
@@ -218,7 +218,7 @@ Histogram1::handleHook( BaseHook & hookData )
         hook.result = _computeHistogram();
         hook.result.setFrequencyBounds( frequencyMin, frequencyMax );
 
-        casa_mutex.unlock();
+        //casa_mutex.unlock();
 
         return true;
     }

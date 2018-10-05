@@ -416,18 +416,18 @@ bool ProfileCASA::handleHook(BaseHook & hookData){
             return false;
         }
 
-        casa_mutex.lock();
+        //casa_mutex.lock();
         casacore::ImageInterface < casacore::Float > * casaImage = cartaII2casaII_float( imagePtr );
         if( ! casaImage) {
             qWarning() << "Profile plugin: not an image created by casaimageloader...";
-            casa_mutex.unlock();
+            //casa_mutex.unlock();
             return false;
         }
 
         std::shared_ptr<Carta::Lib::Regions::RegionBase> regionInfo = hook.paramsPtr->m_regionInfo;
         Carta::Lib::ProfileInfo profileInfo = hook.paramsPtr->m_profileInfo;
         hook.result = _generateProfile( casaImage, regionInfo, profileInfo );
-        casa_mutex.unlock();
+        //casa_mutex.unlock();
         return true;
     }
     qWarning() << "Sorry, ProfileCASA doesn't know how to handle this hook";

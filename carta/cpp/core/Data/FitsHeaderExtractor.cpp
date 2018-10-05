@@ -216,7 +216,7 @@ FitsHeaderExtractor::_CasaFitsConverter( casacore::LatticeBase * lbase )
     String errorString;
     ImageFITSHeaderInfo fhi;
 
-    casa_mutex.lock();
+    //casa_mute.lock();
     bool isok = ImageFITSConverter::ImageHeaderToFITS (errorString, fhi, image,
                                                        preferVelocity, opticalVelocity,
                                                        BITPIX, minPix, maxPix,
@@ -225,7 +225,7 @@ FitsHeaderExtractor::_CasaFitsConverter( casacore::LatticeBase * lbase )
                                                        airWavelength,
                                                        primHead, allowAppend,
                                                        originStr, history);
-    casa_mutex.unlock();
+    //casa_mute.unlock();
 
     if(!isok)
     {
