@@ -734,17 +734,116 @@ RegionHistogramData DataSource::_getPixels2HistogramData(int fileId, int regionI
     return result;
 }
 
-PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
-    int frameLow, int frameHigh, int stokeFrame,
-    bool isZFP, int precision, int numSubsets,
-    bool &changeFrame, int regionId, int numberOfBins,
-    Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
-
-    std::vector<float> imageData; // the image raw data with downsampling
+bool DataSource::_getPixels2HistogramData(int fileId, int regionId, int frameLow, int frameHigh, int stokeFrame,
+    int numberOfBins,
+    Carta::Lib::IntensityUnitConverter::SharedPtr converter,
+    std::shared_ptr<CARTA::RasterImageData> raster) const {
 
     // start timer for computing approximate percentiles
+    qDebug() << "[DataSource] Calculating the regional histogram data...................................>";
     QElapsedTimer timer;
     timer.start();
+
+    if (nullptr == raster) {
+        qDebug() << "Argument raster is null.";
+        return false;
+    }
+
+    RegionHistogramData result; // results from the "percentileAlgorithms.h"
+
+    // get the raw data
+    Carta::Lib::NdArray::RawViewInterface* rawData = _getRawDataForStoke(frameLow, frameHigh, stokeFrame);
+    if (rawData == nullptr) {
+        qCritical() << "[DataSource] Error: could not retrieve image data to calculate missing intensities.";
+        return false;
+    }
+
+    std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> view(rawData);
+    Carta::Lib::NdArray::Double doubleView(view.get(), false);
+
+    // get the min/max intensities
+    double minIntensity = 0.0;
+    double maxIntensity = 0.0;
+    std::vector<double> minMaxIntensities = _getIntensity(frameLow, frameHigh, std::vector<double>({0, 1}), stokeFrame, converter);
+    if (minMaxIntensities.size() != 2) {
+        qCritical() << "[DataSource] Error: can not get the min/max intensities!!";
+        return false;
+    } else {
+        minIntensity = minMaxIntensities[0];
+        // assign the minimum of the pixel value as a private parameter
+        maxIntensity = minMaxIntensities[1];
+    }
+
+    if (minIntensity > maxIntensity) {
+        qCritical() << "[DataSource] Error: min intensity > max intensity!!";
+        return false;
+    }
+
+    // get the calculator
+    Carta::Lib::IPercentilesToPixels<double>::SharedPtr calculator = nullptr;
+    calculator = std::make_shared<Carta::Core::Algorithms::MinMaxPercentiles<double> >();
+
+    // Find Hz values if they are required for the unit transformation
+    std::vector<double> hertzValues;
+    if (converter && converter->frameDependent) {
+        hertzValues = _getHertzValues(doubleView.dims());
+    }
+
+    int spectralIndex = Util::getAxisIndex( m_image, AxisInfo::KnownType::SPECTRAL );
+    result = calculator->pixels2histogram(fileId, regionId, doubleView, minIntensity, maxIntensity,
+                                          numberOfBins, spectralIndex, converter, hertzValues, frameLow, stokeFrame);
+
+    // check if the calculation result is valid & write to raster
+    if (result.bins.size() > 0) {
+        // add RegionHistogramData in the RasterImageData message
+        CARTA::RegionHistogramData* region_histogram_data = new CARTA::RegionHistogramData();
+        region_histogram_data->set_file_id(result.fileId);
+        region_histogram_data->set_region_id(result.regionId);
+        region_histogram_data->set_stokes(result.stokeFrame);
+        CARTA::Histogram* histogram = region_histogram_data->add_histograms();
+        histogram->set_channel(result.frameLow);
+        histogram->set_num_bins(result.num_bins);
+        histogram->set_bin_width(result.bin_width);
+
+        // the minimum value of pixels is the first bin center
+        histogram->set_first_bin_center(result.first_bin_center);
+
+        // fill in the vector of the histogram data
+        for (auto intensity : result.bins) {
+            histogram->add_bins(intensity);
+        }
+        raster->set_allocated_channel_histogram_data(region_histogram_data);
+    }
+
+    // end of timer for getting histogram
+    qDebug() << "[DataSource] .......................................................................Done";
+    int elapsedTime = timer.elapsed();
+    if (CARTA_RUNTIME_CHECKS) {
+        qCritical() << "<> Time to get histogram:" << elapsedTime << "ms";
+    }
+
+    return true;
+}
+
+// [TODO] extract get raster image from _getRasterImageData()
+bool DataSource::_getRasterImage(int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
+    int frameLow, int frameHigh, int stokeFrame,
+    bool isZFP, int precision, int numSubsets,
+    int regionId, int numberOfBins,
+    std::shared_ptr<CARTA::RasterImageData> raster) const {
+
+    // start timer for computing approximate percentiles
+    qDebug() << "[DataSource] Down sampling the raster image data.......................................>";
+    QElapsedTimer timer;
+    timer.start();
+
+    if (nullptr == raster) {
+        qDebug() << "Argument raster is null.";
+        return false;
+    }
+
+    // the image raw data with downsampling
+    std::vector<float> imageData;
 
     // get the raw data
     Carta::Lib::NdArray::RawViewInterface* view = _getRawDataForStoke(frameLow, frameHigh, stokeFrame);
@@ -753,24 +852,18 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
     if (mip <= 0 || abs(mip) > std::min(view->dims()[0], view->dims()[1])) {
         qWarning() << "[DataSource] Downsampling parameter, mip=" << mip
                    << ", which is larger than the image width=" <<  view->dims()[0]
-                   << "or high=" << view->dims()[1] << ". Return nullptr";
-        return nullptr;
+                   << "or high=" << view->dims()[1] << ". Return false";
+        return false;
         // [Try] it may be due to the frontend signal problem, reset the mip as 1 to pass, and then resend the next correct signal
         //mip = 1;
     }
 
-    qDebug() << "[DataSource] Down sampling the raster image data.......................................>";
-    //qDebug() << "Dawn sampling factor mip:" << mip;
     int nx = (xMax - xMin) / mip;
     int ny = (yMax - yMin) / mip;
-    //qDebug() << "get the x-pixel-coordinate range: [x_min, x_max]= [" << xMin << "," << xMax << "]" << "--> W=" << nx;
-    //qDebug() << "get the y-pixel-coordinate range: [y_min, y_max]= [" << yMin << "," << yMax << "]" << "--> H=" << ny;
-
     int prepareCols = view->dims()[0]; // get the full width length
     int prepareRows = mip;
     int area = prepareCols * prepareRows;
     std::vector<float> prepareArea(area);
-
     int nRows = (yMax - yMin) / mip;
     int nCols = (xMax - xMin) / mip;
     int nextRowToReadIn = yMin;
@@ -824,20 +917,6 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
     for (int j = 0; j < nRows; j++) {
         updateRows();
     }
-
-    // add the RasterImageData message
-    CARTA::ImageBounds* imgBounds = new CARTA::ImageBounds();
-    imgBounds->set_x_min(xMin);
-    imgBounds->set_x_max(xMax);
-    imgBounds->set_y_min(yMin);
-    imgBounds->set_y_max(yMax);
-
-    std::shared_ptr<CARTA::RasterImageData> raster(new CARTA::RasterImageData());
-    raster->set_file_id(fileId);
-    raster->set_allocated_image_bounds(imgBounds);
-    raster->set_channel(frameLow);
-    raster->set_stokes(stokeFrame);
-    raster->set_mip(mip);
 
     if (isZFP) {
         // use ZFP compression
@@ -918,41 +997,50 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
         qDebug() << "[DataSource] w/o ZFP compression!";
     }
 
-    //qDebug() << "number of the raw data sent L=" << imageData.size() << ", WxH=" << nx * ny << ", Difference:" << (nx * ny - imageData.size());
-
     // end of timer for loading the raw data
+    qDebug() << "[DataSource] .......................................................................Done";
     int elapsedTime = timer.elapsed();
     if (CARTA_RUNTIME_CHECKS) {
         qCritical() << "<> Time to get raster image data:" << elapsedTime << "ms";
     }
 
-    qDebug() << "[DataSource] .......................................................................Done";
+    return true;
+}
 
-    // check if need to calculate the histogram data
+PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
+    int frameLow, int frameHigh, int stokeFrame,
+    bool isZFP, int precision, int numSubsets,
+    bool &changeFrame, int regionId, int numberOfBins,
+    Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
+
+    // generate message
+    CARTA::ImageBounds* imgBounds = new CARTA::ImageBounds();
+    imgBounds->set_x_min(xMin);
+    imgBounds->set_x_max(xMax);
+    imgBounds->set_y_min(yMin);
+    imgBounds->set_y_max(yMax);
+
+    std::shared_ptr<CARTA::RasterImageData> raster(new CARTA::RasterImageData());
+    raster->set_file_id(fileId);
+    raster->set_allocated_image_bounds(imgBounds);
+    raster->set_channel(frameLow);
+    raster->set_stokes(stokeFrame);
+    raster->set_mip(mip);
+
+    // Step 1: get raster image
+    if (false == _getRasterImage(fileId, xMin, xMax, yMin, yMax, mip,
+        frameLow, frameHigh, stokeFrame, isZFP, precision, numSubsets,
+        regionId, numberOfBins, raster)) {
+        qDebug() << "Get raster image failed!";
+        return nullptr;
+    }
+
+    // Step 2: get histogram
     if (changeFrame) {
-        RegionHistogramData result = _getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
-                                                              numberOfBins, converter);
-        // check if the calculation result is valid
-        if (result.bins.size() > 0) {
-            // add RegionHistogramData in the RasterImageData message
-            CARTA::RegionHistogramData* region_histogram_data = new CARTA::RegionHistogramData();
-            region_histogram_data->set_file_id(result.fileId);
-            region_histogram_data->set_region_id(result.regionId);
-            region_histogram_data->set_stokes(result.stokeFrame);
-
-            CARTA::Histogram* histogram = region_histogram_data->add_histograms();
-            histogram->set_channel(result.frameLow);
-            histogram->set_num_bins(result.num_bins);
-            histogram->set_bin_width(result.bin_width);
-
-            // the minimum value of pixels is the first bin center
-            histogram->set_first_bin_center(result.first_bin_center);
-
-            // fill in the vector of the histogram data
-            for (auto intensity : result.bins) {
-                histogram->add_bins(intensity);
-            }
-            raster->set_allocated_channel_histogram_data(region_histogram_data);
+        if (false == _getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
+                                                              numberOfBins, converter, raster)){
+            qDebug() << "Get histogram failed!";
+            return nullptr;
         }
         // reset the m_changeFrame[fileId] = false; in the NewServerConnector obj
         changeFrame = false;
@@ -1040,6 +1128,26 @@ void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const in
         float val = (float)doubleView.get({index,y});
         std::isfinite(val) ? xProfile.push_back(val) : xProfile.push_back(0);
     }
+
+    // get Y profile
+    for (int index = 0; index < imgHeight; index++) {
+        float val = (float)doubleView.get({x,index});
+        std::isfinite(val) ? yProfile.push_back(val) : yProfile.push_back(0);
+    }
+}
+
+void DataSource::_getXProfile(Carta::Lib::NdArray::Double doubleView, const int imgWidth,
+    const int y, std::vector<float> & xProfile) const {
+
+    // get X profile
+    for (int index = 0; index < imgWidth; index++) {
+        float val = (float)doubleView.get({index,y});
+        std::isfinite(val) ? xProfile.push_back(val) : xProfile.push_back(0);
+    }
+}
+
+void DataSource::_getYProfile(Carta::Lib::NdArray::Double doubleView, const int imgHeight,
+    const int x, std::vector<float> & yProfile) const {
 
     // get Y profile
     for (int index = 0; index < imgHeight; index++) {
