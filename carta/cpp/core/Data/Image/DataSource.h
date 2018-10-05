@@ -279,6 +279,11 @@ private:
             int numberOfBins,
             Carta::Lib::IntensityUnitConverter::SharedPtr converter) const;
 
+    bool _getPixels2HistogramData(int fileId, int regionId, int frameLow, int frameHigh, int stokeFrame,
+            int numberOfBins,
+            Carta::Lib::IntensityUnitConverter::SharedPtr converter,
+            std::shared_ptr<CARTA::RasterImageData> raster) const;
+
     int _getStokeIndicator();
     int _getSpectralIndicator();
 
@@ -301,6 +306,12 @@ private:
         bool &changeFrame, int regionId, int numberOfBins,
         Carta::Lib::IntensityUnitConverter::SharedPtr converter) const;
 
+    bool _getRasterImage(int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
+        int frameLow, int frameHigh, int stokeFrame,
+        bool isZFP, int precision, int numSubsets,
+        int regionId, int numberOfBins,
+        std::shared_ptr<CARTA::RasterImageData> raster) const;
+
     int _compress(std::vector<float>& array, size_t offset, std::vector<char>& compressionBuffer,
             size_t& compressedSize, uint32_t nx, uint32_t ny, uint32_t precision) const;
 
@@ -321,6 +332,14 @@ private:
 
     void _getXYProfiles(Carta::Lib::NdArray::Double doubleView, const int imgWidth, const int imgHeight,
     const int x, const int y, std::vector<float> & xProfile, std::vector<float> & yProfile) const;
+
+    /* [TODO] Replace _getXYProfiles() with _getXProfile(), _getYProfile()
+    when thread safety issue of casacore is fixed, in order to calculate concurrently */
+    void _getXProfile(Carta::Lib::NdArray::Double doubleView, const int imgWidth,
+    const int y, std::vector<float> & xProfile) const;
+
+    void _getYProfile(Carta::Lib::NdArray::Double doubleView, const int imgHeight,
+    const int x, std::vector<float> & yProfile) const;
 
     bool _addProfile(std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData,
         const std::vector<float> & profile, const std::string coordinate) const;
