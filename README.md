@@ -1,21 +1,91 @@
-CARTA Viewer
-=======
+# CARTA Backend
 
-#### Branching model
-`master`:  
-mainstream branch, no development.
+## Prerequisites
+CentOs: 
 
-`develop`:  
-development branch, usually will merge feature branch to it and include hot fix for those feature. After each phase release, merge `develop` to `master`.  
+Mac: Xcode, Qt 5.3.2 library + latest Qt Creator 
 
-`each feature branch`:  
-people develop each feature in its branch whose name can be `peter/drawImage` or `issue-131` if we use tickets. When it is finished, use `pull request` to proceed code review and then merge to develop. After merging, evaluate those added features on `develop`.
+## Build CARTA backend
+### Step 1. Checkout source code
+```
+$ mkdir $YOUR_CARTA_DEVELOPMENT_FOLDER
+$ cd $YOUR_CARTA_DEVELOPMENT_FOLDER
+$ git clone --recursive https://github.com/CARTAvis/carta-backend.git CARTAvis
+$ mkdir CARTAvis-externals  // create a folder for 3rd party library, do not change folder name
+```
+Because CARTA includes a submodule of protocol buffer in CARTAvis/carta/cpp/CartaLib/Proto/, so remember to init the submodule:
 
-`Fix Bug`:
-Except some special cases, such as modifying documents, changing build scripts, low/no-risk fixes, otherwise you need to commit your bug fixes in Hotfix branch or the original feature branch, then make a pull request to do code review.
+```
+$ cd CARTAvis/carta/cpp/CartaLib/Proto/
+$ git submodule init
+$ git submodule update
+$ git checkout master
+```
+If you look into the source code foler CARTAvis/, there will be 2 soft links (Externals, ThirdParty) and those soft links acturally link to CARTAvis-externals/, CARTAvis-externals/ThirdParty. Therefore, your development folder structure should be like this:
+```
+./YOUR_CARTA_DEVELOPMENT_FOLDER/CARTAvis  // source code from git clone
+./YOUR_CARTA_DEVELOPMENT_FOLDER/CARTAvis-externals  // folder for third party libs
+```
 
-Introduction to build, run and deploy Desktop ver. of CARTA Viewer on Mac and Linux
-=======
+### Step 2. Build required Third Party libraries
+
+Step4 - Install most Third Party libraries, some are built from source code
+cd your-carta-work, execute sudo ./CARTAvis/carta/scripts/install3party.sh
+Step5 - Build CASA libraries
+cd your-carta-work, execute sudo ./CARTAvis/carta/scripts/buildcasa.sh.
+
+## Run CARTA backend
+### Step 1. Setup Qt creator
+### Step 1. Run CARTA
+mkdir -p $CARTAWORKHOME/CARTAvis/build
+
+Qt creator settings:
+* build
+  * NOSERVER=1 CARTA_BUILD_TYPE=bughunter
+  * -j2
+  * echo
+```
+`pwd`;
+
+mkdir -p cpp/desktop/CARTA.app/Contents/Frameworks/;
+cp cpp/core/libcore.1.dylib cpp/desktop/CARTA.app/Contents/Frameworks/;
+
+rm cpp/core/libcore.1.dylib;
+cp cpp/CartaLib/libCartaLib.1.dylib cpp/desktop/CARTA.app/Contents/Frameworks/;
+
+cd ..;
+export CARTABUILDHOME=`pwd`;
+
+install_name_tool -change qwt.framework/Versions/6/qwt $CARTABUILDHOME/ThirdParty/qwt-6.1.2/lib/qwt.framework/Versions/6/qwt $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/MacOS/CARTA;
+install_name_tool -change qwt.framework/Versions/6/qwt $CARTABUILDHOME/ThirdParty/qwt-6.1.2/lib/qwt.framework/Versions/6/qwt $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libcore.1.dylib;
+
+install_name_tool -change libcore.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libcore.1.dylib $CARTABUILDHOME/build/cpp/plugins/ImageStatistics/libplugin.dylib;
+
+install_name_tool -change libCartaLib.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libCartaLib.1.dylib $CARTABUILDHOME/build/cpp/plugins/ImageStatistics/libplugin.dylib;
+install_name_tool -change libcore.1.dylib  $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libcore.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/MacOS/CARTA;
+install_name_tool -change libCartaLib.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libCartaLib.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/MacOS/CARTA;
+install_name_tool -change libCartaLib.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libCartaLib.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libcore.1.dylib;
+
+echo "before find";
+
+for f in `find . -name libplugin.dylib`; do install_name_tool -change libcore.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libcore.1.dylib $f; done;
+for f in `find . -name libplugin.dylib`; do install_name_tool -change libCartaLib.1.dylib $CARTABUILDHOME/build/cpp/desktop/CARTA.app/Contents/Frameworks/libCartaLib.1.dylib $f; done;
+for f in `find . -name "*.dylib"`; do install_name_tool -change libwcs.5.15.dylib $CARTABUILDHOME/ThirdParty/wcslib/lib/libwcs.5.15.dylib $f; echo $f; done;
+```
+* run
+  * ulimit
+    * -n 2000
+  * LD LIBRARY PATH
+```
+/Users/schsu/projects/CARTA/CARTA-backend/carta-backend-sean_add_FILE_INFO/CARTAvis-duidae/ThirdParty/zfp/lib:/Users/schsu/projects/CARTA/CARTA-backend/carta-backend-sean_add_FILE_INFO/CARTAvis-externals/ThirdParty/wcslib/lib:
+```
+
+
+
+
+
+
+
 
 Development platform:
 1. CentOS 7 (7.3.1611 tested)
@@ -30,14 +100,6 @@ Supported deployment platform:
 Tested c++ compiler: gcc 4.8.5, 5.4 (used by Ubuntu 16.04) & clang on macOS.
 
 CARTA can be built by Qt 5.3, 5.4, 5.5, 5.6~5.8. Start from 5.6,  we need to install QtWebKit & QtWebKit additionally.
-
-# Build CARTA
-
-Follow https://github.com/CARTAvis/carta/wiki#build-carta.
-
-# Run CARTA
-
-Need to prepare some things needed for running CARTA and also appended parameters.
 
 ### requirement 1: create needed folders
 
@@ -220,3 +282,17 @@ Mac auto build repo: https://goo.gl/3pRsjs.
 Introduction to build Server ver. of CARTA Viewer on Linux
 =======
 https://github.com/CARTAvis/carta/wiki/Server-version-of-CARTA
+
+
+#### Branching model
+`master`:  
+mainstream branch, no development.
+
+`develop`:  
+development branch, usually will merge feature branch to it and include hot fix for those feature. After each phase release, merge `develop` to `master`.  
+
+`each feature branch`:  
+people develop each feature in its branch whose name can be `peter/drawImage` or `issue-131` if we use tickets. When it is finished, use `pull request` to proceed code review and then merge to develop. After merging, evaluate those added features on `develop`.
+
+`Fix Bug`:
+Except some special cases, such as modifying documents, changing build scripts, low/no-risk fixes, otherwise you need to commit your bug fixes in Hotfix branch or the original feature branch, then make a pull request to do code review.
