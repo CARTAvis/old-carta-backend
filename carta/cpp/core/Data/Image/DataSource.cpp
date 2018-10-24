@@ -1144,7 +1144,7 @@ void DataSource::_getXProfile(Carta::Lib::NdArray::Double doubleView, const int 
     // get X profile
     for (int index = 0; index < imgWidth; index++) {
         float val = (float)doubleView.get({index,y});
-        std::isfinite(val) ? xProfile.push_back(val) : xProfile.push_back(0);
+        std::isfinite(val) ? xProfile.push_back(val) : xProfile.push_back(NAN);
     }
 }
 
@@ -1154,7 +1154,7 @@ void DataSource::_getYProfile(Carta::Lib::NdArray::Double doubleView, const int 
     // get Y profile
     for (int index = 0; index < imgHeight; index++) {
         float val = (float)doubleView.get({x,index});
-        std::isfinite(val) ? yProfile.push_back(val) : yProfile.push_back(0);
+        std::isfinite(val) ? yProfile.push_back(val) : yProfile.push_back(NAN);
     }
 }
 
