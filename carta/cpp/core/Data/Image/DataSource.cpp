@@ -827,6 +827,7 @@ bool DataSource::_getPixels2HistogramData(int fileId, int regionId, int frameLow
     return true;
 }
 
+// [TODO] extract get raster image from _getRasterImageData()
 bool DataSource::_getRasterImage(int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
     int frameLow, int frameHigh, int stokeFrame,
     bool isZFP, int precision, int numSubsets,
@@ -1028,23 +1029,7 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
     raster->set_stokes(stokeFrame);
     raster->set_mip(mip);
 
-    // Step 1: get histogram with a new thread
-    // [NOTE] Because so far we do not remove casa_mutex yet,
-    // so it still works correctly with multi-thread(because of lock)
-    // even when casacore is not thread safe
-    QFuture<bool> histThread;
-    if (changeFrame) {
-        histThread = QtConcurrent::run(
-            [&, this] () {
-                return this->_getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
-                                                                numberOfBins, converter, raster);
-        });
-
-        // reset the m_changeFrame[fileId] = false; in the NewServerConnector obj
-        changeFrame = false;
-    }
-
-    // Step 2: get raster image
+    // Step 1: get raster image
     if (false == _getRasterImage(fileId, xMin, xMax, yMin, yMax, mip,
         frameLow, frameHigh, stokeFrame, isZFP, precision, numSubsets,
         regionId, numberOfBins, raster)) {
@@ -1052,10 +1037,15 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
         return nullptr;
     }
 
-    histThread.waitForFinished();
-    if (!histThread.result()) {
-        qDebug() << "Get histogram failed!";
-        return nullptr;
+    // Step 2: get histogram
+    if (changeFrame) {
+        if (false == _getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
+                                                              numberOfBins, converter, raster)){
+            qDebug() << "Get histogram failed!";
+            return nullptr;
+        }
+        // reset the m_changeFrame[fileId] = false; in the NewServerConnector obj
+        changeFrame = false;
     }
 
     return raster;
