@@ -755,7 +755,7 @@ bool DataSource::_getPixels2HistogramData(int fileId, int regionId, int frameLow
 
     // get the raw data
     Carta::Lib::NdArray::RawViewInterface* rawData = _getRawDataForStoke(frameLow, frameHigh, stokeFrame);
-    if (rawData == nullptr) {
+    if (nullptr == rawData) {
         qCritical() << "[DataSource] Error: could not retrieve image data to calculate missing intensities.";
         return false;
     }
@@ -1028,18 +1028,13 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
     raster->set_stokes(stokeFrame);
     raster->set_mip(mip);
 
-    // Step 1: get histogram with a new thread
-    // [NOTE] Because so far we do not remove casa_mutex yet,
-    // so it still works correctly with multi-thread(because of lock)
-    // even when casacore is not thread safe
-    QFuture<bool> histThread;
+    // Step 1: get histogram
     if (changeFrame) {
-        histThread = QtConcurrent::run(
-            [&, this] () {
-                return this->_getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
-                                                                numberOfBins, converter, raster);
-        });
-
+        if (false == _getPixels2HistogramData(fileId, regionId, frameLow, frameHigh, stokeFrame,
+            numberOfBins, converter, raster)) {
+            qDebug() << "Get histogram failed!";
+            return nullptr;
+        }
         // reset the m_changeFrame[fileId] = false; in the NewServerConnector obj
         changeFrame = false;
     }
@@ -1049,12 +1044,6 @@ PBMSharedPtr DataSource::_getRasterImageData(int fileId, int xMin, int xMax, int
         frameLow, frameHigh, stokeFrame, isZFP, precision, numSubsets,
         regionId, numberOfBins, raster)) {
         qDebug() << "Get raster image failed!";
-        return nullptr;
-    }
-
-    histThread.waitForFinished();
-    if (!histThread.result()) {
-        qDebug() << "Get histogram failed!";
         return nullptr;
     }
 
