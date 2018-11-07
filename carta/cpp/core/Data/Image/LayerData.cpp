@@ -416,7 +416,7 @@ PBMSharedPtr LayerData::_getXYProfiles(int fileId, int x, int y,
     Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
     PBMSharedPtr results;
     if ( m_dataSource ){
-        results = m_dataSource->_getXYProfiles(fileId, x, y, frameLow, frameHigh, stokeFrame, converter);
+        results = m_dataSource->_getSpatialProfiles(fileId, x, y, frameLow, frameHigh, stokeFrame, converter);
     }
     return results;
 }

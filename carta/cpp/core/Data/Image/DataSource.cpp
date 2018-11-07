@@ -24,6 +24,7 @@
 #include <cmath>
 #include <QFuture>
 #include <QtConcurrent>
+#include "CASAProfiler.h"
 
 using Carta::Lib::AxisInfo;
 using Carta::Lib::AxisDisplayInfo;
@@ -1037,6 +1038,71 @@ PBMSharedPtr DataSource::_getXYProfiles(int fileId, int x, int y,
     return spatialProfileData;
 }
 
+PBMSharedPtr DataSource::_getSpatialProfiles(int fileId, int x, int y,
+    int frameLow, int frameHigh, int stokeFrame,
+    Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
+
+    qDebug() << "[DataSource] Get spatial profiles...................................>";
+
+    std::vector<float> xProfile, yProfile;
+
+    // start timer for computing spatial profiles
+    QElapsedTimer timer;
+    timer.start();
+
+    // TODO: need to check the spatial profile to get the corresponding spatial data
+    // now only get 'x', 'y' no matter what the spatial profiles are specified
+
+    if (converter && converter->frameDependent) {
+        // TODO: handle hertz value
+        // Find Hz values if they are required for the unit transformation
+        /*
+        std::vector<double> hertzValues = _getHertzValues(doubleView.dims());
+        for (size_t f = 0; f < hertzValues.size(); f++) {
+            double hertzVal = hertzValues[f];
+            _getSpatialProfiles(x, y, xProfile, yProfile);
+
+        }
+        */
+    } else {
+        _getSpatialProfiles(x, y, xProfile, yProfile);
+    }
+
+    // end of timer for computing spatial profiles
+    int elapsedTime = timer.elapsed();
+    if (CARTA_RUNTIME_CHECKS) {
+        qCritical() << "<> Time to get spatial profiles:" << elapsedTime << "ms";
+    }
+
+    // create spatial profile data
+    std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData(new CARTA::SpatialProfileData());
+    spatialProfileData->set_file_id(fileId);
+    spatialProfileData->set_region_id(0);
+    spatialProfileData->set_x(x);
+    spatialProfileData->set_y(y);
+    spatialProfileData->set_channel(frameLow);
+    spatialProfileData->set_stokes(stokeFrame);
+    if (xProfile.size() > x) {
+        spatialProfileData->set_value(xProfile[x]);
+    } else if (yProfile.size() > y) {
+        spatialProfileData->set_value(yProfile[y]);
+    }
+
+    // Add X/Y profiles to spatial profile data
+    if (false == _addProfile(spatialProfileData, xProfile, "x")) {
+        qDebug() << "Add X profile to spatial profile data failed.";
+        return nullptr;
+    }
+    if (false == _addProfile(spatialProfileData, yProfile, "y")) {
+        qDebug() << "Add Y profile to spatial profile data failed.";
+        return nullptr;
+    }
+
+    qDebug() << "[DataSource] .......................................................................Done";
+
+    return spatialProfileData;
+}
+
 void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const int imgWidth, const int imgHeight,
     const int x, const int y, std::vector<float> & xProfile, std::vector<float> & yProfile) const {
 
@@ -1051,6 +1117,17 @@ void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const in
         float val = (float)doubleView.get({x,index});
         std::isfinite(val) ? yProfile.push_back(val) : yProfile.push_back(NAN); // replace infinite with NaN
     }
+}
+
+// get spatial profiles using casa profiler
+void DataSource::_getSpatialProfiles(const int x, const int y,
+    std::vector<float> & xProfile, std::vector<float> & yProfile) const {
+    auto casaProfiler = Carta::Lib::CASAProfiler();
+
+    std::vector<std::vector<float>> spatialProfiles;
+    casaProfiler.getSpatialProfileData(m_fileName.toStdString(), x, y, 0, 0, spatialProfiles);
+    xProfile = spatialProfiles[0];
+    yProfile = spatialProfiles[1];
 }
 
 bool DataSource::_addProfile(std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData,

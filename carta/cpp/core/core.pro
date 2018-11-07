@@ -64,6 +64,7 @@ HEADERS += \
     Data/Image/Contour/GeneratorState.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
+    Data/Image/CASAProfiler.h \
     Data/Image/Draw/DrawGroupSynchronizer.h \
     Data/Image/Draw/DrawImageViewsSynchronizer.h \
     Data/Image/Draw/DrawSynchronizer.h \
@@ -171,7 +172,11 @@ HEADERS += \
     SimpleRemoteVGView.h \
     Hacks/ManagedLayerView.h \
     Hacks/LayeredViewDemo.h \
-    Hacks/InteractiveShapes.h
+    Hacks/InteractiveShapes.h \
+    Data/Image/FileLoader/FileLoader.h \
+    Data/Image/FileLoader/CasaLoader.h \
+    Data/Image/FileLoader/FitsLoader.h \
+    Data/Image/FileLoader//MIRIADLoader.h
 
 SOURCES += \
     Viewer.cpp \
@@ -212,6 +217,7 @@ SOURCES += \
     Data/Image/Contour/GeneratorState.cpp \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
+    Data/Image/CASAProfiler.cpp \
     Data/Image/Grid/AxisMapper.cpp \
     Data/Image/Grid/DataGrid.cpp \
     Data/Image/Grid/Fonts.cpp \
@@ -327,7 +333,8 @@ SOURCES += \
     SimpleRemoteVGView.cpp \
     Hacks/ManagedLayerView.cpp \
     Hacks/LayeredViewDemo.cpp \
-    Hacks/InteractiveShapes.cpp
+    Hacks/InteractiveShapes.cpp \
+    Data/Image/FileLoader/FileLoader.cc
 
 
 #message( "common            PWD=$$PWD")
