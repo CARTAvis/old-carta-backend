@@ -38,6 +38,7 @@ HEADERS += \
     Data/Image/LayerData.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
+    Data/Image/CASAProfiler.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
     Data/Image/Render/RenderResponse.h \
@@ -50,7 +51,11 @@ HEADERS += \
     ImageRenderService.h \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
-    coreMain.h
+    coreMain.h \
+    Data/Image/FileLoader/FileLoader.h \
+    Data/Image/FileLoader/CasaLoader.h \
+    Data/Image/FileLoader/FitsLoader.h \
+    Data/Image/FileLoader//MIRIADLoader.h
 
 SOURCES += \
     Viewer.cpp \
@@ -73,6 +78,7 @@ SOURCES += \
     Data/Image/Stack.cpp \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
+    Data/Image/CASAProfiler.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
     Data/Image/Render/RenderResponse.cpp \
@@ -87,7 +93,8 @@ SOURCES += \
     Data/FitsHeaderExtractor.cpp \
     ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
-    coreMain.cpp
+    coreMain.cpp \
+    Data/Image/FileLoader/FileLoader.cc
 
 #message( "common            PWD=$$PWD")
 #message( "common         IN_PWD=$$IN_PWD")
