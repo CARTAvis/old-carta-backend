@@ -606,8 +606,7 @@ private:
     bool _setImageChannels(int fileId, int channel, int stokes);
 
     // set spatial requirements
-    bool _setSpatialRequirements(int fileId, int regionId,
-            google::protobuf::RepeatedPtrField<std::string> spatialProfiles);
+    bool _setSpatialRequirements(int fileId, int regionId, int channel, int stokes);
 
     // set spectral requirements
     bool _setSpectralRequirements(int fileId, int regionId, int stokeFrame,

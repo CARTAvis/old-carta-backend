@@ -568,14 +568,13 @@ bool LayerGroup::_setImageChannels(int fileId, int channel, int stokes) const {
     return m_children[dataIndex]->_setImageChannels(fileId, channel, stokes);
 }
 
-bool LayerGroup::_setSpatialRequirements(int fileId, int regionId,
-            google::protobuf::RepeatedPtrField<std::string> spatialProfiles) const {
+bool LayerGroup::_setSpatialRequirements(int fileId, int regionId, int channel, int stokes) const {
     int dataIndex = _getIndexCurrent();
     if ( dataIndex < 0 ){
         return false;
     }
 
-    return m_children[dataIndex]->_setSpatialRequirements(fileId, regionId, spatialProfiles);
+    return m_children[dataIndex]->_setSpatialRequirements(fileId, regionId, channel, stokes);
 }
 
 bool LayerGroup::_setSpectralRequirements(int fileId, int regionId, int stokeFrame,
