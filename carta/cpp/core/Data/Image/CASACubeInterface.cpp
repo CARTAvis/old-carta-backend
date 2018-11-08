@@ -1,4 +1,4 @@
-#include "CASAProfiler.h"
+#include "CASACubeInterface.h"
 #include "FileLoader/FileLoader.h"
 #include <QDebug>
 
@@ -7,11 +7,12 @@ namespace Carta
 namespace Lib
 {
 
-CASAProfiler::CASAProfiler()
+// TODO: change name to casa image interface
+CASACubeInterface::CASACubeInterface()
 {
 }
 
-void CASAProfiler::getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stokes) 
+void CASACubeInterface::getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stokes) 
 {
     // to slice image data along x, y, or channel axis (indicated with -1)
     casacore::IPosition start, count;
@@ -62,7 +63,7 @@ void CASAProfiler::getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int 
     latticeSlicer = casacore::Slicer(start, count);
 }
 
-bool CASAProfiler::getSpatialProfileData(const std::string& filename, const int x, const int y,
+bool CASACubeInterface::getSpatialProfileData(const std::string& filename, const int x, const int y,
     const int channel, const int stoke, std::vector<std::vector<float>>& spatialProfiles)
 {
     Carta::Lib::FileLoader* loader = Carta::Lib::FileLoader::getLoader(filename);
@@ -87,7 +88,7 @@ bool CASAProfiler::getSpatialProfileData(const std::string& filename, const int 
     return true;
 }
 
-CASAProfiler::~CASAProfiler()
+CASACubeInterface::~CASACubeInterface()
 {
 }
 

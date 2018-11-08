@@ -24,7 +24,6 @@
 #include <cmath>
 #include <QFuture>
 #include <QtConcurrent>
-#include "CASAProfiler.h"
 
 using Carta::Lib::AxisInfo;
 using Carta::Lib::AxisDisplayInfo;
@@ -1122,10 +1121,10 @@ void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const in
 // get spatial profiles using casa profiler
 void DataSource::_getSpatialProfiles(const int x, const int y,
     std::vector<float> & xProfile, std::vector<float> & yProfile) const {
-    auto casaProfiler = Carta::Lib::CASAProfiler();
+    auto casaCubeInteface = Carta::Lib::CASACubeInterface();
 
     std::vector<std::vector<float>> spatialProfiles;
-    casaProfiler.getSpatialProfileData(m_fileName.toStdString(), x, y, 0, 0, spatialProfiles);
+    casaCubeInteface.getSpatialProfileData(m_fileName.toStdString(), x, y, 0, 0, spatialProfiles);
     xProfile = spatialProfiles[0];
     yProfile = spatialProfiles[1];
 }

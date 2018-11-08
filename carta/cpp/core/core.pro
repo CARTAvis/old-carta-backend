@@ -64,7 +64,7 @@ HEADERS += \
     Data/Image/Contour/GeneratorState.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
-    Data/Image/CASAProfiler.h \
+    Data/Image/CASACubeInterface.h \
     Data/Image/Draw/DrawGroupSynchronizer.h \
     Data/Image/Draw/DrawImageViewsSynchronizer.h \
     Data/Image/Draw/DrawSynchronizer.h \
@@ -217,7 +217,7 @@ SOURCES += \
     Data/Image/Contour/GeneratorState.cpp \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
-    Data/Image/CASAProfiler.cpp \
+    Data/Image/CASACubeInterface.cpp \
     Data/Image/Grid/AxisMapper.cpp \
     Data/Image/Grid/DataGrid.cpp \
     Data/Image/Grid/Fonts.cpp \
@@ -385,12 +385,12 @@ LIBS += -L../../../ThirdParty/cfitsio/lib
 unix:macx {
 #	QMAKE_LFLAGS += '-F$$QWT_ROOT/lib'
 #	LIBS +=-L../CartaLib -lCartaLib -framework qwt
-        LIBS +=-L../CartaLib -lCartaLib
+    LIBS +=-L../CartaLib -lCartaLib
 }
 else {
-#        QMAKE_LFLAGS += '-Wl,-rpath,\'$$QWT_ROOT/lib\''
-#        LIBS +=-L../CartaLib -lCartaLib -L$$QWT_ROOT/lib -lqwt
-        LIBS +=-L../CartaLib -lCartaLib
+#   QMAKE_LFLAGS += '-Wl,-rpath,\'$$QWT_ROOT/lib\''
+#   LIBS +=-L../CartaLib -lCartaLib -L$$QWT_ROOT/lib -lqwt
+    LIBS +=-L../CartaLib -lCartaLib
 }
 
 DEPENDPATH += $$PROJECT_ROOT/CartaLib
