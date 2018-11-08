@@ -581,10 +581,10 @@ void NewServerConnector::setCursorSignalSlot(uint32_t eventId, int fileId, CARTA
 
     if(0 <= spectralIndicator && 1 < dims[spectralIndicator]) {
         // get spectral profile
-        //pbMsg = controller->getSpectralProfile(fileId, x, y, stokeFrame);
+        pbMsg = controller->getSpectralProfile(fileId, x, y, stokeFrame);
 
         // send the serialized message to the frontend
-        //sendSerializedMessage("SPECTRAL_PROFILE_DATA", eventId, pbMsg);
+        sendSerializedMessage("SPECTRAL_PROFILE_DATA", eventId, pbMsg);
     }
 }
 
