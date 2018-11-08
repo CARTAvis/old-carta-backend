@@ -1064,7 +1064,7 @@ PBMSharedPtr DataSource::_getSpatialProfiles(int fileId, int x, int y,
         }
         */
     } else {
-        _getSpatialProfiles(x, y, xProfile, yProfile);
+        _getSpatialProfiles(x, y, frameLow, stokeFrame, xProfile, yProfile);
     }
 
     // end of timer for computing spatial profiles
@@ -1119,11 +1119,11 @@ void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const in
 }
 
 // get spatial profiles using casa profiler
-void DataSource::_getSpatialProfiles(const int x, const int y,
+void DataSource::_getSpatialProfiles(const int x, const int y, const int channel, const int stoke,
     std::vector<float> & xProfile, std::vector<float> & yProfile) const {
 
     std::vector<std::vector<float>> spatialProfiles;
-    m_casaCubeInterface->getSpatialProfileData(x, y, 0, 0, spatialProfiles);
+    m_casaCubeInterface->getSpatialProfileData(x, y, channel, stoke, spatialProfiles);
     xProfile = spatialProfiles[0];
     yProfile = spatialProfiles[1];
 }
@@ -1131,22 +1131,20 @@ void DataSource::_getSpatialProfiles(const int x, const int y,
 bool DataSource::_addProfile(std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData,
     const std::vector<float> & profile, const std::string coordinate) const {
     if(nullptr == spatialProfileData) {
-        qDebug() << "Spatial profile data is null.";
+        qWarning() << "Spatial profile data is null.";
         return false;
     }
 
     CARTA::SpatialProfile* spatialProfile = spatialProfileData->add_profiles();
     if (nullptr == spatialProfile) {
-        qDebug() << "Add spatial profile to spatial profile data error.";
+        qWarning() << "Add spatial profile to spatial profile data error.";
         return false;
     }
 
     spatialProfile->set_start(0);
     spatialProfile->set_end(profile.size() - 1);
-    for (auto val = profile.begin(); val != profile.end(); val++) {
-        spatialProfile->add_values(*val);
-    }
     spatialProfile->set_coordinate(coordinate);
+    *(spatialProfile->mutable_values()) = {profile.begin(), profile.end()};
 
     return true;
 }
