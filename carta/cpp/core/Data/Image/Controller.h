@@ -113,6 +113,9 @@ public:
             int frameLow, int frameHigh, int stokeFrame,
             Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const;
 
+    // set channel & stokes
+    bool setImageChannels(int fileId, int channel, int stokes) const;
+
     /**
      * Returns success or failed when setting spatial requirements
      * @param region id

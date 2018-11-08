@@ -1977,6 +1977,16 @@ std::vector<double> DataSource::_getQuantileIntensityCache(std::shared_ptr<Carta
     m_renderService-> setOutputSize( newSize );
 }*/
 
+bool DataSource::_setImageChannels(int fileId, int channel, int stokes) {
+    if (nullptr == m_casaCubeInterface) {
+        qWarning() << "Cannot set image channel & sotkes: CASACubeInterface is nullptr.";
+        return false;
+    }
+
+    m_casaCubeInterface->setImageChannels(channel, stokes);
+    return true;
+}
+
 bool DataSource::_setSpatialRequirements(int fileId, int regionId,
     google::protobuf::RepeatedPtrField<std::string> spatialProfiles) {
 

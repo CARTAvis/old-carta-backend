@@ -507,7 +507,7 @@ void NewServerConnector::imageChannelUpdateSignalSlot(uint32_t eventId, int file
 
     // set the file id as the private parameter in the Stack object
     controller->setFileId(fileId);
-    //controller->setImageChannels(fileId, channel, stokes);
+    controller->setImageChannels(fileId, channel, stokes);
 
     // set the current channel
     int frameLow = m_currentChannel[fileId][0];

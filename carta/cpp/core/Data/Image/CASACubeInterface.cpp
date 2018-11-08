@@ -22,13 +22,9 @@ CASACubeInterface::CASACubeInterface(const std::string filename)
     if (m_ndims == 4 && m_stokesAxis == 2) m_chanAxis=3;
 }
 
-void CASACubeInterface::setChannel(const int channel)
+void CASACubeInterface::setImageChannels(const int channel, const int stokes)
 {
     m_channel = channel;
-}
-
-void CASACubeInterface::setStokes(const int stokes)
-{
     m_stokes = stokes;
 }
 
