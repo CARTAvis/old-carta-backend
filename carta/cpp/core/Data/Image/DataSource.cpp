@@ -1121,10 +1121,9 @@ void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const in
 // get spatial profiles using casa profiler
 void DataSource::_getSpatialProfiles(const int x, const int y,
     std::vector<float> & xProfile, std::vector<float> & yProfile) const {
-    auto casaCubeInteface = Carta::Lib::CASACubeInterface();
 
     std::vector<std::vector<float>> spatialProfiles;
-    casaCubeInteface.getSpatialProfileData(m_fileName.toStdString(), x, y, 0, 0, spatialProfiles);
+    m_casaCubeInterface->getSpatialProfileData(x, y, 0, 0, spatialProfiles);
     xProfile = spatialProfiles[0];
     yProfile = spatialProfiles[1];
 }
@@ -1741,25 +1740,26 @@ QString DataSource::_setFileName( const QString& fileName, bool* success ){
                     //_resetPan();
 
                     m_fileName = file;
-                    //qDebug() << "[DataSource] m_fileName=" << m_fileName;
+                    m_casaCubeInterface = std::unique_ptr<Carta::Lib::CASACubeInterface>
+                                            (new Carta::Lib::CASACubeInterface(m_fileName.toStdString()));
                 }
                 else {
-                    result = "Could not find any plugin to load image";
-                    qWarning() << result;
                     *success = false;
+                    result = "Could not find any plugin to load image.";
+                    qCritical() << result;
                 }
 
             }
             catch( std::logic_error& err ){
-                result = "Failed to load image "+fileName;
-                qDebug() << result;
                 *success = false;
+                result = "Failed to load image: " + fileName;
+                qCritical() << result;
             }
         }
-    }
-    else {
-        result = "Could not load empty file.";
+    } else {
         *success = false;
+        result = "Could not load empty file.";
+        qCritical() << result;
     }
     return result;
 }

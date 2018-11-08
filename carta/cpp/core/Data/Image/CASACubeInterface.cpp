@@ -1,5 +1,4 @@
 #include "CASACubeInterface.h"
-#include "FileLoader/FileLoader.h"
 #include <QDebug>
 
 namespace Carta
@@ -7,12 +6,14 @@ namespace Carta
 namespace Lib
 {
 
-// TODO: change name to casa image interface
-CASACubeInterface::CASACubeInterface()
+CASACubeInterface::CASACubeInterface(const std::string filename)
+    : m_filename(filename),
+      m_loader(Carta::Lib::FileLoader::getLoader(filename))
 {
 }
 
-void CASACubeInterface::getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stokes) 
+void CASACubeInterface::getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stokes,
+    casacore::IPosition imageShape) const
 {
     // to slice image data along x, y, or channel axis (indicated with -1)
     casacore::IPosition start, count;
@@ -63,12 +64,11 @@ void CASACubeInterface::getProfileSlicer(casacore::Slicer& latticeSlicer, int x,
     latticeSlicer = casacore::Slicer(start, count);
 }
 
-bool CASACubeInterface::getSpatialProfileData(const std::string& filename, const int x, const int y,
-    const int channel, const int stoke, std::vector<std::vector<float>>& spatialProfiles)
+bool CASACubeInterface::getSpatialProfileData(const int x, const int y, const int channel, const int stoke,
+    std::vector<std::vector<float>>& spatialProfiles) const
 {
-    Carta::Lib::FileLoader* loader = Carta::Lib::FileLoader::getLoader(filename);
-    auto &dataSet = loader->loadData(FileInfo::Data::XYZW);
-    imageShape = dataSet.shape();
+    auto & dataSet = m_loader->loadData(FileInfo::Data::XYZW);
+    auto imageShape = dataSet.shape();
 
     // slice image data
     casacore::Slicer section;
@@ -76,12 +76,12 @@ bool CASACubeInterface::getSpatialProfileData(const std::string& filename, const
     casacore::Array<float> tmpx, tmpy;
     
     // x
-    getProfileSlicer(section, -1, y, channel, stoke);
+    getProfileSlicer(section, -1, y, channel, stoke, imageShape);
     dataSet.getSlice(tmpx, section, true);
     spatialProfiles.push_back(tmpx.tovector());
   
     // y
-    getProfileSlicer(section, x, -1, channel, stoke);
+    getProfileSlicer(section, x, -1, channel, stoke, imageShape);
     dataSet.getSlice(tmpy, section, true);
     spatialProfiles.push_back(tmpy.tovector());
 

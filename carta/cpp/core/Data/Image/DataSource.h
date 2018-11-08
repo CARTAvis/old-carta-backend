@@ -628,7 +628,7 @@ private:
     static CoordinateSystems* m_coords;
 
     // casa file loader & profiler
-    Carta::Lib::CASACubeInterface m_casaCubeInterface;
+    std::unique_ptr<Carta::Lib::CASACubeInterface> m_casaCubeInterface;
 
     //Pointer to image interface.
     std::shared_ptr<Carta::Lib::Image::ImageInterface> m_image;
