@@ -595,10 +595,15 @@ void NewServerConnector::setSpatialRequirementsSignalSlot(uint32_t eventId, int 
     // set the file id as the private parameter in the Stack object
     controller->setFileId(fileId);
 
-    if (controller->setSpatialRequirements(fileId, regionId, spatialProfiles)) {
-        qDebug() << "[NewServerConnector] set spatial requirement successfully.";
-    } else {
-        qDebug() << "[NewServerConnector] set spatial requirement failed!";
+    // set the current channel
+    int channel = m_currentChannel[fileId][0];
+    int stokes = m_currentChannel[fileId][1];
+
+    // TODO: how to match spatialProfiles(string) <=> channel, stokes(int)?
+    // there should be a mapping logic
+
+    if (!controller->setSpatialRequirements(fileId, regionId, channel, stokes)) {
+        qWarning() << "[NewServerConnector] set spatial requirement failed!";
     }
 }
 

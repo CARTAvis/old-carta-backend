@@ -1987,12 +1987,11 @@ bool DataSource::_setImageChannels(int fileId, int channel, int stokes) {
     return true;
 }
 
-bool DataSource::_setSpatialRequirements(int fileId, int regionId,
-    google::protobuf::RepeatedPtrField<std::string> spatialProfiles) {
+bool DataSource::_setSpatialRequirements(int fileId, int regionId, int channel, int stokes) {
 
     // TODO: need to store spatial profile to m_profileInfo &
     // get corresponding spatial data by checking the spatial profiles
-    //m_casaCubeInterface->prepareCachedImage();
+    m_casaCubeInterface->setImageChannels(channel, stokes);
 
     return true;
 }

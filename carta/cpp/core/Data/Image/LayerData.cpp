@@ -429,13 +429,12 @@ bool LayerData::_setImageChannels(int fileId, int channel, int stokes) const {
     return m_dataSource->_setImageChannels(fileId, channel, stokes);
 }
 
-bool LayerData::_setSpatialRequirements(int fileId, int regionId,
-    google::protobuf::RepeatedPtrField<std::string> spatialProfiles) const {
+bool LayerData::_setSpatialRequirements(int fileId, int regionId, int channel, int stokes) const {
     if ( !m_dataSource ){
         return false;
     }
 
-    return m_dataSource->_setSpatialRequirements(fileId, regionId, spatialProfiles);
+    return m_dataSource->_setSpatialRequirements(fileId, regionId, channel, stokes);
 }
 
 bool LayerData::_setSpectralRequirements(int fileId, int regionId, int stokeFrame,

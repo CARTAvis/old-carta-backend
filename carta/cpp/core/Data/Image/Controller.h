@@ -270,8 +270,7 @@ public:
      * @param spatial profiles - contains the information of required spatial profiles
      * @return - true or false
      */
-    bool setSpatialRequirements(int fileId, int regionId,
-            google::protobuf::RepeatedPtrField<std::string> spatialProfiles) const;
+    bool setSpatialRequirements(int fileId, int regionId, int channel, int stokes) const;
 
     /**
      * Returns success or failed when setting spectral requirements
