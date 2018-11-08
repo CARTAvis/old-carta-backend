@@ -12,54 +12,54 @@ CASACubeInterface::CASACubeInterface(const std::string filename)
 {
 }
 
-void CASACubeInterface::getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stokes,
+void CASACubeInterface::getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stoke,
     casacore::IPosition imageShape) const
 {
+    size_t ndims = imageShape.size();
+
     // to slice image data along x, y, or channel axis (indicated with -1)
     casacore::IPosition start, count;
-    if (x<0) { // get x profile
-        start = casacore::IPosition(1,0);
-        count = casacore::IPosition(1,imageShape(0));
+    if (x < 0) { // get x profile
+        start = casacore::IPosition(1, 0);
+        count = casacore::IPosition(1, imageShape(0));
     } else {
-        start = casacore::IPosition(1,x);
-        count = casacore::IPosition(1,1);
+        start = casacore::IPosition(1, x);
+        count = casacore::IPosition(1, 1);
     }
 
-    if (y<0) { // get y profile
-        start.append(casacore::IPosition(1,0));
-        count.append(casacore::IPosition(1,imageShape(1)));
+    if (y < 0) { // get y profile
+        start.append(casacore::IPosition(1, 0));
+        count.append(casacore::IPosition(1, imageShape(1)));
     } else {
-        start.append(casacore::IPosition(1,y));
-        count.append(casacore::IPosition(1,1));
+        start.append(casacore::IPosition(1, y));
+        count.append(casacore::IPosition(1, 1));
     }
 
-/*
     if(ndims == 3) {
-        if (channel<0) { // get spectral profile
-            start.append(casacore::IPosition(1,0));
-            count.append(casacore::IPosition(1,imageShape(2)));
+        if (channel < 0) { // get spectral profile
+            start.append(casacore::IPosition(1, 0));
+            count.append(casacore::IPosition(1, imageShape(2)));
         } else {
-            start.append(casacore::IPosition(1,channel));
-            count.append(casacore::IPosition(1,1));
+            start.append(casacore::IPosition(1, channel));
+            count.append(casacore::IPosition(1, 1));
         }
-    } else if(ndims==4) {
-        if (channel<0) { // get spectral profile with stokes
-            if (stokesAxis==2) {
-                start.append(casacore::IPosition(2,stokes,0));
-                count.append(casacore::IPosition(2,1,imageShape(3)));
+    } else if(ndims == 4) {
+        if (channel < 0) { // get spectral profile with stoke
+            if (m_loader->stokesAxis() == 2) {
+                start.append(casacore::IPosition(2, stoke, 0));
+                count.append(casacore::IPosition(2, 1, imageShape(3)));
             } else {
-                start.append(casacore::IPosition(2,0,stokes));
-                count.append(casacore::IPosition(2,imageShape(2),1));
+                start.append(casacore::IPosition(2, 0, stoke));
+                count.append(casacore::IPosition(2, imageShape(2), 1));
             }
         } else {
-            if (stokesAxis==2)
-                start.append(casacore::IPosition(2,stokes,channel));
+            if (m_loader->stokesAxis() == 2)
+                start.append(casacore::IPosition(2, stoke, channel));
             else
-                start.append(casacore::IPosition(2,channel,stokes));
-            count.append(casacore::IPosition(2,1,1));
+                start.append(casacore::IPosition(2, channel, stoke));
+            count.append(casacore::IPosition(2, 1, 1));
         }
     }
-    */
     
     latticeSlicer = casacore::Slicer(start, count);
 }
@@ -72,7 +72,6 @@ bool CASACubeInterface::getSpatialProfileData(const int x, const int y, const in
 
     // slice image data
     casacore::Slicer section;
-
     casacore::Array<float> tmpx, tmpy;
     
     // x
