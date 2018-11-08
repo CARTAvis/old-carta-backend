@@ -421,6 +421,14 @@ PBMSharedPtr LayerData::_getXYProfiles(int fileId, int x, int y,
     return results;
 }
 
+bool LayerData::_setImageChannels(int fileId, int channel, int stokes) const {
+    if ( !m_dataSource ){
+        return false;
+    }
+
+    return m_dataSource->_setImageChannels(fileId, channel, stokes);
+}
+
 bool LayerData::_setSpatialRequirements(int fileId, int regionId,
     google::protobuf::RepeatedPtrField<std::string> spatialProfiles) const {
     if ( !m_dataSource ){

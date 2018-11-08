@@ -577,6 +577,15 @@ PBMSharedPtr LayerGroup::_getXYProfiles(int fileId, int x, int y,
     return results;
 }
 
+bool LayerGroup::_setImageChannels(int fileId, int channel, int stokes) const {
+    int dataIndex = _getIndexCurrent();
+    if ( dataIndex < 0 ){
+        return false;
+    }
+
+    return m_children[dataIndex]->_setImageChannels(fileId, channel, stokes);
+}
+
 bool LayerGroup::_setSpatialRequirements(int fileId, int regionId,
             google::protobuf::RepeatedPtrField<std::string> spatialProfiles) const {
     int dataIndex = _getIndexCurrent();

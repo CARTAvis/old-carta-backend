@@ -602,6 +602,9 @@ private:
     void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
             double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames );
 
+    // set image channel & stokes
+    bool _setImageChannels(int fileId, int channel, int stokes);
+
     // set spatial requirements
     bool _setSpatialRequirements(int fileId, int regionId,
             google::protobuf::RepeatedPtrField<std::string> spatialProfiles);

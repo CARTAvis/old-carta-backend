@@ -266,6 +266,8 @@ protected:
             int frameLow, int frameHigh, int stokeFrame,
             Carta::Lib::IntensityUnitConverter::SharedPtr converter) const Q_DECL_OVERRIDE;
 
+    virtual bool _setImageChannels(int fileId, int channel, int stokes) const Q_DECL_OVERRIDE;
+
     /**
      * Returns success or failed when setting spatial requirements
      * @param region id

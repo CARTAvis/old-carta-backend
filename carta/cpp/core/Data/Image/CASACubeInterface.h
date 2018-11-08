@@ -18,8 +18,7 @@ public:
     CASACubeInterface(const std::string filename);
     ~CASACubeInterface();
 
-    void setChannel(const int channel);
-    void setStokes(const int stokes);
+    void setImageChannels(const int channel, const int stokes);
     bool prepareCachedImage(const int channel, const int stokes);
     bool getSpatialProfileData(const int x, const int y, const int channel, const int stokes,
         std::vector<std::vector<float>>& spatialProfiles) const;

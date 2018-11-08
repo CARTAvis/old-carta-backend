@@ -409,6 +409,10 @@ PBMSharedPtr Controller::getXYProfiles(int fileId, int x, int y,
     return result;
 }
 
+bool Controller::setImageChannels(int fileId, int channel, int stokes) const {
+    return m_stack->_setImageChannels(fileId, channel, stokes);
+}
+
 bool Controller::setSpatialRequirements(int fileId, int regionId,
             google::protobuf::RepeatedPtrField<std::string> spatialProfiles) const {
     return m_stack->_setSpatialRequirements(fileId, regionId, spatialProfiles);

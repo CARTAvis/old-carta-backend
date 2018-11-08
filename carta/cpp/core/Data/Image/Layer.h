@@ -314,6 +314,8 @@ protected:
             int frameLow, int frameHigh, int stokeFrame,
             Carta::Lib::IntensityUnitConverter::SharedPtr converter) const = 0;
 
+    virtual bool _setImageChannels(int fileId, int channel, int stokes) const = 0;
+
     /**
      * Returns success or failed when setting spatial requirements
      * @param region id
