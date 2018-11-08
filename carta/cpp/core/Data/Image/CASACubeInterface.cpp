@@ -24,34 +24,39 @@ CASACubeInterface::CASACubeInterface(const std::string filename)
 
 void CASACubeInterface::setImageChannels(const int channel, const int stokes)
 {
-    m_channel = channel;
-    m_stokes = stokes;
-}
+    if (m_channel != channel || m_stokes != stokes || m_channelCache.empty()) {
+        m_channel = channel;
+        m_stokes = stokes;
 
-bool CASACubeInterface::prepareCachedImage(const int channel, const int stokes)
-{
-    return true;
+        // prepare cache image
+        _getChannelMatrix(m_channelCache, channel, stokes);
+    }
 }
 
 bool CASACubeInterface::getSpatialProfileData(const int x, const int y, const int channel, const int stokes,
     std::vector<std::vector<float>>& spatialProfiles) const
 {
-    auto & dataSet = m_loader->loadData(FileInfo::Data::XYZW);
-    auto imageShape = dataSet.shape();
+    std::vector<float> profile;
+    if (m_stokes == stokes) { // use stored channel matrix
+        // x
+        spatialProfiles.push_back(m_channelCache.column(y).tovector());
+        // y
+        spatialProfiles.push_back(m_channelCache.row(x).tovector());
+    } else {
+        // slice image data
+        casacore::Slicer section;
+        casacore::Array<float> tmpx, tmpy;
 
-    // slice image data
-    casacore::Slicer section;
-    casacore::Array<float> tmpx, tmpy;
+        // x
+        _getProfileSlicer(section, -1, y, channel, stokes);
+        m_loader->loadData(FileInfo::Data::XYZW).getSlice(tmpx, section, true);
+        spatialProfiles.push_back(tmpx.tovector());
 
-    // x
-    _getProfileSlicer(section, -1, y, channel, stokes);
-    dataSet.getSlice(tmpx, section, true);
-    spatialProfiles.push_back(tmpx.tovector());
-
-    // y
-    _getProfileSlicer(section, x, -1, channel, stokes);
-    dataSet.getSlice(tmpy, section, true);
-    spatialProfiles.push_back(tmpy.tovector());
+        // y
+        _getProfileSlicer(section, x, -1, channel, stokes);
+        m_loader->loadData(FileInfo::Data::XYZW).getSlice(tmpy, section, true);
+        spatialProfiles.push_back(tmpy.tovector());
+    }
 
     return true;
 }
