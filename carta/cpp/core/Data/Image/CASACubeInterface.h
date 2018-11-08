@@ -11,11 +11,11 @@ namespace Carta
 namespace Lib
 {
 
-class CASAProfiler
+class CASACubeInterface
 {
 public:
-    CASAProfiler();
-    ~CASAProfiler();
+    CASACubeInterface();
+    ~CASACubeInterface();
 
     bool getSpatialProfileData(const std::string& filename, const int x, const int y, 
         const int channel, const int stoke, std::vector<std::vector<float>>& spatialProfiles);

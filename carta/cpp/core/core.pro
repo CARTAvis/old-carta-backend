@@ -39,6 +39,7 @@ HEADERS += \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
     Data/Image/CASAProfiler.h \
+    Data/Image/CASACubeInterface.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
     Data/Image/Render/RenderResponse.h \
@@ -79,6 +80,7 @@ SOURCES += \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
     Data/Image/CASAProfiler.cpp \
+    Data/Image/CASACubeInterface.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
     Data/Image/Render/RenderResponse.cpp \
@@ -144,12 +146,12 @@ LIBS += -L../../../ThirdParty/cfitsio/lib
 unix:macx {
 #	QMAKE_LFLAGS += '-F$$QWT_ROOT/lib'
 #	LIBS +=-L../CartaLib -lCartaLib -framework qwt
-        LIBS +=-L../CartaLib -lCartaLib
+    LIBS +=-L../CartaLib -lCartaLib
 }
 else {
-#        QMAKE_LFLAGS += '-Wl,-rpath,\'$$QWT_ROOT/lib\''
-#        LIBS +=-L../CartaLib -lCartaLib -L$$QWT_ROOT/lib -lqwt
-        LIBS +=-L../CartaLib -lCartaLib
+#   QMAKE_LFLAGS += '-Wl,-rpath,\'$$QWT_ROOT/lib\''
+#   LIBS +=-L../CartaLib -lCartaLib -L$$QWT_ROOT/lib -lqwt
+    LIBS +=-L../CartaLib -lCartaLib
 }
 
 DEPENDPATH += $$PROJECT_ROOT/CartaLib

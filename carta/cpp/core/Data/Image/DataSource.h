@@ -27,6 +27,8 @@
 #include "CartaLib/ProfileInfo.h"
 #include "CartaLib/Hooks/ProfileHook.h"
 
+#include "CASACubeInterface.h"
+
 typedef Carta::Lib::RegionHistogramData RegionHistogramData;
 typedef std::shared_ptr<google::protobuf::MessageLite> PBMSharedPtr;
 
@@ -624,6 +626,9 @@ private:
 
     //Used pointer to coordinate systems.
     static CoordinateSystems* m_coords;
+
+    // casa file loader & profiler
+    Carta::Lib::CASACubeInterface m_casaCubeInterface;
 
     //Pointer to image interface.
     std::shared_ptr<Carta::Lib::Image::ImageInterface> m_image;
