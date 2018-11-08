@@ -19,7 +19,6 @@ public:
     ~CASACubeInterface();
 
     void setImageChannels(const int channel, const int stokes);
-    bool prepareCachedImage(const int channel, const int stokes);
     bool getSpatialProfileData(const int x, const int y, const int channel, const int stokes,
         std::vector<std::vector<float>>& spatialProfiles) const;
 
@@ -31,6 +30,7 @@ private:
     int m_ndims;
 
     // set image channel
+    // TODO: m_channel, m_stokes should be in m_profileInfo in DataSouce
     int m_channel, m_stokes;
     int m_stokesAxis, m_chanAxis;
 
