@@ -498,27 +498,20 @@ void NewServerConnector::setImageViewSignalSlot(uint32_t eventId, int fileId, in
     sendSerializedMessage(respName, eventId, raster);
 }
 
-void NewServerConnector::imageChannelUpdateSignalSlot(uint32_t eventId, int fileId, int channel, int stoke) {
-    QString respName = "RASTER_IMAGE_DATA";
-
-    if (m_currentChannel[fileId][0] != channel || m_currentChannel[fileId][1] != stoke) {
-        //qDebug() << "[NewServerConnector] Set image channel=" << channel << ", fileId=" << fileId << ", stoke=" << stoke;
+void NewServerConnector::imageChannelUpdateSignalSlot(uint32_t eventId, int fileId, int channel, int stokes) {
+    if (m_currentChannel[fileId][0] != channel || m_currentChannel[fileId][1] != stokes) {
         // update the current channel and stoke
-        m_currentChannel[fileId] = {channel, stoke};
+        m_currentChannel[fileId] = {channel, stokes};
     } else {
-        //qDebug() << "[NewServerConnector] Internal signal is repeated!! Don't know the reason yet, just ignore the signal!!";
-        return;
+        return; // ignore it if the message is repeated
     }
-
-    // set spectral and stoke frame ranges to calculate the pixel to histogram data
-    //m_calHistRange[fileId] = {0, m_lastFrame[fileId], 0};
-    //m_calHistRange[fileId] = {channel, channel, stoke};
 
     // get the controller
     Carta::Data::Controller* controller = _getController();
 
     // set the file id as the private parameter in the Stack object
     controller->setFileId(fileId);
+    //controller->setImageChannels(fileId, channel, stokes);
 
     // set the current channel
     int frameLow = m_currentChannel[fileId][0];
@@ -552,7 +545,7 @@ void NewServerConnector::imageChannelUpdateSignalSlot(uint32_t eventId, int file
                                                          m_changeFrame[fileId], regionId, numberOfBins, converter);
 
     // send the serialized message to the frontend
-    sendSerializedMessage(respName, eventId, raster);
+    sendSerializedMessage("RASTER_IMAGE_DATA", eventId, raster);
 }
 
 void NewServerConnector::setCursorSignalSlot(uint32_t eventId, int fileId, CARTA::Point point, CARTA::SetSpatialRequirements setSpatialReqs) {
@@ -588,10 +581,10 @@ void NewServerConnector::setCursorSignalSlot(uint32_t eventId, int fileId, CARTA
 
     if(0 <= spectralIndicator && 1 < dims[spectralIndicator]) {
         // get spectral profile
-        pbMsg = controller->getSpectralProfile(fileId, x, y, stokeFrame);
+        //pbMsg = controller->getSpectralProfile(fileId, x, y, stokeFrame);
 
         // send the serialized message to the frontend
-        sendSerializedMessage("SPECTRAL_PROFILE_DATA", eventId, pbMsg);
+        //sendSerializedMessage("SPECTRAL_PROFILE_DATA", eventId, pbMsg);
     }
 }
 

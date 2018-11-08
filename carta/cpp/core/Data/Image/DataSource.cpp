@@ -1043,7 +1043,7 @@ PBMSharedPtr DataSource::_getSpatialProfiles(int fileId, int x, int y,
 
     qDebug() << "[DataSource] Get spatial profiles...................................>";
 
-    std::vector<float> xProfile, yProfile;
+    std::vector<std::vector<float>> spatialProfiles;
 
     // start timer for computing spatial profiles
     QElapsedTimer timer;
@@ -1064,7 +1064,7 @@ PBMSharedPtr DataSource::_getSpatialProfiles(int fileId, int x, int y,
         }
         */
     } else {
-        _getSpatialProfiles(x, y, frameLow, stokeFrame, xProfile, yProfile);
+        m_casaCubeInterface->getSpatialProfileData(x, y, frameLow, stokeFrame, spatialProfiles);
     }
 
     // end of timer for computing spatial profiles
@@ -1081,20 +1081,27 @@ PBMSharedPtr DataSource::_getSpatialProfiles(int fileId, int x, int y,
     spatialProfileData->set_y(y);
     spatialProfileData->set_channel(frameLow);
     spatialProfileData->set_stokes(stokeFrame);
+    /*
     if (xProfile.size() > x) {
         spatialProfileData->set_value(xProfile[x]);
     } else if (yProfile.size() > y) {
         spatialProfileData->set_value(yProfile[y]);
     }
+    */
 
-    // Add X/Y profiles to spatial profile data
-    if (false == _addProfile(spatialProfileData, xProfile, "x")) {
-        qDebug() << "Add X profile to spatial profile data failed.";
-        return nullptr;
-    }
-    if (false == _addProfile(spatialProfileData, yProfile, "y")) {
-        qDebug() << "Add Y profile to spatial profile data failed.";
-        return nullptr;
+    // traverse spatial profiles
+    for (int index = 0; index < spatialProfiles.size(); index++) {
+        CARTA::SpatialProfile* spatialProfile = spatialProfileData->add_profiles();
+        if (nullptr == spatialProfile) {
+            qWarning() << "Add spatial profile to spatial profile data error.";
+            return nullptr;
+        }
+        auto profile = spatialProfiles[index];
+
+        spatialProfile->set_start(0);
+        spatialProfile->set_end(profile.size() - 1);
+        spatialProfile->set_coordinate(index == 0 ? "x" : "y");
+        *(spatialProfile->mutable_values()) = {profile.begin(), profile.end()};
     }
 
     qDebug() << "[DataSource] .......................................................................Done";
@@ -1116,16 +1123,6 @@ void DataSource::_getXYProfiles(Carta::Lib::NdArray::Double doubleView, const in
         float val = (float)doubleView.get({x,index});
         std::isfinite(val) ? yProfile.push_back(val) : yProfile.push_back(NAN); // replace infinite with NaN
     }
-}
-
-// get spatial profiles using casa profiler
-void DataSource::_getSpatialProfiles(const int x, const int y, const int channel, const int stoke,
-    std::vector<float> & xProfile, std::vector<float> & yProfile) const {
-
-    std::vector<std::vector<float>> spatialProfiles;
-    m_casaCubeInterface->getSpatialProfileData(x, y, channel, stoke, spatialProfiles);
-    xProfile = spatialProfiles[0];
-    yProfile = spatialProfiles[1];
 }
 
 bool DataSource::_addProfile(std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData,
@@ -1985,6 +1982,7 @@ bool DataSource::_setSpatialRequirements(int fileId, int regionId,
 
     // TODO: need to store spatial profile to m_profileInfo &
     // get corresponding spatial data by checking the spatial profiles
+    //m_casaCubeInterface->prepareCachedImage();
 
     return true;
 }
