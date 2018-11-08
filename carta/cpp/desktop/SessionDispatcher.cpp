@@ -298,9 +298,9 @@ void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
             setImageChannels.ParseFromArray(message + EVENT_NAME_LENGTH + EVENT_ID_LENGTH, length - EVENT_NAME_LENGTH - EVENT_ID_LENGTH);
             int fileId = setImageChannels.file_id();
             int channel = setImageChannels.channel();
-            int stoke = setImageChannels.stokes();
-            qDebug() << "[SessionDispatcher] Set image channel=" << channel << ", fileId=" << fileId << ", stoke=" << stoke;
-            emit connector->imageChannelUpdateSignal(eventId, fileId, channel, stoke);
+            int stokes = setImageChannels.stokes();
+            qDebug() << "[SessionDispatcher] Set image channel=" << channel << ", fileId=" << fileId << ", stokes=" << stokes;
+            emit connector->imageChannelUpdateSignal(eventId, fileId, channel, stokes);
 
         } else if (eventName == "SET_CURSOR") {
 

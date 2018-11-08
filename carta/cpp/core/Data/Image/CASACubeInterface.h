@@ -18,15 +18,29 @@ public:
     CASACubeInterface(const std::string filename);
     ~CASACubeInterface();
 
-    bool getSpatialProfileData(const int x, const int y, const int channel, const int stoke,
+    void setChannel(const int channel);
+    void setStokes(const int stokes);
+    bool prepareCachedImage(const int channel, const int stokes);
+    bool getSpatialProfileData(const int x, const int y, const int channel, const int stokes,
         std::vector<std::vector<float>>& spatialProfiles) const;
 
 private:
-    void getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stokes,
-        casacore::IPosition imageShape) const;
-
     std::string m_filename;
     Carta::Lib::FileLoader* m_loader;
+
+    casacore::IPosition m_imageShape; // m_imageShape = (width, height, depth, stokes)
+    int m_ndims;
+
+    // set image channel
+    int m_channel, m_stokes;
+    int m_stokesAxis, m_chanAxis;
+
+    // cache which saves matrix for channelIndex, stokesIndex
+    casacore::Matrix<float> m_channelCache;
+
+    void _getChannelMatrix(casacore::Matrix<float>& chanMatrix, int channel, int stokes);
+    casacore::Slicer _getChannelMatrixSlicer(int channel, int stokes);
+    void _getProfileSlicer(casacore::Slicer& latticeSlicer, int x, int y, int channel, int stokes) const;
 };
 
 } // namespace Lib

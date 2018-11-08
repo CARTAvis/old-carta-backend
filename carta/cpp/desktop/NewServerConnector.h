@@ -102,7 +102,7 @@ signals:
     void jsTextMessageResultSignal(QString result);
     void jsBinaryMessageResultSignal(QString respName, uint32_t eventId, PBMSharedPtr message);
 
-    void imageChannelUpdateSignal(uint32_t eventId, int fileId, int channel, int stoke);
+    void imageChannelUpdateSignal(uint32_t eventId, int fileId, int channel, int stokes);
     void setImageViewSignal(uint32_t eventId, int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
                             bool isZFP, int precision, int numSubsets);
     void openFileSignal(uint32_t eventId, QString fileDir, QString fileName, int fileId, int regionId);
