@@ -16,9 +16,6 @@
 #include <QStringList>
 
 #include <thread>
-//#include "websocketclientwrapper.h"
-//#include "websockettransport.h"
-//#include "qwebchannel.h"
 #include <QBuffer>
 #include <QThread>
 #include <QUuid>
@@ -44,53 +41,54 @@ void SessionDispatcher::startWebSocket(){
         qDebug() << "SessionDispatcher listening on port" << port;
     }
 
-    m_pWebSocketServer = new QWebSocketServer(QStringLiteral("New QWebServer start"), QWebSocketServer::NonSecureMode, this);
-
-    if (!m_pWebSocketServer->listen(QHostAddress::Any, port)) {
+    if (!m_hub.listen(port)){
         qCritical("Failed to open web socket server.");
         return;
     }
 
-    connect(m_pWebSocketServer, &QWebSocketServer::newConnection, this, &SessionDispatcher::onNewConnection);
+    m_hub.onConnection([this](uWS::WebSocket<uWS::SERVER> *ws, uWS::HttpRequest req){
+        onNewConnection(ws);
+    });
+     m_hub.onMessage([this](uWS::WebSocket<uWS::SERVER> *ws, char* message, size_t length, uWS::OpCode opcode){
+        if (opcode == uWS::OpCode::TEXT){
+            onTextMessage(ws, message, length);
+        }
+        else if (opcode == uWS::OpCode::BINARY){
+            onBinaryMessage(ws, message, length);
+        }
+    });
+     // repeat calling non-blocking poll() in qt event loop
+    loopPoll();
+}
+
+ void SessionDispatcher::loopPoll(){
+    m_hub.poll();
+    // submit a queue into qt eventloop
+    defer([this](){
+        QThread::msleep(10); // sleep for 10 ms in order to ease the loading of CPU
+        loopPoll();
+    });
 }
 
 SessionDispatcher::SessionDispatcher() {
-    m_pWebSocketServer = nullptr;
 }
 
 SessionDispatcher::~SessionDispatcher() {
-    m_pWebSocketServer->close();
-
-    if (m_pWebSocketServer != nullptr) {
-        delete m_pWebSocketServer;
-    }
 }
 
-void SessionDispatcher::onNewConnection() {
+void SessionDispatcher::onNewConnection(uWS::WebSocket<uWS::SERVER> *socket) {
     qDebug() << "[SessionDispatcher] A new connection!!";
-    QWebSocket* ws = m_pWebSocketServer->nextPendingConnection();
-    connect(ws, &QWebSocket::textMessageReceived, this, &SessionDispatcher::onTextMessage);
-    connect(ws, &QWebSocket::binaryMessageReceived, this, &SessionDispatcher::onBinaryMessage);
 }
 
-void SessionDispatcher::onTextMessage(QString message) {
-    // get the source of websocket
-    QWebSocket* ws = qobject_cast<QWebSocket*>(sender());
+void SessionDispatcher::onTextMessage(uWS::WebSocket<uWS::SERVER> *ws, char* message, size_t length) {
     NewServerConnector* connector= sessionList[ws];
+    QString cmd = QString::fromStdString(std::string(message, length));
     if (connector != nullptr) {
-        emit connector->onTextMessageSignal(message);
+        emit connector->onTextMessageSignal(cmd);
     }
 }
 
-void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
-    // get the source of websocket
-    QWebSocket* ws = qobject_cast<QWebSocket*>(sender());
-
-    // convert QByteArray to char* message
-    const char* message = qByteMessage.constData();
-
-    size_t length = qByteMessage.size();
-
+void SessionDispatcher::onBinaryMessage(uWS::WebSocket<uWS::SERVER> *ws, char* message, size_t length) {
     if (length < EVENT_NAME_LENGTH + EVENT_ID_LENGTH) {
         qDebug() << "message length=" << length << "is not valid!!";
         qWarning("[SessionDispatcher] Illegal message.");
@@ -229,12 +227,9 @@ void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
         PBMSharedPtr msg = ack;
         bool success = false;
         size_t requiredSize = 0;
-        std::vector<char> tmpResult = _serializeToArray(respName, eventId, msg, success, requiredSize);
+        std::vector<char> result = serializeToArray(respName, eventId, msg, success, requiredSize);
         if (success) {
-            // convert the std::vector<char> to QByteArray
-            char* tmpMessage = &tmpResult[0];
-            QByteArray result = QByteArray::fromRawData(tmpMessage, requiredSize);
-            ws->sendBinaryMessage(result);
+            ws->send(result.data(), requiredSize, uWS::OpCode::BINARY);
             qDebug() << "[SessionDispatcher] Send event:" << respName<< ", Id=" << eventId << ", length=" << requiredSize << QTime::currentTime().toString();
         }
 
@@ -350,9 +345,9 @@ void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
 }
 
 void SessionDispatcher::forwardTextMessageResult(QString result) {
-    QWebSocket* ws = nullptr;
+    uWS::WebSocket<uWS::SERVER> *ws = nullptr;
     NewServerConnector* connector = qobject_cast<NewServerConnector*>(sender());
-    std::map<QWebSocket*, NewServerConnector*>::iterator iter;
+    std::map<uWS::WebSocket<uWS::SERVER>*, NewServerConnector*>::iterator iter;
     for (iter = sessionList.begin(); iter != sessionList.end(); ++iter) {
         if (iter->second == connector) {
             ws = iter->first;
@@ -360,16 +355,17 @@ void SessionDispatcher::forwardTextMessageResult(QString result) {
         }
     }
     if (ws) {
-        ws->sendTextMessage(result);
+        char *message = result.toUtf8().data();
+        ws->send(message, result.toUtf8().length(), uWS::OpCode::TEXT);
     } else {
         qDebug() << "ERROR! Cannot find the corresponding websocket!";
     }
 }
 
 void SessionDispatcher::forwardBinaryMessageResult(QString respName, uint32_t eventId, PBMSharedPtr protoMsg) {
-    QWebSocket* ws = nullptr;
+    uWS::WebSocket<uWS::SERVER> *ws = nullptr;
     NewServerConnector* connector = qobject_cast<NewServerConnector*>(sender());
-    std::map<QWebSocket*, NewServerConnector*>::iterator iter;
+    std::map<uWS::WebSocket<uWS::SERVER>*, NewServerConnector*>::iterator iter;
     for (iter = sessionList.begin(); iter != sessionList.end(); ++iter){
         if (iter->second == connector){
             ws = iter->first;
@@ -380,12 +376,9 @@ void SessionDispatcher::forwardBinaryMessageResult(QString respName, uint32_t ev
         // send serialized message to the frontend
         bool success = false;
         size_t requiredSize = 0;
-        std::vector<char> message = _serializeToArray(respName, eventId, protoMsg, success, requiredSize);
+        std::vector<char> message = serializeToArray(respName, eventId, protoMsg, success, requiredSize);
         if (success) {
-            // convert the std::vector<char> to QByteArray
-            char* tmpMessage = &message[0];
-            QByteArray result = QByteArray::fromRawData(tmpMessage, requiredSize);
-            ws->sendBinaryMessage(result);
+            ws->send(message.data(), requiredSize, uWS::OpCode::BINARY);
             qDebug() << "[SessionDispatcher] Send event: Name=" << respName << ", Id=" << eventId << ", length=" << requiredSize << ", Time=" << QTime::currentTime().toString();
         }
     } else {
@@ -411,26 +404,6 @@ void SessionDispatcher::setConnectorInMap(const QString & sessionID, IConnector 
     mutex.lock();
     clientList[sessionID] = connector;
     mutex.unlock();
-}
-
-std::vector<char> SessionDispatcher::_serializeToArray(QString respName, uint32_t eventId, PBMSharedPtr msg, bool &success, size_t &requiredSize) {
-    success = false;
-    std::vector<char> result;
-    size_t messageLength = msg->ByteSize();
-    requiredSize = EVENT_NAME_LENGTH + EVENT_ID_LENGTH + messageLength;
-    if (result.size() < requiredSize) {
-        result.resize(requiredSize);
-    }
-    memset(result.data(), 0, EVENT_NAME_LENGTH);
-    memcpy(result.data(), respName.toStdString().c_str(), std::min<size_t>(respName.length(), EVENT_NAME_LENGTH));
-    memcpy(result.data() + EVENT_NAME_LENGTH, &eventId, EVENT_ID_LENGTH);
-    if (msg) {
-        msg->SerializeToArray(result.data() + EVENT_NAME_LENGTH + EVENT_ID_LENGTH, messageLength);
-        success = true;
-        //emit jsBinaryMessageResultSignal(result.data(), requiredSize);
-        //qDebug() << "Send event:" << respName << QTime::currentTime().toString();
-    }
-    return result;
 }
 
 // //TODO implement later
