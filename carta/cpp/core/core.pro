@@ -129,17 +129,6 @@ HEADERS += \
     Data/FitsHeaderExtractor.h \
     GrayColormap.h \
     ImageRenderService.h \
-#    Plot2D/Plot.h \
-#    Plot2D/Plot2DGenerator.h \
-#    Plot2D/Plot2DRangeMarker.h \
-#    Plot2D/Plot2DSelection.h \
-#    Plot2D/Plot2D.h \
-#    Plot2D/Plot2DLine.h \
-#    Plot2D/Plot2DLineHorizontal.h \
-#    Plot2D/Plot2DHistogram.h \
-#    Plot2D/Plot2DHolder.h \
-#    Plot2D/Plot2DProfile.h \
-#    Plot2D/Plot2DTextMarker.h \
     Shape/ControlPoint.h \
     Shape/ControlPointEditable.h \
     Shape/ShapeBase.h \
@@ -273,17 +262,6 @@ SOURCES += \
     Data/ViewPlugins.cpp \
     Data/FitsHeaderExtractor.cpp \
     GrayColormap.cpp \
-#    Plot2D/Plot.cpp \
-#    Plot2D/Plot2DGenerator.cpp \
-#    Plot2D/Plot2DRangeMarker.cpp \
-#    Plot2D/Plot2D.cpp \
-#    Plot2D/Plot2DLine.cpp \
-#    Plot2D/Plot2DLineHorizontal.cpp \
-#    Plot2D/Plot2DHistogram.cpp \
-#    Plot2D/Plot2DHolder.cpp \
-#    Plot2D/Plot2DProfile.cpp \
-#    Plot2D/Plot2DSelection.cpp \
-#    Plot2D/Plot2DTextMarker.cpp \
     ScriptedClient/ScriptedCommandListener.cpp \
     ScriptedClient/ScriptFacade.cpp \
     Shape/ControlPoint.cpp \
