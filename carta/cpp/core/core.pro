@@ -157,21 +157,21 @@ HEADERS += \
     ScriptedClient/TagMessage.h \
     ScriptedClient/JsonMessage.h \
     DefaultContourGeneratorService.h \
-    Hacks/HackViewer.h \
-    Hacks/ImageViewController.h \
-    Hacks/MainModel.h \
-    Hacks/ILayeredView.h \
-    Hacks/IVectorGraphicsView.h \
-    Hacks/WcsGridOptionsController.h \
-    Hacks/SharedState.h \
-    Hacks/ContourEditorController.h \
-    Hacks/ProfileExtractor.h \
+#    Hacks/HackViewer.h \
+#    Hacks/ImageViewController.h \
+#    Hacks/MainModel.h \
+#    Hacks/ILayeredView.h \
+#    Hacks/IVectorGraphicsView.h \
+#    Hacks/WcsGridOptionsController.h \
+#    Hacks/SharedState.h \
+#    Hacks/ContourEditorController.h \
+#    Hacks/ProfileExtractor.h \
     DummyGridRenderer.h \
     coreMain.h \
-    SimpleRemoteVGView.h \
-    Hacks/ManagedLayerView.h \
-    Hacks/LayeredViewDemo.h \
-    Hacks/InteractiveShapes.h
+    SimpleRemoteVGView.h# \
+#    Hacks/ManagedLayerView.h \
+#    Hacks/LayeredViewDemo.h \
+#    Hacks/InteractiveShapes.h
 
 SOURCES += \
     Viewer.cpp \
@@ -313,21 +313,21 @@ SOURCES += \
     ScriptedClient/TagMessage.cpp \
     ScriptedClient/JsonMessage.cpp \
     DefaultContourGeneratorService.cpp \
-    Hacks/HackViewer.cpp \
-    Hacks/ImageViewController.cpp \
-    Hacks/MainModel.cpp \
-    Hacks/ILayeredView.cpp \
-    Hacks/IVectorGraphicsView.cpp \
-    Hacks/WcsGridOptionsController.cpp \
-    Hacks/SharedState.cpp \
-    Hacks/ContourEditorController.cpp \
-    Hacks/ProfileExtractor.cpp \
+#    Hacks/HackViewer.cpp \
+#    Hacks/ImageViewController.cpp \
+#    Hacks/MainModel.cpp \
+#    Hacks/ILayeredView.cpp \
+#    Hacks/IVectorGraphicsView.cpp \
+#    Hacks/WcsGridOptionsController.cpp \
+#    Hacks/SharedState.cpp \
+#    Hacks/ContourEditorController.cpp \
+#    Hacks/ProfileExtractor.cpp \
     DummyGridRenderer.cpp \
     coreMain.cpp \
-    SimpleRemoteVGView.cpp \
-    Hacks/ManagedLayerView.cpp \
-    Hacks/LayeredViewDemo.cpp \
-    Hacks/InteractiveShapes.cpp
+    SimpleRemoteVGView.cpp# \
+#    Hacks/ManagedLayerView.cpp \
+#    Hacks/LayeredViewDemo.cpp \
+#    Hacks/InteractiveShapes.cpp
 
 
 #message( "common            PWD=$$PWD")
