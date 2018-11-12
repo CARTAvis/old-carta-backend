@@ -136,15 +136,8 @@ HEADERS += \
     Shape/ShapePoint.h \
     Shape/ShapePolygon.h \
     Shape/ShapeRectangle.h \
-    ScriptedClient/ScriptedCommandListener.h \
-    ScriptedClient/ScriptFacade.h \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
-    ScriptedClient/Listener.h \
-    ScriptedClient/ScriptedCommandInterpreter.h \
-    ScriptedClient/VarLengthMessage.h \
-    ScriptedClient/TagMessage.h \
-    ScriptedClient/JsonMessage.h \
     DefaultContourGeneratorService.h \
     DummyGridRenderer.h \
     coreMain.h \
@@ -262,8 +255,6 @@ SOURCES += \
     Data/ViewPlugins.cpp \
     Data/FitsHeaderExtractor.cpp \
     GrayColormap.cpp \
-    ScriptedClient/ScriptedCommandListener.cpp \
-    ScriptedClient/ScriptFacade.cpp \
     Shape/ControlPoint.cpp \
     Shape/ControlPointEditable.cpp \
     Shape/ShapeBase.cpp \
@@ -273,11 +264,6 @@ SOURCES += \
     Shape/ShapeRectangle.cpp \
     ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
-    ScriptedClient/Listener.cpp \
-    ScriptedClient/ScriptedCommandInterpreter.cpp \
-    ScriptedClient/VarLengthMessage.cpp \
-    ScriptedClient/TagMessage.cpp \
-    ScriptedClient/JsonMessage.cpp \
     DefaultContourGeneratorService.cpp \
     DummyGridRenderer.cpp \
     coreMain.cpp \
