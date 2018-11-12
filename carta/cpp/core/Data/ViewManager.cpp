@@ -112,8 +112,7 @@ ViewManager::ViewManager( const QString& path, const QString& id)
     : CartaObject( CLASS_NAME, path, id ),
       m_layout( nullptr ),
       m_dataLoader( nullptr ),
-      m_pluginsLoaded( nullptr ),
-      m_snapshots( nullptr ){
+      m_pluginsLoaded( nullptr ) {
 
     //_setupSingletons();
 
@@ -334,9 +333,9 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             viewId = _makeImageContext(index);
         }
     }
-    else if ( plugin == Snapshots::CLASS_NAME ){
-        viewId = _makeSnapshots();
-    }
+//    else if ( plugin == Snapshots::CLASS_NAME ){
+//        viewId = _makeSnapshots();
+//    }
     else if ( plugin == Profiler::CLASS_NAME ){
         if ( 0 <= index && index < m_profilers.size() && !forceCreate){
             viewId = m_profilers[index]->getPath();
@@ -461,13 +460,13 @@ void ViewManager::_initCallbacks(){
     });
 
     //Callback for registering a view.
-    addCommandCallback( "registerSnapshots", [=] (const QString & /*cmd*/,
-            const QString & /*params*/, const QString & sessionId) -> QString {
-        QString viewId = _makeSnapshots();
-        //Lazy load of snapshots when user requests them.
-        m_snapshots->updateSnapshots( sessionId );
-        return viewId;
-    });
+//    addCommandCallback( "registerSnapshots", [=] (const QString & /*cmd*/,
+//            const QString & /*params*/, const QString & sessionId) -> QString {
+//        QString viewId = _makeSnapshots();
+//        //Lazy load of snapshots when user requests them.
+//        m_snapshots->updateSnapshots( sessionId );
+//        return viewId;
+//    });
 
     addCommandCallback( "setAnalysisLayout", [=] (const QString & /*cmd*/,
                     const QString & /*params*/, const QString & /*sessionId*/) -> QString {
@@ -605,8 +604,8 @@ void ViewManager::_initializeDefaultState(){
     // setHistogramAnalysisView();
     // setImageView();
     //Load the default snapshot if one exists.
-    _makeSnapshots();
-    m_snapshots->initializeDefaultState();
+//    _makeSnapshots();
+//    m_snapshots->initializeDefaultState();
     _refreshState();
 }
 
@@ -883,14 +882,14 @@ QString ViewManager::_makePluginList(){
     return pluginsPath;
 }
 
-QString ViewManager::_makeSnapshots(){
-    if ( !m_snapshots ){
-        Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-        m_snapshots = objMan->createObject<Snapshots>();
-    }
-    QString snapPath = m_snapshots->getPath();
-    return snapPath;
-}
+//QString ViewManager::_makeSnapshots(){
+//    if ( !m_snapshots ){
+//        Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//        m_snapshots = objMan->createObject<Snapshots>();
+//    }
+//    QString snapPath = m_snapshots->getPath();
+//    return snapPath;
+//}
 
 
 QString ViewManager::_makeProfile( int index ){
@@ -1422,7 +1421,7 @@ ViewManager::~ViewManager(){
     delete m_layout;
     delete m_dataLoader;
     delete m_pluginsLoaded;
-    delete m_snapshots;
+//    delete m_snapshots;
 
     _clearAnimators( 0, m_animators.size() );
     _clearColormaps( 0, m_colormaps.size() );

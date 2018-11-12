@@ -24,7 +24,7 @@ class ImageZoom;
 class Layout;
 class Profiler;
 class Statistics;
-class Snapshots;
+//class Snapshots;
 class ViewPlugins;
 
 class ViewManager : public QObject, public Carta::State::CartaObject {
@@ -229,7 +229,7 @@ private:
     QString _makeImageContext( int index );
     QString _makeImageZoom( int index );
     QString _makeProfile( int index );
-    QString _makeSnapshots();
+//    QString _makeSnapshots();
     QString _makeStatistics( int index );
 
     void _makeDataLoader();
@@ -281,7 +281,7 @@ private:
     Layout* m_layout;
     DataLoader* m_dataLoader;
     ViewPlugins* m_pluginsLoaded;
-    Snapshots* m_snapshots;
+//    Snapshots* m_snapshots;
 
     const static QString SOURCE_ID;
     const static QString SOURCE_PLUGIN;

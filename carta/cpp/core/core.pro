@@ -114,10 +114,6 @@ HEADERS += \
     Data/Region/RegionRectangle.h \
     Data/Region/RegionFactory.h \
     Data/Region/RegionTypes.h \
-    Data/Snapshot/ISnapshotsImplementation.h \
-    Data/Snapshot/Snapshots.h \
-    Data/Snapshot/Snapshot.h \
-    Data/Snapshot/SnapshotsFile.h \
     Data/Statistics/Statistics.h \
     Data/Units/UnitsFrequency.h \
     Data/Units/UnitsIntensity.h \
@@ -242,9 +238,6 @@ SOURCES += \
     Data/Region/RegionFactory.cpp \
     Data/Region/RegionRectangle.cpp \
     Data/Region/RegionTypes.cpp \
-    Data/Snapshot/Snapshots.cpp \
-    Data/Snapshot/Snapshot.cpp \
-    Data/Snapshot/SnapshotsFile.cpp \
     Data/Statistics/Statistics.cpp \
     Data/Units/UnitsFrequency.cpp \
     Data/Units/UnitsIntensity.cpp \
