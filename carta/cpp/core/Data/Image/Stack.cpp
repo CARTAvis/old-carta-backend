@@ -636,25 +636,25 @@ void Stack::_saveChildren( Carta::State::StateInterface& state, bool truncate ) 
 
 QString Stack::_saveImage( const QString& saveName ){
     QString result;
-    m_saveService = new SaveService();
-    m_saveService->setFileName( saveName );
-    PreferencesSave* prefSave = Util::findSingletonObject<PreferencesSave>();
-    int width = prefSave->getWidth();
-    int height = prefSave->getHeight();
-    Qt::AspectRatioMode aspectRatioMode = prefSave->getAspectRatioMode();
-    m_saveService->setAspectRatioMode( aspectRatioMode );
-    m_saveService->setLayers( m_children );
-    connect( m_saveService, SIGNAL(saveImageResult(bool) ),
-            this, SLOT(_saveImageResultCB(bool) ) );
-    std::vector<int> frameIndices = _getFrameIndices();
-    std::shared_ptr<RenderRequest> request( new RenderRequest( frameIndices, _getCoordinateSystem()));
-    request->setOutputSize( QSize(width, height) );
-    request->setTopIndex( _getIndexCurrent());
-    request->setRequestMain( true );
-    bool saveStarted = m_saveService->saveImage(/*frameIndices, _getCoordinateSystem()*/request);
-    if ( !saveStarted ){
-        result = "Image was not saved.  Please check the file name.";
-    }
+//    m_saveService = new SaveService();
+//    m_saveService->setFileName( saveName );
+//    PreferencesSave* prefSave = Util::findSingletonObject<PreferencesSave>();
+//    int width = prefSave->getWidth();
+//    int height = prefSave->getHeight();
+//    Qt::AspectRatioMode aspectRatioMode = prefSave->getAspectRatioMode();
+//    m_saveService->setAspectRatioMode( aspectRatioMode );
+//    m_saveService->setLayers( m_children );
+//    connect( m_saveService, SIGNAL(saveImageResult(bool) ),
+//            this, SLOT(_saveImageResultCB(bool) ) );
+//    std::vector<int> frameIndices = _getFrameIndices();
+//    std::shared_ptr<RenderRequest> request( new RenderRequest( frameIndices, _getCoordinateSystem()));
+//    request->setOutputSize( QSize(width, height) );
+//    request->setTopIndex( _getIndexCurrent());
+//    request->setRequestMain( true );
+//    bool saveStarted = m_saveService->saveImage(/*frameIndices, _getCoordinateSystem()*/request);
+//    if ( !saveStarted ){
+//        result = "Image was not saved.  Please check the file name.";
+//    }
     return result;
 }
 

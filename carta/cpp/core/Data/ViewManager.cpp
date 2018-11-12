@@ -27,8 +27,8 @@
 //#include "Data/Layout/NodeFactory.h"
 #include "Data/Plotter/LineStyles.h"
 #include "Data/Histogram/PlotStyles.h"
-#include "Data/Preferences/Preferences.h"
-#include "Data/Preferences/PreferencesSave.h"
+//#include "Data/Preferences/Preferences.h"
+//#include "Data/Preferences/PreferencesSave.h"
 #include "Data/Profile/ProfilePlotStyles.h"
 #include "Data/Profile/Profiler.h"
 #include "Data/Profile/ProfileStatistics.h"
@@ -84,8 +84,8 @@ void ViewManager::_setupSingletons() {
     Util::findSingletonObject<Fonts>();
     Util::findSingletonObject<LabelFormats>();
     Util::findSingletonObject<ProfilePlotStyles>();
-    Util::findSingletonObject<Preferences>();
-    Util::findSingletonObject<PreferencesSave>();
+//    Util::findSingletonObject<Preferences>();
+//    Util::findSingletonObject<PreferencesSave>();
     Util::findSingletonObject<ChannelUnits>();
     Util::findSingletonObject<CoordinateSystems>();
     Util::findSingletonObject<Themes>();
@@ -1029,8 +1029,8 @@ void ViewManager::_refreshStateSingletons(){
     obj->refreshState();
     obj = Util::findSingletonObject<ErrorManager>();
     obj->refreshState();
-    obj = Util::findSingletonObject<Preferences>();
-    obj->refreshState();
+//    obj = Util::findSingletonObject<Preferences>();
+//    obj->refreshState();
     obj = Util::findSingletonObject<ChannelUnits>();
     obj->refreshState();
 }
@@ -1449,10 +1449,10 @@ ViewManager::~ViewManager(){
     delete obj;
     obj =  Util::findSingletonObject<ProfilePlotStyles>();
     delete obj;
-    obj =  Util::findSingletonObject<Preferences>();
-    delete obj;
-    obj =  Util::findSingletonObject<PreferencesSave>();
-    delete obj;
+//    obj =  Util::findSingletonObject<Preferences>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<PreferencesSave>();
+//    delete obj;
     obj =  Util::findSingletonObject<ChannelUnits>();
     delete obj;
     obj =  Util::findSingletonObject<CoordinateSystems>();
