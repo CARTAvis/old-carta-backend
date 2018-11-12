@@ -34,7 +34,7 @@
 #include "Data/Profile/ProfileStatistics.h"
 #include "Data/Profile/GenerateModes.h"
 #include "Data/Region/RegionTypes.h"
-#include "Data/Snapshot/Snapshots.h"
+//#include "Data/Snapshot/Snapshots.h"
 #include "Data/Statistics/Statistics.h"
 #include "Data/ViewPlugins.h"
 #include "Data/Units/UnitsFrequency.h"
@@ -110,7 +110,7 @@ void ViewManager::_setupSingletons() {
 
 ViewManager::ViewManager( const QString& path, const QString& id)
     : CartaObject( CLASS_NAME, path, id ),
-      m_layout( nullptr ),
+//      m_layout( nullptr ),
       m_dataLoader( nullptr ),
       m_pluginsLoaded( nullptr ) {
 
@@ -128,24 +128,24 @@ ViewManager::ViewManager( const QString& path, const QString& id)
 
 
 
-void ViewManager::_adjustSize( int count, const QString& name, const QVector<int> & insertionIndices ){
-    int existingCount = 0;
-    if ( name == NodeFactory::HIDDEN || name == NodeFactory::EMPTY ){
-        return;
-    }
-    else {
-        existingCount = _removeViews( name, count, -1 );
-    }
+//void ViewManager::_adjustSize( int count, const QString& name, const QVector<int> & insertionIndices ){
+//    int existingCount = 0;
+//    if ( name == NodeFactory::HIDDEN || name == NodeFactory::EMPTY ){
+//        return;
+//    }
+//    else {
+//        existingCount = _removeViews( name, count, -1 );
+//    }
 
     //Add some at the inserting indices.
-    if ( existingCount < count ){
-        int index = 0;
-        for ( int i = existingCount; i < count; i++ ){
-            getObjectId( name, insertionIndices[index], true );
-            index++;
-        }
-    }
-}
+//    if ( existingCount < count ){
+//        int index = 0;
+//        for ( int i = existingCount; i < count; i++ ){
+//            getObjectId( name, insertionIndices[index], true );
+//            index++;
+//        }
+//    }
+//}
 
 void ViewManager::_clear(){
    _clearHistograms( 0, m_histograms.size() );
@@ -156,9 +156,9 @@ void ViewManager::_clear(){
    _clearImageContexts( 0, m_imageContexts.size() );
    _clearProfilers( 0, m_profilers.size() );
     _clearControllers( 0, m_controllers.size() );
-    if ( m_layout != nullptr ){
-        m_layout->clear();
-    }
+//    if ( m_layout != nullptr ){
+//        m_layout->clear();
+//    }
 }
 
 void ViewManager::_clearControllers( int startIndex, int upperBound ){
@@ -361,9 +361,9 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
     else if ( plugin == ViewPlugins::CLASS_NAME ){
         viewId = _makePluginList();
     }
-    else if ( plugin == NodeFactory::EMPTY || plugin == NodeFactory::HIDDEN ){
+//    else if ( plugin == NodeFactory::EMPTY || plugin == NodeFactory::HIDDEN ){
         //Do nothing
-    }
+//    }
     else {
         qDebug() << "Unrecognized top level window type: "<<plugin;
     }
@@ -474,11 +474,11 @@ void ViewManager::_initCallbacks(){
             return "";
     });
 
-    addCommandCallback( "setDefaultLayout", [=] (const QString & /*cmd*/,
-                    const QString & /*params*/, const QString & /*sessionId*/) -> QString {
-            setDefaultLayoutViewWithCurrentPluginList();
-            return "";
-    });
+//    addCommandCallback( "setDefaultLayout", [=] (const QString & /*cmd*/,
+//                    const QString & /*params*/, const QString & /*sessionId*/) -> QString {
+//            setDefaultLayoutViewWithCurrentPluginList();
+//            return "";
+//    });
 
     addCommandCallback( "setHistogramAnalysisLayout", [=] (const QString & /*cmd*/,
                     const QString & /*params*/, const QString & /*sessionId*/) -> QString {
@@ -486,13 +486,13 @@ void ViewManager::_initCallbacks(){
             return "";
     });
 
-    addCommandCallback( "setImageLayout", [=] (const QString & /*cmd*/,
-                        const QString & /*params*/, const QString & /*sessionId*/) -> QString {
+//    addCommandCallback( "setImageLayout", [=] (const QString & /*cmd*/,
+//                        const QString & /*params*/, const QString & /*sessionId*/) -> QString {
 
             // Will rename command later
-            setImageCompositeView();
-            return "";
-    });
+//            setImageCompositeView();
+//            return "";
+//    });
 
     //Callback for adding a data source to a Controller.
     // addCommandCallback( "dataLoaded", [=] (const QString & /*cmd*/,
@@ -567,38 +567,38 @@ void ViewManager::_initCallbacks(){
         return result;
     });
 
-    addCommandCallback( "setPlugin", [=] (const QString & /*cmd*/,
-                            const QString & params, const QString & /*sessionId*/) -> QString {
-            std::set<QString> keys = { DEST_PLUGIN, SOURCE_LOCATION_ID };
-            std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
-            QString result = _setPlugin( dataValues[SOURCE_LOCATION_ID], dataValues[DEST_PLUGIN]);
-            Util::commandPostProcess( result );
-            return result;
-        });
+//    addCommandCallback( "setPlugin", [=] (const QString & /*cmd*/,
+//                            const QString & params, const QString & /*sessionId*/) -> QString {
+//            std::set<QString> keys = { DEST_PLUGIN, SOURCE_LOCATION_ID };
+//            std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
+//            QString result = _setPlugin( dataValues[SOURCE_LOCATION_ID], dataValues[DEST_PLUGIN]);
+//            Util::commandPostProcess( result );
+//            return result;
+//        });
 
-    addCommandCallback( "moveWindow", [=] (const QString & /*cmd*/,
-                                const QString & params, const QString & /*sessionId*/) -> QString {
-        std::set<QString> keys = {SOURCE_PLUGIN, SOURCE_LOCATION_ID, DEST_PLUGIN, DEST_LOCATION_ID};
-        std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
-        int sourceIndex = m_layout->_getIndex( dataValues[SOURCE_PLUGIN], dataValues[SOURCE_LOCATION_ID]);
-        int destIndex = m_layout->_getIndex( dataValues[DEST_PLUGIN], dataValues[DEST_LOCATION_ID]);
-        QString result = moveWindow( dataValues[SOURCE_PLUGIN], sourceIndex, dataValues[DEST_PLUGIN], destIndex );
-        Util::commandPostProcess( result );
-        return result;
-    });
+//    addCommandCallback( "moveWindow", [=] (const QString & /*cmd*/,
+//                                const QString & params, const QString & /*sessionId*/) -> QString {
+//        std::set<QString> keys = {SOURCE_PLUGIN, SOURCE_LOCATION_ID, DEST_PLUGIN, DEST_LOCATION_ID};
+//        std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
+//        int sourceIndex = m_layout->_getIndex( dataValues[SOURCE_PLUGIN], dataValues[SOURCE_LOCATION_ID]);
+//        int destIndex = m_layout->_getIndex( dataValues[DEST_PLUGIN], dataValues[DEST_LOCATION_ID]);
+//        QString result = moveWindow( dataValues[SOURCE_PLUGIN], sourceIndex, dataValues[DEST_PLUGIN], destIndex );
+//        Util::commandPostProcess( result );
+//        return result;
+//    });
 
-    addStateCallback( Layout::CLASS_NAME, [=] ( const QString& /*path*/, const QString& /*value*/ ) {
-        _makeLayout();
-        QStringList pluginList = m_layout->getPluginList();
-        setPlugins( pluginList );
-    });
+//    addStateCallback( Layout::CLASS_NAME, [=] ( const QString& /*path*/, const QString& /*value*/ ) {
+//        _makeLayout();
+//        QStringList pluginList = m_layout->getPluginList();
+//        setPlugins( pluginList );
+//    });
 
 }
 
 
 void ViewManager::_initializeDefaultState(){
 //    ssetDefaultLayoutView();
-    setDefaultLayoutViewNoOldPluginList();
+//    setDefaultLayoutViewNoOldPluginList();
 
     // setAnalysisView();
     // setHistogramAnalysisView();
@@ -763,9 +763,9 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
            }
         }
 
-        else if ( plugin != NodeFactory::EMPTY ){
-            qWarning() << "Unrecognized plugin "<<plugin<<" to remove";
-        }
+//        else if ( plugin != NodeFactory::EMPTY ){
+//            qWarning() << "Unrecognized plugin "<<plugin<<" to remove";
+//        }
     }
     else {
         qWarning() << "Move view insert indices don't make sense "<<oldIndex<<" and "<<newIndex;
@@ -861,16 +861,16 @@ QString ViewManager::_makeImageContext( int index ){
     return m_imageContexts[index]->getPath();
 }
 
-QString ViewManager::_makeLayout(){
-    if ( !m_layout ){
-        Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-        m_layout = objMan->createObject<Layout>();
-        connect( m_layout, SIGNAL(pluginListChanged(const QStringList&, const QStringList&)),
-                this, SLOT( _pluginsChanged( const QStringList&, const QStringList&)));
-    }
-    QString layoutPath = m_layout->getPath();
-    return layoutPath;
-}
+//QString ViewManager::_makeLayout(){
+//    if ( !m_layout ){
+//        Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//        m_layout = objMan->createObject<Layout>();
+//        connect( m_layout, SIGNAL(pluginListChanged(const QStringList&, const QStringList&)),
+//                this, SLOT( _pluginsChanged( const QStringList&, const QStringList&)));
+//    }
+//    QString layoutPath = m_layout->getPath();
+//    return layoutPath;
+//}
 
 QString ViewManager::_makePluginList(){
     if ( !m_pluginsLoaded ){
@@ -929,53 +929,53 @@ QString ViewManager::_makeStatistics( int index ){
 }
 
 
-QString ViewManager::moveWindow( const QString& sourcePlugin, int sourcePluginIndex,
-        const QString& destPlugin, int destPluginIndex ){
+//QString ViewManager::moveWindow( const QString& sourcePlugin, int sourcePluginIndex,
+//        const QString& destPlugin, int destPluginIndex ){
 
     //Remove the view object at the current destination.
-    QString msg;
-    QStringList oldPlugins = m_layout->getPluginList();
-    _removeView( destPlugin, destPluginIndex );
+//    QString msg;
+//    QStringList oldPlugins = m_layout->getPluginList();
+//    _removeView( destPlugin, destPluginIndex );
 
     //Look through the list of plugins.  Make a new list of plugins, replacing the one at destination Index,
     //with the source one.
     //Replace where the source used to be with EMPTY.
-    int newSourcePluginIndex = -1;
-    int destPluginCount = -1;
-    int sourcePluginCount = -1;
-    QStringList newPlugins;
-    for ( int i = 0; i < oldPlugins.size(); i++ ){
-        if ( oldPlugins[i] == sourcePlugin ){
-            if ( i <= destPluginIndex ){
+//    int newSourcePluginIndex = -1;
+//    int destPluginCount = -1;
+//    int sourcePluginCount = -1;
+//    QStringList newPlugins;
+//    for ( int i = 0; i < oldPlugins.size(); i++ ){
+//        if ( oldPlugins[i] == sourcePlugin ){
+//            if ( i <= destPluginIndex ){
 
-                newSourcePluginIndex++;
-            }
-            sourcePluginCount++;
-        }
-        if ( oldPlugins[i]  == destPlugin ){
-            destPluginCount++;
-        }
-        if ( oldPlugins[i] == sourcePlugin && sourcePluginCount == sourcePluginIndex ){
-            newPlugins.append( NodeFactory::EMPTY );
-        }
-        else if ( oldPlugins[i] == destPlugin && destPluginCount == destPluginIndex ){
-            newPlugins.append( sourcePlugin );
-        }
-        else {
-            newPlugins.append( oldPlugins[i]);
-        }
-    }
+//                newSourcePluginIndex++;
+//            }
+//            sourcePluginCount++;
+//        }
+//        if ( oldPlugins[i]  == destPlugin ){
+//            destPluginCount++;
+//        }
+//        if ( oldPlugins[i] == sourcePlugin && sourcePluginCount == sourcePluginIndex ){
+//            newPlugins.append( NodeFactory::EMPTY );
+//        }
+//        else if ( oldPlugins[i] == destPlugin && destPluginCount == destPluginIndex ){
+//            newPlugins.append( sourcePlugin );
+//        }
+//        else {
+//            newPlugins.append( oldPlugins[i]);
+//        }
+//    }
 
     //if the new location of the source, changes it's index.  If
     //it does, reorder the view objects putting the source at the new index.
-    if ( newSourcePluginIndex != sourcePluginIndex && newSourcePluginIndex >= 0){
-        _moveView( sourcePlugin, sourcePluginIndex, newSourcePluginIndex );
-    }
+//    if ( newSourcePluginIndex != sourcePluginIndex && newSourcePluginIndex >= 0){
+//        _moveView( sourcePlugin, sourcePluginIndex, newSourcePluginIndex );
+//    }
 
     //Call setPlugins with the new list.  The should update the view objects removing the old destPlugin view.
-    msg = m_layout->setPlugins( newPlugins, true );
-    return msg;
-}
+//    msg = m_layout->setPlugins( newPlugins, true );
+//    return msg;
+//}
 
 
 void ViewManager::_pluginsChanged( const QStringList& names, const QStringList& oldNames ){
@@ -1012,10 +1012,10 @@ void ViewManager::_pluginsChanged( const QStringList& names, const QStringList& 
     }
 
     //Remove any views that are no longer needed
-    QList<QString> keys = pluginMap.keys();
-    for ( QString key : keys ){
-        _adjustSize( pluginMap[key], key, insertionIndices[key]);
-    }
+//    QList<QString> keys = pluginMap.keys();
+//    for ( QString key : keys ){
+//        _adjustSize( pluginMap[key], key, insertionIndices[key]);
+//    }
 }
 
 void ViewManager::_refreshStateSingletons(){
@@ -1061,364 +1061,364 @@ void ViewManager::reload(){
     _initializeDefaultState();
 }
 
-void ViewManager::_removeView( const QString& plugin, int index ){
+//void ViewManager::_removeView( const QString& plugin, int index ){
 
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    if ( plugin == NodeFactory::HIDDEN ){
-        return;
-    }
-    else if ( plugin == Controller::PLUGIN_NAME ){
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    if ( plugin == NodeFactory::HIDDEN ){
+//        return;
+//    }
+//    else if ( plugin == Controller::PLUGIN_NAME ){
         //First remove all links to the controller.
-        QString destId = m_controllers[index]->getPath();
-        for ( Animator* animator : m_animators ){
-            QString sourceId = animator->getPath();
-            linkRemove( sourceId, destId );
-        }
-        for ( Colormap* map : m_colormaps ){
-            QString sourceId = map->getPath();
-            linkRemove( sourceId, destId );
-        }
-        for ( Histogram* hist : m_histograms ){
-            QString sourceId = hist->getPath();
-            linkRemove( sourceId, destId );
-        }
-        for ( ImageZoom* zoom : m_imageZooms ){
-            QString sourceId = zoom->getPath();
-            linkRemove( sourceId, destId );
-        }
-        for ( ImageContext* context : m_imageContexts ){
-            QString sourceId = context->getPath();
-            linkRemove( sourceId, destId );
-        }
-        for ( Profiler* profile : m_profilers ){
-            QString sourceId = profile->getPath();
-            linkRemove( sourceId, destId );
-        }
-        objMan->destroyObject( m_controllers[index]->getId());
-        m_controllers.removeAt( index );
-    }
-    else if ( plugin == Animator::CLASS_NAME ){
-        objMan->destroyObject( m_animators[index]->getId());
-        m_animators.removeAt( index );
-    }
-    else if ( plugin == Colormap::CLASS_NAME ){
-        objMan->destroyObject( m_colormaps[index]->getId());
-        m_colormaps.removeAt( index );
-    }
-    else if ( plugin == Histogram::CLASS_NAME ){
-        objMan->destroyObject( m_histograms[index]->getId());
-        m_histograms.removeAt( index );
-    }
-    else if ( plugin == ImageContext::CLASS_NAME ){
-        objMan->destroyObject( m_imageContexts[index]->getId());
-        m_imageContexts.removeAt( index );
-    }
-    else if ( plugin == ImageZoom::CLASS_NAME ){
-        objMan->destroyObject( m_imageZooms[index]->getId());
-        m_imageZooms.removeAt( index );
-    }
-    else if ( plugin == Profiler::CLASS_NAME ){
-        objMan->destroyObject( m_profilers[index]->getId());
-        m_profilers.removeAt( index );
-    }
+//        QString destId = m_controllers[index]->getPath();
+//        for ( Animator* animator : m_animators ){
+//            QString sourceId = animator->getPath();
+//            linkRemove( sourceId, destId );
+//        }
+//        for ( Colormap* map : m_colormaps ){
+//            QString sourceId = map->getPath();
+//            linkRemove( sourceId, destId );
+//        }
+//        for ( Histogram* hist : m_histograms ){
+//            QString sourceId = hist->getPath();
+//            linkRemove( sourceId, destId );
+//        }
+//        for ( ImageZoom* zoom : m_imageZooms ){
+//            QString sourceId = zoom->getPath();
+//            linkRemove( sourceId, destId );
+//        }
+//        for ( ImageContext* context : m_imageContexts ){
+//            QString sourceId = context->getPath();
+//            linkRemove( sourceId, destId );
+//        }
+//        for ( Profiler* profile : m_profilers ){
+//            QString sourceId = profile->getPath();
+//            linkRemove( sourceId, destId );
+//        }
+//        objMan->destroyObject( m_controllers[index]->getId());
+//        m_controllers.removeAt( index );
+//    }
+//    else if ( plugin == Animator::CLASS_NAME ){
+//        objMan->destroyObject( m_animators[index]->getId());
+//        m_animators.removeAt( index );
+//    }
+//    else if ( plugin == Colormap::CLASS_NAME ){
+//        objMan->destroyObject( m_colormaps[index]->getId());
+//        m_colormaps.removeAt( index );
+//    }
+//    else if ( plugin == Histogram::CLASS_NAME ){
+//        objMan->destroyObject( m_histograms[index]->getId());
+//        m_histograms.removeAt( index );
+//    }
+//    else if ( plugin == ImageContext::CLASS_NAME ){
+//        objMan->destroyObject( m_imageContexts[index]->getId());
+//        m_imageContexts.removeAt( index );
+//    }
+//    else if ( plugin == ImageZoom::CLASS_NAME ){
+//        objMan->destroyObject( m_imageZooms[index]->getId());
+//        m_imageZooms.removeAt( index );
+//    }
+//    else if ( plugin == Profiler::CLASS_NAME ){
+//        objMan->destroyObject( m_profilers[index]->getId());
+//        m_profilers.removeAt( index );
+//    }
 
-    else if ( plugin != NodeFactory::EMPTY ){
-        qWarning() << "Unrecognized plugin "<<plugin<<" to remove";
-    }
-}
+//    else if ( plugin != NodeFactory::EMPTY ){
+//        qWarning() << "Unrecognized plugin "<<plugin<<" to remove";
+//    }
+//}
 
-int ViewManager::_removeViews( const QString& name, int startIndex, int endIndex ){
-    int upperBound = endIndex + 1;
-    int existingCount = 0;
-    if ( name == Colormap::CLASS_NAME ){
-        existingCount = m_colormaps.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearColormaps(startIndex, upperBound );
-    }
-    else if ( name == Histogram::CLASS_NAME ){
-        existingCount = m_histograms.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearHistograms(startIndex, upperBound);
-    }
-    else if ( name == ImageZoom::CLASS_NAME ){
-        existingCount = m_imageZooms.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearImageZooms(startIndex, upperBound);
-    }
-    else if ( name == ImageContext::CLASS_NAME ){
-        existingCount = m_imageContexts.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearImageContexts(startIndex, upperBound);
-    }
-    else if ( name == Animator::CLASS_NAME ){
-        existingCount = m_animators.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearAnimators(startIndex, upperBound);
-    }
-    else if ( name == Profiler::CLASS_NAME ){
-        existingCount = m_profilers.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearProfilers(startIndex, upperBound);
-    }
-    else if ( name == Statistics::CLASS_NAME ){
-        existingCount = m_statistics.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearStatistics(startIndex, upperBound);
-    }
-    else if ( name == Controller::PLUGIN_NAME ){
-        existingCount = m_controllers.size();
-        if ( endIndex < 0 ){
-            upperBound = existingCount;
-        }
-        _clearControllers(startIndex, upperBound);
-    }
+//int ViewManager::_removeViews( const QString& name, int startIndex, int endIndex ){
+//    int upperBound = endIndex + 1;
+//    int existingCount = 0;
+//    if ( name == Colormap::CLASS_NAME ){
+//        existingCount = m_colormaps.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearColormaps(startIndex, upperBound );
+//    }
+//    else if ( name == Histogram::CLASS_NAME ){
+//        existingCount = m_histograms.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearHistograms(startIndex, upperBound);
+//    }
+//    else if ( name == ImageZoom::CLASS_NAME ){
+//        existingCount = m_imageZooms.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearImageZooms(startIndex, upperBound);
+//    }
+//    else if ( name == ImageContext::CLASS_NAME ){
+//        existingCount = m_imageContexts.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearImageContexts(startIndex, upperBound);
+//    }
+//    else if ( name == Animator::CLASS_NAME ){
+//        existingCount = m_animators.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearAnimators(startIndex, upperBound);
+//    }
+//    else if ( name == Profiler::CLASS_NAME ){
+//        existingCount = m_profilers.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearProfilers(startIndex, upperBound);
+//    }
+//    else if ( name == Statistics::CLASS_NAME ){
+//        existingCount = m_statistics.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearStatistics(startIndex, upperBound);
+//    }
+//    else if ( name == Controller::PLUGIN_NAME ){
+//        existingCount = m_controllers.size();
+//        if ( endIndex < 0 ){
+//            upperBound = existingCount;
+//        }
+//        _clearControllers(startIndex, upperBound);
+//    }
 
-    return existingCount;
-}
+//    return existingCount;
+//}
 
 
-void ViewManager::setDefaultLayoutView(bool cleanPluginList) {
+//void ViewManager::setDefaultLayoutView(bool cleanPluginList) {
 
-    if ( m_layout == nullptr ){
-        _makeLayout();
-    }
-    if ( !m_layout->isLayoutDefault()){
+//    if ( m_layout == nullptr ){
+//        _makeLayout();
+//    }
+//    if ( !m_layout->isLayoutDefault()){
         // setup 1 for new CARTA's experiment
-        _clearHistograms( 1, m_histograms.size() );
-        _clearAnimators( 1, m_animators.size() );
-        _clearColormaps( 1, m_colormaps.size() );
-        _clearStatistics( 1, m_statistics.size());
+//        _clearHistograms( 1, m_histograms.size() );
+//        _clearAnimators( 1, m_animators.size() );
+//        _clearColormaps( 1, m_colormaps.size() );
+//        _clearStatistics( 1, m_statistics.size());
         // setup 1 for new CARTA's experiment
-        _clearProfilers( 1, m_profilers.size() );
-        _clearControllers( 1, m_controllers.size() );
+//        _clearProfilers( 1, m_profilers.size() );
+//        _clearControllers( 1, m_controllers.size() );
 
-        m_layout->setLayoutDefault(cleanPluginList);
+//        m_layout->setLayoutDefault(cleanPluginList);
 
         //Add the links to establish reasonable defaults.
-        m_animators[0]->addLink( m_controllers[0]);
-        m_colormaps[0]->addLink( m_controllers[0]);
-        m_statistics[0]->addLink( m_controllers[0]);
+//        m_animators[0]->addLink( m_controllers[0]);
+//        m_colormaps[0]->addLink( m_controllers[0]);
+//        m_statistics[0]->addLink( m_controllers[0]);
 
         // add this for new CARTA's experiment
-        m_profilers[0]->addLink( m_controllers[0]);
+//        m_profilers[0]->addLink( m_controllers[0]);
 
         // add this for new CARTA's experiment
-        m_histograms[0]->addLink( m_controllers[0]);
-        m_colormaps[0]->addLink( m_histograms[0]);
+//        m_histograms[0]->addLink( m_controllers[0]);
+//        m_colormaps[0]->addLink( m_histograms[0]);
 
-        _refreshState();
-    }
+//        _refreshState();
+//    }
 
-}
+//}
 
 
-void ViewManager::setDefaultLayoutViewWithCurrentPluginList(){
+//void ViewManager::setDefaultLayoutViewWithCurrentPluginList(){
 
-    setDefaultLayoutView(true);
-}
+//    setDefaultLayoutView(true);
+//}
 
-void ViewManager::setDefaultLayoutViewNoOldPluginList(){
+//void ViewManager::setDefaultLayoutViewNoOldPluginList(){
 
-    setDefaultLayoutView(false);
-}
+//    setDefaultLayoutView(false);
+//}
 
 void ViewManager::setAnalysisView(){
-    if ( m_layout == nullptr ){
-        _makeLayout();
-    }
-    if ( !m_layout->isLayoutAnalysis()){
-        _clearHistograms( 0, m_histograms.size() );
-        _clearAnimators( 1, m_animators.size() );
-        _clearColormaps( 1, m_colormaps.size() );
-        _clearStatistics( 0, m_statistics.size());
-        _clearProfilers( 1, m_profilers.size() );
-        _clearControllers( 1, m_controllers.size() );
+//    if ( m_layout == nullptr ){
+//        _makeLayout();
+//    }
+//    if ( !m_layout->isLayoutAnalysis()){
+//        _clearHistograms( 0, m_histograms.size() );
+//        _clearAnimators( 1, m_animators.size() );
+//        _clearColormaps( 1, m_colormaps.size() );
+//        _clearStatistics( 0, m_statistics.size());
+//        _clearProfilers( 1, m_profilers.size() );
+//        _clearControllers( 1, m_controllers.size() );
 
-        m_layout->setLayoutAnalysis();
+//        m_layout->setLayoutAnalysis();
 
         //Add the links to establish reasonable defaults.
-        m_animators[0]->addLink( m_controllers[0]);
-        m_colormaps[0]->addLink( m_controllers[0]);
-        m_profilers[0]->addLink( m_controllers[0]);
-        _refreshState();
-    }
+//        m_animators[0]->addLink( m_controllers[0]);
+//        m_colormaps[0]->addLink( m_controllers[0]);
+//        m_profilers[0]->addLink( m_controllers[0]);
+//        _refreshState();
+//    }
 }
 
 // before 20170307, this was the layout of original AnalysisView
 void ViewManager::setHistogramAnalysisView(){
-    if ( m_layout == nullptr ){
-        _makeLayout();
-    }
-    if ( !m_layout->isLayoutHistogramAnalysis()){
-        _clearHistograms( 1, m_histograms.size() );
-        _clearAnimators( 1, m_animators.size() );
-        _clearColormaps( 1, m_colormaps.size() );
-        _clearStatistics( 1, m_statistics.size());
-        _clearProfilers( 0, m_profilers.size() );
-        _clearControllers( 1, m_controllers.size() );
+//    if ( m_layout == nullptr ){
+//        _makeLayout();
+//    }
+//    if ( !m_layout->isLayoutHistogramAnalysis()){
+//        _clearHistograms( 1, m_histograms.size() );
+//        _clearAnimators( 1, m_animators.size() );
+//        _clearColormaps( 1, m_colormaps.size() );
+//        _clearStatistics( 1, m_statistics.size());
+//        _clearProfilers( 0, m_profilers.size() );
+//        _clearControllers( 1, m_controllers.size() );
 
-        m_layout->setLayoutHistogramAnalysis();
+//        m_layout->setLayoutHistogramAnalysis();
 
         //Add the links to establish reasonable defaults.
-        m_animators[0]->addLink( m_controllers[0]);
-        m_colormaps[0]->addLink( m_controllers[0]);
-        m_histograms[0]->addLink( m_controllers[0]);
-        m_colormaps[0]->addLink( m_histograms[0]);
-        _refreshState();
-    }
+//        m_animators[0]->addLink( m_controllers[0]);
+//        m_colormaps[0]->addLink( m_controllers[0]);
+//        m_histograms[0]->addLink( m_controllers[0]);
+//        m_colormaps[0]->addLink( m_histograms[0]);
+//        _refreshState();
+//    }
 }
 
-void ViewManager::setImageCompositeView(){
-    if ( m_layout == nullptr ){
-        _makeLayout();
-    }
-    if ( !m_layout->isLayoutImageComposite() ){
-        _clearHistograms( 0, m_histograms.size() );
-        _clearAnimators( 1, m_animators.size() );
-        _clearColormaps( 1, m_colormaps.size() );
-        _clearStatistics( 0, m_statistics.size());
-        _clearProfilers( 0, m_profilers.size());
-        _clearControllers( 1, m_controllers.size() );
+//void ViewManager::setImageCompositeView(){
+//    if ( m_layout == nullptr ){
+//        _makeLayout();
+//    }
+//    if ( !m_layout->isLayoutImageComposite() ){
+//        _clearHistograms( 0, m_histograms.size() );
+//        _clearAnimators( 1, m_animators.size() );
+//        _clearColormaps( 1, m_colormaps.size() );
+//        _clearStatistics( 0, m_statistics.size());
+//        _clearProfilers( 0, m_profilers.size());
+//        _clearControllers( 1, m_controllers.size() );
 
-        _clearImageZooms( 1, m_imageZooms.size());
-        _clearImageContexts( 1, m_imageContexts.size());
+//        _clearImageZooms( 1, m_imageZooms.size());
+//        _clearImageContexts( 1, m_imageContexts.size());
 
-        m_layout->setLayoutImageComposite();
+//        m_layout->setLayoutImageComposite();
 
-        m_animators[0]->addLink( m_controllers[0]);
-        m_colormaps[0]->addLink( m_controllers[0]);
+//        m_animators[0]->addLink( m_controllers[0]);
+//        m_colormaps[0]->addLink( m_controllers[0]);
 
-        m_imageZooms[0]->addLink( m_controllers[0]);
-        m_imageContexts[0]->addLink( m_controllers[0]);
-    }
-}
+//        m_imageZooms[0]->addLink( m_controllers[0]);
+//        m_imageContexts[0]->addLink( m_controllers[0]);
+//    }
+//}
 
-void ViewManager::setImageView(){
-    if ( m_layout == nullptr ){
-        _makeLayout();
-    }
-    if ( !m_layout->isLayoutImage() ){
-        _clearHistograms( 0, m_histograms.size() );
-        _clearAnimators( 0, m_animators.size() );
-        _clearColormaps( 0, m_colormaps.size() );
-        _clearStatistics( 0, m_statistics.size());
-        _clearProfilers( 0, m_profilers.size());
-        _clearControllers( 1, m_controllers.size() );
+//void ViewManager::setImageView(){
+//    if ( m_layout == nullptr ){
+//        _makeLayout();
+//    }
+//    if ( !m_layout->isLayoutImage() ){
+//        _clearHistograms( 0, m_histograms.size() );
+//        _clearAnimators( 0, m_animators.size() );
+//        _clearColormaps( 0, m_colormaps.size() );
+//        _clearStatistics( 0, m_statistics.size());
+//        _clearProfilers( 0, m_profilers.size());
+//        _clearControllers( 1, m_controllers.size() );
 
-        m_layout->setLayoutImage();
-    }
-}
+//        m_layout->setLayoutImage();
+//    }
+//}
 
 void ViewManager::setDeveloperView(){
-    if ( m_layout == nullptr ){
-        _makeLayout();
-    }
+//    if ( m_layout == nullptr ){
+//        _makeLayout();
+//    }
 
-    _clearHistograms( 0, m_histograms.size() );
-    _clearAnimators( 1, m_animators.size() );
-    _clearColormaps( 1, m_colormaps.size() );
-    _clearStatistics( 0, m_statistics.size());
-    _clearProfilers( 1, m_profilers.size() );
-    _clearControllers( 1, m_controllers.size() );
+//    _clearHistograms( 0, m_histograms.size() );
+//    _clearAnimators( 1, m_animators.size() );
+//    _clearColormaps( 1, m_colormaps.size() );
+//    _clearStatistics( 0, m_statistics.size());
+//    _clearProfilers( 1, m_profilers.size() );
+//    _clearControllers( 1, m_controllers.size() );
 
-    _clearImageZooms( 0, m_imageZooms.size());
-    _clearImageContexts( 0, m_imageContexts.size());
+//    _clearImageZooms( 0, m_imageZooms.size());
+//    _clearImageContexts( 0, m_imageContexts.size());
 
-    m_layout->setLayoutDeveloper();
+//    m_layout->setLayoutDeveloper();
     //Add the links to establish reasonable defaults.
-    m_animators[0]->addLink( m_controllers[0]);
+//    m_animators[0]->addLink( m_controllers[0]);
     //m_imageZooms[0]->addLink( m_controllers[0]);
     //m_imageContexts[0]->addLink( m_controllers[0]);
     //m_histograms[0]->addLink( m_controllers[0]);
     //m_statistics[0]->addLink( m_controllers[0]);
 
-    m_colormaps[0]->addLink( m_controllers[0]);
-    m_profilers[0]->addLink( m_controllers[0]);
+//    m_colormaps[0]->addLink( m_controllers[0]);
+//    m_profilers[0]->addLink( m_controllers[0]);
     //m_colormaps[0]->addLink( m_histograms[0]);
-    _refreshState();
+//    _refreshState();
 }
 
-QString ViewManager::_setPlugin( const QString& sourceNodeId, const QString& destPluginType ){
-    QString msg;
-    if ( destPluginType != Controller::PLUGIN_NAME && destPluginType != Animator::CLASS_NAME &&
-            destPluginType != Colormap::CLASS_NAME &&
-            destPluginType != Histogram::CLASS_NAME &&
-            destPluginType != ImageZoom::CLASS_NAME &&
-            destPluginType != ImageContext::CLASS_NAME &&
-            destPluginType != Profiler::CLASS_NAME &&
-            destPluginType != Statistics::CLASS_NAME &&
-            destPluginType != ViewPlugins::CLASS_NAME &&
-            destPluginType != NodeFactory::HIDDEN ){
-        msg = "Unrecognized plugin: "+destPluginType;
-    }
-    else {
+//QString ViewManager::_setPlugin( const QString& sourceNodeId, const QString& destPluginType ){
+//    QString msg;
+//    if ( destPluginType != Controller::PLUGIN_NAME && destPluginType != Animator::CLASS_NAME &&
+//            destPluginType != Colormap::CLASS_NAME &&
+//            destPluginType != Histogram::CLASS_NAME &&
+//            destPluginType != ImageZoom::CLASS_NAME &&
+//            destPluginType != ImageContext::CLASS_NAME &&
+//            destPluginType != Profiler::CLASS_NAME &&
+//            destPluginType != Statistics::CLASS_NAME &&
+//            destPluginType != ViewPlugins::CLASS_NAME &&
+//            destPluginType != NodeFactory::HIDDEN ){
+//        msg = "Unrecognized plugin: "+destPluginType;
+//    }
+//    else {
         //Remove the replaced plugin from the view objects.
-        QString replacedPlugin = m_layout->_getPlugin( sourceNodeId );
-        if ( replacedPlugin != destPluginType ){
+//        QString replacedPlugin = m_layout->_getPlugin( sourceNodeId );
+//        if ( replacedPlugin != destPluginType ){
 
             //Replace the plugin.
-            _makeLayout();
+//            _makeLayout();
 
-            if ( !replacedPlugin.isEmpty() ){
-                int replacedIndex = m_layout->_getPluginIndex( sourceNodeId, replacedPlugin );
+//            if ( !replacedPlugin.isEmpty() ){
+//                int replacedIndex = m_layout->_getPluginIndex( sourceNodeId, replacedPlugin );
 
-                if ( replacedIndex >= 0 ){
-                    _removeViews( replacedPlugin, replacedIndex, replacedIndex);
-                }
-            }
+//                if ( replacedIndex >= 0 ){
+//                    _removeViews( replacedPlugin, replacedIndex, replacedIndex);
+//                }
+//            }
 
             //Update the layout so it knows what plugins should be displayed in the cells.
-            bool pluginSet = m_layout->_setPlugin( sourceNodeId, destPluginType);
-            if ( !pluginSet ){
-                msg = "Unable to set plugin "+destPluginType;
-            }
-            else {
+//            bool pluginSet = m_layout->_setPlugin( sourceNodeId, destPluginType);
+//            if ( !pluginSet ){
+//                msg = "Unable to set plugin "+destPluginType;
+//            }
+//            else {
                 //Add in the new view object
-                int nodeIndex = m_layout->_getPluginCount( destPluginType );
-                if ( nodeIndex > 0 ){
-                    getObjectId( destPluginType, nodeIndex-1, true );
-                }
-            }
-        }
-    }
-    return msg;
-}
+//                int nodeIndex = m_layout->_getPluginCount( destPluginType );
+//                if ( nodeIndex > 0 ){
+//                    getObjectId( destPluginType, nodeIndex-1, true );
+//                }
+//            }
+//        }
+//    }
+//    return msg;
+//}
 
 
-bool ViewManager::setPlugins( const QStringList& names ){
-    bool pluginsSet = false;
-    if ( m_layout ){
-        QStringList oldNames = m_layout->getPluginList();
-        bool valid = m_layout->_setPlugin( names, true);
-        if ( valid ){
-            _pluginsChanged( names, oldNames );
-            pluginsSet = true;
-        }
-    }
-    else {
-        qWarning() << "A layout for the plugins is missing";
-    }
-    return pluginsSet;
-}
+//bool ViewManager::setPlugins( const QStringList& names ){
+//    bool pluginsSet = false;
+//    if ( m_layout ){
+//        QStringList oldNames = m_layout->getPluginList();
+//        bool valid = m_layout->_setPlugin( names, true);
+//        if ( valid ){
+//            _pluginsChanged( names, oldNames );
+//            pluginsSet = true;
+//        }
+//    }
+//    else {
+//        qWarning() << "A layout for the plugins is missing";
+//    }
+//    return pluginsSet;
+//}
 
 
 
 ViewManager::~ViewManager(){
-    delete m_layout;
+//    delete m_layout;
     delete m_dataLoader;
     delete m_pluginsLoaded;
 //    delete m_snapshots;

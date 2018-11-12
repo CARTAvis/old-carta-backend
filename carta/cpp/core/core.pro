@@ -84,11 +84,6 @@ HEADERS += \
     Data/Image/Save/SaveView.h \
     Data/Image/Save/SaveViewLayered.h \
     Data/Selection.h \
-    Data/Layout/Layout.h \
-    Data/Layout/LayoutNode.h \
-    Data/Layout/LayoutNodeComposite.h \
-    Data/Layout/LayoutNodeLeaf.h \
-    Data/Layout/NodeFactory.h \
     Data/LinkableImpl.h \
     Data/Plotter/Plot2DManager.h \
     Data/Plotter/LineStyles.h \
@@ -209,11 +204,6 @@ SOURCES += \
     Data/Histogram/PlotStyles.cpp \
     Data/LinkableImpl.cpp \
     Data/Selection.cpp \
-    Data/Layout/Layout.cpp \
-    Data/Layout/LayoutNode.cpp \
-    Data/Layout/LayoutNodeComposite.cpp \
-    Data/Layout/LayoutNodeLeaf.cpp \
-    Data/Layout/NodeFactory.cpp \
     Data/Plotter/Plot2DManager.cpp \
     Data/Plotter/LegendLocations.cpp \
     Data/Plotter/LineStyles.cpp \

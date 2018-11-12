@@ -21,7 +21,7 @@ class Histogram;
 class Colormap;
 class ImageContext;
 class ImageZoom;
-class Layout;
+//class Layout;
 class Profiler;
 class Statistics;
 //class Snapshots;
@@ -122,19 +122,19 @@ public:
      */
     void reload();
 
-    void setDefaultLayoutViewNoOldPluginList();
+//    void setDefaultLayoutViewNoOldPluginList();
 
     /**
      * Reset the layout to a default view.
      */
-    void setDefaultLayoutViewWithCurrentPluginList();
+//    void setDefaultLayoutViewWithCurrentPluginList();
 
 
     /**
      * Reset the layout to a default view. Without thid new cleanPluginList parameter, some crash will happen when refreshing the browser window.
      * The other layouts do not have this issue is because they are not responsible to re-construct the UI.
      */
-    void setDefaultLayoutView(bool cleanPluginList);
+//    void setDefaultLayoutView(bool cleanPluginList);
 
     /**
      * Reset the layout to a predefined analysis view.
@@ -155,20 +155,20 @@ public:
     /**
      * Reset the layout to a layout including a image context and a imageZoom in the right top corner, plus a animator and a coloprmap
      */
-    void setImageCompositeView();
+//    void setImageCompositeView();
 
 
     /**
      * Reset the layout to a predefined view displaying only a single image.
      */
-    void setImageView();
+//    void setImageView();
 
     /**
      * Set the list of plugins to be displayed.
      * @param names a list of identifiers for the plugins.
      * @return error information if plugins could not be set.
      */
-    bool setPlugins( const QStringList& names );
+//    bool setPlugins( const QStringList& names );
 
     static const QString CLASS_NAME;
 
@@ -186,7 +186,7 @@ private slots:
 private:
     ViewManager( const QString& path, const QString& id);
     class Factory;
-    void _adjustSize( int count, const QString& name, const QVector<int>& insertionIndices);
+//    void _adjustSize( int count, const QString& name, const QVector<int>& insertionIndices);
     void _clear();
     void _clearAnimators( int startIndex, int upperBound );
     void _clearColormaps( int startIndex, int upperBound );
@@ -221,7 +221,7 @@ private:
     QString _isDuplicateLink( const QString& sourceName, const QString& destId ) const;
 
     QString _makeAnimator( int index );
-    QString _makeLayout();
+//    QString _makeLayout();
     QString _makePluginList();
     QString _makeColorMap( int index );
     QString _makeController( int index );
@@ -242,8 +242,8 @@ private:
     /**
      * Remove the pluin with the identified index.
      */
-    void _removeView( const QString& plugin, int index );
-    int _removeViews( const QString& name, int startIndex, int endIndex );
+//    void _removeView( const QString& plugin, int index );
+//    int _removeViews( const QString& name, int startIndex, int endIndex );
     /**
      * Written because there is no guarantee what order the javascript side will use
      * to create view objects.  When there are linked views, the links may not get
@@ -253,7 +253,7 @@ private:
     void _refreshState();
     void _refreshStateSingletons();
 
-    QString _setPlugin( const QString& sourceNodeId, const QString& destPluginType );
+//    QString _setPlugin( const QString& sourceNodeId, const QString& destPluginType );
 
     //A list of Controllers requested by the client.
     QList <Controller* > m_controllers;
@@ -278,7 +278,7 @@ private:
     QList<Statistics* > m_statistics;
 
     static bool m_registered;
-    Layout* m_layout;
+//    Layout* m_layout;
     DataLoader* m_dataLoader;
     ViewPlugins* m_pluginsLoaded;
 //    Snapshots* m_snapshots;
