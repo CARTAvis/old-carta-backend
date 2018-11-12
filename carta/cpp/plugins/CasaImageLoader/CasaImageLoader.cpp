@@ -102,14 +102,9 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
     }
 
     lat->reopen();
-    auto shape = lat->shape();
-    auto shapes = shape.asStdVector();
-    qDebug() << "lat.shape = " << std::string( lat->shape().toString()).c_str();
-    qDebug() << "lat.dataType = " << lat->dataType();
-    qDebug() << "Float type is " << casacore::TpFloat;
+    qDebug() << "lat.shape = " << std::string(lat->shape().toString()).c_str() << "lat.dataType = " << lat->dataType();
 
-    CCImageBase::SharedPtr res;
-    res = tryCast<float>(lat);
+    CCImageBase::SharedPtr res = tryCast<float>(lat);
     // Please note that the following code will not be reached
     // even if the FITS file is defined in 64 bit
     // and FitsHeaderExtractor::_CasaFitsConverter assumes that
