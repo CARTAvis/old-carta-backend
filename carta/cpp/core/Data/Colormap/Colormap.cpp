@@ -6,7 +6,7 @@
 #include "Data/Error/ErrorManager.h"
 #include "Data/Image/Controller.h"
 #include "Data/Image/DataSource.h"
-#include "Data/Histogram/Histogram.h"
+//#include "Data/Histogram/Histogram.h"
 #include "Data/Units/UnitsIntensity.h"
 #include "Data/Units/UnitsFrequency.h"
 #include "Data/Util.h"

@@ -1,5 +1,5 @@
 #include "Data/ViewManager.h"
-#include "Data/Animator/Animator.h"
+//#include "Data/Animator/Animator.h"
 //#include "Data/Clips.h"
 #include "Data/Colormap/Colormap.h"
 #include "Data/Colormap/Colormaps.h"
@@ -164,9 +164,9 @@ ViewManager::ViewManager( const QString& path, const QString& id)
 void ViewManager::_clearControllers( int startIndex, int upperBound ){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     for ( int i = upperBound-1; i >= startIndex; i-- ){
-        for ( Animator* anim : m_animators ){
-            anim->removeLink( m_controllers[i]);
-        }
+//        for ( Animator* anim : m_animators ){
+//            anim->removeLink( m_controllers[i]);
+//        }
 //        for ( Histogram* hist : m_histograms ){
 //            hist->removeLink( m_controllers[i]);
 //        }
@@ -190,13 +190,13 @@ void ViewManager::_clearControllers( int startIndex, int upperBound ){
     }
 }
 
-void ViewManager::_clearAnimators( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        objMan->destroyObject( m_animators[i]->getId() );
-        m_animators.removeAt(i);
-    }
-}
+//void ViewManager::_clearAnimators( int startIndex, int upperBound ){
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        objMan->destroyObject( m_animators[i]->getId() );
+//        m_animators.removeAt(i);
+//    }
+//}
 
 void ViewManager::_clearColormaps( int startIndex, int upperBound ){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -278,17 +278,17 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             viewId = _makeController(index);
         }
     }
-    else if ( plugin == Animator::CLASS_NAME ){
-        if ( 0 <= index && index < m_animators.size() && !forceCreate ){
-            viewId = m_animators[index]->getPath();
-        }
-        else {
-            if ( index == -1 ){
-                index = m_animators.size();
-            }
-            viewId = _makeAnimator(index);
-        }
-    }
+//    else if ( plugin == Animator::CLASS_NAME ){
+//        if ( 0 <= index && index < m_animators.size() && !forceCreate ){
+//            viewId = m_animators[index]->getPath();
+//        }
+//        else {
+//            if ( index == -1 ){
+//                index = m_animators.size();
+//            }
+//            viewId = _makeAnimator(index);
+//        }
+//    }
     else if ( plugin == Colormap::CLASS_NAME ){
         if ( 0 <= index && index < m_colormaps.size() && !forceCreate){
             viewId = m_colormaps[index]->getPath();
@@ -380,10 +380,10 @@ int ViewManager::getColormapCount() const {
     return colorMapCount;
 }
 
-int ViewManager::getAnimatorCount() const {
-    int animatorCount = m_animators.size();
-    return animatorCount;
-}
+//int ViewManager::getAnimatorCount() const {
+//    int animatorCount = m_animators.size();
+//    return animatorCount;
+//}
 
 //int ViewManager::getHistogramCount() const {
 //    int histogramCount = m_histograms.size();
@@ -621,15 +621,15 @@ QString ViewManager::_isDuplicateLink( const QString& sourceName, const QString&
             }
         }
     }
-    else if ( sourceName == Animator::CLASS_NAME ){
-        int animCount = m_animators.size();
-        for ( int i = 0; i < animCount; i++ ){
-            alreadyLinked = m_animators[i]->isLinked( destId );
-            if ( alreadyLinked ){
-                break;
-            }
-        }
-    }
+//    else if ( sourceName == Animator::CLASS_NAME ){
+//        int animCount = m_animators.size();
+//        for ( int i = 0; i < animCount; i++ ){
+//            alreadyLinked = m_animators[i]->isLinked( destId );
+//            if ( alreadyLinked ){
+//                break;
+//            }
+//        }
+//    }
 
     if ( alreadyLinked ){
         result = "Destination can only be linked to one "+sourceName;
@@ -714,14 +714,14 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
                 m_controllers.insert( newIndex, controller );
             }
         }
-        else if ( plugin == Animator::CLASS_NAME ){
-            int animCount = m_animators.size();
-            if ( oldIndex < animCount && newIndex < animCount ){
-                Animator* animator = m_animators[oldIndex];
-                m_animators.removeAt(oldIndex );
-                m_animators.insert( newIndex, animator );
-            }
-        }
+//        else if ( plugin == Animator::CLASS_NAME ){
+//            int animCount = m_animators.size();
+//            if ( oldIndex < animCount && newIndex < animCount ){
+//                Animator* animator = m_animators[oldIndex];
+//                m_animators.removeAt(oldIndex );
+//                m_animators.insert( newIndex, animator );
+//            }
+//        }
         else if ( plugin == Colormap::CLASS_NAME ){
             int colorCount = m_colormaps.size();
             if ( oldIndex < colorCount && newIndex < colorCount ){
@@ -773,18 +773,18 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
 }
 
 
-QString ViewManager::_makeAnimator( int index ){
-    int currentCount = m_animators.size();
-    CARTA_ASSERT( 0 <= index && index <= currentCount );
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    Animator* animObj = objMan->createObject<Animator>();
-    m_animators.insert( index, animObj);
-    for ( int i = index; i < currentCount + 1; i++ ){
-        m_animators[i]->setIndex( i );
-    }
-    QString path = m_animators[index] ->getPath();
-    return path;
-}
+//QString ViewManager::_makeAnimator( int index ){
+//    int currentCount = m_animators.size();
+//    CARTA_ASSERT( 0 <= index && index <= currentCount );
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    Animator* animObj = objMan->createObject<Animator>();
+//    m_animators.insert( index, animObj);
+//    for ( int i = index; i < currentCount + 1; i++ ){
+//        m_animators[i]->setIndex( i );
+//    }
+//    QString path = m_animators[index] ->getPath();
+//    return path;
+//}
 
 QString ViewManager::_makeColorMap( int index ){
     int currentCount = m_colormaps.size();
@@ -1423,7 +1423,7 @@ ViewManager::~ViewManager(){
     delete m_pluginsLoaded;
 //    delete m_snapshots;
 
-    _clearAnimators( 0, m_animators.size() );
+//    _clearAnimators( 0, m_animators.size() );
     _clearColormaps( 0, m_colormaps.size() );
 //    _clearHistograms( 0, m_histograms.size() );
     _clearImageZooms( 0, m_imageZooms.size() );

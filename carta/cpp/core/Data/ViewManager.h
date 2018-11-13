@@ -14,7 +14,7 @@ namespace Carta {
 
 namespace Data {
 
-class Animator;
+//class Animator;
 class Controller;
 class DataLoader;
 //class Histogram;
@@ -73,7 +73,7 @@ public:
      * Return the number of animator views.
      * @return - the animator count.
      */
-    int getAnimatorCount() const;
+//    int getAnimatorCount() const;
 
     /**
      * Return the number of histogram views.
@@ -188,7 +188,7 @@ private:
     class Factory;
 //    void _adjustSize( int count, const QString& name, const QVector<int>& insertionIndices);
 //    void _clear();
-    void _clearAnimators( int startIndex, int upperBound );
+//    void _clearAnimators( int startIndex, int upperBound );
     void _clearColormaps( int startIndex, int upperBound );
     void _clearControllers( int startIndex, int upperBound );
 //    void _clearHistograms( int startIndex, int upperBound );
@@ -220,7 +220,7 @@ private:
     //destination object.
     QString _isDuplicateLink( const QString& sourceName, const QString& destId ) const;
 
-    QString _makeAnimator( int index );
+//    QString _makeAnimator( int index );
 //    QString _makeLayout();
     QString _makePluginList();
     QString _makeColorMap( int index );
@@ -263,7 +263,7 @@ private:
     QList <ImageContext*> m_imageContexts;
 
     //A list of Animators requested by the client.
-    QList < Animator* > m_animators;
+//    QList < Animator* > m_animators;
 
     //Colormap
     QList<Colormap* >m_colormaps;

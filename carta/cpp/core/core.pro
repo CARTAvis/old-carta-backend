@@ -26,8 +26,6 @@ HEADERS += \
     State/StateInterface.h \
     State/UtilState.h \
     ImageView.h \
-    Data/Animator/Animator.h \
-    Data/Animator/AnimatorType.h \
     Data/Colormap/Colormap.h \
     Data/Colormap/Colormaps.h \
     Data/Colormap/ColorState.h \
@@ -137,8 +135,6 @@ SOURCES += \
     State/UtilState.cpp \
     ImageView.cpp \
     Data/Settings.cpp \
-    Data/Animator/Animator.cpp \
-    Data/Animator/AnimatorType.cpp \
     Data/Colormap/Colormap.cpp \
     Data/Colormap/Colormaps.cpp \
     Data/Colormap/ColorState.cpp \

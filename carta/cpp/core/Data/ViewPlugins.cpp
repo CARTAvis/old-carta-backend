@@ -1,12 +1,12 @@
 #include "ViewPlugins.h"
 #include "Globals.h"
 #include "PluginManager.h"
-#include "Animator/Animator.h"
+//#include "Animator/Animator.h"
 #include "Image/Controller.h"
 #include "Image/ImageContext.h"
 #include "Image/ImageZoom.h"
 #include "Statistics/Statistics.h"
-#include "Histogram/Histogram.h"
+//#include "Histogram/Histogram.h"
 #include "Colormap/Colormap.h"
 #include "Profile/Profiler.h"
 #include "Util.h"
@@ -76,8 +76,8 @@ void ViewPlugins::_initializeDefaultState(){
     int ind = 0;
     _insertPlugin( ind, Controller::PLUGIN_NAME, "Image Display", "", "", "");
     ind++;
-    _insertPlugin( ind, Animator::CLASS_NAME, "Animation of data sets", "", "", "");
-    ind++;
+//    _insertPlugin( ind, Animator::CLASS_NAME, "Animation of data sets", "", "", "");
+//    ind++;
     _insertPlugin( ind, Statistics::CLASS_NAME, "Statistics", "", "", "");
     ind++;
 //    _insertPlugin( ind, Histogram::CLASS_NAME, "Histogram", "", "", "");
