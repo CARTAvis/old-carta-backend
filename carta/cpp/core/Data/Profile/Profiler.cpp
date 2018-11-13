@@ -2,7 +2,7 @@
 #include "CurveData.h"
 #include "GenerateModes.h"
 #include "ProfilePlotStyles.h"
-#include "Data/Clips.h"
+//#include "Data/Clips.h"
 #include "Data/DataLoader.h"
 #include "Data/Settings.h"
 #include "Data/LinkableImpl.h"

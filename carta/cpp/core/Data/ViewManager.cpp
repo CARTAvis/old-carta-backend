@@ -1,6 +1,6 @@
 #include "Data/ViewManager.h"
 #include "Data/Animator/Animator.h"
-#include "Data/Clips.h"
+//#include "Data/Clips.h"
 #include "Data/Colormap/Colormap.h"
 #include "Data/Colormap/Colormaps.h"
 #include "Data/Image/Controller.h"
@@ -74,38 +74,38 @@ bool ViewManager::m_registered =
         Carta::State::ObjectManager::objectManager()->registerClass ( CLASS_NAME,
                                                    new ViewManager::Factory());
 
-void ViewManager::_setupSingletons() {
-    Util::findSingletonObject<Clips>();
-    Util::findSingletonObject<Colormaps>();
-    Util::findSingletonObject<TransformsData>();
-    Util::findSingletonObject<TransformsImage>();
-    Util::findSingletonObject<Gamma>();
-    Util::findSingletonObject<ErrorManager>();
-    Util::findSingletonObject<Fonts>();
-    Util::findSingletonObject<LabelFormats>();
-    Util::findSingletonObject<ProfilePlotStyles>();
+//void ViewManager::_setupSingletons() {
+//    Util::findSingletonObject<Clips>();
+//    Util::findSingletonObject<Colormaps>();
+//    Util::findSingletonObject<TransformsData>();
+//    Util::findSingletonObject<TransformsImage>();
+//    Util::findSingletonObject<Gamma>();
+//    Util::findSingletonObject<ErrorManager>();
+//    Util::findSingletonObject<Fonts>();
+//    Util::findSingletonObject<LabelFormats>();
+//    Util::findSingletonObject<ProfilePlotStyles>();
 //    Util::findSingletonObject<Preferences>();
 //    Util::findSingletonObject<PreferencesSave>();
-    Util::findSingletonObject<ChannelUnits>();
-    Util::findSingletonObject<CoordinateSystems>();
-    Util::findSingletonObject<Themes>();
-    Util::findSingletonObject<ContourGenerateModes>();
-    Util::findSingletonObject<ContourTypes>();
-    Util::findSingletonObject<ContourSpacingModes>();
-    Util::findSingletonObject<ContourStyles>();
-    Util::findSingletonObject<LayerCompositionModes>();
-    Util::findSingletonObject<PlotStyles>();
-    Util::findSingletonObject<LineStyles>();
-    Util::findSingletonObject<ProfileStatistics>();
-    Util::findSingletonObject<RegionTypes>();
-    Util::findSingletonObject<GenerateModes>();
-    Util::findSingletonObject<UnitsFrequency>();
-    Util::findSingletonObject<UnitsIntensity>();
-    Util::findSingletonObject<UnitsSpectral>();
-    Util::findSingletonObject<UnitsWavelength>();
+//    Util::findSingletonObject<ChannelUnits>();
+//    Util::findSingletonObject<CoordinateSystems>();
+//    Util::findSingletonObject<Themes>();
+//    Util::findSingletonObject<ContourGenerateModes>();
+//    Util::findSingletonObject<ContourTypes>();
+//    Util::findSingletonObject<ContourSpacingModes>();
+//    Util::findSingletonObject<ContourStyles>();
+//    Util::findSingletonObject<LayerCompositionModes>();
+//    Util::findSingletonObject<PlotStyles>();
+//    Util::findSingletonObject<LineStyles>();
+//    Util::findSingletonObject<ProfileStatistics>();
+//    Util::findSingletonObject<RegionTypes>();
+//    Util::findSingletonObject<GenerateModes>();
+//    Util::findSingletonObject<UnitsFrequency>();
+//    Util::findSingletonObject<UnitsIntensity>();
+//    Util::findSingletonObject<UnitsSpectral>();
+//    Util::findSingletonObject<UnitsWavelength>();
 
-    _makeDataLoader();
-}
+//    _makeDataLoader();
+//}
 
 
 ViewManager::ViewManager( const QString& path, const QString& id)
@@ -147,19 +147,19 @@ ViewManager::ViewManager( const QString& path, const QString& id)
 //    }
 //}
 
-void ViewManager::_clear(){
-   _clearHistograms( 0, m_histograms.size() );
-    _clearAnimators( 0, m_animators.size() );
-    _clearColormaps( 0, m_colormaps.size() );
-    _clearStatistics( 0, m_statistics.size() );
-   _clearImageZooms( 0, m_imageZooms.size() );
-   _clearImageContexts( 0, m_imageContexts.size() );
-   _clearProfilers( 0, m_profilers.size() );
-    _clearControllers( 0, m_controllers.size() );
+//void ViewManager::_clear(){
+//   _clearHistograms( 0, m_histograms.size() );
+//    _clearAnimators( 0, m_animators.size() );
+//    _clearColormaps( 0, m_colormaps.size() );
+//    _clearStatistics( 0, m_statistics.size() );
+//   _clearImageZooms( 0, m_imageZooms.size() );
+//   _clearImageContexts( 0, m_imageContexts.size() );
+//   _clearProfilers( 0, m_profilers.size() );
+//    _clearControllers( 0, m_controllers.size() );
 //    if ( m_layout != nullptr ){
 //        m_layout->clear();
 //    }
-}
+//}
 
 void ViewManager::_clearControllers( int startIndex, int upperBound ){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -453,11 +453,11 @@ QString ViewManager::registerView(const QString & params){
 }
 
 void ViewManager::_initCallbacks(){
-    addCommandCallback( "clearLayout", [=] (const QString & /*cmd*/,
-                const QString & /*params*/, const QString & /*sessionId*/) -> QString {
-        _clear();
-        return "";
-    });
+//    addCommandCallback( "clearLayout", [=] (const QString & /*cmd*/,
+//                const QString & /*params*/, const QString & /*sessionId*/) -> QString {
+//        _clear();
+//        return "";
+//    });
 
     //Callback for registering a view.
 //    addCommandCallback( "registerSnapshots", [=] (const QString & /*cmd*/,
@@ -468,11 +468,11 @@ void ViewManager::_initCallbacks(){
 //        return viewId;
 //    });
 
-    addCommandCallback( "setAnalysisLayout", [=] (const QString & /*cmd*/,
-                    const QString & /*params*/, const QString & /*sessionId*/) -> QString {
-            setAnalysisView();
-            return "";
-    });
+//    addCommandCallback( "setAnalysisLayout", [=] (const QString & /*cmd*/,
+//                    const QString & /*params*/, const QString & /*sessionId*/) -> QString {
+//            setAnalysisView();
+//            return "";
+//    });
 
 //    addCommandCallback( "setDefaultLayout", [=] (const QString & /*cmd*/,
 //                    const QString & /*params*/, const QString & /*sessionId*/) -> QString {
@@ -480,11 +480,11 @@ void ViewManager::_initCallbacks(){
 //            return "";
 //    });
 
-    addCommandCallback( "setHistogramAnalysisLayout", [=] (const QString & /*cmd*/,
-                    const QString & /*params*/, const QString & /*sessionId*/) -> QString {
-            setHistogramAnalysisView();
-            return "";
-    });
+//    addCommandCallback( "setHistogramAnalysisLayout", [=] (const QString & /*cmd*/,
+//                    const QString & /*params*/, const QString & /*sessionId*/) -> QString {
+//            setHistogramAnalysisView();
+//            return "";
+//    });
 
 //    addCommandCallback( "setImageLayout", [=] (const QString & /*cmd*/,
 //                        const QString & /*params*/, const QString & /*sessionId*/) -> QString {
@@ -596,7 +596,7 @@ void ViewManager::_initCallbacks(){
 }
 
 
-void ViewManager::_initializeDefaultState(){
+//void ViewManager::_initializeDefaultState(){
 //    ssetDefaultLayoutView();
 //    setDefaultLayoutViewNoOldPluginList();
 
@@ -606,8 +606,8 @@ void ViewManager::_initializeDefaultState(){
     //Load the default snapshot if one exists.
 //    _makeSnapshots();
 //    m_snapshots->initializeDefaultState();
-    _refreshState();
-}
+//    _refreshState();
+//}
 
 QString ViewManager::_isDuplicateLink( const QString& sourceName, const QString& destId ) const {
     QString result;
@@ -1018,47 +1018,47 @@ void ViewManager::_pluginsChanged( const QStringList& names, const QStringList& 
 //    }
 }
 
-void ViewManager::_refreshStateSingletons(){
-    CartaObject* obj = Util::findSingletonObject<Clips>();
-    obj->refreshState();
-    obj = Util::findSingletonObject<Colormaps>();
-    obj->refreshState();
-    obj = Util::findSingletonObject<TransformsData>();
-    obj->refreshState();
-    obj = Util::findSingletonObject<TransformsImage>();
-    obj->refreshState();
-    obj = Util::findSingletonObject<ErrorManager>();
-    obj->refreshState();
+//void ViewManager::_refreshStateSingletons(){
+//    CartaObject* obj = Util::findSingletonObject<Clips>();
+//    obj->refreshState();
+//    obj = Util::findSingletonObject<Colormaps>();
+//    obj->refreshState();
+//    obj = Util::findSingletonObject<TransformsData>();
+//    obj->refreshState();
+//    obj = Util::findSingletonObject<TransformsImage>();
+//    obj->refreshState();
+//    obj = Util::findSingletonObject<ErrorManager>();
+//    obj->refreshState();
 //    obj = Util::findSingletonObject<Preferences>();
 //    obj->refreshState();
-    obj = Util::findSingletonObject<ChannelUnits>();
-    obj->refreshState();
-}
+//    obj = Util::findSingletonObject<ChannelUnits>();
+//    obj->refreshState();
+//}
 
-void ViewManager::_refreshState(){
-    for ( Controller* control : m_controllers ){
-        control->refreshState();
-    }
+//void ViewManager::_refreshState(){
+//    for ( Controller* control : m_controllers ){
+//        control->refreshState();
+//    }
 
-    for ( Animator* anim : m_animators ){
-        anim->refreshState();
-    }
-    for ( Histogram* hist : m_histograms ){
-        hist->refreshState();
-    }
-    for ( Colormap* map : m_colormaps ){
-        map->refreshState();
-    }
-    for ( Profiler* prof : m_profilers){
-    	prof->refreshState();
-    }
+//    for ( Animator* anim : m_animators ){
+//        anim->refreshState();
+//    }
+//    for ( Histogram* hist : m_histograms ){
+//        hist->refreshState();
+//    }
+//    for ( Colormap* map : m_colormaps ){
+//        map->refreshState();
+//    }
+//    for ( Profiler* prof : m_profilers){
+//    	prof->refreshState();
+//    }
 
-}
+//}
 
 void ViewManager::reload(){
-    _clear();
-    _refreshStateSingletons();
-    _initializeDefaultState();
+//    _clear();
+//    _refreshStateSingletons();
+//    _initializeDefaultState();
 }
 
 //void ViewManager::_removeView( const QString& plugin, int index ){
@@ -1236,7 +1236,7 @@ void ViewManager::reload(){
 //    setDefaultLayoutView(false);
 //}
 
-void ViewManager::setAnalysisView(){
+//void ViewManager::setAnalysisView(){
 //    if ( m_layout == nullptr ){
 //        _makeLayout();
 //    }
@@ -1256,10 +1256,10 @@ void ViewManager::setAnalysisView(){
 //        m_profilers[0]->addLink( m_controllers[0]);
 //        _refreshState();
 //    }
-}
+//}
 
 // before 20170307, this was the layout of original AnalysisView
-void ViewManager::setHistogramAnalysisView(){
+//void ViewManager::setHistogramAnalysisView(){
 //    if ( m_layout == nullptr ){
 //        _makeLayout();
 //    }
@@ -1280,7 +1280,7 @@ void ViewManager::setHistogramAnalysisView(){
 //        m_colormaps[0]->addLink( m_histograms[0]);
 //        _refreshState();
 //    }
-}
+//}
 
 //void ViewManager::setImageCompositeView(){
 //    if ( m_layout == nullptr ){
@@ -1433,9 +1433,9 @@ ViewManager::~ViewManager(){
     _clearControllers( 0, m_controllers.size() );
 
     //Delete the statics
-    CartaObject* obj = Util::findSingletonObject<Clips>();
-    delete obj;
-    obj = Util::findSingletonObject<Colormaps>();
+//    CartaObject* obj = Util::findSingletonObject<Clips>();
+//    delete obj;
+    CartaObject* obj = Util::findSingletonObject<Colormaps>();
     delete obj;
     obj =  Util::findSingletonObject<TransformsData>();
     delete obj;

@@ -373,19 +373,19 @@ std::vector<int> Controller::getImageSlice() const {
 }
 
 
-std::vector<double> Controller::getIntensity( const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
-    int currentFrame = getFrame( AxisInfo::KnownType::SPECTRAL);
-    std::vector<double> result = getIntensity( currentFrame, currentFrame, percentiles, converter );
-    return result;
-}
+//std::vector<double> Controller::getIntensity( const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
+//    int currentFrame = getFrame( AxisInfo::KnownType::SPECTRAL);
+//    std::vector<double> result = getIntensity( currentFrame, currentFrame, percentiles, converter );
+//    return result;
+//}
 
 
-std::vector<double> Controller::getIntensity( int frameLow, int frameHigh, const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
-    int stokeFrame = getFrame(AxisInfo::KnownType::STOKES);
-    qDebug() << "++++++++ get the stoke frame=" << stokeFrame << "( -1: no stoke, 0: stoke I, 1: stoke Q, 2: stoke U, 3: stoke V)";
-    std::vector<double> intensities = m_stack->_getIntensity( frameLow, frameHigh, percentiles, stokeFrame, converter );
-    return intensities;
-}
+//std::vector<double> Controller::getIntensity( int frameLow, int frameHigh, const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
+//    int stokeFrame = getFrame(AxisInfo::KnownType::STOKES);
+//    qDebug() << "++++++++ get the stoke frame=" << stokeFrame << "( -1: no stoke, 0: stoke I, 1: stoke Q, 2: stoke U, 3: stoke V)";
+//    std::vector<double> intensities = m_stack->_getIntensity( frameLow, frameHigh, percentiles, stokeFrame, converter );
+//    return intensities;
+//}
 
 int Controller::getStokeIndicator() const {
     int result = m_stack->_getStokeIndicator();

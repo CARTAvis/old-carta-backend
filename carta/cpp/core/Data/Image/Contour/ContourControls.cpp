@@ -205,13 +205,13 @@ QString ContourControls::_generatePercentile( const QString& contourSetName, con
                     percentileLevels[i] = percentileLevels[i] / 100;
                 }
 
-                std::vector<double> intensities = m_percentIntensityMap->getIntensity( percentileLevels );
+//                std::vector<double> intensities = m_percentIntensityMap->getIntensity( percentileLevels );
 
-                if ( intensities.size() == 0 ){
-                   result = "Could not generate contour based on percentiles";
-                } else {
-                    _addContourSet( intensities, contourSetName, contourType );
-                }
+//                if ( intensities.size() == 0 ){
+//                   result = "Could not generate contour based on percentiles";
+//                } else {
+//                    _addContourSet( intensities, contourSetName, contourType );
+//                }
             }
         }
     }

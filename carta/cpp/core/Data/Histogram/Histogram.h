@@ -36,7 +36,7 @@ namespace Data {
 
 class BinData;
 class ChannelUnits;
-class Clips;
+//class Clips;
 class Colormap;
 class Controller;
 class HistogramRenderService;
@@ -150,7 +150,7 @@ public:
 	 *      false otherwise.
 	 * @return an error message if there was a problem setting the upper bound; an empty string otherwise.
 	 */
-	QString setClipMax( double clipMax, bool complete = true );
+//	QString setClipMax( double clipMax, bool complete = true );
 
 	/**
 	 * Set the minimum clip value.
@@ -159,7 +159,7 @@ public:
 	 *      false otherwise.
 	 * @return an error message if there was a problem setting the lower bound; an empty string otherwise.
 	 */
-	QString setClipMin( double clipMin, bool complete = true );
+//	QString setClipMin( double clipMin, bool complete = true );
 
 	/**
 	 * Set the percent to clip from the left side of the histogram.
@@ -168,7 +168,7 @@ public:
 	 *      false otherwise.
 	 * @return an error message if there was a problem setting the minimum percent; an empty string otherwise.
 	 */
-	QString setClipMinPercent( double clipMinPercent, bool complete = true );
+//	QString setClipMinPercent( double clipMinPercent, bool complete = true );
 
 	/**
 	 * Set the percent to clip from the right side of the histogram.
@@ -177,7 +177,7 @@ public:
 	 *      false otherwise.
 	 * @return an error message if there was a problem setting the maximum percent; an empty string otherwise.
 	 */
-	QString setClipMaxPercent( double clipMaxPercent, bool complete = true );
+//	QString setClipMaxPercent( double clipMaxPercent, bool complete = true );
 
 	/**
 	 * Set the lower and upper bounds for the histogram horizontal axis.
@@ -185,7 +185,7 @@ public:
 	 * @param maxRange an upper bound for the histogram horizontal axis.
 	 * @return an error message if there was a problem setting the range; an empty string otherwise.
 	 */
-	QString setClipRange( double minRange, double maxRange );
+//	QString setClipRange( double minRange, double maxRange );
 
 	/**
 	 * Set the lower and upper bounds for the histogram as percentages of the entire range.
@@ -193,7 +193,7 @@ public:
 	 * @param maxPercent a number in [0,100) representing the amount to leave off on the right.
 	 * @return an error message if there was a problem setting the range; an empty string otherwise.
 	 */
-	QString setClipRangePercent( double minPercent, double maxPercent );
+//	QString setClipRangePercent( double minPercent, double maxPercent );
 
 	/**
 	 * Set the number of bins in the histogram.
@@ -299,7 +299,7 @@ public:
 	 * @return an error message if there was a problem setting the maximum clip percentage;
 	 *      an empty string otherwise.
 	 */
-	QString setColorMaxPercent( double colorMaxPercent, bool complete );
+//	QString setColorMaxPercent( double colorMaxPercent, bool complete );
 
 	/**
 	 * Set the lower boundary of the custom clip as a percentage.
@@ -309,7 +309,7 @@ public:
 	 * @return an error message if there was a problem setting the minimum clip percentage;
 	 *      an empty string otherwise.
 	 */
-	QString setColorMinPercent( double colorMinPercent, bool complete );
+//	QString setColorMinPercent( double colorMinPercent, bool complete );
 
 	/**
 	 * Set an upper limit for the size of the cubes where the whole histogram
@@ -369,13 +369,13 @@ public:
 
 	private slots:
 	void  _generateHistogram( Controller* controller=nullptr);
-	void _createHistogram( Controller* );
+//	void _createHistogram( Controller* );
 
 	//Notification that new histogram data has been produced.
 	void _histogramRendered(const Carta::Lib::Hooks::HistogramResult& result);
 
 	void _updateChannel( Controller* controller, Carta::Lib::AxisInfo::KnownType type );
-    void _updateColorClips( double colorMinPercent, double colorMaxPercent, bool autoClip );
+//    void _updateColorClips( double colorMinPercent, double colorMaxPercent, bool autoClip );
 
 
 	void  _updateColorSelection();
@@ -388,10 +388,10 @@ public:
 	void _finishClips();
 	void _finishColor();
 
-	double _getBufferedIntensity( const QString& clipKey, const QString& percentKey );
+//	double _getBufferedIntensity( const QString& clipKey, const QString& percentKey );
 	std::pair<int,int> _getFrameBounds() const;
 	Controller* _getControllerSelected() const;
-	void _loadData( Controller* controller);
+//	void _loadData( Controller* controller);
 
 	void _removeData( int index );
 
@@ -431,7 +431,7 @@ public:
 	void _resetDefaultStateData();
 
 	std::vector<HistogramRenderRequest> _updateBinDatas( std::vector<HistogramRenderRequest> requests );
-	void _updatePlots( );
+//	void _updatePlots( );
 
 	static bool m_registered;
 
@@ -486,7 +486,7 @@ public:
 
 	int m_cubeChannel;
 
-	static Clips*  m_clips;
+//	static Clips*  m_clips;
 	static PlotStyles* m_graphStyles;
 
 	//Link management

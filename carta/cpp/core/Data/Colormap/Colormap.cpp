@@ -83,7 +83,7 @@ QString Colormap::addLink( CartaObject*  cartaObject ){
         if ( objAdded ){
             connect( target, SIGNAL(colorChanged(Controller*)), this, SLOT(_setColorStates(Controller*)));
             _setColorStates( target );
-            connect( target, SIGNAL(clipsChanged(double,double,bool)), this, SLOT(_updateIntensityBounds(double,double,bool)));
+//            connect( target, SIGNAL(clipsChanged(double,double,bool)), this, SLOT(_updateIntensityBounds(double,double,bool)));
             connect( target, SIGNAL(dataChanged(Controller*)), this, SLOT( _dataChanged(Controller*)));
             _dataChanged( target );
 
@@ -117,7 +117,7 @@ void Colormap::_colorStateChanged(){
         emit colorMapChanged();
 
         //Calculate new stops based on the pixel pipeline
-        _calculateColorStops();
+//        _calculateColorStops();
 
         //Copy the latest color information into this state so the
         //view will update.
@@ -126,37 +126,37 @@ void Colormap::_colorStateChanged(){
     }
 }
 
-void Colormap::_calculateColorStops(){
-    Controller* controller = _getControllerSelected();
-    if ( controller ){
-        std::shared_ptr<DataSource> dSource = controller->getDataSource();
-        if ( dSource  ){
+//void Colormap::_calculateColorStops(){
+//    Controller* controller = _getControllerSelected();
+//    if ( controller ){
+//        std::shared_ptr<DataSource> dSource = controller->getDataSource();
+//        if ( dSource  ){
             //QString nameStr = m_state.getValue<QString>(ColorState::COLOR_MAP_NAME);
             //Colormaps* cMaps = Util::findSingletonObject<Colormaps>();
             //std::shared_ptr<Carta::Lib::PixelPipeline::IColormapNamed> map = cMaps->getColorMap( nameStr );
 
-            std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> pipe = dSource->_getPipeline();
-            if ( pipe ){
-                QStringList buff;
+//            std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> pipe = dSource->_getPipeline();
+//            if ( pipe ){
+//                QStringList buff;
 
                 // This is not actually correct -- the pixel pipeline should be converting the values in the image to the new units before comparing them.
                 // But it's more correct than using the wrong units, which is what was happening before.
-                double intensityMin;
-                double intensityMax;
-                bool success;
-                std::tie(intensityMin, intensityMax) = _getIntensities(success);
+//                double intensityMin;
+//                double intensityMax;
+//                bool success;
+//                std::tie(intensityMin, intensityMax) = _getIntensities(success);
                 // we don't have to check success, because we're not doing any conversions
                 
-                pipe->setMinMax( intensityMin, intensityMax );
-                double diff = intensityMax - intensityMin;
-                double delta = diff / 100;
-                for ( int i = 0; i < 100; i++ ){
+//                pipe->setMinMax( intensityMin, intensityMax );
+//                double diff = intensityMax - intensityMin;
+//                double delta = diff / 100;
+//                for ( int i = 0; i < 100; i++ ){
 
-                    float val = intensityMin + i*delta;
+//                    float val = intensityMin + i*delta;
 
                     // fill Hex color codes in a string list
-                    Carta::Lib::PixelPipeline::NormRgb normRgb;
-                    pipe->convert( val, normRgb );
+//                    Carta::Lib::PixelPipeline::NormRgb normRgb;
+//                    pipe->convert( val, normRgb );
 //                    QColor mapColor;
 //                    if ( normRgb[0] >= 0 && normRgb[1] >= 0 && normRgb[2] >= 0 ){
 //                    	mapColor = QColor::fromRgbF( normRgb[0], normRgb[1], normRgb[2] );
@@ -166,15 +166,15 @@ void Colormap::_calculateColorStops(){
 //                        hexStr = hexStr + ",";
 //                    }
 //                    buff.append( hexStr );
-                }
-                m_state.setValue<QString>( COLOR_STOPS, buff.join("") );
+//                }
+//                m_state.setValue<QString>( COLOR_STOPS, buff.join("") );
 
                 // recalculate the colormap bar labels
-                _calculateColorLabels();
-            }
-        }
-    }
-}
+//                _calculateColorLabels();
+//            }
+//        }
+//    }
+//}
 
 void Colormap::_calculateColorLabels() {
     // Note that we do not convert the unit for the entire raw data (see the function Colormap::_calculateColorStops()),
@@ -200,15 +200,15 @@ void Colormap::_calculateColorLabels() {
         qDebug() << "[colormap bar intensities] the unit conversion is dependent on the spectral frame";
     } else if (converter) {
         // Calculate the Min. and Max. intensities with the unit conversion.
-        std::tie(intensityMin, intensityMax) = _getIntensities(success, converter);
-        qDebug() << "[colormap bar intensities] the unit conversion is independent of the spectral frame";
+//        std::tie(intensityMin, intensityMax) = _getIntensities(success, converter);
+//        qDebug() << "[colormap bar intensities] the unit conversion is independent of the spectral frame";
     }
 
     if (!success) {
         // Use original intensities without unit conversion.
         bool dummySuccess;
-        std::tie(intensityMin, intensityMax) = _getIntensities(dummySuccess);
-        qDebug() << "[colormap bar intensities] the unit conversion is not applied";
+//        std::tie(intensityMin, intensityMax) = _getIntensities(dummySuccess);
+//        qDebug() << "[colormap bar intensities] the unit conversion is not applied";
     }
 
     for (int j = 0; j < numberOfSection + 1; j++) {
@@ -350,28 +350,28 @@ Carta::Lib::IntensityUnitConverter::SharedPtr Colormap::_getIntensityConverter(c
     return intensity_converter;
 }
 
-std::pair<double,double> Colormap::_getIntensities(bool &success, Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
-    double minPercent = m_stateData.getValue<double>( PERCENT_MIN );
-    double maxPercent = m_stateData.getValue<double>( PERCENT_MAX );
-    return _getIntensities(success, minPercent, maxPercent, converter);
-}
+//std::pair<double,double> Colormap::_getIntensities(bool &success, Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
+//    double minPercent = m_stateData.getValue<double>( PERCENT_MIN );
+//    double maxPercent = m_stateData.getValue<double>( PERCENT_MAX );
+//    return _getIntensities(success, minPercent, maxPercent, converter);
+//}
 
-std::pair<double,double> Colormap::_getIntensities(bool &success, const double minPercent, const double maxPercent, Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
-    std::vector<double> intensities;
-    success = false;
+//std::pair<double,double> Colormap::_getIntensities(bool &success, const double minPercent, const double maxPercent, Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
+//    std::vector<double> intensities;
+//    success = false;
     
-    Controller* controller = _getControllerSelected();
-    if ( controller ){
-        intensities = controller->getIntensity( -1, -1, {minPercent, maxPercent}, converter );
+//    Controller* controller = _getControllerSelected();
+//    if ( controller ){
+//        intensities = controller->getIntensity( -1, -1, {minPercent, maxPercent}, converter );
         // TODO TODO TODO error-checking regression; we need to check if we have Hz values available in DataSource or the algorithms, and handle failures
-        if (intensities.size() == 2) {
-            success = true;
-            return std::make_pair(intensities[0], intensities[1]);
-        }
-    }
+//        if (intensities.size() == 2) {
+//            success = true;
+//            return std::make_pair(intensities[0], intensities[1]);
+//        }
+//    }
 
-    return std::make_pair(-1, -1);
-}
+//    return std::make_pair(-1, -1);
+//}
 
 std::vector<double> Colormap::_getIntensityLables(bool &success, const int numberOfSections, Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
     double minIntensity = m_stateData.getValue<double>( INTENSITY_MIN );
@@ -398,12 +398,12 @@ std::vector<double> Colormap::_getIntensityLables(bool &success, const int numbe
     success = false;
 
     // If the controller exists and intensities size is greater than one (since we need at least two labels for a colormap bar).
-    if (controller && percentiles.size() > 1) {
+//    if (controller && percentiles.size() > 1) {
         // get new intensity labels after the unit conversion
-        intensities = controller->getIntensity( -1, -1, percentiles, converter );
-        success = true;
-        return intensities;
-    }
+//        intensities = controller->getIntensity( -1, -1, percentiles, converter );
+//        success = true;
+//        return intensities;
+//    }
     return intensities;
 }
 
@@ -422,7 +422,7 @@ void Colormap::_dataChanged( Controller* controller ){
             m_state.setValue<QString>(IMAGE_UNITS, latest_default_units);
         }
         
-        _updateIntensityBounds( colorMinPercent, colorMaxPercent, autoClip );
+//        _updateIntensityBounds( colorMinPercent, colorMaxPercent, autoClip );
     }
 }
 
@@ -1128,13 +1128,13 @@ QString Colormap::setImageUnits( const QString& unitsStr ){
             bool success(false);
             std::pair<double, double> values;
             
-            try {
-                Carta::Lib::IntensityUnitConverter::SharedPtr converter = _getIntensityConverter(actualUnits);
-                values = _getIntensities(success, converter );
-            } catch (const QString & error) {
-                qWarning() << "Could not set image units:" << error;
-                return "Could not set image units: " + error;
-            }
+//            try {
+//                Carta::Lib::IntensityUnitConverter::SharedPtr converter = _getIntensityConverter(actualUnits);
+//                values = _getIntensities(success, converter );
+//            } catch (const QString & error) {
+//                qWarning() << "Could not set image units:" << error;
+//                return "Could not set image units: " + error;
+//            }
 
             if (success) {
                 //Set the units
@@ -1263,45 +1263,45 @@ void Colormap::_updateImageClips(){
     }
 }
 
-void Colormap::_updateIntensityBounds( double minPercent, double maxPercent, bool autoClip ){
+//void Colormap::_updateIntensityBounds( double minPercent, double maxPercent, bool autoClip ){
 
-    bool success(false);
-    std::pair<double, double> intensities;
+//    bool success(false);
+//    std::pair<double, double> intensities;
 
-    try {
-        Carta::Lib::IntensityUnitConverter::SharedPtr converter = _getIntensityConverter(getImageUnits());
-        intensities = _getIntensities(success, minPercent, maxPercent, converter);
-    }  catch (const QString & error) {
-        qWarning() << "Could not update intensity bounds:" << error;
-    }
+//    try {
+//        Carta::Lib::IntensityUnitConverter::SharedPtr converter = _getIntensityConverter(getImageUnits());
+//        intensities = _getIntensities(success, minPercent, maxPercent, converter);
+//    }  catch (const QString & error) {
+//        qWarning() << "Could not update intensity bounds:" << error;
+//    }
 
-    if ( success ){
-        double minIntensity = Util::roundToDigits( intensities.first, getSignificantDigits());
-        double maxIntensity = Util::roundToDigits( intensities.second, getSignificantDigits());
+//    if ( success ){
+//        double minIntensity = Util::roundToDigits( intensities.first, getSignificantDigits());
+//        double maxIntensity = Util::roundToDigits( intensities.second, getSignificantDigits());
 
-        bool intensityChanged = false;
+//        bool intensityChanged = false;
         
-        double oldMinIntensity = m_stateData.getValue<double>( INTENSITY_MIN );
-        if ( qAbs( oldMinIntensity - minIntensity ) > m_errorMargin ){
-            intensityChanged = true;
-            m_stateData.setValue<double>( INTENSITY_MIN, minIntensity );
-        }
+//        double oldMinIntensity = m_stateData.getValue<double>( INTENSITY_MIN );
+//        if ( qAbs( oldMinIntensity - minIntensity ) > m_errorMargin ){
+//            intensityChanged = true;
+//            m_stateData.setValue<double>( INTENSITY_MIN, minIntensity );
+//        }
 
-        double oldMaxIntensity = m_stateData.getValue<double>( INTENSITY_MAX );
-        if ( qAbs( oldMaxIntensity - maxIntensity ) > m_errorMargin ){
-            intensityChanged = true;
-            m_stateData.setValue<double>( INTENSITY_MAX, maxIntensity );
-        }
+//        double oldMaxIntensity = m_stateData.getValue<double>( INTENSITY_MAX );
+//        if ( qAbs( oldMaxIntensity - maxIntensity ) > m_errorMargin ){
+//            intensityChanged = true;
+//            m_stateData.setValue<double>( INTENSITY_MAX, maxIntensity );
+//        }
         
-        if ( intensityChanged || autoClip == false ){
-            m_stateData.setValue<double>( PERCENT_MIN, minPercent );
-            m_stateData.setValue<double>( PERCENT_MAX, maxPercent );
-            _colorStateChanged();
-            m_stateData.flushState();
-        }
+//        if ( intensityChanged || autoClip == false ){
+//            m_stateData.setValue<double>( PERCENT_MIN, minPercent );
+//            m_stateData.setValue<double>( PERCENT_MAX, maxPercent );
+//            _colorStateChanged();
+//            m_stateData.flushState();
+//        }
 
-    }
-}
+//    }
+//}
 
 Colormap::~Colormap(){
 }

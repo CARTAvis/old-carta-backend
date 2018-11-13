@@ -367,9 +367,9 @@ protected:
      * @param stokeFrame - the index number of stoke slice
      * @return - a list of intensity values.
      */
-    virtual std::vector<double> _getIntensity( int frameLow, int frameHigh,
-            const std::vector<double>& percentiles, int stokeFrame,
-            Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const Q_DECL_OVERRIDE;
+//    virtual std::vector<double> _getIntensity( int frameLow, int frameHigh,
+//            const std::vector<double>& percentiles, int stokeFrame,
+//            Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const Q_DECL_OVERRIDE;
 
     /**
      * Returns the histogram of pixels.

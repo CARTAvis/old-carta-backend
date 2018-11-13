@@ -219,7 +219,7 @@ public:
      * @param percentiles - a list of numbers in [0,1] for which intensities are desired.
      * @return - a list of corresponding intensity values.
      */
-    std::vector<double> getIntensity( const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr ) const;
+//    std::vector<double> getIntensity( const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr ) const;
 
     /**
      * Returns the intensity corresponding to a given percentile.
@@ -228,9 +228,9 @@ public:
      * @param percentiles - a list of percentiles in [0,1] for which an intensity is desired.
      * @return - a list of intensity values corresponding to the percentiles.
      */
-    std::vector<double> getIntensity( int frameLow, int frameHigh,
-            const std::vector<double>& percentiles,
-            Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr ) const;
+//    std::vector<double> getIntensity( int frameLow, int frameHigh,
+//            const std::vector<double>& percentiles,
+//            Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr ) const;
 
     /**
      * Returns the histogram of pixels.

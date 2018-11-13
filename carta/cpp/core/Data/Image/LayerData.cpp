@@ -375,15 +375,15 @@ QRectF LayerData::_getInputRectangle( const QPointF& pan, double zoom, const QRe
 }
 
 
-std::vector<double> LayerData::_getIntensity( int frameLow, int frameHigh,
-        const std::vector<double>& percentiles, int stokeFrame,
-        Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
-    std::vector<double> intensities;
-    if ( m_dataSource ){
-        intensities = m_dataSource->_getIntensity( frameLow, frameHigh, percentiles, stokeFrame, converter );
-    }
-    return intensities;
-}
+//std::vector<double> LayerData::_getIntensity( int frameLow, int frameHigh,
+//        const std::vector<double>& percentiles, int stokeFrame,
+//        Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
+//    std::vector<double> intensities;
+//    if ( m_dataSource ){
+//        intensities = m_dataSource->_getIntensity( frameLow, frameHigh, percentiles, stokeFrame, converter );
+//    }
+//    return intensities;
+//}
 
 int LayerData::_getStokeIndicator() const {
     int result;

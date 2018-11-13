@@ -526,17 +526,17 @@ QRectF LayerGroup::_getInputRect( const QSize& size ) const {
     return rect;
 }
 
-std::vector<double> LayerGroup::_getIntensity( int frameLow, int frameHigh,
-        const std::vector<double>& percentiles, int stokeFrame,
-        Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
-    std::vector<double> results;
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        results = m_children[dataIndex]->_getIntensity( frameLow, frameHigh,
-                percentiles, stokeFrame, converter );
-    }
-    return results;
-}
+//std::vector<double> LayerGroup::_getIntensity( int frameLow, int frameHigh,
+//        const std::vector<double>& percentiles, int stokeFrame,
+//        Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
+//    std::vector<double> results;
+//    int dataIndex = _getIndexCurrent();
+//    if ( dataIndex >= 0 ){
+//        results = m_children[dataIndex]->_getIntensity( frameLow, frameHigh,
+//                percentiles, stokeFrame, converter );
+//    }
+//    return results;
+//}
 
 int LayerGroup::_getStokeIndicator() const {
     int result;

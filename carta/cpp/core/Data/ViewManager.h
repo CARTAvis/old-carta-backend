@@ -139,12 +139,12 @@ public:
     /**
      * Reset the layout to a predefined analysis view.
      */
-    void setAnalysisView();
+//    void setAnalysisView();
 
     /**
      * Reset the layout to a predefined view including a histogram, a colormap and an animator.
      */
-    void setHistogramAnalysisView();
+//    void setHistogramAnalysisView();
 
     /**
      * Reset the layout to a predefined developer layout.
@@ -187,7 +187,7 @@ private:
     ViewManager( const QString& path, const QString& id);
     class Factory;
 //    void _adjustSize( int count, const QString& name, const QVector<int>& insertionIndices);
-    void _clear();
+//    void _clear();
     void _clearAnimators( int startIndex, int upperBound );
     void _clearColormaps( int startIndex, int upperBound );
     void _clearControllers( int startIndex, int upperBound );
@@ -197,7 +197,7 @@ private:
     void _clearProfilers( int startIndex, int upperBound );
     void _clearStatistics( int startIndex, int upperBound );
 
-    void _setupSingletons();
+//    void _setupSingletons();
 
     /**
      * Given the plugin and the index of the plugin among plugins of its type, find the index of the plugin
@@ -214,7 +214,7 @@ private:
 
     //Sets up a default set of states for constructing the UI if the user
     //has not saved one.
-    void _initializeDefaultState();
+//    void _initializeDefaultState();
 
     //Returns whether or not there are any source objects of the given sourceName already linked to the
     //destination object.
@@ -251,7 +251,7 @@ private:
      * the state and gives the object a second chance to establish their links.
      */
     void _refreshState();
-    void _refreshStateSingletons();
+//    void _refreshStateSingletons();
 
 //    QString _setPlugin( const QString& sourceNodeId, const QString& destPluginType );
 
