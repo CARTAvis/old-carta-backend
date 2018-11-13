@@ -1,5 +1,5 @@
 #include "UnitsIntensity.h"
-#include "Data/Profile/ProfileStatistics.h"
+//#include "Data/Profile/ProfileStatistics.h"
 #include "Data/Util.h"
 #include "CartaLib/CartaLib.h"
 #include "State/UtilState.h"
@@ -44,8 +44,8 @@ bool UnitsIntensity::m_registered =
 UnitsIntensity::UnitsIntensity( const QString& path, const QString& id):
     CartaObject( CLASS_NAME, path, id ){
 	m_spectralAxisAvailable = false;
-	ProfileStatistics* stats = Util::findSingletonObject<ProfileStatistics>();
-	m_stat = stats->getTypeFor( stats->getDefault() );
+//	ProfileStatistics* stats = Util::findSingletonObject<ProfileStatistics>();
+//	m_stat = stats->getTypeFor( stats->getDefault() );
     _initializeDefaultState();
 }
 

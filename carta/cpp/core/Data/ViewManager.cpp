@@ -29,10 +29,10 @@
 //#include "Data/Histogram/PlotStyles.h"
 //#include "Data/Preferences/Preferences.h"
 //#include "Data/Preferences/PreferencesSave.h"
-#include "Data/Profile/ProfilePlotStyles.h"
-#include "Data/Profile/Profiler.h"
-#include "Data/Profile/ProfileStatistics.h"
-#include "Data/Profile/GenerateModes.h"
+//#include "Data/Profile/ProfilePlotStyles.h"
+//#include "Data/Profile/Profiler.h"
+//#include "Data/Profile/ProfileStatistics.h"
+//#include "Data/Profile/GenerateModes.h"
 #include "Data/Region/RegionTypes.h"
 //#include "Data/Snapshot/Snapshots.h"
 #include "Data/Statistics/Statistics.h"
@@ -176,9 +176,9 @@ void ViewManager::_clearControllers( int startIndex, int upperBound ){
         for ( Statistics* stat : m_statistics ){
             stat->removeLink( m_controllers[i]);
         }
-        for ( Profiler* prof : m_profilers ){
-            prof->removeLink( m_controllers[i]);
-        }
+//        for ( Profiler* prof : m_profilers ){
+//            prof->removeLink( m_controllers[i]);
+//        }
         for ( ImageZoom* zoom : m_imageZooms ){
             zoom->removeLink( m_controllers[i]);
         }
@@ -233,13 +233,13 @@ void ViewManager::_clearImageContexts( int startIndex, int upperBound ){
     }
 }
 
-void ViewManager::_clearProfilers( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        objMan->destroyObject( m_profilers[i]->getId() );
-        m_profilers.removeAt( i );
-    }
-}
+//void ViewManager::_clearProfilers( int startIndex, int upperBound ){
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        objMan->destroyObject( m_profilers[i]->getId() );
+//        m_profilers.removeAt( i );
+//    }
+//}
 
 void ViewManager::_clearStatistics( int startIndex, int upperBound ){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -336,17 +336,17 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
 //    else if ( plugin == Snapshots::CLASS_NAME ){
 //        viewId = _makeSnapshots();
 //    }
-    else if ( plugin == Profiler::CLASS_NAME ){
-        if ( 0 <= index && index < m_profilers.size() && !forceCreate){
-            viewId = m_profilers[index]->getPath();
-        }
-        else {
-            if ( index == -1 ){
-                index = m_profilers.size();
-            }
-            viewId = _makeProfile( index );
-        }
-    }
+//    else if ( plugin == Profiler::CLASS_NAME ){
+//        if ( 0 <= index && index < m_profilers.size() && !forceCreate){
+//            viewId = m_profilers[index]->getPath();
+//        }
+//        else {
+//            if ( index == -1 ){
+//                index = m_profilers.size();
+//            }
+//            viewId = _makeProfile( index );
+//        }
+//    }
     else if ( plugin == Statistics::CLASS_NAME ){
         if ( 0 <= index && index < m_statistics.size() && !forceCreate){
             viewId = m_statistics[index]->getPath();
@@ -754,14 +754,14 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
                 m_imageContexts.insert( newIndex, context );
             }
         }
-        else if ( plugin == Profiler::CLASS_NAME ){
-           int profileCount = m_profilers.size();
-           if ( oldIndex < profileCount && newIndex < profileCount ){
-               Profiler* profiler = m_profilers[oldIndex];
-               m_profilers.removeAt(oldIndex );
-               m_profilers.insert( newIndex, profiler );
-           }
-        }
+//        else if ( plugin == Profiler::CLASS_NAME ){
+//           int profileCount = m_profilers.size();
+//           if ( oldIndex < profileCount && newIndex < profileCount ){
+//               Profiler* profiler = m_profilers[oldIndex];
+//               m_profilers.removeAt(oldIndex );
+//               m_profilers.insert( newIndex, profiler );
+//           }
+//        }
 
 //        else if ( plugin != NodeFactory::EMPTY ){
 //            qWarning() << "Unrecognized plugin "<<plugin<<" to remove";
@@ -892,23 +892,23 @@ QString ViewManager::_makePluginList(){
 //}
 
 
-QString ViewManager::_makeProfile( int index ){
-    int currentCount = m_profilers.size();
-    CARTA_ASSERT( 0 <= index && index <= currentCount );
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    Profiler* statObj = objMan->createObject<Profiler>();
-    m_profilers.insert( index, statObj );
-    for ( int i = index; i < currentCount + 1; i++ ){
-        m_profilers[i]->setIndex( i );
-    }
+//QString ViewManager::_makeProfile( int index ){
+//    int currentCount = m_profilers.size();
+//    CARTA_ASSERT( 0 <= index && index <= currentCount );
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    Profiler* statObj = objMan->createObject<Profiler>();
+//    m_profilers.insert( index, statObj );
+//    for ( int i = index; i < currentCount + 1; i++ ){
+//        m_profilers[i]->setIndex( i );
+//    }
     //To try to establish reasonable defaults, if there is a single profile display
     //and a single controller display, assume the user wants them linked.
-    if ( m_profilers.size() == 1 && m_controllers.size() == 1 ){
-        m_profilers[0]->addLink( m_controllers[0] );
+//    if ( m_profilers.size() == 1 && m_controllers.size() == 1 ){
+//        m_profilers[0]->addLink( m_controllers[0] );
 
-    }
-    return m_profilers[index]->getPath();
-}
+//    }
+//    return m_profilers[index]->getPath();
+//}
 
 
 QString ViewManager::_makeStatistics( int index ){
@@ -1429,7 +1429,7 @@ ViewManager::~ViewManager(){
     _clearImageZooms( 0, m_imageZooms.size() );
     _clearImageContexts( 0, m_imageContexts.size());
     _clearStatistics( 0, m_statistics.size() );
-    _clearProfilers( 0, m_profilers.size() );
+//    _clearProfilers( 0, m_profilers.size() );
     _clearControllers( 0, m_controllers.size() );
 
     //Delete the statics
@@ -1447,8 +1447,8 @@ ViewManager::~ViewManager(){
     delete obj;
     obj =  Util::findSingletonObject<LabelFormats>();
     delete obj;
-    obj =  Util::findSingletonObject<ProfilePlotStyles>();
-    delete obj;
+//    obj =  Util::findSingletonObject<ProfilePlotStyles>();
+//    delete obj;
 //    obj =  Util::findSingletonObject<Preferences>();
 //    delete obj;
 //    obj =  Util::findSingletonObject<PreferencesSave>();
@@ -1473,16 +1473,16 @@ ViewManager::~ViewManager(){
 //    delete obj;
     obj =  Util::findSingletonObject<LineStyles>();
     delete obj;
-    obj =  Util::findSingletonObject<ProfileStatistics>();
-    delete obj;
-    obj =  Util::findSingletonObject<GenerateModes>();
-    delete obj;
+//    obj =  Util::findSingletonObject<ProfileStatistics>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<GenerateModes>();
+//    delete obj;
     obj = Util::findSingletonObject<RegionTypes>();
     delete obj;
     obj =  Util::findSingletonObject<UnitsFrequency>();
     delete obj;
-    obj =  Util::findSingletonObject<UnitsIntensity>();
-    delete obj;
+//    obj =  Util::findSingletonObject<UnitsIntensity>();
+//    delete obj;
     obj =  Util::findSingletonObject<UnitsSpectral>();
     delete obj;
     obj =  Util::findSingletonObject<UnitsWavelength>();

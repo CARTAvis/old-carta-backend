@@ -77,17 +77,6 @@ HEADERS += \
     Data/Plotter/Plot2DManager.h \
     Data/Plotter/LineStyles.h \
     Data/Plotter/LegendLocations.h \
-    Data/Profile/CurveData.h \
-    Data/Profile/Fit/ProfileFitService.h \
-    Data/Profile/Fit/ProfileFitThread.h \
-    Data/Profile/Profiler.h \
-    Data/Profile/ProfilePlotStyles.h \
-    Data/Profile/Render/ProfileRenderRequest.h \
-    Data/Profile/Render/ProfileRenderService.h \
-    Data/Profile/Render/ProfileRenderThread.h \
-    Data/Profile/Render/ProfileRenderWorker.h \
-    Data/Profile/ProfileStatistics.h \
-    Data/Profile/GenerateModes.h \
     Data/Region/Region.h \
     Data/Region/RegionControls.h \
     Data/Region/RegionPolygon.h \
@@ -183,17 +172,6 @@ SOURCES += \
     Data/Plotter/Plot2DManager.cpp \
     Data/Plotter/LegendLocations.cpp \
     Data/Plotter/LineStyles.cpp \
-    Data/Profile/CurveData.cpp \
-    Data/Profile/Fit/ProfileFitService.cpp \
-    Data/Profile/Fit/ProfileFitThread.cpp \
-    Data/Profile/Profiler.cpp \
-    Data/Profile/ProfilePlotStyles.cpp \
-    Data/Profile/Render/ProfileRenderRequest.cpp \
-    Data/Profile/Render/ProfileRenderService.cpp \
-    Data/Profile/Render/ProfileRenderThread.cpp \
-    Data/Profile/Render/ProfileRenderWorker.cpp \
-    Data/Profile/ProfileStatistics.cpp \
-    Data/Profile/GenerateModes.cpp \
     Data/Region/Region.cpp \
     Data/Region/RegionControls.cpp \
     Data/Region/RegionPoint.cpp \

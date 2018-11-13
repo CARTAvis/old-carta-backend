@@ -84,8 +84,8 @@ void ViewPlugins::_initializeDefaultState(){
 //    ind++;
     _insertPlugin( ind, Colormap::CLASS_NAME, "Color Map", "", "", "");
     ind++;
-    _insertPlugin( ind, Profiler::CLASS_NAME, "Profile", "", "", "");
-    ind++;
+//    _insertPlugin( ind, Profiler::CLASS_NAME, "Profile", "", "", "");
+//    ind++;
     _insertPlugin( ind, ImageContext::CLASS_NAME, "Image Context", "", "", "");
     ind++;
     _insertPlugin( ind, ImageZoom::CLASS_NAME, "Image Zoom", "", "", "");

@@ -22,7 +22,7 @@ class Colormap;
 class ImageContext;
 class ImageZoom;
 //class Layout;
-class Profiler;
+//class Profiler;
 class Statistics;
 //class Snapshots;
 class ViewPlugins;
@@ -194,7 +194,7 @@ private:
 //    void _clearHistograms( int startIndex, int upperBound );
     void _clearImageContexts( int startIndex, int upperBound );
     void _clearImageZooms( int startIndex, int upperBound );
-    void _clearProfilers( int startIndex, int upperBound );
+//    void _clearProfilers( int startIndex, int upperBound );
     void _clearStatistics( int startIndex, int upperBound );
 
 //    void _setupSingletons();
@@ -228,7 +228,7 @@ private:
 //    QString _makeHistogram( int index );
     QString _makeImageContext( int index );
     QString _makeImageZoom( int index );
-    QString _makeProfile( int index );
+//    QString _makeProfile( int index );
 //    QString _makeSnapshots();
     QString _makeStatistics( int index );
 
@@ -272,7 +272,7 @@ private:
 //    QList<Histogram* >m_histograms;
 
     //Profile
-    QList<Profiler* > m_profilers;
+//    QList<Profiler* > m_profilers;
 
     //Statistics
     QList<Statistics* > m_statistics;
