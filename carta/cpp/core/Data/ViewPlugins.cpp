@@ -80,8 +80,8 @@ void ViewPlugins::_initializeDefaultState(){
     ind++;
     _insertPlugin( ind, Statistics::CLASS_NAME, "Statistics", "", "", "");
     ind++;
-    _insertPlugin( ind, Histogram::CLASS_NAME, "Histogram", "", "", "");
-    ind++;
+//    _insertPlugin( ind, Histogram::CLASS_NAME, "Histogram", "", "", "");
+//    ind++;
     _insertPlugin( ind, Colormap::CLASS_NAME, "Color Map", "", "", "");
     ind++;
     _insertPlugin( ind, Profiler::CLASS_NAME, "Profile", "", "", "");

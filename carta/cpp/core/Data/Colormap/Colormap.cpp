@@ -89,20 +89,20 @@ QString Colormap::addLink( CartaObject*  cartaObject ){
 
         }
     }
-    else {
-        Histogram* hist = dynamic_cast<Histogram*>(cartaObject);
-        if ( hist != nullptr ){
-            objAdded = m_linkImpl->addLink( hist );
-            if ( objAdded ){
-                connect( this, SIGNAL(colorMapChanged()), hist, SLOT( updateColorMap()));
-                hist->updateColorMap();
+//    else {
+//        Histogram* hist = dynamic_cast<Histogram*>(cartaObject);
+//        if ( hist != nullptr ){
+//            objAdded = m_linkImpl->addLink( hist );
+//            if ( objAdded ){
+//                connect( this, SIGNAL(colorMapChanged()), hist, SLOT( updateColorMap()));
+//                hist->updateColorMap();
                 //connect( hist,SIGNAL(colorIntensityBoundsChanged(double,double,bool)), this, SLOT(_updateIntensityBounds(double,double,bool)));
-            }
-        }
-        else {
-            result = "Colormap only supports linking to histograms and images.";
-        }
-    }
+//            }
+//        }
+//        else {
+//            result = "Colormap only supports linking to histograms and images.";
+//        }
+//    }
     return result;
 }
 
@@ -888,18 +888,18 @@ QString Colormap::removeLink( CartaObject* cartaObject ){
             controller->disconnect( this );
         }
     }
-    else {
-       Histogram* hist = dynamic_cast<Histogram*>(cartaObject);
-       if ( hist != nullptr ){
-           objRemoved = m_linkImpl->removeLink( hist );
-           if ( objRemoved ){
-               this->disconnect( hist );
-           }
-       }
-       else {
-           result= "Color was unable to remove link, only histogram and image links supported.";
-       }
-    }
+//    else {
+//       Histogram* hist = dynamic_cast<Histogram*>(cartaObject);
+//       if ( hist != nullptr ){
+//           objRemoved = m_linkImpl->removeLink( hist );
+//           if ( objRemoved ){
+//               this->disconnect( hist );
+//           }
+//       }
+//       else {
+//           result= "Color was unable to remove link, only histogram and image links supported.";
+//       }
+//    }
     return result;
 }
 

@@ -17,7 +17,7 @@ namespace Data {
 class Animator;
 class Controller;
 class DataLoader;
-class Histogram;
+//class Histogram;
 class Colormap;
 class ImageContext;
 class ImageZoom;
@@ -79,7 +79,7 @@ public:
      * Return the number of histogram views.
      * @return - the histogram count.
      */
-    int getHistogramCount() const;
+//    int getHistogramCount() const;
 
     /**
      * Return the number of image context views.
@@ -191,7 +191,7 @@ private:
     void _clearAnimators( int startIndex, int upperBound );
     void _clearColormaps( int startIndex, int upperBound );
     void _clearControllers( int startIndex, int upperBound );
-    void _clearHistograms( int startIndex, int upperBound );
+//    void _clearHistograms( int startIndex, int upperBound );
     void _clearImageContexts( int startIndex, int upperBound );
     void _clearImageZooms( int startIndex, int upperBound );
     void _clearProfilers( int startIndex, int upperBound );
@@ -225,7 +225,7 @@ private:
     QString _makePluginList();
     QString _makeColorMap( int index );
     QString _makeController( int index );
-    QString _makeHistogram( int index );
+//    QString _makeHistogram( int index );
     QString _makeImageContext( int index );
     QString _makeImageZoom( int index );
     QString _makeProfile( int index );
@@ -269,7 +269,7 @@ private:
     QList<Colormap* >m_colormaps;
 
     //Histogram
-    QList<Histogram* >m_histograms;
+//    QList<Histogram* >m_histograms;
 
     //Profile
     QList<Profiler* > m_profilers;

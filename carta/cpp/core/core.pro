@@ -37,14 +37,6 @@ HEADERS += \
     Data/DataLoader.h \
     Data/Error/ErrorReport.h \
     Data/Error/ErrorManager.h \
-    Data/Histogram/BinData.h \
-    Data/Histogram/Histogram.h \
-    Data/Histogram/ChannelUnits.h \
-    Data/Histogram/PlotStyles.h \
-    Data/Histogram/Render/HistogramRenderService.h \
-    Data/Histogram/Render/HistogramRenderThread.h \
-    Data/Histogram/Render/HistogramRenderWorker.h \
-    Data/Histogram/Render/HistogramRenderRequest.h \
     Data/ILinkable.h \
     Data/Settings.h \
     Data/Image/Controller.h \
@@ -190,14 +182,6 @@ SOURCES += \
     Data/DataLoader.cpp \
     Data/Error/ErrorReport.cpp \
     Data/Error/ErrorManager.cpp \
-    Data/Histogram/BinData.cpp \
-    Data/Histogram/Histogram.cpp \
-    Data/Histogram/ChannelUnits.cpp \
-    Data/Histogram/Render/HistogramRenderService.cpp \
-    Data/Histogram/Render/HistogramRenderThread.cpp \
-    Data/Histogram/Render/HistogramRenderWorker.cpp \
-    Data/Histogram/Render/HistogramRenderRequest.cpp \
-    Data/Histogram/PlotStyles.cpp \
     Data/LinkableImpl.cpp \
     Data/Selection.cpp \
     Data/Plotter/Plot2DManager.cpp \

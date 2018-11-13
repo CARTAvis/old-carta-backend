@@ -15,18 +15,18 @@
 #include "Data/Image/ImageContext.h"
 #include "Data/Image/ImageZoom.h"
 #include "Data/Image/LayerCompositionModes.h"
-#include "Data/Histogram/ChannelUnits.h"
+//#include "Data/Histogram/ChannelUnits.h"
 #include "Data/DataLoader.h"
 #include "Data/Colormap/Gamma.h"
 #include "Data/Colormap/TransformsData.h"
 #include "Data/Colormap/TransformsImage.h"
 #include "Data/Error/ErrorManager.h"
-#include "Data/Histogram/Histogram.h"
+//#include "Data/Histogram/Histogram.h"
 #include "Data/ILinkable.h"
 //#include "Data/Layout/Layout.h"
 //#include "Data/Layout/NodeFactory.h"
 #include "Data/Plotter/LineStyles.h"
-#include "Data/Histogram/PlotStyles.h"
+//#include "Data/Histogram/PlotStyles.h"
 //#include "Data/Preferences/Preferences.h"
 //#include "Data/Preferences/PreferencesSave.h"
 #include "Data/Profile/ProfilePlotStyles.h"
@@ -167,9 +167,9 @@ void ViewManager::_clearControllers( int startIndex, int upperBound ){
         for ( Animator* anim : m_animators ){
             anim->removeLink( m_controllers[i]);
         }
-        for ( Histogram* hist : m_histograms ){
-            hist->removeLink( m_controllers[i]);
-        }
+//        for ( Histogram* hist : m_histograms ){
+//            hist->removeLink( m_controllers[i]);
+//        }
         for ( Colormap* map : m_colormaps ){
             map->removeLink( m_controllers[i]);
         }
@@ -206,16 +206,16 @@ void ViewManager::_clearColormaps( int startIndex, int upperBound ){
     }
 }
 
-void ViewManager::_clearHistograms( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        for ( Colormap* map : m_colormaps ){
-            map->removeLink( m_histograms[i]);
-        }
-        objMan->destroyObject( m_histograms[i]->getId() );
-        m_histograms.removeAt(i);
-    }
-}
+//void ViewManager::_clearHistograms( int startIndex, int upperBound ){
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        for ( Colormap* map : m_colormaps ){
+//            map->removeLink( m_histograms[i]);
+//        }
+//        objMan->destroyObject( m_histograms[i]->getId() );
+//        m_histograms.removeAt(i);
+//    }
+//}
 
 void ViewManager::_clearImageZooms( int startIndex, int upperBound ){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -300,17 +300,17 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             viewId = _makeColorMap( index );
         }
     }
-    else if ( plugin == Histogram::CLASS_NAME ){
-        if ( 0 <= index && index < m_histograms.size() && !forceCreate){
-            viewId = m_histograms[index]->getPath();
-        }
-        else {
-            if ( index == -1 ){
-                index = m_histograms.size();
-            }
-            viewId = _makeHistogram(index);
-        }
-    }
+//    else if ( plugin == Histogram::CLASS_NAME ){
+//        if ( 0 <= index && index < m_histograms.size() && !forceCreate){
+//            viewId = m_histograms[index]->getPath();
+//        }
+//        else {
+//            if ( index == -1 ){
+//                index = m_histograms.size();
+//            }
+//            viewId = _makeHistogram(index);
+//        }
+//    }
     else if ( plugin == ImageZoom::CLASS_NAME ){
         if ( 0 <= index && index < m_imageZooms.size() && !forceCreate){
             viewId = m_imageZooms[index]->getPath();
@@ -385,10 +385,10 @@ int ViewManager::getAnimatorCount() const {
     return animatorCount;
 }
 
-int ViewManager::getHistogramCount() const {
-    int histogramCount = m_histograms.size();
-    return histogramCount;
-}
+//int ViewManager::getHistogramCount() const {
+//    int histogramCount = m_histograms.size();
+//    return histogramCount;
+//}
 
 int ViewManager::getImageContextCount() const {
     int contextCount = m_imageContexts.size();
@@ -730,14 +730,14 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
                 m_colormaps.insert( newIndex, colormap );
             }
         }
-        else if ( plugin == Histogram::CLASS_NAME ){
-            int histCount = m_histograms.size();
-            if ( oldIndex < histCount && newIndex < histCount ){
-                Histogram* histogram = m_histograms[oldIndex];
-                m_histograms.removeAt(oldIndex );
-                m_histograms.insert( newIndex, histogram );
-            }
-        }
+//        else if ( plugin == Histogram::CLASS_NAME ){
+//            int histCount = m_histograms.size();
+//            if ( oldIndex < histCount && newIndex < histCount ){
+//                Histogram* histogram = m_histograms[oldIndex];
+//                m_histograms.removeAt(oldIndex );
+//                m_histograms.insert( newIndex, histogram );
+//            }
+//        }
         else if ( plugin == ImageZoom::CLASS_NAME ){
             int zoomCount = m_imageZooms.size();
             if ( oldIndex < zoomCount && newIndex < zoomCount ){
@@ -820,22 +820,22 @@ void ViewManager::_makeDataLoader(){
     }
 }
 
-QString ViewManager::_makeHistogram( int index ){
-    int currentCount = m_histograms.size();
-    CARTA_ASSERT( 0 <= index && index <= currentCount );
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    Histogram* histObj = objMan->createObject<Histogram>();
-    m_histograms.insert( index, histObj );
-    for ( int i = index; i < currentCount + 1; i++ ){
-        m_histograms[i]->setIndex( i );
-    }
+//QString ViewManager::_makeHistogram( int index ){
+//    int currentCount = m_histograms.size();
+//    CARTA_ASSERT( 0 <= index && index <= currentCount );
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    Histogram* histObj = objMan->createObject<Histogram>();
+//    m_histograms.insert( index, histObj );
+//    for ( int i = index; i < currentCount + 1; i++ ){
+//        m_histograms[i]->setIndex( i );
+//    }
     //If there is only one controller, automatically link it to the
     //histogram.
-    if ( m_controllers.size() == 1 ){
-        m_histograms[index]->addLink( m_controllers[0] );
-    }
-    return m_histograms[index]->getPath();
-}
+//    if ( m_controllers.size() == 1 ){
+//        m_histograms[index]->addLink( m_controllers[0] );
+//    }
+//    return m_histograms[index]->getPath();
+//}
 
 QString ViewManager::_makeImageZoom( int index ){
     int currentCount = m_imageZooms.size();
@@ -1425,7 +1425,7 @@ ViewManager::~ViewManager(){
 
     _clearAnimators( 0, m_animators.size() );
     _clearColormaps( 0, m_colormaps.size() );
-    _clearHistograms( 0, m_histograms.size() );
+//    _clearHistograms( 0, m_histograms.size() );
     _clearImageZooms( 0, m_imageZooms.size() );
     _clearImageContexts( 0, m_imageContexts.size());
     _clearStatistics( 0, m_statistics.size() );
@@ -1453,8 +1453,8 @@ ViewManager::~ViewManager(){
 //    delete obj;
 //    obj =  Util::findSingletonObject<PreferencesSave>();
 //    delete obj;
-    obj =  Util::findSingletonObject<ChannelUnits>();
-    delete obj;
+//    obj =  Util::findSingletonObject<ChannelUnits>();
+//    delete obj;
     obj =  Util::findSingletonObject<CoordinateSystems>();
     delete obj;
     obj =  Util::findSingletonObject<Themes>();
@@ -1469,8 +1469,8 @@ ViewManager::~ViewManager(){
     delete obj;
     obj =  Util::findSingletonObject<LayerCompositionModes>();
     delete obj;
-    obj =  Util::findSingletonObject<PlotStyles>();
-    delete obj;
+//    obj =  Util::findSingletonObject<PlotStyles>();
+//    delete obj;
     obj =  Util::findSingletonObject<LineStyles>();
     delete obj;
     obj =  Util::findSingletonObject<ProfileStatistics>();
