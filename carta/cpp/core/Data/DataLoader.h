@@ -175,6 +175,8 @@ private:
 
     // Unit conversion: convert Hz to MHz or GHz
     QString _convertHz(const double hz);
+
+    CARTA::FileType _convertFileType(int ccImageType);
 };
 }
 }

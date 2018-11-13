@@ -14,6 +14,8 @@
 
 #include <set>
 #include <math.h>
+#include <casacore/casa/OS/File.h>
+#include <casacore/images/Images/ImageOpener.h>
 
 using Carta::Lib::AxisInfo;
 
@@ -134,15 +136,6 @@ QString DataLoader::getLongName( const QString& shortName, const QString& sessio
     return longName;
 }
 
-// QString DataLoader::getFileList(const QString & params){
-
-//     std::set<QString> keys = { "path" };
-//     std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
-//     QString dir = dataValues[*keys.begin()];
-//     QString xml = getData( dir, "1" );
-//     return xml;
-// }
-
 DataLoader::PBMSharedPtr DataLoader::getFileList( CARTA::FileListRequest fileListRequest ){
     std::string dir = fileListRequest.directory();
     std::shared_ptr<CARTA::FileListResponse> fileListResponse(new CARTA::FileListResponse());
@@ -201,16 +194,16 @@ DataLoader::PBMSharedPtr DataLoader::getFileList( CARTA::FileListRequest fileLis
 
     QString lastPart = rootDir.absolutePath();
 
+    // iterate files in the current directory
     QDirIterator dit(rootDir.absolutePath(), QDir::NoFilter);
     while (dit.hasNext()) {
         dit.next();
-        // skip "." and ".." entries
-        if (dit.fileName() == "." || dit.fileName() == "..") {
+        if (dit.fileName() == "." || dit.fileName() == "..") { // skip "./" + "../
             continue;
         }
 
         QString fileName = dit.fileInfo().fileName();
-        if (dit.fileInfo().isDir()) {
+        if (dit.fileInfo().isDir()) { // handle image, miriad, and sub directories
             QString rootDirPath = rootDir.absolutePath();
             QString subDirPath = rootDirPath.append("/").append(fileName);
 
@@ -233,20 +226,17 @@ DataLoader::PBMSharedPtr DataLoader::getFileList( CARTA::FileListRequest fileLis
             else {
                 fileListResponse->add_subdirectories(fileName.toStdString());
             }
-        }
-        else if (dit.fileInfo().isFile()) {
-            QFile file(lastPart+QDir::separator()+fileName);
-            if (file.open(QFile::ReadOnly)) {
-                QString dataInfo = file.read(160);
-                if (dataInfo.contains(QRegExp("^SIMPLE *= *T.* BITPIX*")) && !dataInfo.contains(QRegExp("\n"))) {
-                    uint64_t fileSize = file.size();
-                    CARTA::FileInfo *fileInfo = fileListResponse->add_files();
-                    fileInfo->set_name(fileName.toStdString());
-                    fileInfo->set_type(CARTA::FileType::FITS);
-                    fileInfo->set_size(fileSize);
-                    fileInfo->add_hdu_list();
-                }
-                file.close();
+        } else if (dit.fileInfo().isFile()) {
+            QString fullpath = lastPart + QDir::separator() + fileName;
+            casacore::File ccfile(fullpath.toStdString());
+            casacore::ImageOpener::ImageTypes imType = casacore::ImageOpener::imageType(fullpath.toStdString());
+            if (ccfile.isRegular() && ((imType == casacore::ImageOpener::FITS) || (imType == casacore::ImageOpener::HDF5))) {
+                CARTA::FileInfo *fileInfo = fileListResponse->add_files();
+                fileInfo->set_name(fileName.toStdString());
+                fileInfo->set_type(_convertFileType(imType));
+                fileInfo->set_size(ccfile.size());
+                // TODO: support multiple hdu
+                fileInfo->add_hdu_list();
             }
         }
     }
@@ -1147,6 +1137,22 @@ QString DataLoader::_convertHz(const double hz) {
     }
 
     return QString(buf);
+}
+
+CARTA::FileType DataLoader::_convertFileType(int ccImageType) {
+    // convert casacore ImageType to protobuf FileType
+    switch (ccImageType) {
+        case casacore::ImageOpener::FITS:
+            return CARTA::FileType::FITS;
+        case casacore::ImageOpener::AIPSPP:
+            return CARTA::FileType::CASA;
+        case casacore::ImageOpener::HDF5:
+            return CARTA::FileType::HDF5;
+        case casacore::ImageOpener::MIRIAD:
+            return CARTA::FileType::MIRIAD;
+        default:
+            return CARTA::FileType::UNKNOWN;
+    }
 }
 
 DataLoader::~DataLoader(){
