@@ -8,7 +8,7 @@
 #include "Statistics/Statistics.h"
 //#include "Histogram/Histogram.h"
 #include "Colormap/Colormap.h"
-#include "Profile/Profiler.h"
+//#include "Profile/Profiler.h"
 #include "Util.h"
 #include "State/UtilState.h"
 
