@@ -4,7 +4,7 @@
 //#include "Animator/Animator.h"
 #include "Image/Controller.h"
 #include "Image/ImageContext.h"
-#include "Image/ImageZoom.h"
+//#include "Image/ImageZoom.h"
 #include "Statistics/Statistics.h"
 //#include "Histogram/Histogram.h"
 #include "Colormap/Colormap.h"
@@ -88,7 +88,7 @@ void ViewPlugins::_initializeDefaultState(){
 //    ind++;
     _insertPlugin( ind, ImageContext::CLASS_NAME, "Image Context", "", "", "");
     ind++;
-    _insertPlugin( ind, ImageZoom::CLASS_NAME, "Image Zoom", "", "", "");
+//    _insertPlugin( ind, ImageZoom::CLASS_NAME, "Image Zoom", "", "", "");
     ind++;
     m_state.insertValue<int>( STAMP, ind);
     m_state.flushState();

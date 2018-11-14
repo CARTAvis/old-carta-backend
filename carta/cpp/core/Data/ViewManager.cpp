@@ -13,7 +13,7 @@
 #include "Data/Image/Contour/ContourSpacingModes.h"
 #include "Data/Image/Contour/ContourStyles.h"
 #include "Data/Image/ImageContext.h"
-#include "Data/Image/ImageZoom.h"
+//#include "Data/Image/ImageZoom.h"
 #include "Data/Image/LayerCompositionModes.h"
 //#include "Data/Histogram/ChannelUnits.h"
 #include "Data/DataLoader.h"
@@ -179,9 +179,9 @@ void ViewManager::_clearControllers( int startIndex, int upperBound ){
 //        for ( Profiler* prof : m_profilers ){
 //            prof->removeLink( m_controllers[i]);
 //        }
-        for ( ImageZoom* zoom : m_imageZooms ){
-            zoom->removeLink( m_controllers[i]);
-        }
+//        for ( ImageZoom* zoom : m_imageZooms ){
+//            zoom->removeLink( m_controllers[i]);
+//        }
         for ( ImageContext* context : m_imageContexts ){
             context->removeLink( m_controllers[i] );
         }
@@ -217,13 +217,13 @@ void ViewManager::_clearColormaps( int startIndex, int upperBound ){
 //    }
 //}
 
-void ViewManager::_clearImageZooms( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        objMan->destroyObject( m_imageZooms[i]->getId() );
-        m_imageZooms.removeAt( i );
-    }
-}
+//void ViewManager::_clearImageZooms( int startIndex, int upperBound ){
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        objMan->destroyObject( m_imageZooms[i]->getId() );
+//        m_imageZooms.removeAt( i );
+//    }
+//}
 
 void ViewManager::_clearImageContexts( int startIndex, int upperBound ){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -311,17 +311,17 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
 //            viewId = _makeHistogram(index);
 //        }
 //    }
-    else if ( plugin == ImageZoom::CLASS_NAME ){
-        if ( 0 <= index && index < m_imageZooms.size() && !forceCreate){
-            viewId = m_imageZooms[index]->getPath();
-        }
-        else {
-            if ( index == -1 ){
-                index = m_imageZooms.size();
-            }
-            viewId = _makeImageZoom(index);
-        }
-    }
+//    else if ( plugin == ImageZoom::CLASS_NAME ){
+//        if ( 0 <= index && index < m_imageZooms.size() && !forceCreate){
+//            viewId = m_imageZooms[index]->getPath();
+//        }
+//        else {
+//            if ( index == -1 ){
+//                index = m_imageZooms.size();
+//            }
+//            viewId = _makeImageZoom(index);
+//        }
+//    }
     else if ( plugin == ImageContext::CLASS_NAME ){
         if ( 0 <= index && index < m_imageContexts.size() && !forceCreate){
             viewId = m_imageContexts[index]->getPath();
@@ -395,10 +395,10 @@ int ViewManager::getImageContextCount() const {
     return contextCount;
 }
 
-int ViewManager::getImageZoomCount() const {
-    int zoomCount = m_imageZooms.size();
-    return zoomCount;
-}
+//int ViewManager::getImageZoomCount() const {
+//    int zoomCount = m_imageZooms.size();
+//    return zoomCount;
+//}
 
 QString ViewManager::dataLoaded(const QString & params) {
 
@@ -738,14 +738,14 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
 //                m_histograms.insert( newIndex, histogram );
 //            }
 //        }
-        else if ( plugin == ImageZoom::CLASS_NAME ){
-            int zoomCount = m_imageZooms.size();
-            if ( oldIndex < zoomCount && newIndex < zoomCount ){
-                ImageZoom* imageZoom = m_imageZooms[oldIndex];
-                m_imageZooms.removeAt(oldIndex );
-                m_imageZooms.insert( newIndex, imageZoom );
-            }
-        }
+//        else if ( plugin == ImageZoom::CLASS_NAME ){
+//            int zoomCount = m_imageZooms.size();
+//            if ( oldIndex < zoomCount && newIndex < zoomCount ){
+//                ImageZoom* imageZoom = m_imageZooms[oldIndex];
+//                m_imageZooms.removeAt(oldIndex );
+//                m_imageZooms.insert( newIndex, imageZoom );
+//            }
+//        }
         else if ( plugin == ImageContext::CLASS_NAME ){
             int contextCount = m_imageContexts.size();
             if ( oldIndex < contextCount && newIndex < contextCount ){
@@ -837,17 +837,17 @@ void ViewManager::_makeDataLoader(){
 //    return m_histograms[index]->getPath();
 //}
 
-QString ViewManager::_makeImageZoom( int index ){
-    int currentCount = m_imageZooms.size();
-    CARTA_ASSERT( 0 <= index && index <= currentCount );
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    ImageZoom* zoomObj = objMan->createObject<ImageZoom>();
-    m_imageZooms.insert( index, zoomObj );
-    for ( int i = index; i < currentCount + 1; i++ ){
-        m_imageZooms[i]->setIndex( i );
-    }
-    return m_imageZooms[index]->getPath();
-}
+//QString ViewManager::_makeImageZoom( int index ){
+//    int currentCount = m_imageZooms.size();
+//    CARTA_ASSERT( 0 <= index && index <= currentCount );
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    ImageZoom* zoomObj = objMan->createObject<ImageZoom>();
+//    m_imageZooms.insert( index, zoomObj );
+//    for ( int i = index; i < currentCount + 1; i++ ){
+//        m_imageZooms[i]->setIndex( i );
+//    }
+//    return m_imageZooms[index]->getPath();
+//}
 
 QString ViewManager::_makeImageContext( int index ){
     int currentCount = m_imageContexts.size();
@@ -1426,7 +1426,7 @@ ViewManager::~ViewManager(){
 //    _clearAnimators( 0, m_animators.size() );
     _clearColormaps( 0, m_colormaps.size() );
 //    _clearHistograms( 0, m_histograms.size() );
-    _clearImageZooms( 0, m_imageZooms.size() );
+//    _clearImageZooms( 0, m_imageZooms.size() );
     _clearImageContexts( 0, m_imageContexts.size());
     _clearStatistics( 0, m_statistics.size() );
 //    _clearProfilers( 0, m_profilers.size() );

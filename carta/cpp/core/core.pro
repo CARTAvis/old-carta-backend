@@ -64,7 +64,6 @@ HEADERS += \
     Data/Image/Grid/Themes.h \
     Data/Image/Grid/LabelFormats.h \
     Data/Image/ImageContext.h \
-    Data/Image/ImageZoom.h \
     Data/Image/IPercentIntensityMap.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
@@ -157,7 +156,6 @@ SOURCES += \
     Data/Image/Draw/DrawSynchronizer.cpp \
     Data/Image/Draw/DrawStackSynchronizer.cpp \
     Data/Image/ImageContext.cpp \
-    Data/Image/ImageZoom.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
     Data/Image/Render/RenderResponse.cpp \

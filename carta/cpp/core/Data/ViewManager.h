@@ -20,7 +20,7 @@ class DataLoader;
 //class Histogram;
 class Colormap;
 class ImageContext;
-class ImageZoom;
+//class ImageZoom;
 //class Layout;
 //class Profiler;
 class Statistics;
@@ -91,7 +91,7 @@ public:
      * Return the number of image zoom views.
      * @return - the image zoom view count.
      */
-    int getImageZoomCount() const;
+//    int getImageZoomCount() const;
 
     /**
      * Load the file into the controller with the given id.
@@ -193,7 +193,7 @@ private:
     void _clearControllers( int startIndex, int upperBound );
 //    void _clearHistograms( int startIndex, int upperBound );
     void _clearImageContexts( int startIndex, int upperBound );
-    void _clearImageZooms( int startIndex, int upperBound );
+//    void _clearImageZooms( int startIndex, int upperBound );
 //    void _clearProfilers( int startIndex, int upperBound );
     void _clearStatistics( int startIndex, int upperBound );
 
@@ -227,7 +227,7 @@ private:
     QString _makeController( int index );
 //    QString _makeHistogram( int index );
     QString _makeImageContext( int index );
-    QString _makeImageZoom( int index );
+//    QString _makeImageZoom( int index );
 //    QString _makeProfile( int index );
 //    QString _makeSnapshots();
     QString _makeStatistics( int index );
@@ -259,7 +259,7 @@ private:
     QList <Controller* > m_controllers;
 
     //Zoom and context views.
-    QList <ImageZoom*> m_imageZooms;
+//    QList <ImageZoom*> m_imageZooms;
     QList <ImageContext*> m_imageContexts;
 
     //A list of Animators requested by the client.
