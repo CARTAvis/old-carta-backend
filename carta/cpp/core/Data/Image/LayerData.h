@@ -38,7 +38,7 @@ namespace Core {
 namespace Data {
 
 class ColorState;
-class DrawSynchronizer;
+//class DrawSynchronizer;
 class DataContours;
 class DataGrid;
 class DataSource;
@@ -620,7 +620,7 @@ private:
     std::shared_ptr<DataSource> m_dataSource;
 
      /// image-and-grid-service result synchronizer
-    std::unique_ptr<DrawSynchronizer> m_drawSync;
+//    std::unique_ptr<DrawSynchronizer> m_drawSync;
 
     Carta::Lib::VectorGraphics::VGList m_regionGraphics;
 

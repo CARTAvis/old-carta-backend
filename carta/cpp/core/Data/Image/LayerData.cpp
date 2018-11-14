@@ -1,7 +1,7 @@
 #include "Grid/DataGrid.h"
 #include "Contour/DataContours.h"
 #include "DataSource.h"
-#include "Data/Image/Draw/DrawSynchronizer.h"
+//#include "Data/Image/Draw/DrawSynchronizer.h"
 #include "Data/DataLoader.h"
 #include "Data/Util.h"
 #include "Data/Colormap/ColorState.h"
@@ -50,7 +50,7 @@ bool LayerData::m_registered =
 LayerData::LayerData(const QString& path, const QString& id) :
     Layer( CLASS_NAME, path, id),
     m_dataSource( new DataSource()),
-    m_drawSync( nullptr ),
+//    m_drawSync( nullptr ),
     m_stateColor( nullptr ){
 
 //        m_renderQueued = false;
@@ -797,10 +797,10 @@ void LayerData::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
                 gridService->setInputImage( m_dataSource->_getPermImage() );
             }
         }
-        if ( m_drawSync ){
-        	std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> rawData( m_dataSource->_getRawData( frames ));
-        	m_drawSync->setInput( rawData );
-        }
+//        if ( m_drawSync ){
+//        	std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> rawData( m_dataSource->_getRawData( frames ));
+//        	m_drawSync->setInput( rawData );
+//        }
     }
 }
 
@@ -924,9 +924,9 @@ void LayerData::_renderStart(){
     gridService->setAxisDisplayInfo( axisInfo );
 
     //Only draw contours and grid for main image.
-    if ( request->isRequestMain() ){
-        m_drawSync->setContours( m_dataContours );
-    }
+//    if ( request->isRequestMain() ){
+//        m_drawSync->setContours( m_dataContours );
+//    }
 
     // Label is set automatically and it is from the CTYPE which is defined in FITS header
     // We need to set the spactral system and unit
@@ -941,16 +941,16 @@ void LayerData::_renderStart(){
     bool contourDraw = _isContourDraw() && request->isRequestMain();
     bool gridDraw = false;
     if ( topOfStack && request->isRequestMain() ){
-    	m_drawSync->setRegionGraphics( m_regionGraphics );
+//    	m_drawSync->setRegionGraphics( m_regionGraphics );
         gridDraw = m_dataGrid->_isGridVisible();
     }
     else {
     	//Empty list
-    	Carta::Lib::VectorGraphics::VGList vgList;
-    	m_drawSync->setRegionGraphics( vgList );
+//    	Carta::Lib::VectorGraphics::VGList vgList;
+//    	m_drawSync->setRegionGraphics( vgList );
     }
 
-    m_drawSync-> start( contourDraw, gridDraw );
+//    m_drawSync-> start( contourDraw, gridDraw );
 }
 
 

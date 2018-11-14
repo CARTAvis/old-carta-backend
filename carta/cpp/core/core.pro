@@ -55,7 +55,7 @@ HEADERS += \
     Data/Image/DataSource.h \
     Data/Image/Draw/DrawGroupSynchronizer.h \
     Data/Image/Draw/DrawImageViewsSynchronizer.h \
-    Data/Image/Draw/DrawSynchronizer.h \
+#    Data/Image/Draw/DrawSynchronizer.h \
     Data/Image/Draw/DrawStackSynchronizer.h \
     Data/Image/Grid/AxisMapper.h \
     Data/Image/Grid/DataGrid.h \
@@ -152,7 +152,7 @@ SOURCES += \
     Data/Image/Grid/Themes.cpp \
     Data/Image/Draw/DrawGroupSynchronizer.cpp \
     Data/Image/Draw/DrawImageViewsSynchronizer.cpp \
-    Data/Image/Draw/DrawSynchronizer.cpp \
+#    Data/Image/Draw/DrawSynchronizer.cpp \
     Data/Image/Draw/DrawStackSynchronizer.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
