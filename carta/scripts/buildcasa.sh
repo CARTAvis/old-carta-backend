@@ -204,6 +204,7 @@ mkdir build && cd build
 if [ "$(uname)" == "Darwin" ]; then
     cmake -DBoost_NO_BOOST_CMAKE=1 -DCASA_BUILD=1 \
     -DUseCasacoreNamespace=1 \
+    -DUSE_HDF5=ON \
 	-DCMAKE_Fortran_COMPILER=/usr/local/bin/gfortran \
     -DPYTHON2_EXECUTABLE=/usr/bin/python \
     -DPYTHON_LIBRARY=/System/Library/Frameworks/Python.framework/Versions/2.7/Python \

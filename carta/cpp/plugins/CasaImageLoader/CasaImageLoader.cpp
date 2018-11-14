@@ -77,8 +77,6 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
 
     // load image: casacore::ImageOpener::openPagedImage will emit exception if failed,
     // so need to catch the exception for error handling.
-    // However, it's a strange design by throwing exception instead of returning nullptr in lat when opening file failed,
-    // maybe it's a bug (crashed inside openPagedImage) in casacore (because not mentioned in casacore document)
     casacore::LatticeBase * lat = nullptr;
     casacore::ImageOpener::ImageTypes filetype = casacore::ImageOpener::imageType(fname.toStdString());
     try {
@@ -86,6 +84,10 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
             if (filetype == casacore::ImageOpener::ImageTypes::AIPSPP) {
                 casa_mutex.lock();
                 lat = casacore::ImageOpener::openPagedImage(fname.toStdString());
+                casa_mutex.unlock();
+            } else if (filetype == casacore::ImageOpener::ImageTypes::HDF5) {
+                casa_mutex.lock();
+                lat = casacore::ImageOpener::openHDF5Image(fname.toStdString());
                 casa_mutex.unlock();
             } else {
                 casa_mutex.lock();
@@ -97,7 +99,12 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
             return nullptr;
         }
     } catch (std::exception& e) {
-        qCritical() << "Open image failed. Exception: " << e.what();
+        qWarning() << "Open image failed: exception " << e.what();
+        return nullptr;
+    }
+
+    if (nullptr == lat) {
+        qWarning() << "Open image failed: unknown image type to casacore.";
         return nullptr;
     }
 
