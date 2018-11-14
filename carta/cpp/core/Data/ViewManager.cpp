@@ -12,7 +12,7 @@
 #include "Data/Image/Contour/ContourTypes.h"
 #include "Data/Image/Contour/ContourSpacingModes.h"
 #include "Data/Image/Contour/ContourStyles.h"
-#include "Data/Image/ImageContext.h"
+//#include "Data/Image/ImageContext.h"
 //#include "Data/Image/ImageZoom.h"
 #include "Data/Image/LayerCompositionModes.h"
 //#include "Data/Histogram/ChannelUnits.h"
@@ -182,9 +182,9 @@ void ViewManager::_clearControllers( int startIndex, int upperBound ){
 //        for ( ImageZoom* zoom : m_imageZooms ){
 //            zoom->removeLink( m_controllers[i]);
 //        }
-        for ( ImageContext* context : m_imageContexts ){
-            context->removeLink( m_controllers[i] );
-        }
+//        for ( ImageContext* context : m_imageContexts ){
+//            context->removeLink( m_controllers[i] );
+//        }
         objMan->destroyObject( m_controllers[i]->getId() );
         m_controllers.removeAt(i);
     }
@@ -225,13 +225,13 @@ void ViewManager::_clearColormaps( int startIndex, int upperBound ){
 //    }
 //}
 
-void ViewManager::_clearImageContexts( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        objMan->destroyObject( m_imageContexts[i]->getId() );
-        m_imageContexts.removeAt( i );
-    }
-}
+//void ViewManager::_clearImageContexts( int startIndex, int upperBound ){
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        objMan->destroyObject( m_imageContexts[i]->getId() );
+//        m_imageContexts.removeAt( i );
+//    }
+//}
 
 //void ViewManager::_clearProfilers( int startIndex, int upperBound ){
 //    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -322,17 +322,17 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
 //            viewId = _makeImageZoom(index);
 //        }
 //    }
-    else if ( plugin == ImageContext::CLASS_NAME ){
-        if ( 0 <= index && index < m_imageContexts.size() && !forceCreate){
-            viewId = m_imageContexts[index]->getPath();
-        }
-        else {
-            if ( index == -1 ){
-                index = m_imageContexts.size();
-            }
-            viewId = _makeImageContext(index);
-        }
-    }
+//    else if ( plugin == ImageContext::CLASS_NAME ){
+//        if ( 0 <= index && index < m_imageContexts.size() && !forceCreate){
+//            viewId = m_imageContexts[index]->getPath();
+//        }
+//        else {
+//            if ( index == -1 ){
+//                index = m_imageContexts.size();
+//            }
+//            viewId = _makeImageContext(index);
+//        }
+//    }
 //    else if ( plugin == Snapshots::CLASS_NAME ){
 //        viewId = _makeSnapshots();
 //    }
@@ -390,10 +390,10 @@ int ViewManager::getColormapCount() const {
 //    return histogramCount;
 //}
 
-int ViewManager::getImageContextCount() const {
-    int contextCount = m_imageContexts.size();
-    return contextCount;
-}
+//int ViewManager::getImageContextCount() const {
+//    int contextCount = m_imageContexts.size();
+//    return contextCount;
+//}
 
 //int ViewManager::getImageZoomCount() const {
 //    int zoomCount = m_imageZooms.size();
@@ -746,14 +746,14 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
 //                m_imageZooms.insert( newIndex, imageZoom );
 //            }
 //        }
-        else if ( plugin == ImageContext::CLASS_NAME ){
-            int contextCount = m_imageContexts.size();
-            if ( oldIndex < contextCount && newIndex < contextCount ){
-                ImageContext* context = m_imageContexts[oldIndex];
-                m_imageContexts.removeAt(oldIndex );
-                m_imageContexts.insert( newIndex, context );
-            }
-        }
+//        else if ( plugin == ImageContext::CLASS_NAME ){
+//            int contextCount = m_imageContexts.size();
+//            if ( oldIndex < contextCount && newIndex < contextCount ){
+//                ImageContext* context = m_imageContexts[oldIndex];
+//                m_imageContexts.removeAt(oldIndex );
+//                m_imageContexts.insert( newIndex, context );
+//            }
+//        }
 //        else if ( plugin == Profiler::CLASS_NAME ){
 //           int profileCount = m_profilers.size();
 //           if ( oldIndex < profileCount && newIndex < profileCount ){
@@ -849,17 +849,17 @@ void ViewManager::_makeDataLoader(){
 //    return m_imageZooms[index]->getPath();
 //}
 
-QString ViewManager::_makeImageContext( int index ){
-    int currentCount = m_imageContexts.size();
-    CARTA_ASSERT( 0 <= index && index <= currentCount );
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    ImageContext* contextObj = objMan->createObject<ImageContext>();
-    m_imageContexts.insert( index, contextObj );
-    for ( int i = index; i < currentCount + 1; i++ ){
-        m_imageContexts[i]->setIndex( i );
-    }
-    return m_imageContexts[index]->getPath();
-}
+//QString ViewManager::_makeImageContext( int index ){
+//    int currentCount = m_imageContexts.size();
+//    CARTA_ASSERT( 0 <= index && index <= currentCount );
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    ImageContext* contextObj = objMan->createObject<ImageContext>();
+//    m_imageContexts.insert( index, contextObj );
+//    for ( int i = index; i < currentCount + 1; i++ ){
+//        m_imageContexts[i]->setIndex( i );
+//    }
+//    return m_imageContexts[index]->getPath();
+//}
 
 //QString ViewManager::_makeLayout(){
 //    if ( !m_layout ){
@@ -1427,7 +1427,7 @@ ViewManager::~ViewManager(){
     _clearColormaps( 0, m_colormaps.size() );
 //    _clearHistograms( 0, m_histograms.size() );
 //    _clearImageZooms( 0, m_imageZooms.size() );
-    _clearImageContexts( 0, m_imageContexts.size());
+//    _clearImageContexts( 0, m_imageContexts.size());
     _clearStatistics( 0, m_statistics.size() );
 //    _clearProfilers( 0, m_profilers.size() );
     _clearControllers( 0, m_controllers.size() );
