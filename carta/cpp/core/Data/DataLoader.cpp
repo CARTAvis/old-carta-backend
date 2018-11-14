@@ -267,6 +267,8 @@ DataLoader::PBMSharedPtr DataLoader::getFileInfo(CARTA::FileInfoRequest fileInfo
     fileInfo->set_name(fileInfoRequest.file());
     if (image->getType() == "FITSImage") {
         fileInfo->set_type(CARTA::FileType::FITS);
+    } else if (image->getType() == "HDF5Image") {
+        fileInfo->set_type(CARTA::FileType::HDF5);
     } else {
         fileInfo->set_type(CARTA::FileType::CASA);
     }
