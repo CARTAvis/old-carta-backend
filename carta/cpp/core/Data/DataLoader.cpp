@@ -203,41 +203,31 @@ DataLoader::PBMSharedPtr DataLoader::getFileList( CARTA::FileListRequest fileLis
         }
 
         QString fileName = dit.fileInfo().fileName();
-        if (dit.fileInfo().isDir()) { // handle image, miriad, and sub directories
-            QString rootDirPath = rootDir.absolutePath();
-            QString subDirPath = rootDirPath.append("/").append(fileName);
-
-            if (_checkSubDir(subDirPath) == "image") {
+        QString fullpath = lastPart + QDir::separator() + fileName;
+        casacore::File ccfile(fullpath.toStdString());
+        casacore::ImageOpener::ImageTypes imType = casacore::ImageOpener::imageType(fullpath.toStdString());
+        if (ccfile.isDirectory()) {
+            if ((imType == casacore::ImageOpener::AIPSPP) || (imType == casacore::ImageOpener::MIRIAD)) {
+                QString rootDirPath = rootDir.absolutePath();
+                QString subDirPath = rootDirPath.append("/").append(fileName);
                 uint64_t fileSize = _subDirSize(subDirPath);
+                
                 CARTA::FileInfo *fileInfo = fileListResponse->add_files();
-                fileInfo->set_type(CARTA::FileType::CASA);
+                fileInfo->set_type(_convertFileType(imType));
                 fileInfo->set_name(fileName.toStdString());
                 fileInfo->set_size(fileSize);
                 fileInfo->add_hdu_list();
-            }
-            else if (_checkSubDir(subDirPath) == "miriad") {
-                uint64_t fileSize = _subDirSize(subDirPath);
-                CARTA::FileInfo *fileInfo = fileListResponse->add_files();
-                fileInfo->set_type(CARTA::FileType::MIRIAD);
-                fileInfo->set_name(fileName.toStdString());
-                fileInfo->set_size(fileSize);
-                fileInfo->add_hdu_list();
-            }
-            else {
+            } else if (imType == casacore::ImageOpener::UNKNOWN) {
                 fileListResponse->add_subdirectories(fileName.toStdString());
             }
-        } else if (dit.fileInfo().isFile()) {
-            QString fullpath = lastPart + QDir::separator() + fileName;
-            casacore::File ccfile(fullpath.toStdString());
-            casacore::ImageOpener::ImageTypes imType = casacore::ImageOpener::imageType(fullpath.toStdString());
-            if (ccfile.isRegular() && ((imType == casacore::ImageOpener::FITS) || (imType == casacore::ImageOpener::HDF5))) {
-                CARTA::FileInfo *fileInfo = fileListResponse->add_files();
-                fileInfo->set_name(fileName.toStdString());
-                fileInfo->set_type(_convertFileType(imType));
-                fileInfo->set_size(ccfile.size());
-                // TODO: support multiple hdu
-                fileInfo->add_hdu_list();
-            }
+        } else if (ccfile.isRegular() &&
+            ((imType == casacore::ImageOpener::FITS) || (imType == casacore::ImageOpener::HDF5))) {
+            CARTA::FileInfo *fileInfo = fileListResponse->add_files();
+            fileInfo->set_name(fileName.toStdString());
+            fileInfo->set_type(_convertFileType(imType));
+            fileInfo->set_size(ccfile.size());
+            // TODO: support multiple hdu
+            fileInfo->add_hdu_list();
         }
     }
 
