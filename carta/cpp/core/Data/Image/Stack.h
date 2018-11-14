@@ -17,7 +17,7 @@ namespace Carta {
 namespace Data {
 
 class DrawStackSynchronizer;
-class DrawImageViewsSynchronizer;
+//class DrawImageViewsSynchronizer;
 class Region;
 class Selection;
 class SaveService;
@@ -219,7 +219,7 @@ private:
     static bool m_registered;
 
     std::shared_ptr<DrawStackSynchronizer> m_stackDraw;
-    std::unique_ptr<DrawImageViewsSynchronizer> m_imageDraws;
+//    std::unique_ptr<DrawImageViewsSynchronizer> m_imageDraws;
 
     Selection* m_selectImage;
     std::vector<Selection*> m_selects;

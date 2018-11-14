@@ -6,7 +6,7 @@
 #include "Data/Util.h"
 #include "Data/Image/LayerCompositionModes.h"
 #include "CartaLib/IRemoteVGView.h"
-#include "Data/Image/Draw/DrawGroupSynchronizer.h"
+//#include "Data/Image/Draw/DrawGroupSynchronizer.h"
 #include "State/UtilState.h"
 
 #include <QDebug>
@@ -45,17 +45,16 @@ LayerGroup::LayerGroup( const QString& path, const QString& id ):
 }
 
 LayerGroup::LayerGroup(const QString& className, const QString& path, const QString& id) :
-    Layer( className, path, id),
-    m_drawSync( nullptr ){
+    Layer( className, path, id) {
 
     _initializeState();
 
     // create the synchronizer
-    m_drawSync.reset( new DrawGroupSynchronizer( ) );
+//    m_drawSync.reset( new DrawGroupSynchronizer( ) );
 
     // connect its done() slot to our renderingSlot()
-    connect( m_drawSync.get(), SIGNAL(done(QImage,Carta::Lib::VectorGraphics::VGList)),
-                            this, SLOT(_renderingDone(QImage,Carta::Lib::VectorGraphics::VGList)));
+//    connect( m_drawSync.get(), SIGNAL(done(QImage,Carta::Lib::VectorGraphics::VGList)),
+//                            this, SLOT(_renderingDone(QImage,Carta::Lib::VectorGraphics::VGList)));
 }
 
 void LayerGroup::_addContourSet( std::shared_ptr<DataContours> contourSet){
@@ -968,14 +967,14 @@ void LayerGroup::_renderStart( ){
         		loadables.append( m_children[i] );
         	}
         }
-        m_drawSync->setLayers( loadables );
-        m_drawSync->setCombineMode( _getCompositionMode() );
+//        m_drawSync->setLayers( loadables );
+//        m_drawSync->setCombineMode( _getCompositionMode() );
         int topIndex = -1;
         if ( request->isStackTop()){
             topIndex = _getIndexCurrent();
         }
         request->setTopIndex( topIndex );
-        m_drawSync->render( request );
+//        m_drawSync->render( request );
     }
 }
 
@@ -1281,9 +1280,9 @@ void LayerGroup::_setMaskAlphaDefault(){
 }
 
 void LayerGroup::_setViewSize( const QSize& size ){
-	if ( m_drawSync ){
-		m_drawSync->viewResize( size );
-	}
+//	if ( m_drawSync ){
+//		m_drawSync->viewResize( size );
+//	}
 }
 
 bool LayerGroup::_setVisible( const QString& id, bool visible ){

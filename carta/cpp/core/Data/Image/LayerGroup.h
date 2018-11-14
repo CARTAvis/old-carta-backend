@@ -13,7 +13,7 @@ namespace Carta {
 
 namespace Data {
 
-class DrawGroupSynchronizer;
+//class DrawGroupSynchronizer;
 class LayerData;
 
 class LayerGroup : public Layer {
@@ -631,7 +631,7 @@ private:
     class Factory;
     static bool m_registered;
 
-    std::unique_ptr<DrawGroupSynchronizer> m_drawSync;
+//    std::unique_ptr<DrawGroupSynchronizer> m_drawSync;
     LayerGroup(const LayerGroup& other);
     LayerGroup& operator=(const LayerGroup& other);
 };
