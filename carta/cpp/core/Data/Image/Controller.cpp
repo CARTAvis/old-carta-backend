@@ -1842,13 +1842,13 @@ QString Controller::setTabIndex( int index ){
     return result;
 }
 
-void Controller::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
-    m_stack->_setViewDrawContext( drawContext );
-}
+//void Controller::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
+//    m_stack->_setViewDrawContext( drawContext );
+//}
 
-void Controller::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
-    m_stack->_setViewDrawZoom( drawZoom );
-}
+//void Controller::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
+//    m_stack->_setViewDrawZoom( drawZoom );
+//}
 
 // used by Python Client
 void Controller::setZoomLevel( double zoomFactor ){

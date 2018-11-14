@@ -1,7 +1,7 @@
 #include "LayerGroup.h"
 #include "Data/Image/DataSource.h"
 #include "Data/Image/LayerCompositionModes.h"
-#include "Data/Image/Draw/DrawStackSynchronizer.h"
+//#include "Data/Image/Draw/DrawStackSynchronizer.h"
 //#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
 #include "Data/Image/Grid/AxisMapper.h"
 #include "Data/Image/Grid/DataGrid.h"
@@ -50,7 +50,7 @@ bool Stack::m_registered =
 
 Stack::Stack(const QString& path, const QString& id) :
     LayerGroup( CLASS_NAME, path, id),
-    m_stackDraw(nullptr),
+//    m_stackDraw(nullptr),
 //    m_imageDraws( new DrawImageViewsSynchronizer() ),
     m_selectImage(nullptr){
     _initializeState();
@@ -853,20 +853,20 @@ bool Stack::_setSelected( QStringList& names){
 }
 
 void Stack::_setViewName( const QString& viewName ){
-    m_stackDraw.reset( new DrawStackSynchronizer(makeRemoteView( viewName)));
+//    m_stackDraw.reset( new DrawStackSynchronizer(makeRemoteView( viewName)));
 //    m_imageDraws->setViewDraw( m_stackDraw );
-    connect( m_stackDraw.get(), SIGNAL(viewResize()), this, SLOT(_viewResize()));
-    connect( m_stackDraw.get(), SIGNAL(inputEvent(InputEvent)),
-    		this, SIGNAL(inputEvent(InputEvent)));
+//    connect( m_stackDraw.get(), SIGNAL(viewResize()), this, SLOT(_viewResize()));
+//    connect( m_stackDraw.get(), SIGNAL(inputEvent(InputEvent)),
+//    		this, SIGNAL(inputEvent(InputEvent)));
 }
 
-void Stack::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
+//void Stack::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
 //    m_imageDraws->setViewDrawContext( drawContext );
-}
+//}
 
-void Stack::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
+//void Stack::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
 //    m_imageDraws->setViewDrawZoom( drawZoom );
-}
+//}
 
 bool Stack::_setVisible( const QString& id, bool visible ){
     bool layerFound = LayerGroup::_setVisible( id, visible );
