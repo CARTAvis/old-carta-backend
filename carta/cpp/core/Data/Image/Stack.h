@@ -20,7 +20,7 @@ namespace Data {
 //class DrawImageViewsSynchronizer;
 class Region;
 class Selection;
-class SaveService;
+//class SaveService;
 
 typedef Carta::Lib::InputEvents::JsonEvent InputEvent;
 
@@ -225,7 +225,7 @@ private:
     std::vector<Selection*> m_selects;
 
     /// Saves images
-    SaveService *m_saveService;
+//    SaveService *m_saveService;
 
     // save the current file id on the frontend image viewer
     int m_fileId = -1;

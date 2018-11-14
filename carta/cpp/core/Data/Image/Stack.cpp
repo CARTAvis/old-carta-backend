@@ -5,7 +5,7 @@
 //#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
 #include "Data/Image/Grid/AxisMapper.h"
 #include "Data/Image/Grid/DataGrid.h"
-#include "Data/Image/Save/SaveService.h"
+//#include "Data/Image/Save/SaveService.h"
 //#include "Data/Preferences/PreferencesSave.h"
 #include "Data/Region/Region.h"
 #include "Data/Region/RegionFactory.h"
@@ -659,8 +659,8 @@ QString Stack::_saveImage( const QString& saveName ){
 }
 
 void Stack::_saveImageResultCB( bool result ){
-    emit saveImageResult( result );
-    m_saveService->deleteLater();
+//    emit saveImageResult( result );
+//    m_saveService->deleteLater();
 }
 
 

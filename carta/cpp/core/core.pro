@@ -63,9 +63,6 @@ HEADERS += \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
     Data/Image/Render/RenderResponse.h \
-    Data/Image/Save/SaveService.h \
-    Data/Image/Save/SaveView.h \
-    Data/Image/Save/SaveViewLayered.h \
     Data/Selection.h \
     Data/LinkableImpl.h \
     Data/Plotter/Plot2DManager.h \
@@ -149,9 +146,6 @@ SOURCES += \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
     Data/Image/Render/RenderResponse.cpp \
-    Data/Image/Save/SaveService.cpp \
-    Data/Image/Save/SaveView.cpp \
-    Data/Image/Save/SaveViewLayered.cpp \
     Data/DataLoader.cpp \
     Data/Error/ErrorReport.cpp \
     Data/Error/ErrorManager.cpp \
