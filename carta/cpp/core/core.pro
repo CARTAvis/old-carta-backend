@@ -65,9 +65,6 @@ HEADERS += \
     Data/Image/Render/RenderResponse.h \
     Data/Selection.h \
     Data/LinkableImpl.h \
-    Data/Plotter/Plot2DManager.h \
-    Data/Plotter/LineStyles.h \
-    Data/Plotter/LegendLocations.h \
     Data/Region/Region.h \
     Data/Region/RegionControls.h \
     Data/Region/RegionPolygon.h \
@@ -151,9 +148,6 @@ SOURCES += \
     Data/Error/ErrorManager.cpp \
     Data/LinkableImpl.cpp \
     Data/Selection.cpp \
-    Data/Plotter/Plot2DManager.cpp \
-    Data/Plotter/LegendLocations.cpp \
-    Data/Plotter/LineStyles.cpp \
     Data/Region/Region.cpp \
     Data/Region/RegionControls.cpp \
     Data/Region/RegionPoint.cpp \

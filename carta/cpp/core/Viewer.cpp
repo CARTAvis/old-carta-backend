@@ -100,13 +100,13 @@ Viewer::start()
         Carta::Data::ViewManager* vm = objectManager->createObject<Carta::Data::ViewManager> ();
         m_viewManager.reset( vm );
 	}
-	else {
-	    m_viewManager->reload();
-	}
+//	else {
+//	    m_viewManager->reload();
+//	}
 
-    if ( m_devView ){       
-       m_viewManager->setDeveloperView();
-    }
+//    if ( m_devView ){
+//       m_viewManager->setDeveloperView();
+//    }
 
     // ask plugins to load the image
 //    qDebug() << "======== trying to load image <- disable========";
