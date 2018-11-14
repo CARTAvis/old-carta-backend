@@ -42,7 +42,7 @@ class Stack;
 class DataSource;
 class DisplayControls;
 //class DrawStackSynchronizer;
-class GridControls;
+//class GridControls;
 class ContourControls;
 class Settings;
 class Region;

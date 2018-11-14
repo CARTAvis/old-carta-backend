@@ -56,7 +56,7 @@ HEADERS += \
     Data/Image/Grid/AxisMapper.h \
     Data/Image/Grid/DataGrid.h \
     Data/Image/Grid/Fonts.h \
-    Data/Image/Grid/GridControls.h \
+#    Data/Image/Grid/GridControls.h \
     Data/Image/Grid/Themes.h \
     Data/Image/Grid/LabelFormats.h \
     Data/Image/IPercentIntensityMap.h \
@@ -143,7 +143,7 @@ SOURCES += \
     Data/Image/Grid/AxisMapper.cpp \
     Data/Image/Grid/DataGrid.cpp \
     Data/Image/Grid/Fonts.cpp \
-    Data/Image/Grid/GridControls.cpp \
+#    Data/Image/Grid/GridControls.cpp \
     Data/Image/Grid/LabelFormats.cpp \
     Data/Image/Grid/Themes.cpp \
     Data/Image/LayerCompositionModes.cpp \

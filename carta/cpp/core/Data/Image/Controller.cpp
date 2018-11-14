@@ -8,7 +8,7 @@
 #include "Data/Image/DataSource.h"
 #include "Data/Image/Grid/AxisMapper.h"
 #include "Data/Image/Grid/DataGrid.h"
-#include "Data/Image/Grid/GridControls.h"
+//#include "Data/Image/Grid/GridControls.h"
 #include "Data/Image/Contour/ContourControls.h"
 #include "Data/Image/Contour/DataContours.h"
 #include "Data/Region/RegionControls.h"
