@@ -1544,10 +1544,10 @@ void Controller::resetStateData( const QString& state ){
 //    m_stack->_resetPan( panZoomAll );
 //}
 
-void Controller::resetZoom(){
-    bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );
-    m_stack->_resetZoom( panZoomAll );
-}
+//void Controller::resetZoom(){
+//    bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );
+//    m_stack->_resetZoom( panZoomAll );
+//}
 
 
 QString Controller::saveImage( const QString& fileName ){

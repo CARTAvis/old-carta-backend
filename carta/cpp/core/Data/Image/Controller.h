@@ -494,7 +494,7 @@ public:
     /**
      * Reset the zoom to its original value.
      */
-    void resetZoom();
+//    void resetZoom();
 
     /**
      * Save a copy of the full image in the current image view using the current scale.

@@ -495,7 +495,7 @@ protected:
     /**
      * Reset the zoom to the original value.
      */
-    virtual void _resetZoom() Q_DECL_OVERRIDE;
+//    virtual void _resetZoom() Q_DECL_OVERRIDE;
 
 
     virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE; 

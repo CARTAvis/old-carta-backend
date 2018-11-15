@@ -1039,9 +1039,9 @@ void LayerData::_resetState( const Carta::State::StateInterface& restoreState ){
 }
 
 
-void LayerData::_resetZoom( ){
-    _setZoom( DataSource::ZOOM_DEFAULT );
-}
+//void LayerData::_resetZoom( ){
+//    _setZoom( DataSource::ZOOM_DEFAULT );
+//}
 
 
 //void LayerData::_resetPan( ){

@@ -591,7 +591,7 @@ protected:
     /**
      * Reset the zoom to the original value.
      */
-    virtual void _resetZoom( ) = 0;
+//    virtual void _resetZoom( ) = 0;
 
     virtual QString _setAxis( const QString axis, const QString name ) = 0;
 

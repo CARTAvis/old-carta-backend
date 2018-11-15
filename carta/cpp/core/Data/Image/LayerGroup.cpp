@@ -1021,12 +1021,12 @@ void LayerGroup::_resetState( const Carta::State::StateInterface& restoreState )
 }
 
 
-void LayerGroup::_resetZoom(){
-    int dataCount = m_children.size();
-    for ( int i = 0; i < dataCount; i++ ){
-        m_children[i]->_resetZoom();
-    }
-}
+//void LayerGroup::_resetZoom(){
+//    int dataCount = m_children.size();
+//    for ( int i = 0; i < dataCount; i++ ){
+//        m_children[i]->_resetZoom();
+//    }
+//}
 
 
 //void LayerGroup::_resetPan( ){

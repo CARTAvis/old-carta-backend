@@ -38,7 +38,7 @@ public:
     using LayerGroup::_getCursorText;
     using LayerGroup::_getStateString;
 //    using LayerGroup::_resetPan;
-    using LayerGroup::_resetZoom;
+//    using LayerGroup::_resetZoom;
     using LayerGroup::_setMaskAlpha;
     using LayerGroup::_setMaskColor;
 //    using LayerGroup::_setPan;
@@ -167,7 +167,7 @@ private:
     /**
      * Reset the zoom to the original value.
      */
-    void _resetZoom( bool panZoomAll );
+//    void _resetZoom( bool panZoomAll );
     void _saveChildren( Carta::State::StateInterface& state, bool truncate ) const;
 
     /**
