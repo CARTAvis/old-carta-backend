@@ -135,52 +135,52 @@ void LayerGroup::_addLayer( std::shared_ptr<Layer> layer, int targetIndex ){
     }
     if ( tIndex >= 0 && tIndex < m_children.size() ){
         _setColorSupport( m_children[ tIndex ].get());
-        _assignColor( tIndex );
+//        _assignColor( tIndex );
     }
 }
 
-void LayerGroup::_assignColor( int index ){
-
-    QString compMode = _getCompositionMode();
-    bool colorSupport = m_compositionModes->isColorSupport( compMode );
-    if ( colorSupport ){
-        int childrenCount = m_children.size();
-        if ( index >= 0 && index < childrenCount ){
-            bool redUsed = false;
-            bool blueUsed = false;
-            bool greenUsed = false;
-            for ( int i = 0; i < index; i++ ){
-                QColor color = m_children[i]->_getMaskColor();
-                int redAmount = color.red();
-                int greenAmount = color.green();
-                int blueAmount = color.blue();
-                if ( redAmount == 255 && greenAmount == 0 && blueAmount == 0){
-                    redUsed = true;
-                }
-                else if ( redAmount == 0 && greenAmount == 255 && blueAmount == 0 ){
-                    greenUsed = true;
-                }
-                else if ( redAmount == 0 && greenAmount == 0 && blueAmount == 255 ){
-                    blueUsed = true;
-                }
-
-            }
-            QString id = m_children[index]->_getLayerId();
-            if ( !redUsed ){
-                m_children[index]->_setMaskColor( id, 255, 0, 0 );
-            }
-            else if ( !greenUsed ){
-                m_children[index]->_setMaskColor( id, 0, 255, 0 );
-            }
-            else if ( !blueUsed ){
-                m_children[index]->_setMaskColor( id, 0, 0, 255 );
-            }
-        }
-    }
-    else {
-        m_children[index]->_setMaskColorDefault();
-    }
-}
+//void LayerGroup::_assignColor( int index ){
+//
+//    QString compMode = _getCompositionMode();
+//    bool colorSupport = m_compositionModes->isColorSupport( compMode );
+//    if ( colorSupport ){
+//        int childrenCount = m_children.size();
+//        if ( index >= 0 && index < childrenCount ){
+//            bool redUsed = false;
+//            bool blueUsed = false;
+//            bool greenUsed = false;
+//            for ( int i = 0; i < index; i++ ){
+//                QColor color = m_children[i]->_getMaskColor();
+//                int redAmount = color.red();
+//                int greenAmount = color.green();
+//                int blueAmount = color.blue();
+//                if ( redAmount == 255 && greenAmount == 0 && blueAmount == 0){
+//                    redUsed = true;
+//                }
+//                else if ( redAmount == 0 && greenAmount == 255 && blueAmount == 0 ){
+//                    greenUsed = true;
+//                }
+//                else if ( redAmount == 0 && greenAmount == 0 && blueAmount == 255 ){
+//                    blueUsed = true;
+//                }
+//
+//            }
+//            QString id = m_children[index]->_getLayerId();
+//            if ( !redUsed ){
+//                m_children[index]->_setMaskColor( id, 255, 0, 0 );
+//            }
+//            else if ( !greenUsed ){
+//                m_children[index]->_setMaskColor( id, 0, 255, 0 );
+//            }
+//            else if ( !blueUsed ){
+//                m_children[index]->_setMaskColor( id, 0, 0, 255 );
+//            }
+//        }
+//    }
+//    else {
+//        m_children[index]->_setMaskColorDefault();
+//    }
+//}
 
 
 void LayerGroup::_clearColorMap(){
@@ -1196,19 +1196,19 @@ bool LayerGroup::_setLayersGrouped( bool grouped, const QSize& clientSize  ){
 //    return changed;
 //}
 
-bool LayerGroup::_setMaskColor( const QString& id, int redAmount,
-        int greenAmount, int blueAmount ){
-    bool changed = false;
+//bool LayerGroup::_setMaskColor( const QString& id, int redAmount,
+//        int greenAmount, int blueAmount ){
+//    bool changed = false;
     //Groups can't have a mask color, so we just ask the children to set it.
-    for ( std::shared_ptr<Layer> layer : m_children ){
-        bool layerChanged = layer->_setMaskColor( id, redAmount, greenAmount, blueAmount);
-        if ( layerChanged ){
-            changed = true;
-            break;
-        }
-    }
-    return changed;
-}
+//    for ( std::shared_ptr<Layer> layer : m_children ){
+//        bool layerChanged = layer->_setMaskColor( id, redAmount, greenAmount, blueAmount);
+//        if ( layerChanged ){
+//            changed = true;
+//            break;
+//        }
+//    }
+//    return changed;
+//}
 
 bool LayerGroup::_setLayerName( const QString& id, const QString& name ){
     bool nameSet = Layer::_setLayerName( id, name );
@@ -1230,12 +1230,12 @@ bool LayerGroup::_setLayerName( const QString& id, const QString& name ){
 //    }
 //}
 
-void LayerGroup::_setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList){
+//void LayerGroup::_setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList){
 	//Only the top layer needs them, but we store in all layers.
-	for( std::shared_ptr<Layer> layer : m_children ){
-		layer->_setRegionGraphics( regionVGList );
-	}
-}
+//	for( std::shared_ptr<Layer> layer : m_children ){
+//		layer->_setRegionGraphics( regionVGList );
+//	}
+//}
 
 bool LayerGroup::_setSelected( QStringList& names){
     bool stateChanged = Layer::_setSelected( names );

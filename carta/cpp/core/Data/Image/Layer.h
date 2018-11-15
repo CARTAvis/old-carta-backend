@@ -645,8 +645,8 @@ protected:
      *      mask color; an empty string otherwise.
      * @return - true if the mask color was changed; false otherwise.
      */
-    virtual bool _setMaskColor( const QString& id, int redAmount,
-            int greenAmount, int blueAmount ) = 0;
+//    virtual bool _setMaskColor( const QString& id, int redAmount,
+//            int greenAmount, int blueAmount ) = 0;
 
     /**
      * Set the mask color back to its default value.
@@ -679,7 +679,7 @@ protected:
      * Set a list of graphics for drawing the current regions.
      * @param regionVGList - graphics for drawing the current regions.
      */
-    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) = 0;
+//    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) = 0;
 
     /**
      * Set this data source selected.

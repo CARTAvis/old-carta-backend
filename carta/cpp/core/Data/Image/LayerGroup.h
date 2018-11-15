@@ -528,14 +528,14 @@ protected:
      */
     virtual bool _setLayersGrouped( bool grouped, const QSize& size ) Q_DECL_OVERRIDE;
 
-    virtual bool _setMaskColor( const QString& id, int redAmount,
-                int greenAmount, int blueAmount ) Q_DECL_OVERRIDE;
+//    virtual bool _setMaskColor( const QString& id, int redAmount,
+//                int greenAmount, int blueAmount ) Q_DECL_OVERRIDE;
 
     /**
      * Set a list of graphics for drawing the current regions.
      * @param regionVGList - graphics for drawing the current regions.
      */
-    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) Q_DECL_OVERRIDE;
+//    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) Q_DECL_OVERRIDE;
 
     /**
      * Set this data source selected.
@@ -609,7 +609,7 @@ private slots:
 
 private:
 
-    void _assignColor( int index );
+//    void _assignColor( int index );
     void _clearData();
 
 

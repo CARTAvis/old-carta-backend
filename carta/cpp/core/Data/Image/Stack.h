@@ -40,7 +40,7 @@ public:
 //    using LayerGroup::_resetPan;
 //    using LayerGroup::_resetZoom;
 //    using LayerGroup::_setMaskAlpha;
-    using LayerGroup::_setMaskColor;
+//    using LayerGroup::_setMaskColor;
 //    using LayerGroup::_setPan;
 
     /**
@@ -187,8 +187,8 @@ private:
 
 //    void _setMaskAlpha( const QString& id, int alphaAmount, QString& result );
 
-    void _setMaskColor( const QString& id, int redAmount,
-                       int greenAmount, int blueAmount, QStringList& result );
+//    void _setMaskColor( const QString& id, int redAmount,
+//                       int greenAmount, int blueAmount, QStringList& result );
 //    void _setPan( double imgX, double imgY, bool all );
 
     void _setViewName( const QString& viewName );

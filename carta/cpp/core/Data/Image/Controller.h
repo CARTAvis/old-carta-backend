@@ -585,7 +585,7 @@ public:
      */
     //Note: Mask color will not take affect unless a composition mode that supports
     //a color filter has been set.
-    QStringList setMaskColor( const QString& id, int redAmount, int greenAmount, int blueAmount );
+//    QStringList setMaskColor( const QString& id, int redAmount, int greenAmount, int blueAmount );
 
     /**
      * Set the transparency of the layer.

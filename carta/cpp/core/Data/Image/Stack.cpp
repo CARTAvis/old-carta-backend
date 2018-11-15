@@ -795,25 +795,25 @@ bool Stack::_setLayerName( const QString& id, const QString& name ){
 //}
 
 
-void Stack::_setMaskColor( const QString& id, int redAmount,
-        int greenAmount, int blueAmount, QStringList& result ){
-    if ( 0 > redAmount || redAmount > 255 ){
-        result.append( "Invalid red mask color [0,255]: "+QString::number( redAmount ) );
-    }
-    if ( 0 > greenAmount || greenAmount > 255 ){
-        result.append( "Invalid green mask color [0,255]: "+QString::number( greenAmount ) );
-    }
-    if ( 0 > blueAmount || blueAmount > 255 ){
-        result.append( "Invalid blue mask color [0,255]: "+QString::number( blueAmount ) );
-    }
-    if ( result.length() == 0 ){
-        bool changed = LayerGroup::_setMaskColor( id, redAmount, greenAmount, blueAmount);
-        if ( changed ){
-            _saveState();
-            emit viewLoad();
-        }
-    }
-}
+//void Stack::_setMaskColor( const QString& id, int redAmount,
+//        int greenAmount, int blueAmount, QStringList& result ){
+//    if ( 0 > redAmount || redAmount > 255 ){
+//        result.append( "Invalid red mask color [0,255]: "+QString::number( redAmount ) );
+//    }
+//    if ( 0 > greenAmount || greenAmount > 255 ){
+//        result.append( "Invalid green mask color [0,255]: "+QString::number( greenAmount ) );
+//    }
+//    if ( 0 > blueAmount || blueAmount > 255 ){
+//        result.append( "Invalid blue mask color [0,255]: "+QString::number( blueAmount ) );
+//    }
+//    if ( result.length() == 0 ){
+//        bool changed = LayerGroup::_setMaskColor( id, redAmount, greenAmount, blueAmount);
+//        if ( changed ){
+//            _saveState();
+//            emit viewLoad();
+//        }
+//    }
+//}
 
 //void Stack::_setMaskAlpha( const QString& id, int alphaAmount, QString& result ){
 //    if ( 0 > alphaAmount || alphaAmount > 255 ){

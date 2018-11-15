@@ -1773,12 +1773,12 @@ QString Controller::_setLayersSelected( QStringList names ){
     return result;
 }
 
-QStringList Controller::setMaskColor( const QString& id, int redAmount, int greenAmount, int blueAmount ){
-    QStringList result;
-    m_stack->_setMaskColor( id, redAmount, greenAmount, blueAmount, result );
-
-    return result;
-}
+//QStringList Controller::setMaskColor( const QString& id, int redAmount, int greenAmount, int blueAmount ){
+//    QStringList result;
+//    m_stack->_setMaskColor( id, redAmount, greenAmount, blueAmount, result );
+//
+//    return result;
+//}
 
 //QString Controller::setMaskAlpha( const QString& id, int alphaAmount ){
 //    QString result;

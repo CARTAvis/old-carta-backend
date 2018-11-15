@@ -1128,29 +1128,29 @@ bool LayerData::_setLayersGrouped( bool /*grouped*/, const QSize& /*viewSize*/  
 }
 
 
-bool LayerData::_setMaskColor( const QString& id, int redAmount,
-        int greenAmount, int blueAmount){
-    bool changed = false;
-    if ( id == _getLayerId() ){
-        QString redKey = Carta::State::UtilState::getLookup( MASK, Util::RED );
-        int oldRedAmount = m_state.getValue<int>( redKey );
-        QString greenKey = Carta::State::UtilState::getLookup( MASK, Util::GREEN );
-        int oldGreenAmount = m_state.getValue<int>( greenKey );
-        QString blueKey = Carta::State::UtilState::getLookup( MASK, Util::BLUE );
-        int oldBlueAmount = m_state.getValue<int>( blueKey );
-        if ( redAmount != oldRedAmount || greenAmount != oldGreenAmount ||
-                blueAmount != oldBlueAmount ){
-            changed = true;
-            m_state.setValue<int>( redKey, redAmount );
-            m_state.setValue<int>( greenKey, greenAmount );
-            m_state.setValue<int>( blueKey, blueAmount );
-        }
-    }
-    return changed;
-}
+//bool LayerData::_setMaskColor( const QString& id, int redAmount,
+//        int greenAmount, int blueAmount){
+//    bool changed = false;
+//    if ( id == _getLayerId() ){
+//        QString redKey = Carta::State::UtilState::getLookup( MASK, Util::RED );
+//        int oldRedAmount = m_state.getValue<int>( redKey );
+//        QString greenKey = Carta::State::UtilState::getLookup( MASK, Util::GREEN );
+//        int oldGreenAmount = m_state.getValue<int>( greenKey );
+//        QString blueKey = Carta::State::UtilState::getLookup( MASK, Util::BLUE );
+//        int oldBlueAmount = m_state.getValue<int>( blueKey );
+//        if ( redAmount != oldRedAmount || greenAmount != oldGreenAmount ||
+//                blueAmount != oldBlueAmount ){
+//            changed = true;
+//            m_state.setValue<int>( redKey, redAmount );
+//            m_state.setValue<int>( greenKey, greenAmount );
+//            m_state.setValue<int>( blueKey, blueAmount );
+//        }
+//    }
+//    return changed;
+//}
 
 void LayerData::_setMaskColorDefault(){
-    _setMaskColor( _getLayerId(), 255,255,255);
+//    _setMaskColor( _getLayerId(), 255,255,255);
 }
 
 
@@ -1180,9 +1180,9 @@ void LayerData::_setMaskAlphaDefault(){
 //    m_state.setValue<double>( panKeyY, imgY );
 //}
 
-void LayerData::_setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ){
-	m_regionGraphics = regionVGList;
-}
+//void LayerData::_setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ){
+//	m_regionGraphics = regionVGList;
+//}
 
 void LayerData::_setSupportAlpha( bool supportAlpha ){
     QString layerAlphaKey = Carta::State::UtilState::getLookup( MASK, LAYER_ALPHA );
