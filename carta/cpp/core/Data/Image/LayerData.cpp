@@ -1154,22 +1154,22 @@ void LayerData::_setMaskColorDefault(){
 }
 
 
-bool LayerData::_setMaskAlpha( const QString& id, int alphaAmount ){
-    bool changed = false;
-    if ( id == _getLayerId() ){
-        QString lookup = Carta::State::UtilState::getLookup( MASK, Util::ALPHA );
-        int oldAlpha = m_state.getValue<int>( lookup );
-        if ( oldAlpha != alphaAmount ){
-            changed = true;
-            m_state.setValue<int>( lookup, alphaAmount );
-        }
-    }
-    return changed;
-}
+//bool LayerData::_setMaskAlpha( const QString& id, int alphaAmount ){
+//    bool changed = false;
+//    if ( id == _getLayerId() ){
+//        QString lookup = Carta::State::UtilState::getLookup( MASK, Util::ALPHA );
+//        int oldAlpha = m_state.getValue<int>( lookup );
+//        if ( oldAlpha != alphaAmount ){
+//            changed = true;
+//            m_state.setValue<int>( lookup, alphaAmount );
+//        }
+//    }
+//    return changed;
+//}
 
 
 void LayerData::_setMaskAlphaDefault(){
-    _setMaskAlpha( _getLayerId(), 255);
+//    _setMaskAlpha( _getLayerId(), 255);
 }
 
 

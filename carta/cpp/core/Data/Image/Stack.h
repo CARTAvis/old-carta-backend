@@ -39,7 +39,7 @@ public:
     using LayerGroup::_getStateString;
 //    using LayerGroup::_resetPan;
 //    using LayerGroup::_resetZoom;
-    using LayerGroup::_setMaskAlpha;
+//    using LayerGroup::_setMaskAlpha;
     using LayerGroup::_setMaskColor;
 //    using LayerGroup::_setPan;
 
@@ -185,7 +185,7 @@ private:
     void _setFrameAxis(int value, Carta::Lib::AxisInfo::KnownType axisType);
     QString _setFrameImage( int val );
 
-    void _setMaskAlpha( const QString& id, int alphaAmount, QString& result );
+//    void _setMaskAlpha( const QString& id, int alphaAmount, QString& result );
 
     void _setMaskColor( const QString& id, int redAmount,
                        int greenAmount, int blueAmount, QStringList& result );

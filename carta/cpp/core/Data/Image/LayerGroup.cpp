@@ -1183,18 +1183,18 @@ bool LayerGroup::_setLayersGrouped( bool grouped, const QSize& clientSize  ){
     return operationPerformed;
 }
 
-bool LayerGroup::_setMaskAlpha( const QString& id, int alphaAmount){
-    bool changed = false;
-    //Groups can't have a mask color, so we just ask the children to set it.
-    for ( std::shared_ptr<Layer> layer : m_children ){
-        bool layerChanged = layer->_setMaskAlpha( id, alphaAmount );
-        if ( layerChanged ){
-            changed = true;
-            break;
-        }
-    }
-    return changed;
-}
+//bool LayerGroup::_setMaskAlpha( const QString& id, int alphaAmount){
+//    bool changed = false;
+//    //Groups can't have a mask color, so we just ask the children to set it.
+//    for ( std::shared_ptr<Layer> layer : m_children ){
+//        bool layerChanged = layer->_setMaskAlpha( id, alphaAmount );
+//        if ( layerChanged ){
+//            changed = true;
+//            break;
+//        }
+//    }
+//    return changed;
+//}
 
 bool LayerGroup::_setMaskColor( const QString& id, int redAmount,
         int greenAmount, int blueAmount ){

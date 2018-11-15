@@ -660,7 +660,7 @@ protected:
      *      an empty string otherwise.
      * @return - true if the mask opacity was changed; false otherwise.
      */
-    virtual bool _setMaskAlpha( const QString& id, int alphaAmount ) = 0;
+//    virtual bool _setMaskAlpha( const QString& id, int alphaAmount ) = 0;
 
     /**
      * Set the mask transparency back to its default value.

@@ -1780,11 +1780,11 @@ QStringList Controller::setMaskColor( const QString& id, int redAmount, int gree
     return result;
 }
 
-QString Controller::setMaskAlpha( const QString& id, int alphaAmount ){
-    QString result;
-    m_stack->_setMaskAlpha( id, alphaAmount, result );
-    return result;
-}
+//QString Controller::setMaskAlpha( const QString& id, int alphaAmount ){
+//    QString result;
+//    m_stack->_setMaskAlpha( id, alphaAmount, result );
+//    return result;
+//}
 
 void Controller::setPanZoomAll( bool panZoomAll ){
     bool oldPanZoomAll = m_state.getValue<bool>(PAN_ZOOM_ALL);

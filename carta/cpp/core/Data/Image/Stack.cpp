@@ -815,18 +815,18 @@ void Stack::_setMaskColor( const QString& id, int redAmount,
     }
 }
 
-void Stack::_setMaskAlpha( const QString& id, int alphaAmount, QString& result ){
-    if ( 0 > alphaAmount || alphaAmount > 255 ){
-        result = "Invalid mask opacity [0,255]:"+QString::number( alphaAmount );
-    }
-    else {
-        bool changed = LayerGroup::_setMaskAlpha( id, alphaAmount );
-        if ( changed ){
-            _saveState();
-            emit viewLoad();
-        }
-    }
-}
+//void Stack::_setMaskAlpha( const QString& id, int alphaAmount, QString& result ){
+//    if ( 0 > alphaAmount || alphaAmount > 255 ){
+//        result = "Invalid mask opacity [0,255]:"+QString::number( alphaAmount );
+//    }
+//    else {
+//        bool changed = LayerGroup::_setMaskAlpha( id, alphaAmount );
+//        if ( changed ){
+//            _saveState();
+//            emit viewLoad();
+//        }
+//    }
+//}
 
 //void Stack::_setPan( double imgX, double imgY, bool panZoomAll ){
 //    if ( panZoomAll ){

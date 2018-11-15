@@ -595,7 +595,7 @@ public:
      */
     //Note: Layer transparency will not take affect unless a composition mode which supports
     //transparency has been set.
-    QString setMaskAlpha( const QString& id, int alphaAmount );
+//    QString setMaskAlpha( const QString& id, int alphaAmount );
 
     /**
      * Set whether or not a pan/zoom operation should affect all layers in the stack
