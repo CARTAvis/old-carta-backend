@@ -36,7 +36,7 @@ public:
     using LayerGroup::_setLayersGrouped;
 //    using LayerGroup::_displayAxesChanged;
     using LayerGroup::_getCursorText;
-    using LayerGroup::_getStateString;
+//    using LayerGroup::_getStateString;
 //    using LayerGroup::_resetPan;
 //    using LayerGroup::_resetZoom;
 //    using LayerGroup::_setMaskAlpha;
@@ -132,7 +132,7 @@ private:
       * Return the state of this layer.
       * @return - a string representation of the layer state.
       */
-     QString _getStateString() const;
+//     QString _getStateString() const;
      QString _getCurrentId() const;
 
      /**

@@ -630,45 +630,6 @@ QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode asp
     return saveSize;
 }
 
-QString LayerData::_getStateString( bool truncatePaths ) const{
-
-    Carta::State::StateInterface copyState( m_state );
-
-    if ( !truncatePaths ){
-        copyState.setValue<QString>(Util::NAME, m_dataSource->_getFileName());
-        copyState.insertObject( DataGrid::GRID, m_dataGrid->_getState().toString() );
-        int contourCount = m_dataContours.size();
-        copyState.insertArray( DataContours::CONTOURS, contourCount );
-        int i = 0;
-        for ( std::set< std::shared_ptr<DataContours> >::iterator iter = m_dataContours.begin();
-            iter != m_dataContours.end(); iter++ ){
-            QString lookup = Carta::State::UtilState::getLookup( DataContours::CONTOURS, i );
-            copyState.setObject( lookup, (*iter)->_getState().toString() );
-            i++;
-        }
-        QString colorState( "");
-        if ( m_stateColor ){
-            colorState =  m_stateColor->getStateString("", SNAPSHOT_PREFERENCES );
-        }
-        copyState.insertObject( ColorState::CLASS_NAME, colorState );
-    }
-
-    std::shared_ptr<Carta::Lib::Image::ImageInterface> image;
-    if ( m_dataSource ){
-        image = m_dataSource->_getImage();
-    }
-    QSize imageSize = _getDisplaySize();
-    int pixelX = imageSize.width();
-    int pixelY = imageSize.height();
-
-    copyState.insertObject( "pixelX", QString::number(pixelX) );
-    copyState.insertObject( "pixelY", QString::number(pixelY) );
-
-    QString stateStr = copyState.toString();
-
-    return stateStr;
-}
-
 bool LayerData::_getTransform( const QPointF& pan, double zoom, const QSize& size,
 		QTransform& tf ) const {
 	bool valid = false;

@@ -423,7 +423,7 @@ protected:
      * @param truncatePaths - true if full paths to files should not be given.
      * @return - a string representation of the layer state.
      */
-    virtual QString _getStateString( bool truncatePaths ) const Q_DECL_OVERRIDE;
+//    virtual QString _getStateString( bool truncatePaths ) const Q_DECL_OVERRIDE;
 
 
     /**

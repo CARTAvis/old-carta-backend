@@ -795,18 +795,6 @@ int LayerGroup::_getStackSizeVisible() const {
     return visibleCount;
 }
 
-QString LayerGroup::_getStateString( bool truncatePaths ) const{
-    Carta::State::StateInterface copyState( m_state );
-    int childCount = m_children.size();
-    copyState.resizeArray( LAYERS, childCount );
-    for ( int i = 0; i < childCount; i++ ){
-        QString key = Carta::State::UtilState::getLookup( LAYERS, i );
-        copyState.setObject( key, m_children[i]->_getStateString( truncatePaths ));
-    }
-    QString stateStr = copyState.toString();
-    return stateStr;
-}
-
 
 QPointF LayerGroup::_getWorldCoordinates( double pixelX, double pixelY,
         Carta::Lib::KnownSkyCS coordSys, bool* valid ) const{

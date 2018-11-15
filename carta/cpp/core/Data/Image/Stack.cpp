@@ -349,20 +349,6 @@ int Stack::_getSelectImageIndex() const {
     return selectImageIndex;
 }
 
-QString Stack::_getStateString() const{
-    Carta::State::StateInterface copyState( m_state );
-    _saveChildren( copyState, false );
-    copyState.insertValue<QString>( Selection::IMAGE, m_selectImage->getStateString());
-    int selectCount = m_selects.size();
-    // const Carta::Lib::KnownSkyCS cs = _getCoordinateSystem();
-    for ( int i = 0; i < selectCount; i++ ){
-        QString axisName = AxisMapper::getPurpose( static_cast<AxisInfo::KnownType>(i) );
-        copyState.insertValue<QString>( axisName, m_selects[i]->getStateString());
-    }
-    QString stateStr = copyState.toString();
-    return stateStr;
-}
-
 QString Stack::getStateString() const{
     QString result = m_state.toString();
     return result;
@@ -627,11 +613,11 @@ void Stack::_saveChildren( Carta::State::StateInterface& state, bool truncate ) 
     if ( oldDataCount != dataCount ){
         state.resizeArray(LAYERS, dataCount, Carta::State::StateInterface::PreserveNone );
     }
-    for (int i = 0; i < dataCount; i++) {
-        QString layerString = m_children[i]->_getStateString( truncate );
-        QString dataKey = Carta::State::UtilState::getLookup( LAYERS, i);
-        state.setObject( dataKey, layerString);
-    }
+//    for (int i = 0; i < dataCount; i++) {
+//        QString layerString = m_children[i]->_getStateString( truncate );
+//        QString dataKey = Carta::State::UtilState::getLookup( LAYERS, i);
+//        state.setObject( dataKey, layerString);
+//    }
 }
 
 QString Stack::_saveImage( const QString& saveName ){

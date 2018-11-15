@@ -529,16 +529,16 @@ QString Controller::getStateString( const QString& sessionId, SnapshotType type 
         prefState.setValue<QString>(Carta::State::StateInterface::OBJECT_TYPE, CLASS_NAME );
         prefState.insertValue<QString>(Util::PREFERENCES, m_state.toString());
         prefState.insertValue<QString>(Settings::SETTINGS, m_settings->getStateString(sessionId, type) );
-        prefState.insertValue<QString>(RegionControls::CLASS_NAME, m_regionControls->_getStateString( sessionId,type));
+//        prefState.insertValue<QString>(RegionControls::CLASS_NAME, m_regionControls->_getStateString( sessionId,type));
         result = prefState.toString();
     }
     else if ( type == SNAPSHOT_DATA ){
         Carta::State::StateInterface dataState("");
-        dataState.setState( m_stack->_getStateString() );
+//        dataState.setState( m_stack->_getStateString() );
         dataState.setValue<QString>( StateInterface::OBJECT_TYPE, CLASS_NAME + StateInterface::STATE_DATA);
         dataState.setValue<int>(StateInterface::INDEX, getIndex() );
-        QString regionControlState = m_regionControls->_getStateString( sessionId, type );
-        dataState.insertObject( RegionControls::CLASS_NAME, regionControlState );
+//        QString regionControlState = m_regionControls->_getStateString( sessionId, type );
+//        dataState.insertObject( RegionControls::CLASS_NAME, regionControlState );
         result = dataState.toString();
     }
     return result;
