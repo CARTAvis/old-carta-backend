@@ -150,7 +150,7 @@ protected:
      * Return the data grid of the image.
      * @return - the data grid of the image.
      */
-    virtual std::shared_ptr<DataGrid> _getDataGrid() Q_DECL_OVERRIDE;
+//    virtual std::shared_ptr<DataGrid> _getDataGrid() Q_DECL_OVERRIDE;
 
     /**
      * Return the data source of the image.
@@ -190,7 +190,7 @@ protected:
     virtual int _getFrameCount( Carta::Lib::AxisInfo::KnownType type ) const Q_DECL_OVERRIDE;
 
     //Return data source state.
-    virtual Carta::State::StateInterface _getGridState() const Q_DECL_OVERRIDE;
+//    virtual Carta::State::StateInterface _getGridState() const Q_DECL_OVERRIDE;
 
     /**
       * Returns the underlying image.

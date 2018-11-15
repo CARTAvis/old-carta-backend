@@ -187,11 +187,11 @@ QString Stack::_getCurrentId() const {
 //    return cursorText;
 //}
 
-Carta::State::StateInterface Stack::_getDataGridState(){
-    std::shared_ptr<DataGrid> dataGrid = _getDataGrid();
-    Carta::State::StateInterface dataGridState = dataGrid->_getState();
-    return dataGridState;
-}
+//Carta::State::StateInterface Stack::_getDataGridState(){
+//    std::shared_ptr<DataGrid> dataGrid = _getDataGrid();
+//    Carta::State::StateInterface dataGridState = dataGrid->_getState();
+//    return dataGridState;
+//}
 
 QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
     QList<std::shared_ptr<Layer> > datas;

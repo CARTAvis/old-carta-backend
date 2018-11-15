@@ -368,14 +368,6 @@ Carta::Lib::KnownSkyCS LayerGroup::_getCoordinateSystem() const {
 //
 //}
 
-std::shared_ptr<DataGrid> LayerGroup::_getDataGrid(){
-    std::shared_ptr<DataGrid> dataGrid( nullptr );
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        dataGrid = m_children[dataIndex]->_getDataGrid();
-    }
-    return dataGrid;
-}
 
 QString LayerGroup::_getDefaultName( const QString& id ) const {
     return GROUP + " "+id;
@@ -408,15 +400,6 @@ int LayerGroup::_getFrameCount( AxisInfo::KnownType type ) const {
         frameCount = m_children[dataIndex]->_getFrameCount( type );
     }
     return frameCount;
-}
-
-Carta::State::StateInterface LayerGroup::_getGridState() const {
-    Carta::State::StateInterface gridState("");
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        gridState = m_children[dataIndex]->_getGridState();
-    }
-    return gridState;
 }
 
 std::shared_ptr<Carta::Lib::Image::ImageInterface> LayerGroup::_getImage(){

@@ -196,7 +196,7 @@ protected:
      * Return the data grid of the image.
      * @return - the data grid of the image.
      */
-    virtual std::shared_ptr<DataGrid> _getDataGrid() = 0;
+//    virtual std::shared_ptr<DataGrid> _getDataGrid() = 0;
 
     /**
      * Return the data source of the image.
@@ -236,7 +236,7 @@ protected:
 
 
     //Return grid state.
-    virtual Carta::State::StateInterface _getGridState() const = 0;
+//    virtual Carta::State::StateInterface _getGridState() const = 0;
 
 
     /**

@@ -232,9 +232,6 @@ Carta::Lib::KnownSkyCS LayerData::_getCoordinateSystem() const {
 //    return cursorText;
 //}
 
-std::shared_ptr<DataGrid> LayerData::_getDataGrid(){
-    return m_dataGrid;
-}
 
 std::shared_ptr<DataSource> LayerData::_getDataSource(){
     return m_dataSource;
@@ -288,10 +285,6 @@ int LayerData::_getFrameCount( AxisInfo::KnownType type ) const {
         frameCount = m_dataSource->_getFrameCount( type );
     }
     return frameCount;
-}
-
-Carta::State::StateInterface LayerData::_getGridState() const {
-    return m_dataGrid->_getState();
 }
 
 std::shared_ptr<Carta::Lib::Image::ImageInterface> LayerData::_getImage(){
