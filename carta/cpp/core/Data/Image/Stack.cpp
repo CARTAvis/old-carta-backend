@@ -1,12 +1,12 @@
 #include "LayerGroup.h"
 #include "Data/Image/DataSource.h"
 #include "Data/Image/LayerCompositionModes.h"
-#include "Data/Image/Draw/DrawStackSynchronizer.h"
-#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
+//#include "Data/Image/Draw/DrawStackSynchronizer.h"
+//#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
 #include "Data/Image/Grid/AxisMapper.h"
 #include "Data/Image/Grid/DataGrid.h"
-#include "Data/Image/Save/SaveService.h"
-#include "Data/Preferences/PreferencesSave.h"
+//#include "Data/Image/Save/SaveService.h"
+//#include "Data/Preferences/PreferencesSave.h"
 #include "Data/Region/Region.h"
 #include "Data/Region/RegionFactory.h"
 #include "Data/Selection.h"
@@ -50,8 +50,8 @@ bool Stack::m_registered =
 
 Stack::Stack(const QString& path, const QString& id) :
     LayerGroup( CLASS_NAME, path, id),
-    m_stackDraw(nullptr),
-    m_imageDraws( new DrawImageViewsSynchronizer() ),
+//    m_stackDraw(nullptr),
+//    m_imageDraws( new DrawImageViewsSynchronizer() ),
     m_selectImage(nullptr){
     _initializeState();
     _initializeSelections();
@@ -480,7 +480,7 @@ void Stack::_render( QList<std::shared_ptr<Layer> > datas, int gridIndex,
     request->setData( datas );
     request->setRecomputeClips( recomputeClipsOnNewFrame );
     request->setClipPercents( minClipPercentile, maxClipPercentile );
-    m_imageDraws->render( request);
+//    m_imageDraws->render( request);
 }
 
 
@@ -493,20 +493,20 @@ void Stack::_renderAll(bool recomputeClipsOnNewFrame,
 }
 
 void Stack::_renderContext( double zoomFactor ){
-    if ( m_imageDraws->isContextView()){
-        std::vector<int> frames =_getFrameIndices();
-        const Carta::Lib::KnownSkyCS& cs = _getCoordinateSystem();
-        std::shared_ptr<RenderRequest> request( new RenderRequest( frames, cs));
-        int gridIndex = _getIndexCurrent();
-        request->setTopIndex( gridIndex );
-        request->setRequestContext( true );
-        request->setZoom( zoomFactor );
-        QSize imageSize = _getDisplaySize();
-        request->setPan(  QPointF(imageSize.width()/2, imageSize.height()/2) );
-        QList<std::shared_ptr<Layer> > datas = _getDrawChildren();
-        request->setData( datas );
-        m_imageDraws->render( request);
-    }
+//    if ( m_imageDraws->isContextView()){
+//        std::vector<int> frames =_getFrameIndices();
+//        const Carta::Lib::KnownSkyCS& cs = _getCoordinateSystem();
+//        std::shared_ptr<RenderRequest> request( new RenderRequest( frames, cs));
+//        int gridIndex = _getIndexCurrent();
+//        request->setTopIndex( gridIndex );
+//        request->setRequestContext( true );
+//        request->setZoom( zoomFactor );
+//        QSize imageSize = _getDisplaySize();
+//        request->setPan(  QPointF(imageSize.width()/2, imageSize.height()/2) );
+//        QList<std::shared_ptr<Layer> > datas = _getDrawChildren();
+//        request->setData( datas );
+//        m_imageDraws->render( request);
+//    }
 }
 
 //void Stack::_renderZoom( int mouseX, int mouseY, double zoomFactor ){
@@ -636,31 +636,31 @@ void Stack::_saveChildren( Carta::State::StateInterface& state, bool truncate ) 
 
 QString Stack::_saveImage( const QString& saveName ){
     QString result;
-    m_saveService = new SaveService();
-    m_saveService->setFileName( saveName );
-    PreferencesSave* prefSave = Util::findSingletonObject<PreferencesSave>();
-    int width = prefSave->getWidth();
-    int height = prefSave->getHeight();
-    Qt::AspectRatioMode aspectRatioMode = prefSave->getAspectRatioMode();
-    m_saveService->setAspectRatioMode( aspectRatioMode );
-    m_saveService->setLayers( m_children );
-    connect( m_saveService, SIGNAL(saveImageResult(bool) ),
-            this, SLOT(_saveImageResultCB(bool) ) );
-    std::vector<int> frameIndices = _getFrameIndices();
-    std::shared_ptr<RenderRequest> request( new RenderRequest( frameIndices, _getCoordinateSystem()));
-    request->setOutputSize( QSize(width, height) );
-    request->setTopIndex( _getIndexCurrent());
-    request->setRequestMain( true );
-    bool saveStarted = m_saveService->saveImage(/*frameIndices, _getCoordinateSystem()*/request);
-    if ( !saveStarted ){
-        result = "Image was not saved.  Please check the file name.";
-    }
+//    m_saveService = new SaveService();
+//    m_saveService->setFileName( saveName );
+//    PreferencesSave* prefSave = Util::findSingletonObject<PreferencesSave>();
+//    int width = prefSave->getWidth();
+//    int height = prefSave->getHeight();
+//    Qt::AspectRatioMode aspectRatioMode = prefSave->getAspectRatioMode();
+//    m_saveService->setAspectRatioMode( aspectRatioMode );
+//    m_saveService->setLayers( m_children );
+//    connect( m_saveService, SIGNAL(saveImageResult(bool) ),
+//            this, SLOT(_saveImageResultCB(bool) ) );
+//    std::vector<int> frameIndices = _getFrameIndices();
+//    std::shared_ptr<RenderRequest> request( new RenderRequest( frameIndices, _getCoordinateSystem()));
+//    request->setOutputSize( QSize(width, height) );
+//    request->setTopIndex( _getIndexCurrent());
+//    request->setRequestMain( true );
+//    bool saveStarted = m_saveService->saveImage(/*frameIndices, _getCoordinateSystem()*/request);
+//    if ( !saveStarted ){
+//        result = "Image was not saved.  Please check the file name.";
+//    }
     return result;
 }
 
 void Stack::_saveImageResultCB( bool result ){
-    emit saveImageResult( result );
-    m_saveService->deleteLater();
+//    emit saveImageResult( result );
+//    m_saveService->deleteLater();
 }
 
 
@@ -853,20 +853,20 @@ bool Stack::_setSelected( QStringList& names){
 }
 
 void Stack::_setViewName( const QString& viewName ){
-    m_stackDraw.reset( new DrawStackSynchronizer(makeRemoteView( viewName)));
-    m_imageDraws->setViewDraw( m_stackDraw );
-    connect( m_stackDraw.get(), SIGNAL(viewResize()), this, SLOT(_viewResize()));
-    connect( m_stackDraw.get(), SIGNAL(inputEvent(InputEvent)),
-    		this, SIGNAL(inputEvent(InputEvent)));
+//    m_stackDraw.reset( new DrawStackSynchronizer(makeRemoteView( viewName)));
+//    m_imageDraws->setViewDraw( m_stackDraw );
+//    connect( m_stackDraw.get(), SIGNAL(viewResize()), this, SLOT(_viewResize()));
+//    connect( m_stackDraw.get(), SIGNAL(inputEvent(InputEvent)),
+//    		this, SIGNAL(inputEvent(InputEvent)));
 }
 
-void Stack::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
-    m_imageDraws->setViewDrawContext( drawContext );
-}
+//void Stack::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
+//    m_imageDraws->setViewDrawContext( drawContext );
+//}
 
-void Stack::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
-    m_imageDraws->setViewDrawZoom( drawZoom );
-}
+//void Stack::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
+//    m_imageDraws->setViewDrawZoom( drawZoom );
+//}
 
 bool Stack::_setVisible( const QString& id, bool visible ){
     bool layerFound = LayerGroup::_setVisible( id, visible );

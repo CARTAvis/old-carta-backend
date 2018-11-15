@@ -8,7 +8,7 @@
 #include "Data/Image/DataSource.h"
 #include "Data/Image/Grid/AxisMapper.h"
 #include "Data/Image/Grid/DataGrid.h"
-#include "Data/Image/Grid/GridControls.h"
+//#include "Data/Image/Grid/GridControls.h"
 #include "Data/Image/Contour/ContourControls.h"
 #include "Data/Image/Contour/DataContours.h"
 #include "Data/Region/RegionControls.h"
@@ -373,19 +373,19 @@ std::vector<int> Controller::getImageSlice() const {
 }
 
 
-std::vector<double> Controller::getIntensity( const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
-    int currentFrame = getFrame( AxisInfo::KnownType::SPECTRAL);
-    std::vector<double> result = getIntensity( currentFrame, currentFrame, percentiles, converter );
-    return result;
-}
+//std::vector<double> Controller::getIntensity( const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
+//    int currentFrame = getFrame( AxisInfo::KnownType::SPECTRAL);
+//    std::vector<double> result = getIntensity( currentFrame, currentFrame, percentiles, converter );
+//    return result;
+//}
 
 
-std::vector<double> Controller::getIntensity( int frameLow, int frameHigh, const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
-    int stokeFrame = getFrame(AxisInfo::KnownType::STOKES);
-    qDebug() << "++++++++ get the stoke frame=" << stokeFrame << "( -1: no stoke, 0: stoke I, 1: stoke Q, 2: stoke U, 3: stoke V)";
-    std::vector<double> intensities = m_stack->_getIntensity( frameLow, frameHigh, percentiles, stokeFrame, converter );
-    return intensities;
-}
+//std::vector<double> Controller::getIntensity( int frameLow, int frameHigh, const std::vector<double>& percentiles, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const{
+//    int stokeFrame = getFrame(AxisInfo::KnownType::STOKES);
+//    qDebug() << "++++++++ get the stoke frame=" << stokeFrame << "( -1: no stoke, 0: stoke I, 1: stoke Q, 2: stoke U, 3: stoke V)";
+//    std::vector<double> intensities = m_stack->_getIntensity( frameLow, frameHigh, percentiles, stokeFrame, converter );
+//    return intensities;
+//}
 
 int Controller::getStokeIndicator() const {
     int result = m_stack->_getStokeIndicator();
@@ -1842,13 +1842,13 @@ QString Controller::setTabIndex( int index ){
     return result;
 }
 
-void Controller::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
-    m_stack->_setViewDrawContext( drawContext );
-}
+//void Controller::_setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawContext ){
+//    m_stack->_setViewDrawContext( drawContext );
+//}
 
-void Controller::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
-    m_stack->_setViewDrawZoom( drawZoom );
-}
+//void Controller::_setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom ){
+//    m_stack->_setViewDrawZoom( drawZoom );
+//}
 
 // used by Python Client
 void Controller::setZoomLevel( double zoomFactor ){

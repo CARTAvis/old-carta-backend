@@ -16,18 +16,18 @@ namespace Carta {
 
 namespace Data {
 
-class DrawStackSynchronizer;
-class DrawImageViewsSynchronizer;
+//class DrawStackSynchronizer;
+//class DrawImageViewsSynchronizer;
 class Region;
 class Selection;
-class SaveService;
+//class SaveService;
 
 typedef Carta::Lib::InputEvents::JsonEvent InputEvent;
 
 class Stack : public LayerGroup {
 
 friend class Controller;
-friend class DrawStackSynchronizer;
+//friend class DrawStackSynchronizer;
 
 Q_OBJECT
 
@@ -192,8 +192,8 @@ private:
     void _setPan( double imgX, double imgY, bool all );
 
     void _setViewName( const QString& viewName );
-    void _setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawStack );
-    void _setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom );
+//    void _setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawStack );
+//    void _setViewDrawZoom( std::shared_ptr<DrawStackSynchronizer> drawZoom );
 
     void _setZoomLevelForLayerId( double zoomLevel, double layerId );
     void _setZoomLevel( double zoomLevel, bool zoomPanAll );
@@ -218,14 +218,14 @@ private:
     class Factory;
     static bool m_registered;
 
-    std::shared_ptr<DrawStackSynchronizer> m_stackDraw;
-    std::unique_ptr<DrawImageViewsSynchronizer> m_imageDraws;
+//    std::shared_ptr<DrawStackSynchronizer> m_stackDraw;
+//    std::unique_ptr<DrawImageViewsSynchronizer> m_imageDraws;
 
     Selection* m_selectImage;
     std::vector<Selection*> m_selects;
 
     /// Saves images
-    SaveService *m_saveService;
+//    SaveService *m_saveService;
 
     // save the current file id on the frontend image viewer
     int m_fileId = -1;

@@ -80,7 +80,6 @@ SOURCES += \
     IRemoteVGView.cpp \
     IPCache.cpp \
     Hooks/GetPersistentCache.cpp \
-    Hooks/GetProfileExtractor.cpp \
     Regions/IRegion.cpp \
     InputEvents.cpp \
     Regions/ICoordSystem.cpp \
@@ -142,7 +141,6 @@ HEADERS += \
     IImageRenderService.h \
     Hooks/GetImageRenderService.h \
     IRemoteVGView.h \
-    Hooks/GetProfileExtractor.h \
     Regions/IRegion.h \
     InputEvents.h \
     Regions/ICoordSystem.h \

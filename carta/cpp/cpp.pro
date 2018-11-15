@@ -7,8 +7,8 @@ SUBDIRS = \
     CartaLib \
     core \
     desktop \
-    plugins \
-    Tests \
+    plugins
+#    Tests \
 #    testCache \
 #    testRegion \
 #    testPercentile

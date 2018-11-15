@@ -13,7 +13,7 @@ namespace Carta {
 
 namespace Data {
 
-class DrawGroupSynchronizer;
+//class DrawGroupSynchronizer;
 class LayerData;
 
 class LayerGroup : public Layer {
@@ -233,9 +233,9 @@ protected:
      * @param stokeFrame - the index number of stoke slice
      * @return - a list of intenstiy values.
      */
-    virtual std::vector<double> _getIntensity( int frameLow, int frameHigh,
-            const std::vector<double>& percentiles, int stokeFrame,
-            Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const Q_DECL_OVERRIDE;
+//    virtual std::vector<double> _getIntensity( int frameLow, int frameHigh,
+//            const std::vector<double>& percentiles, int stokeFrame,
+//            Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const Q_DECL_OVERRIDE;
 
     /**
      * Returns the histogram of pixels.
@@ -631,7 +631,7 @@ private:
     class Factory;
     static bool m_registered;
 
-    std::unique_ptr<DrawGroupSynchronizer> m_drawSync;
+//    std::unique_ptr<DrawGroupSynchronizer> m_drawSync;
     LayerGroup(const LayerGroup& other);
     LayerGroup& operator=(const LayerGroup& other);
 };

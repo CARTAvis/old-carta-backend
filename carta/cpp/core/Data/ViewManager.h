@@ -14,17 +14,10 @@ namespace Carta {
 
 namespace Data {
 
-class Animator;
 class Controller;
 class DataLoader;
-class Histogram;
 class Colormap;
-class ImageContext;
-class ImageZoom;
-class Layout;
-class Profiler;
 class Statistics;
-class Snapshots;
 class ViewPlugins;
 
 class ViewManager : public QObject, public Carta::State::CartaObject {
@@ -70,30 +63,6 @@ public:
     int getColormapCount() const;
 
     /**
-     * Return the number of animator views.
-     * @return - the animator count.
-     */
-    int getAnimatorCount() const;
-
-    /**
-     * Return the number of histogram views.
-     * @return - the histogram count.
-     */
-    int getHistogramCount() const;
-
-    /**
-     * Return the number of image context views.
-     * @return - the image context view count.
-     */
-    int getImageContextCount() const;
-
-    /**
-     * Return the number of image zoom views.
-     * @return - the image zoom view count.
-     */
-    int getImageZoomCount() const;
-
-    /**
      * Load the file into the controller with the given id.
      * @param fileName a locater for the data to load.
      * @param objectId the unique server side id of the controller which is
@@ -117,59 +86,6 @@ public:
     QString moveWindow( const QString& sourcePlugin, int sourcePluginIndex,
             const QString& destPlugin, int destPluginIndex );
 
-    /**
-     * Reset the state back to initial values.
-     */
-    void reload();
-
-    void setDefaultLayoutViewNoOldPluginList();
-
-    /**
-     * Reset the layout to a default view.
-     */
-    void setDefaultLayoutViewWithCurrentPluginList();
-
-
-    /**
-     * Reset the layout to a default view. Without thid new cleanPluginList parameter, some crash will happen when refreshing the browser window.
-     * The other layouts do not have this issue is because they are not responsible to re-construct the UI.
-     */
-    void setDefaultLayoutView(bool cleanPluginList);
-
-    /**
-     * Reset the layout to a predefined analysis view.
-     */
-    void setAnalysisView();
-
-    /**
-     * Reset the layout to a predefined view including a histogram, a colormap and an animator.
-     */
-    void setHistogramAnalysisView();
-
-    /**
-     * Reset the layout to a predefined developer layout.
-     */
-    void setDeveloperView();
-
-
-    /**
-     * Reset the layout to a layout including a image context and a imageZoom in the right top corner, plus a animator and a coloprmap
-     */
-    void setImageCompositeView();
-
-
-    /**
-     * Reset the layout to a predefined view displaying only a single image.
-     */
-    void setImageView();
-
-    /**
-     * Set the list of plugins to be displayed.
-     * @param names a list of identifiers for the plugins.
-     * @return error information if plugins could not be set.
-     */
-    bool setPlugins( const QStringList& names );
-
     static const QString CLASS_NAME;
 
     /**
@@ -186,18 +102,9 @@ private slots:
 private:
     ViewManager( const QString& path, const QString& id);
     class Factory;
-    void _adjustSize( int count, const QString& name, const QVector<int>& insertionIndices);
-    void _clear();
-    void _clearAnimators( int startIndex, int upperBound );
     void _clearColormaps( int startIndex, int upperBound );
     void _clearControllers( int startIndex, int upperBound );
-    void _clearHistograms( int startIndex, int upperBound );
-    void _clearImageContexts( int startIndex, int upperBound );
-    void _clearImageZooms( int startIndex, int upperBound );
-    void _clearProfilers( int startIndex, int upperBound );
     void _clearStatistics( int startIndex, int upperBound );
-
-    void _setupSingletons();
 
     /**
      * Given the plugin and the index of the plugin among plugins of its type, find the index of the plugin
@@ -209,27 +116,15 @@ private:
      */
     int _findListIndex( const QString& sourcePlugin, int pluginIndex, const QStringList& plugins ) const;
 
-
     void _initCallbacks();
-
-    //Sets up a default set of states for constructing the UI if the user
-    //has not saved one.
-    void _initializeDefaultState();
 
     //Returns whether or not there are any source objects of the given sourceName already linked to the
     //destination object.
     QString _isDuplicateLink( const QString& sourceName, const QString& destId ) const;
 
-    QString _makeAnimator( int index );
-    QString _makeLayout();
     QString _makePluginList();
     QString _makeColorMap( int index );
     QString _makeController( int index );
-    QString _makeHistogram( int index );
-    QString _makeImageContext( int index );
-    QString _makeImageZoom( int index );
-    QString _makeProfile( int index );
-    QString _makeSnapshots();
     QString _makeStatistics( int index );
 
     void _makeDataLoader();
@@ -240,48 +135,25 @@ private:
     void _moveView( const QString& plugin, int oldIndex, int newIndex );
 
     /**
-     * Remove the pluin with the identified index.
-     */
-    void _removeView( const QString& plugin, int index );
-    int _removeViews( const QString& name, int startIndex, int endIndex );
-    /**
      * Written because there is no guarantee what order the javascript side will use
      * to create view objects.  When there are linked views, the links may not get
      * recorded if one object is to be linked with one not yet created.  This flushes
      * the state and gives the object a second chance to establish their links.
      */
     void _refreshState();
-    void _refreshStateSingletons();
-
-    QString _setPlugin( const QString& sourceNodeId, const QString& destPluginType );
 
     //A list of Controllers requested by the client.
     QList <Controller* > m_controllers;
 
-    //Zoom and context views.
-    QList <ImageZoom*> m_imageZooms;
-    QList <ImageContext*> m_imageContexts;
-
-    //A list of Animators requested by the client.
-    QList < Animator* > m_animators;
-
     //Colormap
     QList<Colormap* >m_colormaps;
-
-    //Histogram
-    QList<Histogram* >m_histograms;
-
-    //Profile
-    QList<Profiler* > m_profilers;
 
     //Statistics
     QList<Statistics* > m_statistics;
 
     static bool m_registered;
-    Layout* m_layout;
     DataLoader* m_dataLoader;
     ViewPlugins* m_pluginsLoaded;
-    Snapshots* m_snapshots;
 
     const static QString SOURCE_ID;
     const static QString SOURCE_PLUGIN;

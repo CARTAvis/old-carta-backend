@@ -263,7 +263,7 @@ signals:
     void colorMapChanged();
 
 private slots:
-    void _updateIntensityBounds(double minIntensity, double maxIntensity , bool autoClip);
+//    void _updateIntensityBounds(double minIntensity, double maxIntensity , bool autoClip);
     void _colorStateChanged();
     void _dataChanged( Controller* controller );
     /**
@@ -272,7 +272,7 @@ private slots:
     void _setColorStates( Controller* target );
 
 private:
-    void _calculateColorStops();
+//    void _calculateColorStops();
     void _calculateColorLabels();
     QString _commandSetColorMap( const QString& params );
     QString _commandInvertColorMap( const QString& params );
@@ -281,9 +281,9 @@ private:
 
     Carta::Lib::IntensityUnitConverter::SharedPtr _getIntensityConverter(const QString& toUnit);
 
-    std::pair<double,double> _getIntensities(bool &success, Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const;
-    std::pair<double,double> _getIntensities(bool &success, const double minPercent, const double maxPercent,
-        Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const;
+//    std::pair<double,double> _getIntensities(bool &success, Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const;
+//    std::pair<double,double> _getIntensities(bool &success, const double minPercent, const double maxPercent,
+//        Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const;
 
     std::vector<double> _getIntensityLables(bool &success, const int numberOfSections,
         Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const;

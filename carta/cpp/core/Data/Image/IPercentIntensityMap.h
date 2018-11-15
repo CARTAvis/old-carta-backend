@@ -25,7 +25,7 @@ public:
      * @param percentiles - a list of numbers in [0,1] for which an intensity is desired.
      * @return - a list of corresponding intensity values.
      */
-    virtual std::vector<double> getIntensity( const std::vector<double>& percentile, Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const = 0;
+//    virtual std::vector<double> getIntensity( const std::vector<double>& percentile, Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr) const = 0;
 
     /**
      * Return the percentiles corresponding to the given intensities.

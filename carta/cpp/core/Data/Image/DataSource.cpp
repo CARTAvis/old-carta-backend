@@ -16,7 +16,7 @@
 #include "CartaLib/IPCache.h"
 #include "../../ImageRenderService.h"
 #include "../../Algorithms/percentileAlgorithms.h"
-#include "../Clips.h"
+//#include "../Clips.h"
 #include <QDebug>
 #include <QElapsedTimer>
 #include "CartaLib/UtilCASA.h"
@@ -564,39 +564,39 @@ std::vector<double> DataSource::_getIntensity(int frameLow, int frameHigh,
 
         // if the algorithm is approximate, add extra percentiles from clips, but only if they are not cached
 
-        if (calculator->isApproximate) {
-            std::shared_ptr<Carta::Data::Clips> m_clips;
-            std::vector<double> percentilesFromClips = m_clips->getAllClips2percentiles();
+//        if (calculator->isApproximate) {
+//            std::shared_ptr<Carta::Data::Clips> m_clips;
+//            std::vector<double> percentilesFromClips = m_clips->getAllClips2percentiles();
 
-            for (auto& p : percentilesFromClips) {
+//            for (auto& p : percentilesFromClips) {
                 // TODO check exactly why this is necessary
                 // check if extra percentiles are close to any existing percentiles, cached or uncached
                 // C.C.Chiang: For approximation method, we can calculate all clipping values which are
                 // listed on the UI panel at the same time. This "for loop" is used to fill in all clipping
                 // values (as a set) we want to calculate.
-                bool isDuplicate = false;
-                for (size_t i = 0; i < percentiles.size(); i++) {
-                    if (fabs(percentiles[i] - p) < 1e-6) {
-                        isDuplicate = true;
+//                bool isDuplicate = false;
+//                for (size_t i = 0; i < percentiles.size(); i++) {
+//                    if (fabs(percentiles[i] - p) < 1e-6) {
+//                        isDuplicate = true;
                         // Either this was found in the cache already
                         // Or it's already in the list of percentiles to be calculated
                         // Either way, ignore it
-                        break;
-                    }
-                }
-                if (!isDuplicate) {
+//                        break;
+//                    }
+//                }
+//                if (!isDuplicate) {
                     // This is a different percentile
                     // Look in the cache first
-                    std::shared_ptr<Carta::Lib::IntensityValue> cachedValue = _readIntensityCache(frameLow, frameHigh, p, stokeFrame, transformationLabel);
+//                    std::shared_ptr<Carta::Lib::IntensityValue> cachedValue = _readIntensityCache(frameLow, frameHigh, p, stokeFrame, transformationLabel);
                     // Add it to the list if it's not in the cache
-                    if (!cachedValue) {
-                        percentilesToCalculate.push_back(p);
-                    }
-                }
-            }
+//                    if (!cachedValue) {
+//                        percentilesToCalculate.push_back(p);
+//                    }
+//                }
+//            }
 
-            std::sort(percentilesToCalculate.begin(), percentilesToCalculate.end());
-        }
+//            std::sort(percentilesToCalculate.begin(), percentilesToCalculate.end());
+//        }
 
         // Find Hz values if they are required for the unit transformation
         std::vector<double> hertzValues;

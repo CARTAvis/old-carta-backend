@@ -12,8 +12,8 @@
 #include "MainConfig.h"
 #include "MyQApp.h"
 #include "CmdLine.h"
-#include "ScriptedClient/Listener.h"
-#include "ScriptedClient/ScriptedCommandInterpreter.h"
+//#include "ScriptedClient/Listener.h"
+//#include "ScriptedClient/ScriptedCommandInterpreter.h"
 #include "CartaLib/Hooks/GetPersistentCache.h"
 
 #include <QImage>
@@ -81,7 +81,7 @@ Viewer::Viewer() :
 
         // create Pavol's testing controller on port+1
         //new Carta::Core::ScriptedClient::ScriptedCommandInterpreter( port+1, this);
-        new Carta::Core::ScriptedClient::ScriptedCommandInterpreter( port, this);
+//        new Carta::Core::ScriptedClient::ScriptedCommandInterpreter( port, this);
     }
     m_devView = false;
 }
@@ -100,13 +100,13 @@ Viewer::start()
         Carta::Data::ViewManager* vm = objectManager->createObject<Carta::Data::ViewManager> ();
         m_viewManager.reset( vm );
 	}
-	else {
-	    m_viewManager->reload();
-	}
+//	else {
+//	    m_viewManager->reload();
+//	}
 
-    if ( m_devView ){       
-       m_viewManager->setDeveloperView();
-    }
+//    if ( m_devView ){
+//       m_viewManager->setDeveloperView();
+//    }
 
     // ask plugins to load the image
 //    qDebug() << "======== trying to load image <- disable========";
