@@ -34,7 +34,7 @@ Q_OBJECT
 public:
 
     using LayerGroup::_setLayersGrouped;
-    using LayerGroup::_displayAxesChanged;
+//    using LayerGroup::_displayAxesChanged;
     using LayerGroup::_getCursorText;
     using LayerGroup::_getStateString;
 //    using LayerGroup::_resetPan;
@@ -104,7 +104,7 @@ private:
 
     QString _addDataImage(const QString& fileName, bool* success , int fileId);
 
-    void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes, bool applyAll );
+//    void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes, bool applyAll );
 
     int _findRegionIndex( std::shared_ptr<Region> region ) const;
 

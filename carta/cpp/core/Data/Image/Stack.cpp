@@ -117,30 +117,30 @@ bool Stack::_closeData( const QString& id ){
 }
 
 
-void Stack::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes, bool applyAll ){
-
-    std::vector<int> frames = _getFrameIndices();
-    if ( !applyAll ){
-        int dataIndex = _getIndexCurrent();
-        if (dataIndex >= 0 ) {
-            if (m_children[dataIndex] != nullptr) {
-                std::vector<int> frames = _getFrameIndices();
-                m_children[dataIndex]->_displayAxesChanged( displayAxisTypes, frames );
-            }
-        }
-    }
-    else {
-        int dataCount = m_children.size();
-        std::vector<int> frames = _getFrameIndices();
-        for ( int i = 0; i < dataCount; i++ ){
-            if ( m_children[i] != nullptr ){
-                m_children[i]->_displayAxesChanged( displayAxisTypes, frames );
-            }
-        }
-    }
-     _saveState();
-    emit viewLoad( );
-}
+//void Stack::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes, bool applyAll ){
+//
+//    std::vector<int> frames = _getFrameIndices();
+//    if ( !applyAll ){
+//        int dataIndex = _getIndexCurrent();
+//        if (dataIndex >= 0 ) {
+//            if (m_children[dataIndex] != nullptr) {
+//                std::vector<int> frames = _getFrameIndices();
+//                m_children[dataIndex]->_displayAxesChanged( displayAxisTypes, frames );
+//            }
+//        }
+//    }
+//    else {
+//        int dataCount = m_children.size();
+//        std::vector<int> frames = _getFrameIndices();
+//        for ( int i = 0; i < dataCount; i++ ){
+//            if ( m_children[i] != nullptr ){
+//                m_children[i]->_displayAxesChanged( displayAxisTypes, frames );
+//            }
+//        }
+//    }
+//     _saveState();
+//    emit viewLoad( );
+//}
 
 
 std::set<AxisInfo::KnownType> Stack::_getAxesHidden() const {
@@ -691,17 +691,17 @@ QString Stack::_setAxis( const QString axis, const QString name ){
     //TODO: so far the _displayAxesChanged() should be called from Stack
     //due to the _getFrameIndices(), try to simplify this part
     QString result = "";
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        result = m_children[dataIndex]->_setAxis( axis, name );
-
+//    int dataIndex = _getIndexCurrent();
+//    if ( dataIndex >= 0 ){
+//        result = m_children[dataIndex]->_setAxis( axis, name );
+//
         // Get the updated datagrid to update raster image
-        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
-        std::vector<AxisInfo::KnownType> displayTypes = dataGrid->_getDisplayAxes();
-        std::vector<int> frames = _getFrameIndices();
-        m_children[dataIndex]->_displayAxesChanged( displayTypes, frames );
-        emit viewLoad();
-    }
+//        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
+//        std::vector<AxisInfo::KnownType> displayTypes = dataGrid->_getDisplayAxes();
+//        std::vector<int> frames = _getFrameIndices();
+//        m_children[dataIndex]->_displayAxesChanged( displayTypes, frames );
+//        emit viewLoad();
+//    }
 
     // TODO: the return value mix with exception, try to seperate them.
     return result;

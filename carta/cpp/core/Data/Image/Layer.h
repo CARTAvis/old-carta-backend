@@ -110,8 +110,8 @@ protected:
      * @param displayAxisTypes - the x-, y-, and z- axes to display.
      * @param frames - list of image frames.
      */
-    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
-            const std::vector<int>& frames ) = 0;
+//    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
+//            const std::vector<int>& frames ) = 0;
 
     virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const = 0;
     virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const = 0;

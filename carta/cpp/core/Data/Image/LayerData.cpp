@@ -105,14 +105,14 @@ void LayerData::_colorChanged(){
 }
 
 
-void LayerData::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes,
-        const std::vector<int>& frames ){
-    if ( m_dataSource ){
-        m_dataSource->_setDisplayAxes( displayAxisTypes, frames );
+//void LayerData::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes,
+//        const std::vector<int>& frames ){
+//    if ( m_dataSource ){
+//        m_dataSource->_setDisplayAxes( displayAxisTypes, frames );
 //        _resetPan();
-
-    }
-}
+//
+//    }
+//}
 
 
 

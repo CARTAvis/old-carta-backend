@@ -258,12 +258,12 @@ void LayerGroup::_colorChanged(){
 }
 
 
-void LayerGroup::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes,
-        const std::vector<int>& frames ){
-    for ( std::shared_ptr<Layer> node : m_children ){
-        node ->_displayAxesChanged( displayAxisTypes, frames );
-    }
-}
+//void LayerGroup::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes,
+//        const std::vector<int>& frames ){
+//    for ( std::shared_ptr<Layer> node : m_children ){
+//        node ->_displayAxesChanged( displayAxisTypes, frames );
+//    }
+//}
 
 Carta::Lib::AxisInfo::KnownType LayerGroup::_getAxisType( int index ) const {
     AxisInfo::KnownType axisType = AxisInfo::KnownType::OTHER;
