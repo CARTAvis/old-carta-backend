@@ -606,7 +606,7 @@ protected:
 
 //    virtual QString _setCoordinateSystem( QString csName ) = 0;
 
-    virtual QString _setDataGridState( const QString stateName, const QString stateValue );
+//    virtual QString _setDataGridState( const QString stateName, const QString stateValue );
 
     /**
      * Attempts to load an image file.

@@ -236,11 +236,6 @@ bool Layer::_setCompositionMode( const QString& id, const QString& /*composition
     return stateChanged;
 }
 
-QString Layer::_setDataGridState( const QString stateName, const QString stateValue ){
-    qCritical() << "Not implement";
-    return "";
-}
-
 
 bool Layer::_setLayerName( const QString& id, const QString& name ){
     bool nameChanged = false;

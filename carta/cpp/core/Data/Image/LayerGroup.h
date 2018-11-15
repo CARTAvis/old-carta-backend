@@ -510,7 +510,7 @@ protected:
 
 //    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
 
-    virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
+//    virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
 
     /**
      * Give the layer (a more user-friendly) name.

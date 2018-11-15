@@ -693,15 +693,6 @@ void Stack::_saveState( bool flush ) {
 //    return result;
 //}
 
-QString Stack::_setDataGridState( const QString stateName, const QString stateValue ){
-    QString result;
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        result = m_children[dataIndex]->_setDataGridState( stateName, stateValue );
-        emit viewLoad();
-    }
-    return result;
-}
 
 bool Stack::_setCompositionMode( const QString& id, const QString& compositionMode,
         QString& errorMsg ){

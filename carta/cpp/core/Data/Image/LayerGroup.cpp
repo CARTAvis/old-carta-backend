@@ -1079,22 +1079,6 @@ bool LayerGroup::_setCompositionMode( const QString& id, const QString& composit
     return stateChanged;
 }
 
-QString LayerGroup::_setDataGridState( const QString stateName, const QString stateValue ){
-    QString result;
-    for ( auto layer : m_children ){
-        std::shared_ptr<DataGrid> dataGrid = layer->_getDataGrid();
-        result = dataGrid->_setState( stateName, stateValue );
-    }
-
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
-        Carta::State::StateInterface dataGridState = dataGrid->_getState();
-        result = dataGridState.toString();
-    }
-    return result;
-}
-
 //bool LayerGroup::_setMaskAlpha( const QString& id, int alphaAmount){
 //    bool changed = false;
 //    //Groups can't have a mask color, so we just ask the children to set it.

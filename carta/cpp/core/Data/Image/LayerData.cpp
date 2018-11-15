@@ -1050,11 +1050,6 @@ QString LayerData::_setFileName( const QString& fileName, bool * success ){
 //    return result;
 //}
 
-QString LayerData::_setDataGridState( const QString stateName, const QString stateValue ){
-    QString result;
-    result = m_dataGrid->_setState( stateName, stateValue );
-    return result;
-}
 
 //bool LayerData::_setLayersGrouped( bool /*grouped*/, const QSize& /*viewSize*/  ){
 //    return false;
