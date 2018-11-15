@@ -1110,67 +1110,6 @@ QString LayerGroup::_setDataGridState( const QString stateName, const QString st
     return result;
 }
 
-bool LayerGroup::_setLayersGrouped( bool grouped, const QSize& clientSize  ){
-    bool operationPerformed = false;
-    int dataCount = m_children.size();
-    if ( !grouped ){
-        //First see if any of the children can do the operation.
-        //For now, it only makes sense to allow groups one deep.
-        for ( int i = 0; i < dataCount; i++ ){
-            bool childPerformed = m_children[i]->_setLayersGrouped( grouped, clientSize );
-            if ( childPerformed ){
-                operationPerformed = true;
-                break;
-            }
-        }
-    }
-
-    //None of the children could do it so see if we can group the layers ourselves.
-    if ( !operationPerformed ){
-        //Go through the layers and get the selected ones.
-        QList<int> selectIndices;
-        for ( int i = 0; i < dataCount; i++ ){
-            if ( m_children[i]->_isSelected() && !m_children[i]->_isComposite()){
-                selectIndices.append(i);
-            }
-        }
-        int selectedCount = selectIndices.size();
-        if ( grouped ){
-            if ( selectedCount >= 2 ){
-                //Make a new group layer.
-                Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-                LayerGroup* groupLayer = objMan->createObject<LayerGroup>();
-                //Add all the selected layers to the group.
-                for ( int i = 0; i < selectedCount; i++ ){
-                    groupLayer->_addLayer( m_children[selectIndices[i]] );
-                }
-                //Remove all the selected ones from the list.
-                for ( int i = selectedCount - 1; i >= 0; i-- ){
-                    disconnect( m_children[selectIndices[i]].get());
-                    m_children.removeAt( selectIndices[i] );
-                }
-                //Insert the group layer at the first selected index.
-                m_children.insert( selectIndices[0], std::shared_ptr<Layer>(groupLayer) );
-                connect( groupLayer, SIGNAL(removeLayer(Layer*)),
-                            this, SLOT( _removeLayer( Layer*)));
-                QStringList selections;
-                selections.append( groupLayer->_getLayerId());
-                groupLayer->_setViewSize( clientSize );
-                groupLayer->_setSelected( selections );
-                operationPerformed = true;
-            }
-        }
-        else {
-            //Split the selected layers.
-            if ( _isSelected() ){
-                emit removeLayer( this );
-                operationPerformed = true;
-            }
-        }
-    }
-    return operationPerformed;
-}
-
 //bool LayerGroup::_setMaskAlpha( const QString& id, int alphaAmount){
 //    bool changed = false;
 //    //Groups can't have a mask color, so we just ask the children to set it.

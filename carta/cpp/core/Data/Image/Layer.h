@@ -634,7 +634,7 @@ protected:
      * @param viewSize - the view size.
      * @return - true if the operation was performed; false otherwise.
      */
-    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) = 0;
+//    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) = 0;
 
     /**
      * Set the color to use for the mask.

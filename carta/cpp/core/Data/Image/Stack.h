@@ -33,7 +33,7 @@ Q_OBJECT
 
 public:
 
-    using LayerGroup::_setLayersGrouped;
+//    using LayerGroup::_setLayersGrouped;
 //    using LayerGroup::_displayAxesChanged;
 //    using LayerGroup::_getCursorText;
 //    using LayerGroup::_getStateString;

@@ -1084,9 +1084,9 @@ QString LayerData::_setDataGridState( const QString stateName, const QString sta
     return result;
 }
 
-bool LayerData::_setLayersGrouped( bool /*grouped*/, const QSize& /*viewSize*/  ){
-    return false;
-}
+//bool LayerData::_setLayersGrouped( bool /*grouped*/, const QSize& /*viewSize*/  ){
+//    return false;
+//}
 
 
 //bool LayerData::_setMaskColor( const QString& id, int redAmount,

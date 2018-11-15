@@ -507,7 +507,7 @@ protected:
      * @param viewSize - the view size.
      * @return - true if the operation was performed; false otherwise.
      */
-    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) Q_DECL_OVERRIDE;
+//    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) Q_DECL_OVERRIDE;
 
     /**
      * Set the opacity of the mask.

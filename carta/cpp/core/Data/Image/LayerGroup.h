@@ -526,7 +526,7 @@ protected:
      * @param viewSize - the view size.
      * @return - true if the operation was performed; false otherwise.
      */
-    virtual bool _setLayersGrouped( bool grouped, const QSize& size ) Q_DECL_OVERRIDE;
+//    virtual bool _setLayersGrouped( bool grouped, const QSize& size ) Q_DECL_OVERRIDE;
 
 //    virtual bool _setMaskColor( const QString& id, int redAmount,
 //                int greenAmount, int blueAmount ) Q_DECL_OVERRIDE;
