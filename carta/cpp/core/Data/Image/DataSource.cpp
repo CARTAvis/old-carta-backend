@@ -1991,6 +1991,11 @@ bool DataSource::_setSpatialRequirements(int fileId, int regionId, int channel, 
 
     // TODO: need to store spatial profile to m_profileInfo &
     // get corresponding spatial data by checking the spatial profiles
+    if (nullptr == m_casaCubeInterface) {
+        qWarning() << "Cannot set image channel & sotkes: CASACubeInterface is nullptr.";
+        return false;
+    }
+    
     m_casaCubeInterface->setImageChannels(channel, stokes);
 
     return true;
