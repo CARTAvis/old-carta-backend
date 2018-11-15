@@ -356,17 +356,17 @@ Carta::Lib::KnownSkyCS LayerGroup::_getCoordinateSystem() const {
     return cs;
 }
 
-QString LayerGroup::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
-        const std::vector<int>& frames, const QSize& outputSize) {
-    QString cursorText;
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        cursorText = m_children[dataIndex]->_getCursorText(isAutoClip, minPercent, maxPercent, mouseX, mouseY,
-                frames, outputSize);
-    }
-    return cursorText;
-
-}
+//QString LayerGroup::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
+//        const std::vector<int>& frames, const QSize& outputSize) {
+//    QString cursorText;
+//    int dataIndex = _getIndexCurrent();
+//    if ( dataIndex >= 0 ){
+//        cursorText = m_children[dataIndex]->_getCursorText(isAutoClip, minPercent, maxPercent, mouseX, mouseY,
+//                frames, outputSize);
+//    }
+//    return cursorText;
+//
+//}
 
 std::shared_ptr<DataGrid> LayerGroup::_getDataGrid(){
     std::shared_ptr<DataGrid> dataGrid( nullptr );

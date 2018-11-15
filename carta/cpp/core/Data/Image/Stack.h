@@ -35,7 +35,7 @@ public:
 
     using LayerGroup::_setLayersGrouped;
 //    using LayerGroup::_displayAxesChanged;
-    using LayerGroup::_getCursorText;
+//    using LayerGroup::_getCursorText;
 //    using LayerGroup::_getStateString;
 //    using LayerGroup::_resetPan;
 //    using LayerGroup::_resetZoom;
