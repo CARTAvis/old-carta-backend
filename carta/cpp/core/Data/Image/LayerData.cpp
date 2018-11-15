@@ -1043,40 +1043,12 @@ QString LayerData::_setFileName( const QString& fileName, bool * success ){
     return result;
 }
 
-QString LayerData::_setAxis( const QString axis, const QString name ){
+//QString LayerData::_setAxis( const QString axis, const QString name ){
     // TODO: the variable is used to match the parameter of function, remove it later.
-    bool axisChanged = false;
-    QString result = m_dataGrid->_setAxis( axis, name, &axisChanged );
-    return result;
-}
-
-QString LayerData::_setCoordinateSystem( QString csName ){
-
-    QString result;
-
-    CoordinateSystems* coordSys = Util::findSingletonObject<CoordinateSystems>();
-    if( coordSys->getIndex(csName) == Carta::Lib::KnownSkyCS::Default ){
-        csName = m_dataSource->_getDefaultCoordinateSystem();
-    }
-
-    Carta::Lib::KnownSkyCS cs = coordSys->getIndex( csName );
-    bool csChanged = false; // useless variable
-    result = m_dataGrid->_setCoordinateSystem( csName, &csChanged);
-
-    // TODO:the variable is used to match the crietia of _setAxis(), try to remove later.
-    bool axisChanged = false;
-    m_dataSource->_setCoordinateSystem( cs );
-    std::vector<AxisInfo> supportedAxes = m_dataSource->_getAxisInfos();
-    m_dataGrid->_setAxisInfos( supportedAxes );
-    int xIndex = m_dataSource->m_axisIndexX;
-    int yIndex = m_dataSource->m_axisIndexY;
-    QString xPurpose = supportedAxes[xIndex].longLabel().plain();
-    QString yPurpose = supportedAxes[yIndex].longLabel().plain();
-    result = m_dataGrid->_setAxis( AxisMapper::AXIS_X, xPurpose, &axisChanged );
-    result = m_dataGrid->_setAxis( AxisMapper::AXIS_Y, yPurpose, &axisChanged );
-
-    return result;
-}
+//    bool axisChanged = false;
+//    QString result = m_dataGrid->_setAxis( axis, name, &axisChanged );
+//    return result;
+//}
 
 QString LayerData::_setDataGridState( const QString stateName, const QString stateValue ){
     QString result;

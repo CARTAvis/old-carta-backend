@@ -1033,20 +1033,20 @@ void LayerGroup::_setColorSupport( Layer* layer ){
     layer->_setSupportAlpha( alphaSupport );
 }
 
-QString LayerGroup::_setAxis( const QString axis, const QString name ){
-    QString result;
-    for ( auto layer : m_children ){
-        layer->_setAxis( axis, name);
-    }
-
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
-        Carta::State::StateInterface dataGridState = dataGrid->_getState();
-        result = dataGridState.toString();
-    }
-    return result;
-}
+//QString LayerGroup::_setAxis( const QString axis, const QString name ){
+//    QString result;
+//    for ( auto layer : m_children ){
+//        layer->_setAxis( axis, name);
+//    }
+//
+//    int dataIndex = _getIndexCurrent();
+//    if ( dataIndex >= 0 ){
+//        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
+//        Carta::State::StateInterface dataGridState = dataGrid->_getState();
+//        result = dataGridState.toString();
+//    }
+//    return result;
+//}
 
 bool LayerGroup::_setCompositionMode( const QString& id, const QString& compositionMode,
         QString& errorMsg ){
@@ -1077,21 +1077,6 @@ bool LayerGroup::_setCompositionMode( const QString& id, const QString& composit
         }
     }
     return stateChanged;
-}
-
-QString LayerGroup::_setCoordinateSystem( QString csName ){
-    QString result;
-    for ( auto layer : m_children ){
-        result = layer->_setCoordinateSystem( csName );
-    }
-
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
-        Carta::State::StateInterface dataGridState = dataGrid->_getState();
-        result = dataGridState.toString();
-    }
-    return result;
 }
 
 QString LayerGroup::_setDataGridState( const QString stateName, const QString stateValue ){

@@ -593,7 +593,7 @@ protected:
      */
 //    virtual void _resetZoom( ) = 0;
 
-    virtual QString _setAxis( const QString axis, const QString name ) = 0;
+//    virtual QString _setAxis( const QString axis, const QString name ) = 0;
 
     /**
      * Set the mode used to compose this layer.
@@ -604,7 +604,7 @@ protected:
     virtual bool _setCompositionMode( const QString& id, const QString& compositionMode,
             QString& errorMsg );
 
-    virtual QString _setCoordinateSystem( QString csName ) = 0;
+//    virtual QString _setCoordinateSystem( QString csName ) = 0;
 
     virtual QString _setDataGridState( const QString stateName, const QString stateValue );
 

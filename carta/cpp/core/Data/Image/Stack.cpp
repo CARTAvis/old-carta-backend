@@ -658,7 +658,7 @@ void Stack::_saveState( bool flush ) {
     }
 }
 
-QString Stack::_setAxis( const QString axis, const QString name ){
+//QString Stack::_setAxis( const QString axis, const QString name ){
     // bool axisChanged = false;
     // // TODO: should layergroup change all the datagrid of children?
     // std::shared_ptr<DataGrid> dataGrid = _getDataGrid();
@@ -676,7 +676,7 @@ QString Stack::_setAxis( const QString axis, const QString name ){
 
     //TODO: so far the _displayAxesChanged() should be called from Stack
     //due to the _getFrameIndices(), try to simplify this part
-    QString result = "";
+//    QString result = "";
 //    int dataIndex = _getIndexCurrent();
 //    if ( dataIndex >= 0 ){
 //        result = m_children[dataIndex]->_setAxis( axis, name );
@@ -690,18 +690,8 @@ QString Stack::_setAxis( const QString axis, const QString name ){
 //    }
 
     // TODO: the return value mix with exception, try to seperate them.
-    return result;
-}
-
-QString Stack::_setCoordinateSystem( QString csName ){
-    QString result;
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        result = m_children[dataIndex]->_setCoordinateSystem( csName );
-        emit viewLoad();
-    }
-    return result;
-}
+//    return result;
+//}
 
 QString Stack::_setDataGridState( const QString stateName, const QString stateValue ){
     QString result;

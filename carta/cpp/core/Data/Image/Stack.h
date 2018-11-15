@@ -69,9 +69,9 @@ protected:
     virtual QStringList _getLayerIds( ) const Q_DECL_OVERRIDE;
 
 
-    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
+//    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
 
-    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
+//    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
 
     virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
 

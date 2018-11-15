@@ -498,7 +498,7 @@ protected:
 //    virtual void _resetZoom() Q_DECL_OVERRIDE;
 
 
-    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE; 
+//    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
 
     /**
      * Set the mode used to compose this layer.
@@ -508,7 +508,7 @@ protected:
     virtual bool _setCompositionMode( const QString& id, const QString& compositionMode,
             QString& errorMsg ) Q_DECL_OVERRIDE;
 
-    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
+//    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
 
     virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
 
