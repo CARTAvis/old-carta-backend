@@ -222,10 +222,10 @@ QString Controller::closeImage( const QString& id ){
     return result;
 }
 
-void Controller::centerOnPixel( double centerX, double centerY ){
+//void Controller::centerOnPixel( double centerX, double centerY ){
 //    bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );
 //    m_stack->_setPan( centerX, centerY, panZoomAll );
-}
+//}
 
 void Controller::_contourSetAdded( Layer* cData, const QString& setName ){
     if ( cData != nullptr ){
@@ -1539,10 +1539,10 @@ void Controller::resetStateData( const QString& state ){
     _loadViewQueued();
 }
 
-void Controller::resetPan(){
-    bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );
-    m_stack->_resetPan( panZoomAll );
-}
+//void Controller::resetPan(){
+//    bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );
+//    m_stack->_resetPan( panZoomAll );
+//}
 
 void Controller::resetZoom(){
     bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );

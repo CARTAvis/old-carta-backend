@@ -583,23 +583,23 @@ void Stack::_resetStack( const Carta::State::StateInterface& restoreState ){
     emit viewLoad();
 }
 
-void Stack::_resetPan( bool panZoomAll ){
-    if ( panZoomAll ){
-        int dataCount = m_children.size();
-        if ( dataCount > 0 ){
-            for ( int i = 0; i < dataCount; i++ ){
-                m_children[i]->_resetPan();
-            }
-        }
-    }
-    else {
-        int dataIndex = _getIndexCurrent();
-        if ( dataIndex >= 0 ){
-            m_children[dataIndex]->_resetPan();
-        }
-    }
-    emit viewLoad( );
-}
+//void Stack::_resetPan( bool panZoomAll ){
+//    if ( panZoomAll ){
+//        int dataCount = m_children.size();
+//        if ( dataCount > 0 ){
+//            for ( int i = 0; i < dataCount; i++ ){
+//                m_children[i]->_resetPan();
+//            }
+//        }
+//    }
+//    else {
+//        int dataIndex = _getIndexCurrent();
+//        if ( dataIndex >= 0 ){
+//            m_children[dataIndex]->_resetPan();
+//        }
+//    }
+//    emit viewLoad( );
+//}
 
 
 void Stack::_resetZoom( bool panZoomAll ){

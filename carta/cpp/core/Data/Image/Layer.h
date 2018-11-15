@@ -574,7 +574,7 @@ protected:
     /**
      * Center the image.
      */
-    virtual void _resetPan( ) = 0;
+//    virtual void _resetPan( ) = 0;
 
     /**
      * Reset the prefereence state of this layer.

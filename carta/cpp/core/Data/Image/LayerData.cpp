@@ -109,7 +109,7 @@ void LayerData::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxis
         const std::vector<int>& frames ){
     if ( m_dataSource ){
         m_dataSource->_setDisplayAxes( displayAxisTypes, frames );
-        _resetPan();
+//        _resetPan();
 
     }
 }
@@ -1044,10 +1044,10 @@ void LayerData::_resetZoom( ){
 }
 
 
-void LayerData::_resetPan( ){
+//void LayerData::_resetPan( ){
 //    QPointF panValue = m_dataSource->_getCenter();
 //    _setPan( panValue.x(), panValue.y() );
-}
+//}
 
 QString LayerData::_getFileName() {
     return m_dataSource->_getFileName();

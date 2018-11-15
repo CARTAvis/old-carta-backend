@@ -109,7 +109,7 @@ public:
      * @param imgX the x-coordinate for the center of the pan.
      * @param imgY the y-coordinate for the center of the pan.
      */
-    void centerOnPixel( double imgX , double imgY);
+//    void centerOnPixel( double imgX , double imgY);
 
     /**
      * Close the given image.
@@ -477,7 +477,7 @@ public:
     /**
      * Center the image.
      */
-    void resetPan();
+//    void resetPan();
 
     /**
      * Restore the state from a string representation.

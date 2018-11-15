@@ -323,7 +323,7 @@ protected:
     /**
      * Center the image.
      */
-    virtual void _resetPan() Q_DECL_OVERRIDE;
+//    virtual void _resetPan() Q_DECL_OVERRIDE;
 
     /**
      * Reset the zoom to the original value.

@@ -1029,12 +1029,12 @@ void LayerGroup::_resetZoom(){
 }
 
 
-void LayerGroup::_resetPan( ){
-    int dataCount = m_children.size();
-    for ( int i = 0; i < dataCount; i++ ){
-        m_children[i]->_resetPan();
-    }
-}
+//void LayerGroup::_resetPan( ){
+//    int dataCount = m_children.size();
+//    for ( int i = 0; i < dataCount; i++ ){
+//        m_children[i]->_resetPan();
+//    }
+//}
 
 
 void LayerGroup::_setColorSupport( Layer* layer ){

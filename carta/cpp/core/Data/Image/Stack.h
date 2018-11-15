@@ -37,7 +37,7 @@ public:
     using LayerGroup::_displayAxesChanged;
     using LayerGroup::_getCursorText;
     using LayerGroup::_getStateString;
-    using LayerGroup::_resetPan;
+//    using LayerGroup::_resetPan;
     using LayerGroup::_resetZoom;
     using LayerGroup::_setMaskAlpha;
     using LayerGroup::_setMaskColor;
@@ -160,7 +160,7 @@ private:
     /**
      * Center the image.
      */
-    void _resetPan( bool panZoomAll );
+//    void _resetPan( bool panZoomAll );
 
     void _resetStack( const Carta::State::StateInterface& restoreState );
 

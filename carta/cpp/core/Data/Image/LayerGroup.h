@@ -484,7 +484,7 @@ protected:
     /**
      * Center the image.
      */
-    virtual void _resetPan() Q_DECL_OVERRIDE;
+//    virtual void _resetPan() Q_DECL_OVERRIDE;
 
     /**
          * Reset the preference state of this layer.
