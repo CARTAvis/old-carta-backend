@@ -673,7 +673,7 @@ protected:
      * @param imgX the x-coordinate of the center.
      * @param imgY the y-coordinate of the center.
      */
-    virtual void _setPan( double imgX, double imgY ) = 0;
+//    virtual void _setPan( double imgX, double imgY ) = 0;
 
     /**
      * Set a list of graphics for drawing the current regions.

@@ -540,7 +540,7 @@ protected:
      * @param imgX the x-coordinate of the center.
      * @param imgY the y-coordinate of the center.
      */
-    virtual void _setPan( double imgX, double imgY ) Q_DECL_OVERRIDE;
+//    virtual void _setPan( double imgX, double imgY ) Q_DECL_OVERRIDE;
 
     /**
      * Set a list of graphics for drawing the current regions.

@@ -1045,8 +1045,8 @@ void LayerData::_resetZoom( ){
 
 
 void LayerData::_resetPan( ){
-    QPointF panValue = m_dataSource->_getCenter();
-    _setPan( panValue.x(), panValue.y() );
+//    QPointF panValue = m_dataSource->_getCenter();
+//    _setPan( panValue.x(), panValue.y() );
 }
 
 QString LayerData::_getFileName() {
@@ -1173,12 +1173,12 @@ void LayerData::_setMaskAlphaDefault(){
 }
 
 
-void LayerData::_setPan( double imgX, double imgY ){
-    QString panKeyX = Carta::State::UtilState::getLookup( PAN, Util::XCOORD );
-    QString panKeyY = Carta::State::UtilState::getLookup( PAN, Util::YCOORD );
-    m_state.setValue<double>( panKeyX, imgX );
-    m_state.setValue<double>( panKeyY, imgY );
-}
+//void LayerData::_setPan( double imgX, double imgY ){
+//    QString panKeyX = Carta::State::UtilState::getLookup( PAN, Util::XCOORD );
+//    QString panKeyY = Carta::State::UtilState::getLookup( PAN, Util::YCOORD );
+//    m_state.setValue<double>( panKeyX, imgX );
+//    m_state.setValue<double>( panKeyY, imgY );
+//}
 
 void LayerData::_setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ){
 	m_regionGraphics = regionVGList;

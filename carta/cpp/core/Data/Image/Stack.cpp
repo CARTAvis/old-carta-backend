@@ -828,21 +828,21 @@ void Stack::_setMaskAlpha( const QString& id, int alphaAmount, QString& result )
     }
 }
 
-void Stack::_setPan( double imgX, double imgY, bool panZoomAll ){
-    if ( panZoomAll ){
-       int childCount = m_children.size();
-       for ( int i = 0; i < childCount; i++ ){
-           m_children[i]->_setPan( imgX, imgY );
-       }
-   }
-   else {
-       int dataIndex = _getIndexCurrent();
-       if ( dataIndex >= 0 ){
-           m_children[dataIndex]->_setPan( imgX, imgY );
-       }
-   }
-   emit viewLoad();
-}
+//void Stack::_setPan( double imgX, double imgY, bool panZoomAll ){
+//    if ( panZoomAll ){
+//       int childCount = m_children.size();
+//       for ( int i = 0; i < childCount; i++ ){
+//           m_children[i]->_setPan( imgX, imgY );
+//       }
+//   }
+//   else {
+//       int dataIndex = _getIndexCurrent();
+//       if ( dataIndex >= 0 ){
+//           m_children[dataIndex]->_setPan( imgX, imgY );
+//       }
+//   }
+//   emit viewLoad();
+//}
 
 bool Stack::_setSelected( QStringList& names){
     bool stateChanged = LayerGroup::_setSelected( names );

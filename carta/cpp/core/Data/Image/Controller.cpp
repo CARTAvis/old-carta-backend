@@ -223,8 +223,8 @@ QString Controller::closeImage( const QString& id ){
 }
 
 void Controller::centerOnPixel( double centerX, double centerY ){
-    bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );
-    m_stack->_setPan( centerX, centerY, panZoomAll );
+//    bool panZoomAll = m_state.getValue<bool>( PAN_ZOOM_ALL );
+//    m_stack->_setPan( centerX, centerY, panZoomAll );
 }
 
 void Controller::_contourSetAdded( Layer* cData, const QString& setName ){

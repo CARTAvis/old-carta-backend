@@ -41,7 +41,7 @@ public:
     using LayerGroup::_resetZoom;
     using LayerGroup::_setMaskAlpha;
     using LayerGroup::_setMaskColor;
-    using LayerGroup::_setPan;
+//    using LayerGroup::_setPan;
 
     /**
      * Returns a json string representing data selections.
@@ -189,7 +189,7 @@ private:
 
     void _setMaskColor( const QString& id, int redAmount,
                        int greenAmount, int blueAmount, QStringList& result );
-    void _setPan( double imgX, double imgY, bool all );
+//    void _setPan( double imgX, double imgY, bool all );
 
     void _setViewName( const QString& viewName );
 //    void _setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawStack );

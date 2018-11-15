@@ -569,7 +569,7 @@ protected:
      * @param imgX the x-coordinate of the center.
      * @param imgY the y-coordinate of the center.
      */
-    virtual void _setPan( double imgX, double imgY ) Q_DECL_OVERRIDE;
+//    virtual void _setPan( double imgX, double imgY ) Q_DECL_OVERRIDE;
 
     /**
      * Show/hide this layer.

@@ -1224,11 +1224,11 @@ bool LayerGroup::_setLayerName( const QString& id, const QString& name ){
     return nameSet;
 }
 
-void LayerGroup::_setPan( double imgX, double imgY ){
-    for ( std::shared_ptr<Layer> node : m_children ){
-        node -> _setPan( imgX, imgY );
-    }
-}
+//void LayerGroup::_setPan( double imgX, double imgY ){
+//    for ( std::shared_ptr<Layer> node : m_children ){
+//        node -> _setPan( imgX, imgY );
+//    }
+//}
 
 void LayerGroup::_setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList){
 	//Only the top layer needs them, but we store in all layers.
