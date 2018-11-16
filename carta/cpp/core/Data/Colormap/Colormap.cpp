@@ -1006,7 +1006,7 @@ QString Colormap::setColorMix( double redValue, double greenValue, double blueVa
 
 
 void Colormap::_setColorStates( Controller* controller ){
-    if ( controller ){
+    /*if ( controller ){
         bool global = m_state.getValue<bool>( GLOBAL );
         std::vector< std::shared_ptr<ColorState> > selectedColorStates = controller->getSelectedColorStates( global);
         int stateColorCount = selectedColorStates.size();
@@ -1020,7 +1020,7 @@ void Colormap::_setColorStates( Controller* controller ){
             //Update the state the client is listening to.
             _colorStateChanged();
         }
-    }
+    }*/
 }
 
 QString Colormap::setDataTransform( const QString& transformString){

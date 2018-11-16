@@ -67,7 +67,7 @@ public:
     /**
      * let Anmiator get file List
      */
-    QStringList getOpenedFileList();
+//    QStringList getOpenedFileList();
 
     /**
      * Clear the view.
@@ -124,13 +124,13 @@ public:
       * the center pixel, or a special value of (-0.0, -0.0) if the
       * center pixel could not be obtained.
       */
-    QPointF getCenterPixel() const;
+//    QPointF getCenterPixel() const;
 
     /**
      * Return the coordinate system in use.
      * @return - an enumerated coordinate system type.
      */
-    Carta::Lib::KnownSkyCS getCoordinateSystem() const;
+//    Carta::Lib::KnownSkyCS getCoordinateSystem() const;
 
     /**
      * Return the auto clip.
@@ -157,7 +157,7 @@ public:
      * @param system the desired coordinate system.
      * @return the coordinates at pixel (x, y).
      */
-    QStringList getCoordinates( double x, double y, Carta::Lib::KnownSkyCS system ) const;
+//    QStringList getCoordinates( double x, double y, Carta::Lib::KnownSkyCS system ) const;
 
 
     /**
@@ -172,21 +172,21 @@ public:
      * Return a shared pointer to the contour controls.
      * @return - a shared pointer to the contour controls.
      */
-    std::shared_ptr<ContourControls> getContourControls();
+//    std::shared_ptr<ContourControls> getContourControls();
 
     /**
      * Return the current frame for the the axis of the indicated type.
      * @param axisType - an identifier for the type of axis.
      * @return the current index withen the axis.
      */
-    int getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
+//    int getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
 
     /**
      * Return the frame upper bound.
      * @param type - the axis for which a frame upper bound is needed.
      * @return the largest frame for a particular axis in the image.
      */
-    int getFrameUpperBound( Carta::Lib::AxisInfo::KnownType type ) const;
+//    int getFrameUpperBound( Carta::Lib::AxisInfo::KnownType type ) const;
 
     /**
      * Return a shared pointer to the grid controls.
@@ -314,19 +314,19 @@ public:
      * @name - the name of a layer or an empty string to specify the current layer.
      * @return - the current layer.
      */
-    std::shared_ptr<Layer> getLayer( const QString& name );
+//    std::shared_ptr<Layer> getLayer( const QString& name );
 
     /**
      * Return all layers containing images.
      * @return - a list of all layers containing images.
      */
-    std::vector< std::shared_ptr<Layer> > getLayers();
+//    std::vector< std::shared_ptr<Layer> > getLayers();
 
     /**
      * Recursively returns the identifiers for the layers in the stack..
      * @return - identifiers for the layers in the stack.
      */
-     QStringList getLayerIds( ) const;
+//     QStringList getLayerIds( ) const;
 
     /**
      * Return a list of indices indicating the current frames of the selected
@@ -433,7 +433,7 @@ public:
      * @return a count of the number of image layers that have not been hidden
      *      and are available for the user to see.
      */
-    int getStackedImageCountVisible() const;
+//    int getStackedImageCountVisible() const;
 
     /**
       * Returns a json string representing the state of this controller.
@@ -446,7 +446,7 @@ public:
     /**
      * Get the current zoom level
      */
-    double getZoomLevel( ) const;
+//    double getZoomLevel( ) const;
 
     /**
      * Returns whether or not the image stack layers are selected based on the
@@ -454,14 +454,14 @@ public:
      * @return - true if the stack layers are selected based on the current layer; false
      *      if the user has specified manual selection.
      */
-    bool isStackSelectAuto() const;
+//    bool isStackSelectAuto() const;
 
     /**
      * Move the selected main stack layers up or down one layer.
      * @param moveDown - true if the selected layers should be moved down one layer;
      *      false otherwise.
      */
-    QString moveSelectedLayers( bool moveDown );
+//    QString moveSelectedLayers( bool moveDown );
 
     /**
      * Force a state refresh.
@@ -726,21 +726,21 @@ private slots:
 
 	// void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes, bool applyAll);
 
-	void _contourSetAdded( Layer* cData, const QString& setName );
-	void _contourSetRemoved( const QString setName );
+//	void _contourSetAdded( Layer* cData, const QString& setName );
+//	void _contourSetRemoved( const QString setName );
 
 	// void _gridChanged( const Carta::State::StateInterface& state, bool applyAll );
 //	void _onInputEvent( InputEvent ev );
 
 	//Refresh the view based on the latest data selection information.
-	void _loadView(  );
-	void _loadViewQueued( );
-    void _emitColorChanged();
-	void _notifyFrameChange( Carta::Lib::AxisInfo::KnownType axis );
-	void _regionsChanged();
+//	void _loadView(  );
+//	void _loadViewQueued( );
+//    void _emitColorChanged();
+//	void _notifyFrameChange( Carta::Lib::AxisInfo::KnownType axis );
+//	void _regionsChanged();
 
 	// Asynchronous result from saveFullImage().
-	void saveImageResultCB( bool result );
+//	void saveImageResultCB( bool result );
 
 private:
 
@@ -758,18 +758,18 @@ private:
 	void _clearColorMap();
 
 	//Clear image statistics.
-	void _clearStatistics();
+//	void _clearStatistics();
 
-	std::set<Carta::Lib::AxisInfo::KnownType> _getAxesHidden() const;
-	std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const;
+//	std::set<Carta::Lib::AxisInfo::KnownType> _getAxesHidden() const;
+//	std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const;
 
 	//Return the point on the image that corresponds to the cursor point on the context image.
-	QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const;
+//	QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const;
 
 	//Return the size of the image in display coordinates.  Normally, this
 	//will be the number of frames in RA x DEC, but in a case were the image
 	//axes are Frequency x RA, it will be in channel count frames and RA frames.
-	QSize _getDisplaySize() const;
+//	QSize _getDisplaySize() const;
 
 	//Return the rectangle (in pixel coordinates scaled to the display size)
 	//that is currently being viewed in the main view.  Used to show a rectangle
@@ -780,11 +780,11 @@ private:
 	QString _getStackId() const;
 
 	//Provide default values for state.
-	void _initializeState();
+//	void _initializeState();
 //	void _initializeCallbacks();
 
 //	void _renderZoom( double factor );
-	void _renderContext( double zoomFactor );
+//	void _renderContext( double zoomFactor );
 
     // Set the AxisMapper::axisMap to use
     void _setAxisMap();
@@ -831,7 +831,7 @@ private:
 
 	//Separate state for mouse events since they get updated rapidly and not
 	//everyone wants to listen to them.
-	Carta::State::StateInterface m_stateMouse;
+//	Carta::State::StateInterface m_stateMouse;
 
 	Controller(const Controller& other);
 	Controller& operator=(const Controller& other);
