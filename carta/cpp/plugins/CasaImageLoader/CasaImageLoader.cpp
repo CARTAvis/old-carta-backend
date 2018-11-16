@@ -104,7 +104,7 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
     }
 
     if (nullptr == lat) {
-        qWarning() << "Open image failed: unknown image type to casacore.";
+        qWarning() << "Open image failed: casacore returns nullptr.";
         return nullptr;
     }
 
