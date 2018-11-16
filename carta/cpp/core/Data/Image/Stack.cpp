@@ -3,7 +3,7 @@
 #include "Data/Image/LayerCompositionModes.h"
 //#include "Data/Image/Draw/DrawStackSynchronizer.h"
 //#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
-#include "Data/Image/Grid/AxisMapper.h"
+//#include "Data/Image/Grid/AxisMapper.h"
 //#include "Data/Image/Grid/DataGrid.h"
 //#include "Data/Image/Save/SaveService.h"
 //#include "Data/Preferences/PreferencesSave.h"
@@ -554,7 +554,7 @@ QString Stack::_resetFrames( int val ){
 
 
 void Stack::_resetStack( const Carta::State::StateInterface& restoreState ){
-    _resetState( restoreState );
+/*    _resetState( restoreState );
     QString dataStateStr = restoreState.getValue<QString>( Selection::IMAGE );
     m_selectImage ->resetState( dataStateStr );
     int selectCount = m_selects.size();
@@ -566,7 +566,7 @@ void Stack::_resetStack( const Carta::State::StateInterface& restoreState ){
         m_selects[i]->resetState( axisState );
     }
     _saveState();
-    emit viewLoad();
+    emit viewLoad();*/
 }
 
 //void Stack::_resetPan( bool panZoomAll ){

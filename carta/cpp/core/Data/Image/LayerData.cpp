@@ -6,7 +6,7 @@
 #include "Data/Util.h"
 #include "Data/Colormap/ColorState.h"
 #include "Data/Image/CoordinateSystems.h"
-#include "Data/Image/Grid/AxisMapper.h"
+//#include "Data/Image/Grid/AxisMapper.h"
 #include "Data/Image/Grid/LabelFormats.h"
 #include "State/UtilState.h"
 #include "CartaLib/PixelPipeline/CustomizablePixelPipeline.h"
