@@ -53,12 +53,6 @@ HEADERS += \
     Data/Image/Contour/GeneratorState.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
-#    Data/Image/Grid/AxisMapper.h \
-#    Data/Image/Grid/DataGrid.h \
-    Data/Image/Grid/Fonts.h \
-#    Data/Image/Grid/GridControls.h \
-    Data/Image/Grid/Themes.h \
-    Data/Image/Grid/LabelFormats.h \
     Data/Image/IPercentIntensityMap.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
@@ -94,7 +88,6 @@ HEADERS += \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
     DefaultContourGeneratorService.h \
-    DummyGridRenderer.h \
     coreMain.h \
     SimpleRemoteVGView.h
 
@@ -134,12 +127,6 @@ SOURCES += \
     Data/Image/Contour/GeneratorState.cpp \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
-#    Data/Image/Grid/AxisMapper.cpp \
-#    Data/Image/Grid/DataGrid.cpp \
-    Data/Image/Grid/Fonts.cpp \
-#    Data/Image/Grid/GridControls.cpp \
-    Data/Image/Grid/LabelFormats.cpp \
-    Data/Image/Grid/Themes.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
     Data/Image/Render/RenderResponse.cpp \
@@ -176,7 +163,6 @@ SOURCES += \
     ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
     DefaultContourGeneratorService.cpp \
-    DummyGridRenderer.cpp \
     coreMain.cpp \
     SimpleRemoteVGView.cpp
 

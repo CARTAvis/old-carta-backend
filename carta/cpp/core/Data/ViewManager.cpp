@@ -3,9 +3,9 @@
 #include "Data/Colormap/Colormaps.h"
 #include "Data/Image/Controller.h"
 #include "Data/Image/CoordinateSystems.h"
-#include "Data/Image/Grid/Themes.h"
-#include "Data/Image/Grid/Fonts.h"
-#include "Data/Image/Grid/LabelFormats.h"
+//#include "Data/Image/Grid/Themes.h"
+//#include "Data/Image/Grid/Fonts.h"
+//#include "Data/Image/Grid/LabelFormats.h"
 #include "Data/Image/Contour/ContourGenerateModes.h"
 #include "Data/Image/Contour/ContourTypes.h"
 #include "Data/Image/Contour/ContourSpacingModes.h"
@@ -481,12 +481,12 @@ ViewManager::~ViewManager(){
     delete obj;
     obj =  Util::findSingletonObject<ErrorManager>();
     delete obj;
-    obj =  Util::findSingletonObject<LabelFormats>();
-    delete obj;
+//    obj =  Util::findSingletonObject<LabelFormats>();
+//    delete obj;
     obj =  Util::findSingletonObject<CoordinateSystems>();
     delete obj;
-    obj =  Util::findSingletonObject<Themes>();
-    delete obj;
+//    obj =  Util::findSingletonObject<Themes>();
+//    delete obj;
     obj =  Util::findSingletonObject<ContourGenerateModes>();
     delete obj;
     obj =  Util::findSingletonObject<ContourTypes>();
@@ -505,8 +505,8 @@ ViewManager::~ViewManager(){
     delete obj;
     obj =  Util::findSingletonObject<UnitsWavelength>();
     delete obj;
-    obj = Util::findSingletonObject<Fonts>();
-    delete obj;
+//    obj = Util::findSingletonObject<Fonts>();
+//    delete obj;
 
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     objMan->printObjects();
