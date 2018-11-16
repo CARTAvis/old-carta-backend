@@ -1,4 +1,4 @@
-#include "Grid/DataGrid.h"
+//#include "Grid/DataGrid.h"
 #include "Contour/DataContours.h"
 #include "DataSource.h"
 //#include "Data/Image/Draw/DrawSynchronizer.h"
@@ -214,9 +214,9 @@ QStringList LayerData::_getCoordinates( double x, double y,
 
 Carta::Lib::KnownSkyCS LayerData::_getCoordinateSystem() const {
     Carta::Lib::KnownSkyCS cs = Carta::Lib::KnownSkyCS::Unknown;
-    if ( m_dataGrid ){
-        cs = m_dataGrid->_getSkyCS();
-    }
+//    if ( m_dataGrid ){
+//        cs = m_dataGrid->_getSkyCS();
+//    }
     return cs;
 }
 
@@ -480,14 +480,14 @@ QRectF LayerData::_getOutputRectangle( const QSize& outputSize, bool requestMain
     int topMargin = 0;
     int bottomMargin = 0;
     //Off center image to make room for grid axis and labels on two sides.
-    if ( requestMain ){
-        leftMargin = m_dataGrid->_getMargin( LabelFormats::EAST );
-        rightMargin = m_dataGrid->_getMargin( LabelFormats::WEST );
-        topMargin = m_dataGrid->_getMargin( LabelFormats::NORTH );
-        bottomMargin = m_dataGrid->_getMargin( LabelFormats::SOUTH );
-    }
+//    if ( requestMain ){
+//        leftMargin = m_dataGrid->_getMargin( LabelFormats::EAST );
+//        rightMargin = m_dataGrid->_getMargin( LabelFormats::WEST );
+//        topMargin = m_dataGrid->_getMargin( LabelFormats::NORTH );
+//        bottomMargin = m_dataGrid->_getMargin( LabelFormats::SOUTH );
+//    }
     //Center the image
-    else if ( requestContext ){
+/*    else if ( requestContext ){
         QSize imageSize = _getDisplaySize();
         int extraX = (outputSize.width() - imageSize.width())/2;
         int extraY = (outputSize.height() - imageSize.height())/2;
@@ -499,7 +499,7 @@ QRectF LayerData::_getOutputRectangle( const QSize& outputSize, bool requestMain
             topMargin = extraY;
             bottomMargin = outputSize.height() - imageSize.height() - extraY;
         }
-    }
+    }*/
     int outWidth = outputSize.width() - leftMargin - rightMargin;
     int outHeight = outputSize.height() - topMargin - bottomMargin;
     QRectF outputRect( leftMargin, topMargin, outWidth, outHeight );
@@ -575,13 +575,13 @@ QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode asp
     QSize saveSize = outputSize;
 
     //Get the grid margin space.
-    int leftMargin = m_dataGrid->_getMargin( LabelFormats::EAST );
-    int rightMargin = m_dataGrid->_getMargin( LabelFormats::WEST );
-    int topMargin = m_dataGrid->_getMargin( LabelFormats::NORTH );
-    int bottomMargin = m_dataGrid->_getMargin( LabelFormats::SOUTH );
+//    int leftMargin = m_dataGrid->_getMargin( LabelFormats::EAST );
+//    int rightMargin = m_dataGrid->_getMargin( LabelFormats::WEST );
+//    int topMargin = m_dataGrid->_getMargin( LabelFormats::NORTH );
+//    int bottomMargin = m_dataGrid->_getMargin( LabelFormats::SOUTH );
 
     //Get the image dimensions
-    Carta::Lib::AxisInfo::KnownType axisXType = m_dataSource->_getAxisXType();
+/*    Carta::Lib::AxisInfo::KnownType axisXType = m_dataSource->_getAxisXType();
     Carta::Lib::AxisInfo::KnownType axisYType = m_dataSource->_getAxisYType();
     int imageWidth = m_dataSource->_getFrameCount( axisXType );
     int imageHeight = m_dataSource->_getFrameCount( axisYType );
@@ -619,7 +619,7 @@ QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode asp
         if ( saveSize.height() < minHeight ){
             saveSize.setHeight( minHeight );
         }
-    }
+    }*/
     return saveSize;
 }
 
@@ -744,13 +744,13 @@ void LayerData::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
     if ( m_dataSource ){
         m_dataSource->_load( frames, recomputeClipsOnNewFrame,
                 minClipPercentile, maxClipPercentile );
-        if ( m_dataGrid ){
-            if ( m_dataGrid->_isGridVisible() ){
-                std::shared_ptr<Carta::Lib::IWcsGridRenderService> gridService = m_dataGrid->_getRenderer();
+//        if ( m_dataGrid ){
+//            if ( m_dataGrid->_isGridVisible() ){
+//                std::shared_ptr<Carta::Lib::IWcsGridRenderService> gridService = m_dataGrid->_getRenderer();
                 //gridService->setInputImage( m_dataSource->_getImage() );
-                gridService->setInputImage( m_dataSource->_getPermImage() );
-            }
-        }
+//                gridService->setInputImage( m_dataSource->_getPermImage() );
+//            }
+//        }
 //        if ( m_drawSync ){
 //        	std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> rawData( m_dataSource->_getRawData( frames ));
 //        	m_drawSync->setInput( rawData );
@@ -817,7 +817,7 @@ void LayerData::_renderingDone(
 
 
 void LayerData::_renderStart(){
-
+/*
     m_renderQueued = true;
 
     //Get the render parameters from the next request.
@@ -828,7 +828,7 @@ void LayerData::_renderStart(){
     bool topOfStack = request->isStackTop();
     QSize outputSize = request->getOutputSize();
 
-    std::shared_ptr<Carta::Lib::IWcsGridRenderService> gridService = m_dataGrid->_getRenderer();
+//    std::shared_ptr<Carta::Lib::IWcsGridRenderService> gridService = m_dataGrid->_getRenderer();
     //The following pointer "imageService" is not used. Do not sure if we need it in future, just comment it for now.
     //std::shared_ptr<Carta::Core::ImageRenderService::Service> imageService = m_dataSource->_getRenderer();
 
@@ -886,24 +886,24 @@ void LayerData::_renderStart(){
     // We need to set the spactral system and unit
 
     AxisInfo::KnownType horAxisType = m_dataSource->_getAxisXType();
-    Carta::Lib::AxisLabelInfo horAxisInfo = m_dataGrid->_getAxisLabelInfo( 0, horAxisType, cs );
+//    Carta::Lib::AxisLabelInfo horAxisInfo = m_dataGrid->_getAxisLabelInfo( 0, horAxisType, cs );
     gridService->setAxisLabelInfo( 0, horAxisInfo );
     AxisInfo::KnownType vertAxisType = m_dataSource->_getAxisYType();
-    Carta::Lib::AxisLabelInfo vertAxisInfo = m_dataGrid->_getAxisLabelInfo( 1, vertAxisType, cs );
+//    Carta::Lib::AxisLabelInfo vertAxisInfo = m_dataGrid->_getAxisLabelInfo( 1, vertAxisType, cs );
     gridService->setAxisLabelInfo( 1, vertAxisInfo );
 
     bool contourDraw = _isContourDraw() && request->isRequestMain();
     bool gridDraw = false;
-    if ( topOfStack && request->isRequestMain() ){
+//    if ( topOfStack && request->isRequestMain() ){
 //    	m_drawSync->setRegionGraphics( m_regionGraphics );
-        gridDraw = m_dataGrid->_isGridVisible();
-    }
+//        gridDraw = m_dataGrid->_isGridVisible();
+//    }
     else {
     	//Empty list
 //    	Carta::Lib::VectorGraphics::VGList vgList;
 //    	m_drawSync->setRegionGraphics( vgList );
     }
-
+*/
 //    m_drawSync-> start( contourDraw, gridDraw );
 }
 
@@ -948,14 +948,14 @@ void LayerData::_resetStateContours(const Carta::State::StateInterface& restoreS
 
 void LayerData::_resetState( const Carta::State::StateInterface& restoreState ){
     //Restore the other state variables
-    Layer::_resetState( restoreState );
+/*    Layer::_resetState( restoreState );
 
     //Restore the grid
     QString gridStr = restoreState.toString( DataGrid::GRID );
     Carta::State::StateInterface gridState( "" );
     gridState.setState( gridStr );
     // _gridChanged( gridState);
-    m_dataGrid->_resetState( gridState );
+//    m_dataGrid->_resetState( gridState );
     _resetStateContours( restoreState );
     QString colorState = restoreState.toString( ColorState::CLASS_NAME);
     if ( colorState.length() > 0 ){
@@ -989,7 +989,7 @@ void LayerData::_resetState( const Carta::State::StateInterface& restoreState ){
     QString panXKey = Carta::State::UtilState::getLookup( PAN, Util::XCOORD );
     QString panYKey = Carta::State::UtilState::getLookup( PAN, Util::YCOORD );
     m_state.setValue<double>( panXKey, restoreState.getValue<double>( panXKey ));
-    m_state.setValue<double>( panYKey, restoreState.getValue<double>( panYKey ));
+    m_state.setValue<double>( panYKey, restoreState.getValue<double>( panYKey ));*/
 }
 
 
@@ -1171,7 +1171,7 @@ void LayerData::_updateColor(){
         int blueBorder = m_stateColor->_getBorderBlue();
         int greenBorder = m_stateColor->_getBorderGreen();
         int alphaAmount = m_stateColor->_getBorderTransparency();
-        m_dataGrid->_setBorderColor( QColor(redBorder, greenBorder, blueBorder, alphaAmount) );
+//        m_dataGrid->_setBorderColor( QColor(redBorder, greenBorder, blueBorder, alphaAmount) );
         Layer::_updateColor();
     }
 }

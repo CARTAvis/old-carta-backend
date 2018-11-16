@@ -35,7 +35,7 @@ class RawViewInterface;
 
 namespace Data {
 
-class DataGrid;
+//class DataGrid;
 class ColorState;
 class DataContours;
 class DataSource;

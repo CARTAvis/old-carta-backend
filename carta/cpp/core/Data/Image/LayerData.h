@@ -40,7 +40,7 @@ namespace Data {
 class ColorState;
 //class DrawSynchronizer;
 class DataContours;
-class DataGrid;
+//class DataGrid;
 class DataSource;
 
 class LayerData : public Layer {
@@ -612,7 +612,7 @@ private:
 
 
     // std::unique_ptr<DataGrid> m_dataGrid;
-    std::shared_ptr<DataGrid> m_dataGrid;
+//    std::shared_ptr<DataGrid> m_dataGrid;
 
     std::set< std::shared_ptr<DataContours> > m_dataContours;
 

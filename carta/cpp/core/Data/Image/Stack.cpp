@@ -4,7 +4,7 @@
 //#include "Data/Image/Draw/DrawStackSynchronizer.h"
 //#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
 #include "Data/Image/Grid/AxisMapper.h"
-#include "Data/Image/Grid/DataGrid.h"
+//#include "Data/Image/Grid/DataGrid.h"
 //#include "Data/Image/Save/SaveService.h"
 //#include "Data/Preferences/PreferencesSave.h"
 #include "Data/Region/Region.h"
