@@ -443,7 +443,7 @@ std::vector<int> LayerGroup::_getImageDimensions( ) const {
 }
 
 
-QPointF LayerGroup::_getImagePt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const {
+/*QPointF LayerGroup::_getImagePt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const {
     QPointF imagePt;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
@@ -453,9 +453,9 @@ QPointF LayerGroup::_getImagePt( const QPointF& screenPt, const QSize& outputSiz
         *valid = false;
     }
     return imagePt;
-}
+}*/
 
-QPointF LayerGroup::_getContextPt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const {
+/*QPointF LayerGroup::_getContextPt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const {
 	QPointF contextPt;
 	int dataIndex = _getIndexCurrent();
 	if ( dataIndex >= 0 ){
@@ -465,7 +465,7 @@ QPointF LayerGroup::_getContextPt( const QPointF& screenPt, const QSize& outputS
 		*valid = false;
 	}
 	return contextPt;
-}
+}*/
 
 std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > LayerGroup::_getImages(){
     std::vector<std::shared_ptr<Carta::Lib::Image::ImageInterface> > images;
@@ -499,14 +499,14 @@ int LayerGroup::_getIndexCurrent( ) const {
     return dataIndex;
 }
 
-QRectF LayerGroup::_getInputRect( const QSize& size ) const {
+/*QRectF LayerGroup::_getInputRect( const QSize& size ) const {
     QRectF rect(0,0,0,0);
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         rect = m_children[dataIndex]->_getInputRect( size );
     }
     return rect;
-}
+}*/
 
 //std::vector<double> LayerGroup::_getIntensity( int frameLow, int frameHigh,
 //        const std::vector<double>& percentiles, int stokeFrame,

@@ -101,7 +101,7 @@ protected:
      * @param valid - whether or not the returned point is valid.
      * @return - the pixel position of the point in image coordinates.
      */
-    virtual QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const Q_DECL_OVERRIDE;
 
     /**
      * Return the contour set with the indicated name.
@@ -349,7 +349,7 @@ protected:
      * @param valid set to true if an image is loaded that can do the translation; otherwise false;
      * @return the corresponding location on the image.
      */
-    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize,  bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize,  bool* valid ) const Q_DECL_OVERRIDE;
 
     /**
      * Return the portion of the image that is displayed given current zoom and
@@ -357,7 +357,7 @@ protected:
      * @param size - the size of the displayed image.
      * @return - the portion of the image that is visible.
      */
-    virtual QRectF _getInputRect( const QSize& size ) const Q_DECL_OVERRIDE;
+//    virtual QRectF _getInputRect( const QSize& size ) const Q_DECL_OVERRIDE;
 
     /**
      * Returns the intensity corresponding to a given percentile.
@@ -569,12 +569,12 @@ private slots:
 
     //Notification from the rendering service that a new image and assiciated vector
     //graphics have been produced.
-    void _renderingDone(  QImage image,
+/*    void _renderingDone(  QImage image,
                           Carta::Lib::VectorGraphics::VGList vgList,
                           Carta::Lib::VectorGraphics::VGList contourList,
 						  Carta::Lib::VectorGraphics::VGList regionList,
                           int64_t jobId );
-
+*/
 private:
 
     /**
@@ -585,15 +585,15 @@ private:
      */
     Carta::Lib::AxisLabelInfo _getAxisLabelInfo( int axisIndex, Carta::Lib::AxisInfo::KnownType axisType ) const;
 
-    QRectF _getInputRectangle( const QPointF& pan, double zoom,
-            const QSize& outputSize) const;
-    QRectF _getInputRectangle( const QPointF& pan, double zoom,
-            const QRectF& outputRect, const QSize& outputSize ) const;
+//    QRectF _getInputRectangle( const QPointF& pan, double zoom,
+//            const QSize& outputSize) const;
+//    QRectF _getInputRectangle( const QPointF& pan, double zoom,
+//            const QRectF& outputRect, const QSize& outputSize ) const;
     QRectF _getOutputRectangle( const QSize& outputSize, bool requestMain, bool requestContext ) const;
     QPointF _getPan() const;
 
 
-    bool _getTransform( const QPointF& pan, double zoom, const QSize& size, QTransform& tf ) const;
+//    bool _getTransform( const QPointF& pan, double zoom, const QSize& size, QTransform& tf ) const;
 
     void _initializeState();
 

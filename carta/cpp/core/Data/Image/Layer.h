@@ -148,7 +148,7 @@ protected:
      * @param valid - whether or not the returned point is valid.
      * @return - the pixel position of the point in image coordinates.
      */
-    virtual QPointF _getContextPt( const QPointF& pixelPt, const QSize& outputSize, bool* valid ) const = 0;
+//    virtual QPointF _getContextPt( const QPointF& pixelPt, const QSize& outputSize, bool* valid ) const = 0;
 
     /**
      * Return the contour set with the indicated name.
@@ -261,7 +261,7 @@ protected:
      * @param valid set to true if an image is loaded that can do the translation; otherwise false;
      * @return the corresponding location on the image.
      */
-    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const = 0;
+//    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const = 0;
 
 
     /**
@@ -270,7 +270,7 @@ protected:
      * @param size - the size of the displayed image.
      * @return - the portion of the image that is visible.
      */
-    virtual QRectF _getInputRect( const QSize& size ) const = 0;
+//    virtual QRectF _getInputRect( const QSize& size ) const = 0;
 
 
     /**

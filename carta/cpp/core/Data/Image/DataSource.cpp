@@ -58,7 +58,7 @@ DataSource::DataSource() :
         _initializeSingletons();
 
         //Initialize the rendering service
-        m_renderService.reset( new Carta::Core::ImageRenderService::Service() );
+//        m_renderService.reset( new Carta::Core::ImageRenderService::Service() );
 
         // assign a default colormap to the view
 //        auto rawCmap = std::make_shared < Carta::Core::GrayColormap > ();
@@ -249,7 +249,7 @@ QString DataSource::_getDefaultCoordinateSystem() const{
 }
 
 // print the pixel value and x-y coordinate for the cursor on the image viewer
-QString DataSource::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
+/*QString DataSource::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
         Carta::Lib::KnownSkyCS cs, const std::vector<int>& frames,
         double zoom, const QPointF& pan, const QSize& outputSize ){
     QString str;
@@ -325,7 +325,7 @@ QString DataSource::_getCursorText(bool isAutoClip, double minPercent, double ma
         str.replace( "\n", "<br />" );
     }
     return str;
-}
+}*/
 
 QPointF DataSource::_getCenter() const{
     QPointF center( nan(""), nan(""));
@@ -372,7 +372,7 @@ std::vector<AxisDisplayInfo> DataSource::_getAxisDisplayInfo() const {
     return axisInfo;
 }
 
-QPointF DataSource::_getImagePt( const QPointF& screenPt, double zoom, const QPointF& pan,
+/*QPointF DataSource::_getImagePt( const QPointF& screenPt, double zoom, const QPointF& pan,
             const QSize& outputSize, bool* valid ) const {
     QPointF imagePt;
     if ( m_image ){
@@ -383,7 +383,7 @@ QPointF DataSource::_getImagePt( const QPointF& screenPt, double zoom, const QPo
         *valid = false;
     }
     return imagePt;
-}
+}*/
 
 QString DataSource::_getPixelValue( double x, double y, const std::vector<int>& frames ) const {
     QString pixelValue( "" );
@@ -458,9 +458,9 @@ std::shared_ptr<Carta::Lib::Image::ImageInterface> DataSource::_getPermImage(){
 //    return m_pixelPipeline;
 //}
 
-std::shared_ptr<Carta::Core::ImageRenderService::Service> DataSource::_getRenderer() const {
-    return m_renderService;
-}
+//std::shared_ptr<Carta::Core::ImageRenderService::Service> DataSource::_getRenderer() const {
+//    return m_renderService;
+//}
 
 std::shared_ptr<Carta::Lib::IntensityValue> DataSource::_readIntensityCache(int frameLow, int frameHigh, double percentile, int stokeFrame, QString transformationLabel) const {
     if (m_diskCacheHelper) {
@@ -1175,10 +1175,10 @@ std::vector<int32_t> DataSource::_getNanEncodingsBlock(std::vector<float>& array
     return encodedArray;
 }
 
-QColor DataSource::_getNanColor() const {
+/*QColor DataSource::_getNanColor() const {
     QColor nanColor = m_renderService->getNanColor();
     return nanColor;
-}
+}*/
 
 std::vector<double> DataSource::_getHertzValues(const std::vector<int> dims) const {
     int spectralIndex = Util::getAxisIndex( m_image, AxisInfo::KnownType::SPECTRAL );
@@ -1249,7 +1249,7 @@ std::pair<double,QString> DataSource::_getRestFrequency() const {
 	return restFreq;
 }
 
-QPointF DataSource::_getScreenPt( const QPointF& imagePt, const QPointF& pan,
+/*QPointF DataSource::_getScreenPt( const QPointF& imagePt, const QPointF& pan,
         double zoom, const QSize& outputSize, bool* valid ) const {
     QPointF screenPt;
     if ( m_image != nullptr ){
@@ -1260,7 +1260,7 @@ QPointF DataSource::_getScreenPt( const QPointF& imagePt, const QPointF& pan,
         *valid = false;
     }
     return screenPt;
-}
+}*/
 
 QPointF DataSource::_getWorldCoordinates( double pixelX, double pixelY,
         Carta::Lib::KnownSkyCS coordSys, bool* valid ) const{
@@ -1632,17 +1632,17 @@ void DataSource::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
 }
 
 
-void DataSource::_resetZoom(){
+/*void DataSource::_resetZoom(){
     m_renderService-> setZoom( ZOOM_DEFAULT );
-}
+}*/
 
-void DataSource::_resetPan(){
+/*void DataSource::_resetPan(){
     if ( m_permuteImage != nullptr ){
         double xCenter =  m_permuteImage-> dims()[0] / 2.0;
         double yCenter = m_permuteImage-> dims()[1] / 2.0;
         m_renderService-> setPan({ xCenter, yCenter });
     }
-}
+}*/
 
 QString DataSource::_setFileName( const QString& fileName, bool* success ){
     QString file = fileName.trimmed();
@@ -1661,8 +1661,8 @@ QString DataSource::_setFileName( const QString& fileName, bool* success ){
                         m_image->metaData()->coordinateFormatter()->clone() );
                     m_coordinateFormatter = cf;
                     // reset zoom/pan
-                    _resetZoom();
-                    _resetPan();
+                    //_resetZoom();
+                    //_resetPan();
 
                     m_fileName = file;
                     //qDebug() << "[DataSource] m_fileName=" << m_fileName;
@@ -1716,10 +1716,10 @@ QString DataSource::_setFileName( const QString& fileName, bool* success ){
 //    m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId());
 //}
 
-void DataSource::_setColorNan( double red, double green, double blue ){
+/*void DataSource::_setColorNan( double red, double green, double blue ){
     QColor nanColor( red, green, blue );
     m_renderService->setNanColor( nanColor );
-}
+}*/
 
 bool DataSource::_setDisplayAxis( AxisInfo::KnownType axisType, int* axisIndex ){
     bool displayAxisChanged = false;
@@ -1782,19 +1782,19 @@ void DataSource::_setDisplayAxes(std::vector<AxisInfo::KnownType> displayAxisTyp
 
     if ( axisXChanged || axisYChanged ){
         m_permuteImage = _getPermutedImage();
-        _resetPan();
+        //_resetPan();
     }
-    std::vector<int> mFrames = _fitFramesToImage( frames );
-    _updateRenderedView( mFrames );
+    //std::vector<int> mFrames = _fitFramesToImage( frames );
+    //_updateRenderedView( mFrames );
 }
 
-void DataSource::_setNanDefault( bool nanDefault ){
+/*void DataSource::_setNanDefault( bool nanDefault ){
     m_renderService->setDefaultNan( nanDefault );
-}
+}*/
 
-void DataSource::_setPan( double imgX, double imgY ){
+/*void DataSource::_setPan( double imgX, double imgY ){
     m_renderService-> setPan( QPointF(imgX,imgY) );
-}
+}*/
 
 //void DataSource::_setTransformData( const QString& name ){
 //    TransformsData* transformData = Util::findSingletonObject<TransformsData>();
@@ -1803,10 +1803,10 @@ void DataSource::_setPan( double imgX, double imgY ){
 //    m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId() );
 //}
 
-void DataSource::_setZoom( double zoomAmount){
+/*void DataSource::_setZoom( double zoomAmount){
     // apply new zoom
     m_renderService-> setZoom( zoomAmount );
-}
+}*/
 
 
 /*void DataSource::_setGamma( double gamma ){
@@ -1893,18 +1893,18 @@ std::vector<double> DataSource::_getQuantileIntensityCache(std::shared_ptr<Carta
     m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
 }*/
 
-std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> DataSource::_updateRenderedView( const std::vector<int>& frames ){
+//std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> DataSource::_updateRenderedView( const std::vector<int>& frames ){
     // get a view of the data using the slice description and make a shared pointer out of it
-    std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> view( _getRawData( frames ) );
+//    std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> view( _getRawData( frames ) );
     // tell the render service to render this job
-    QString renderId = _getViewIdCurrent( frames );
-    m_renderService-> setInputView( view, renderId/*, m_axisIndexX, m_axisIndexY*/ );
-    return view;
-}
+//    QString renderId = _getViewIdCurrent( frames );*/
+//    m_renderService-> setInputView( view, renderId/*, m_axisIndexX, m_axisIndexY*/ );
+//    return view;
+//}
 
-void DataSource::_viewResize( const QSize& newSize ){
+/*void DataSource::_viewResize( const QSize& newSize ){
     m_renderService-> setOutputSize( newSize );
-}
+}*/
 
 bool DataSource::_setSpatialRequirements(int fileId, int regionId,
     google::protobuf::RepeatedPtrField<std::string> spatialProfiles) {

@@ -113,7 +113,7 @@ protected:
      * @param valid - whether or not the returned point is valid.
      * @return - the pixel position of the point in image coordinates.
      */
-    virtual QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const Q_DECL_OVERRIDE;
 
     virtual std::shared_ptr<DataContours> _getContour( const QString& name ) Q_DECL_OVERRIDE;
 
@@ -213,7 +213,7 @@ protected:
      * @param valid set to true if an image is loaded that can do the translation; otherwise false;
      * @return the corresponding location on the image.
      */
-    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& output, bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& output, bool* valid ) const Q_DECL_OVERRIDE;
     virtual int _getIndexCurrent( ) const;
 
     /**
@@ -222,7 +222,7 @@ protected:
      * @param size - the size of the displayed image.
      * @return - the portion of the image that is visible.
      */
-    virtual QRectF _getInputRect( const QSize& size ) const Q_DECL_OVERRIDE;
+//    virtual QRectF _getInputRect( const QSize& size ) const Q_DECL_OVERRIDE;
 
 
     /**

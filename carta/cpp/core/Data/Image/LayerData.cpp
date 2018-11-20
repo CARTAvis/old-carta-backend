@@ -295,7 +295,7 @@ std::shared_ptr<Carta::Lib::Image::ImageInterface> LayerData::_getImage(){
     return image;
 }
 
-QPointF LayerData::_getContextPt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const {
+/*QPointF LayerData::_getContextPt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const {
 	QPointF contextPt;
 	if ( m_dataSource ){
 		double zoom = 1;
@@ -306,9 +306,9 @@ QPointF LayerData::_getContextPt( const QPointF& screenPt, const QSize& outputSi
 		*valid = false;
 	}
 	return contextPt;
-}
+}*/
 
-QPointF LayerData::_getImagePt( const QPointF& screenPt, const QSize& outputSize,  bool* valid ) const {
+/*QPointF LayerData::_getImagePt( const QPointF& screenPt, const QSize& outputSize,  bool* valid ) const {
     QPointF imagePt;
     if ( m_dataSource ){
         double zoom = m_state.getValue<double>( Util::ZOOM );
@@ -320,16 +320,16 @@ QPointF LayerData::_getImagePt( const QPointF& screenPt, const QSize& outputSize
         *valid = false;
     }
     return imagePt;
-}
+}*/
 
 
-QRectF LayerData::_getInputRect( const QSize& outputSize ) const {
+/*QRectF LayerData::_getInputRect( const QSize& outputSize ) const {
     QPointF pan = _getPan();
     double zoom = _getZoom();
     return _getInputRectangle( pan, zoom, outputSize);
-}
+}*/
 
-QRectF LayerData::_getInputRectangle( const QPointF& pan, double zoom, const QSize& outputSize ) const {
+/*QRectF LayerData::_getInputRectangle( const QPointF& pan, double zoom, const QSize& outputSize ) const {
     QRectF outputRect = _getOutputRectangle( outputSize, false, false );
 
     //Bottom and top point of image in output pixels.
@@ -352,9 +352,9 @@ QRectF LayerData::_getInputRectangle( const QPointF& pan, double zoom, const QSi
     QPointF brPixel = imageService->image2screen( brImage, center, 1, imageSize );
     QRectF visibleRect( tlPixel, brPixel );
     return visibleRect;
-}
+}*/
 
-QRectF LayerData::_getInputRectangle( const QPointF& pan, double zoom, const QRectF& outputRect,
+/*QRectF LayerData::_getInputRectangle( const QPointF& pan, double zoom, const QRectF& outputRect,
         const QSize& outputSize ) const {
     QPointF topLeft = outputRect.topLeft();
     QPointF bottomRight = outputRect.bottomRight();
@@ -365,7 +365,7 @@ QRectF LayerData::_getInputRectangle( const QPointF& pan, double zoom, const QRe
     //QSize size( qAbs( topLeftInput.x() - bottomRightInput.x()), qAbs( topLeftInput.y() - bottomRightInput.y()));
     QRectF inputRect( topLeftInput, bottomRightInput );
     return inputRect;
-}
+}*/
 
 
 //std::vector<double> LayerData::_getIntensity( int frameLow, int frameHigh,
@@ -623,7 +623,7 @@ QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode asp
     return saveSize;
 }
 
-bool LayerData::_getTransform( const QPointF& pan, double zoom, const QSize& size,
+/*bool LayerData::_getTransform( const QPointF& pan, double zoom, const QSize& size,
 		QTransform& tf ) const {
 	bool valid = false;
 	//where does 0.5, 0.5 map to?
@@ -646,7 +646,7 @@ bool LayerData::_getTransform( const QPointF& pan, double zoom, const QSize& siz
 		tf.setMatrix( m11, m12, m13, m21, m22, m23, m31, m32, m33 );
 	}
 	return valid;
-}
+}*/
 
 
 double LayerData::_getZoom() const {
@@ -773,15 +773,15 @@ void LayerData::_removeContourSet( std::shared_ptr<DataContours> contourSet ){
 }
 
 
-void LayerData::_renderingDone(
-		QImage image,
-		Carta::Lib::VectorGraphics::VGList gridVG,
-		Carta::Lib::VectorGraphics::VGList contourVG,
-		Carta::Lib::VectorGraphics::VGList regionVG,
-		int64_t /*jobId*/){
+//void LayerData::_renderingDone(
+//		QImage image,
+//		Carta::Lib::VectorGraphics::VGList gridVG,
+//		Carta::Lib::VectorGraphics::VGList contourVG,
+//		Carta::Lib::VectorGraphics::VGList regionVG,
+//		int64_t /*jobId*/){
 	/// \todo we should make sure the jobId matches the last submitted job...
 
-	Carta::Lib::VectorGraphics::VGList vectorGraphics;
+/*	Carta::Lib::VectorGraphics::VGList vectorGraphics;
 	QImage qImage;
 	if ( !image.isNull()){
 		qImage = image;
@@ -811,7 +811,7 @@ void LayerData::_renderingDone(
 
 	std::shared_ptr<RenderResponse> response( new RenderResponse(qImage, vectorGraphics, _getLayerId()) );
 	emit renderingDone( response );
-}
+}*/
 
 
 
