@@ -64,10 +64,6 @@ Controller::Controller( const QString& path, const QString& id ) :
     m_stack.reset( layerGroupRoot ); // necessary !!
 }
 
-void Controller::addContourSet( std::shared_ptr<DataContours> contourSet){
-	m_stack->_addContourSet( contourSet );
-}
-
 QString Controller::addData(const QString& fileName, bool* success, int fileId) {
 	*success = false;
     QString result = DataFactory::addData( this, fileName, success, fileId);
@@ -221,9 +217,6 @@ QString Controller::getSnapType(CartaObject::SnapshotType snapType) const {
 }
 
 void Controller::refreshState() {
-}
-
-void Controller::removeContourSet( std::shared_ptr<DataContours> contourSet ) {
 }
 
 void Controller::resetState( const QString& state ) {

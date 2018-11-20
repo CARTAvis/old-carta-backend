@@ -47,7 +47,6 @@ HEADERS += \
     Data/Image/Contour/GeneratorState.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
-    Data/Image/IPercentIntensityMap.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
     Data/Image/Render/RenderResponse.h \

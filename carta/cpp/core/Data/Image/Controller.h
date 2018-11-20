@@ -6,7 +6,6 @@
 
 #include <State/StateInterface.h>
 #include <State/ObjectManager.h>
-#include <Data/Image/IPercentIntensityMap.h>
 #include "CartaLib/CartaLib.h"
 #include "CartaLib/AxisInfo.h"
 #include "CartaLib/InputEvents.h"
@@ -48,8 +47,7 @@ class RegionControls;
 
 typedef Carta::Lib::InputEvents::JsonEvent InputEvent;
 
-class Controller: public QObject, public Carta::State::CartaObject,
-    public IPercentIntensityMap {
+class Controller: public QObject, public Carta::State::CartaObject {
 
     friend class Colormap;
     friend class DataFactory;
@@ -62,12 +60,6 @@ public:
      * Clear the view.
      */
     void clear();
-
-    /**
-     * Add a contour set to the selected images.
-     * @param contourSet - the contour set to add.
-     */
-    virtual void addContourSet( std::shared_ptr<DataContours> contourSet) Q_DECL_OVERRIDE;
 
     /**
      * Add data to this controller.
@@ -258,12 +250,6 @@ public:
      * Force a state refresh.
      */
     virtual void refreshState() Q_DECL_OVERRIDE;
-
-    /**
-     * Remove a contour set from the images.
-     * @param contourSet - the contour set to remove.
-     */
-     virtual void removeContourSet( std::shared_ptr<DataContours> contourSet ) Q_DECL_OVERRIDE;
 
     /**
      * Restore the state from a string representation.
