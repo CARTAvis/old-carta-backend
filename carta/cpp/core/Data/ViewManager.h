@@ -16,7 +16,7 @@ namespace Data {
 
 class Controller;
 class DataLoader;
-class Colormap;
+//class Colormap;
 class Statistics;
 class ViewPlugins;
 
@@ -146,7 +146,7 @@ private:
     QList <Controller* > m_controllers;
 
     //Colormap
-    QList<Colormap* >m_colormaps;
+//    QList<Colormap* >m_colormaps;
 
     //Statistics
     QList<Statistics* > m_statistics;

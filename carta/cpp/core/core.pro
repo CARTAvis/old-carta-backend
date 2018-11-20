@@ -26,7 +26,7 @@ HEADERS += \
     State/StateInterface.h \
     State/UtilState.h \
     ImageView.h \
-    Data/Colormap/Colormap.h \
+#    Data/Colormap/Colormap.h \
     Data/Colormap/Colormaps.h \
     Data/Colormap/ColorState.h \
     Data/Colormap/Gamma.h \
@@ -105,7 +105,7 @@ SOURCES += \
     State/UtilState.cpp \
     ImageView.cpp \
     Data/Settings.cpp \
-    Data/Colormap/Colormap.cpp \
+#    Data/Colormap/Colormap.cpp \
     Data/Colormap/Colormaps.cpp \
     Data/Colormap/ColorState.cpp \
     Data/Colormap/Gamma.cpp \

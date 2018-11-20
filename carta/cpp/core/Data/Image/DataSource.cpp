@@ -1690,11 +1690,11 @@ QString DataSource::_setFileName( const QString& fileName, bool* success ){
 
 
 void DataSource::_setColorMap( const QString& name ){
-    Carta::State::ObjectManager* objManager = Carta::State::ObjectManager::objectManager();
-    Carta::State::CartaObject* obj = objManager->getObject( Colormaps::CLASS_NAME );
-    Colormaps* maps = dynamic_cast<Colormaps*>(obj);
-    m_pixelPipeline-> setColormap( maps->getColorMap( name ) );
-    m_renderService ->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId());
+//    Carta::State::ObjectManager* objManager = Carta::State::ObjectManager::objectManager();
+//    Carta::State::CartaObject* obj = objManager->getObject( Colormaps::CLASS_NAME );
+//    Colormaps* maps = dynamic_cast<Colormaps*>(obj);
+//    m_pixelPipeline-> setColormap( maps->getColorMap( name ) );
+//    m_renderService ->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId());
 }
 
 void DataSource::_setColorInverted( bool inverted ){
@@ -1797,10 +1797,10 @@ void DataSource::_setPan( double imgX, double imgY ){
 }
 
 void DataSource::_setTransformData( const QString& name ){
-    TransformsData* transformData = Util::findSingletonObject<TransformsData>();
-    Carta::Lib::PixelPipeline::ScaleType scaleType = transformData->getScaleType( name );
-    m_pixelPipeline->setScale( scaleType );
-    m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId() );
+//    TransformsData* transformData = Util::findSingletonObject<TransformsData>();
+//    Carta::Lib::PixelPipeline::ScaleType scaleType = transformData->getScaleType( name );
+//    m_pixelPipeline->setScale( scaleType );
+//    m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId() );
 }
 
 void DataSource::_setZoom( double zoomAmount){
