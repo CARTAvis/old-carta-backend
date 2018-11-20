@@ -1130,12 +1130,12 @@ void LayerData::_setZoom( double zoomAmount){
 }
 
 
-void LayerData::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
+/*void LayerData::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
         double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ){
     if ( m_dataSource ){
         m_dataSource->_updateClips( view,  minClipPercentile, maxClipPercentile, frames );
     }
-}
+}*/
 
 void LayerData::_updateColor(){
 /*    if ( m_dataSource ){

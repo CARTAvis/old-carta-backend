@@ -1186,12 +1186,12 @@ void LayerGroup::_setZoom( double zoomAmount){
 }
 
 
-void LayerGroup::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
+/*void LayerGroup::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
         double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ){
     for ( std::shared_ptr<Layer> node : m_children ){
         node->_updateClips( view,  minClipPercentile, maxClipPercentile, frames );
     }
-}
+}*/
 
 
 LayerGroup::~LayerGroup() {

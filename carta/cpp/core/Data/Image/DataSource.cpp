@@ -64,11 +64,11 @@ DataSource::DataSource() :
 //        auto rawCmap = std::make_shared < Carta::Core::GrayColormap > ();
 
         // initialize pixel pipeline
-        m_pixelPipeline = std::make_shared < Carta::Lib::PixelPipeline::CustomizablePixelPipeline > ();
-        m_pixelPipeline-> setInvert( false );
-        m_pixelPipeline-> setReverse( false );
+//        m_pixelPipeline = std::make_shared < Carta::Lib::PixelPipeline::CustomizablePixelPipeline > ();
+//        m_pixelPipeline-> setInvert( false );
+//        m_pixelPipeline-> setReverse( false );
 //        m_pixelPipeline-> setColormap( std::make_shared < Carta::Core::GrayColormap > () );
-        m_pixelPipeline-> setMinMax( 0, 1 );
+//        m_pixelPipeline-> setMinMax( 0, 1 );
 //        m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
 
         // initialize disk cache
@@ -454,9 +454,9 @@ std::shared_ptr<Carta::Lib::Image::ImageInterface> DataSource::_getPermImage(){
     return m_permuteImage;
 }
 
-std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> DataSource::_getPipeline() const {
-    return m_pixelPipeline;
-}
+//std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> DataSource::_getPipeline() const {
+//    return m_pixelPipeline;
+//}
 
 std::shared_ptr<Carta::Core::ImageRenderService::Service> DataSource::_getRenderer() const {
     return m_renderService;
@@ -1620,14 +1620,14 @@ void DataSource::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
 		std::vector<int> dimVector = view->dims();
 
 		//Update the clip values
-		if ( recomputeClipsOnNewFrame ){
-			_updateClips( view,  minClipPercentile, maxClipPercentile, mFrames );
-        }
-		QString cacheId=m_pixelPipeline-> cacheId();
-		m_renderService-> setPixelPipeline( m_pixelPipeline,cacheId );
+//		if ( recomputeClipsOnNewFrame ){
+//			_updateClips( view,  minClipPercentile, maxClipPercentile, mFrames );
+ //       }
+//		QString cacheId=m_pixelPipeline-> cacheId();
+//		m_renderService-> setPixelPipeline( m_pixelPipeline,cacheId );
 
-		QString renderId = _getViewIdCurrent( mFrames );
-		m_renderService-> setInputView( view, renderId );
+//		QString renderId = _getViewIdCurrent( mFrames );
+//		m_renderService-> setInputView( view, renderId );
 	}
 }
 
@@ -1689,32 +1689,32 @@ QString DataSource::_setFileName( const QString& fileName, bool* success ){
 }
 
 
-void DataSource::_setColorMap( const QString& name ){
+//void DataSource::_setColorMap( const QString& name ){
 //    Carta::State::ObjectManager* objManager = Carta::State::ObjectManager::objectManager();
 //    Carta::State::CartaObject* obj = objManager->getObject( Colormaps::CLASS_NAME );
 //    Colormaps* maps = dynamic_cast<Colormaps*>(obj);
 //    m_pixelPipeline-> setColormap( maps->getColorMap( name ) );
 //    m_renderService ->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId());
-}
+//}
 
-void DataSource::_setColorInverted( bool inverted ){
-    m_pixelPipeline-> setInvert( inverted );
-    m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
-}
+//void DataSource::_setColorInverted( bool inverted ){
+//    m_pixelPipeline-> setInvert( inverted );
+//    m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
+//}
 
-void DataSource::_setColorReversed( bool reversed ){
-    m_pixelPipeline-> setReverse( reversed );
-    m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
-}
+//void DataSource::_setColorReversed( bool reversed ){
+//    m_pixelPipeline-> setReverse( reversed );
+//    m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
+//}
 
-void DataSource::_setColorAmounts( double newRed, double newGreen, double newBlue ){
-    std::array<double,3> colorArray;
-    colorArray[0] = newRed;
-    colorArray[1] = newGreen;
-    colorArray[2] = newBlue;
-    m_pixelPipeline->setRgbMax( colorArray );
-    m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId());
-}
+//void DataSource::_setColorAmounts( double newRed, double newGreen, double newBlue ){
+//    std::array<double,3> colorArray;
+//    colorArray[0] = newRed;
+//    colorArray[1] = newGreen;
+//    colorArray[2] = newBlue;
+//    m_pixelPipeline->setRgbMax( colorArray );
+//    m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId());
+//}
 
 void DataSource::_setColorNan( double red, double green, double blue ){
     QColor nanColor( red, green, blue );
@@ -1796,12 +1796,12 @@ void DataSource::_setPan( double imgX, double imgY ){
     m_renderService-> setPan( QPointF(imgX,imgY) );
 }
 
-void DataSource::_setTransformData( const QString& name ){
+//void DataSource::_setTransformData( const QString& name ){
 //    TransformsData* transformData = Util::findSingletonObject<TransformsData>();
 //    Carta::Lib::PixelPipeline::ScaleType scaleType = transformData->getScaleType( name );
 //    m_pixelPipeline->setScale( scaleType );
 //    m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId() );
-}
+//}
 
 void DataSource::_setZoom( double zoomAmount){
     // apply new zoom
@@ -1809,10 +1809,10 @@ void DataSource::_setZoom( double zoomAmount){
 }
 
 
-void DataSource::_setGamma( double gamma ){
+/*void DataSource::_setGamma( double gamma ){
     m_pixelPipeline->setGamma( gamma );
     m_renderService->setPixelPipeline( m_pixelPipeline, m_pixelPipeline->cacheId());
-}
+}*/
 
 // TODO: should this function be eliminated in favour of _getIntensity?
 std::vector<double> DataSource::_getQuantileIntensityCache(std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
@@ -1885,13 +1885,13 @@ std::vector<double> DataSource::_getQuantileIntensityCache(std::shared_ptr<Carta
     return clips;
 }
 
-void DataSource::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
+/*void DataSource::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
         double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ){
     // get quantile intensity cache
     std::vector<double> clips = _getQuantileIntensityCache(view, minClipPercentile, maxClipPercentile, frames, true);
     m_pixelPipeline-> setMinMax( clips[0], clips[1] );
     m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
-}
+}*/
 
 std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> DataSource::_updateRenderedView( const std::vector<int>& frames ){
     // get a view of the data using the slice description and make a shared pointer out of it

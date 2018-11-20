@@ -35,9 +35,9 @@ class SliceND;
 
 namespace Carta {
 namespace Lib {
-namespace PixelPipeline {
-class CustomizablePixelPipeline;
-}
+//namespace PixelPipeline {
+//class CustomizablePixelPipeline;
+//}
 namespace Image {
 class ImageInterface;
 }
@@ -349,7 +349,7 @@ private:
      * Returns the pipeline responsible for rendering the image.
      * @retun the pipeline responsible for rendering the image.
      */
-    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> _getPipeline() const;
+//    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> _getPipeline() const;
 
     /**
      * Return the pixel coordinates corresponding to the given world coordinates.
@@ -478,21 +478,21 @@ private:
      * Sets a new color map.
      * @param name the identifier for the color map.
      */
-    void _setColorMap( const QString& name );
+//    void _setColorMap( const QString& name );
 
     /**
      * Sets whether the colors in the map are inverted.
      * @param inverted true if the colors in the map are inverted; false
      *        otherwise.
      */
-    void _setColorInverted( bool inverted );
+//    void _setColorInverted( bool inverted );
 
     /**
      * Sets whether the colors in the map are reversed.
      * @param reversed true if the colors in the map are reversed; false
      *        otherwise.
      */
-    void _setColorReversed( bool reversed );
+//    void _setColorReversed( bool reversed );
 
     /**
      * Set the amount of red, green, and blue in the color scale.
@@ -500,7 +500,7 @@ private:
      * @param newGreen the amount of green; should be in the range [0,1].
      * @param newBlue the amount of blue; should be in the range[0,1].
      */
-    void _setColorAmounts( double newRed, double newGreen, double newBlue );
+//    void _setColorAmounts( double newRed, double newGreen, double newBlue );
 
     /**
      * Set the color used to draw nan pixels.
@@ -537,7 +537,7 @@ private:
      * Set the gamma color map parameter.
      * @param gamma a color map parameter.
      */
-    void _setGamma( double gamma );
+//    void _setGamma( double gamma );
 
     /**
      * Set whether or not to use the default nan color (bottom of the color map).
@@ -576,7 +576,7 @@ private:
      * Set the data transform.
      * @param name QString a unique identifier for a data transform.
      */
-    void _setTransformData( const QString& name );
+//    void _setTransformData( const QString& name );
 
     /**
      * Update the data when parameters that govern data selection have changed
@@ -638,7 +638,7 @@ private:
     std::shared_ptr<Carta::Core::ImageRenderService::Service> m_renderService;
 
     ///pixel pipeline
-    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> m_pixelPipeline;
+//    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> m_pixelPipeline;
 
     // disk cache
     std::shared_ptr<Carta::Lib::IPCache> m_diskCache;

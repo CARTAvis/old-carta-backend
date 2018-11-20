@@ -21,9 +21,9 @@ namespace Carta {
 namespace Lib {
     class IWcsGridRenderService;
     class IContourGeneratorService;
-    namespace PixelPipeline {
-        class CustomizablePixelPipeline;
-    }
+//    namespace PixelPipeline {
+//        class CustomizablePixelPipeline;
+//    }
     namespace NdArray {
         class RawViewInterface;
     }
@@ -555,8 +555,8 @@ protected:
      * @param zoomFactor the zoom multiplier.
      */
     virtual void _setZoom( double zoomFactor ) Q_DECL_OVERRIDE;
-    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
-                double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) Q_DECL_OVERRIDE;
+//    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
+//                double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) Q_DECL_OVERRIDE;
 
 
     virtual void _updateColor() Q_DECL_OVERRIDE;
