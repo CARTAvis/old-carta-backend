@@ -445,6 +445,10 @@ void NewServerConnector::openFileSignalSlot(uint32_t eventId, QString fileDir, Q
     m_changeFrame[fileId] = true;
 }
 
+void NewServerConnector::closeFileSignalSlot(uint32_t eventId, int fileId) {
+    qDebug() << "[NewServerConnector] Close the file ID:" << fileId;
+}
+
 void NewServerConnector::setImageViewSignalSlot(uint32_t eventId, int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
     bool isZFP, int precision, int numSubsets) {
     QString respName = "RASTER_IMAGE_DATA";

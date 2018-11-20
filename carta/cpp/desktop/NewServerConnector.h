@@ -84,6 +84,7 @@ public slots:
     void setImageViewSignalSlot(uint32_t eventId, int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
                                 bool isZFP, int precision, int numSubsets);
     void openFileSignalSlot(uint32_t eventId, QString fileDir, QString fileName, int fileId, int regionId);
+    void closeFileSignalSlot(uint32_t eventId, int fileId);
     void setCursorSignalSlot(uint32_t eventId, int fileId, CARTA::Point point, CARTA::SetSpatialRequirements setSpatialReqs);
     void setSpatialRequirementsSignalSlot(uint32_t eventId, int fileId, int regionId, google::protobuf::RepeatedPtrField<std::string> spatialProfiles);
     void setSpectralRequirementsSignalSlot(uint32_t eventId, int fileId, int regionId, google::protobuf::RepeatedPtrField<CARTA::SetSpectralRequirements_SpectralConfig> spectralProfiles);
@@ -94,8 +95,7 @@ public slots:
 signals:
 
     //grimmer: newArch will not use stateChange mechanism anymore
-
-    //new arch
+    //new arch:
     void startViewerSignal(const QString & sessionID);
     void onTextMessageSignal(QString message);
     void onBinaryMessageSignal(const char* message, size_t length);
@@ -107,6 +107,7 @@ signals:
     void setImageViewSignal(uint32_t eventId, int fileId, int xMin, int xMax, int yMin, int yMax, int mip,
                             bool isZFP, int precision, int numSubsets);
     void openFileSignal(uint32_t eventId, QString fileDir, QString fileName, int fileId, int regionId);
+    void closeFileSignal(uint32_t eventId, int fileId);
     void setCursorSignal(uint32_t eventId, int fileId, CARTA::Point point, CARTA::SetSpatialRequirements setSpatialReqs);
     void setSpatialRequirementsSignal(uint32_t eventId, int fileId, int regionId, google::protobuf::RepeatedPtrField<std::string> spatialProfiles);
     void setSpectralRequirementsSignal(uint32_t eventId, int fileId, int regionId, google::protobuf::RepeatedPtrField<CARTA::SetSpectralRequirements_SpectralConfig> spectralProfiles);

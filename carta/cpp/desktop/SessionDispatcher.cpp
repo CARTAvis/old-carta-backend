@@ -168,6 +168,10 @@ void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
             connect(connector, SIGNAL(openFileSignal(uint32_t, QString, QString, int, int)),
                     connector, SLOT(openFileSignalSlot(uint32_t, QString, QString, int, int)));
 
+            // close file
+            connect(connector, SIGNAL(closeFileSignal(uint32_t, int)),
+                    connector, SLOT(closeFileSignalSlot(uint32_t, int)));
+
             // set image view
             connect(connector, SIGNAL(setImageViewSignal(uint32_t, int , int, int, int, int, int, bool, int, int)),
                     connector, SLOT(setImageViewSignalSlot(uint32_t, int , int, int, int, int, int, bool, int, int)));
@@ -343,9 +347,16 @@ void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
             }
             emit connector->setSpectralRequirementsSignal(eventId, fileId, regionId, spectralProfiles);
 
+        } else if (eventName == "CLOSE_FILE") {
+
+            CARTA::CloseFile closeFile;
+            closeFile.ParseFromArray(message + EVENT_NAME_LENGTH + EVENT_ID_LENGTH, length - EVENT_NAME_LENGTH - EVENT_ID_LENGTH);
+            int fileId = closeFile.file_id();
+            qDebug() << "[SessionDispatcher] Close the image file, fileId=" << fileId;
+            emit connector->closeFileSignal(eventId, fileId);
+
         } else {
             qCritical() << "[SessionDispatcher] There is no event handler:" << eventName;
-            //emit connector->onBinaryMessageSignal(message, length);
         }
     }
 }
