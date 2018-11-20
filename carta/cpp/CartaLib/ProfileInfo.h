@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QString>
+#include <vector>
 
 namespace Carta
 {
@@ -121,12 +122,18 @@ public:
      */
     void setStokesFrame( const int frame );
 
+    void setSpatialProfiles(const std::vector<std::string> & spatialProfiles);
+
+    void setSpectralProfiles(const std::pair<std::string, std::vector<int>> & spectralProfile);
+
     virtual ~ProfileInfo();
 
 protected:
     AggregateType m_aggregateType;
     double m_restFrequency;
     int m_stokesFrame;
+    std::vector<std::string> m_spatialProfiles;
+    std::vector<std::pair<std::string, std::vector<int>>> m_spectralProfiles; // {(coordinate, stat type[])}
     QString m_restUnit;
     QString m_spectralUnit;
     QString m_spectralType;

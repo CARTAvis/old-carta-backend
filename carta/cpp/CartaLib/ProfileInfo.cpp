@@ -84,6 +84,16 @@ void ProfileInfo::setStokesFrame( const int frame ){
     m_stokesFrame = frame;
 }
 
+void ProfileInfo::setSpatialProfiles(const std::vector<std::string> & spatialProfiles){
+    for (auto profile : spatialProfiles) {
+        m_spatialProfiles.push_back(profile);
+    }
+}
+
+void ProfileInfo::setSpectralProfiles(const std::pair<std::string, std::vector<int>> & spectralProfile){
+    m_spectralProfiles.push_back(spectralProfile);
+}
+
 ProfileInfo::~ProfileInfo(){
 
 }
