@@ -26,12 +26,6 @@ HEADERS += \
     State/StateInterface.h \
     State/UtilState.h \
     ImageView.h \
-#    Data/Colormap/Colormap.h \
-    Data/Colormap/Colormaps.h \
-    Data/Colormap/ColorState.h \
-    Data/Colormap/Gamma.h \
-    Data/Colormap/TransformsData.h \
-    Data/Colormap/TransformsImage.h \
     Data/DataLoader.h \
     Data/Error/ErrorReport.h \
     Data/Error/ErrorManager.h \
@@ -76,7 +70,6 @@ HEADERS += \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
     Data/FitsHeaderExtractor.h \
-    GrayColormap.h \
     ImageRenderService.h \
     Shape/ControlPoint.h \
     Shape/ControlPointEditable.h \
@@ -105,12 +98,6 @@ SOURCES += \
     State/UtilState.cpp \
     ImageView.cpp \
     Data/Settings.cpp \
-#    Data/Colormap/Colormap.cpp \
-    Data/Colormap/Colormaps.cpp \
-    Data/Colormap/ColorState.cpp \
-    Data/Colormap/Gamma.cpp \
-    Data/Colormap/TransformsData.cpp \
-    Data/Colormap/TransformsImage.cpp \
     Data/Image/Controller.cpp \
     Data/Image/DataFactory.cpp \
     Data/Image/LayerData.cpp \
@@ -152,7 +139,6 @@ SOURCES += \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \
     Data/FitsHeaderExtractor.cpp \
-    GrayColormap.cpp \
     Shape/ControlPoint.cpp \
     Shape/ControlPointEditable.cpp \
     Shape/ShapeBase.cpp \

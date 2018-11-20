@@ -36,7 +36,7 @@ class RawViewInterface;
 namespace Data {
 
 //class DataGrid;
-class ColorState;
+//class ColorState;
 class DataContours;
 class DataSource;
 class LayerCompositionModes;
@@ -132,7 +132,7 @@ protected:
      * Return stored information about the color map.
      * @return - information about the color map.
      */
-    virtual std::shared_ptr<ColorState> _getColorState();
+//    virtual std::shared_ptr<ColorState> _getColorState();
 
     /**
      * Return the mode used to composed the layer.
@@ -484,7 +484,7 @@ protected:
      *      correspond to selected images.
      * @return - a list of color states whose states may be changed.
      */
-    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) = 0;
+//    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) = 0;
 
 
     /**

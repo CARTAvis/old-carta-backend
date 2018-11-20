@@ -4,7 +4,7 @@
 //#include "Data/Image/Draw/DrawSynchronizer.h"
 #include "Data/DataLoader.h"
 #include "Data/Util.h"
-#include "Data/Colormap/ColorState.h"
+//#include "Data/Colormap/ColorState.h"
 #include "Data/Image/CoordinateSystems.h"
 //#include "Data/Image/Grid/AxisMapper.h"
 //#include "Data/Image/Grid/LabelFormats.h"
@@ -49,9 +49,9 @@ bool LayerData::m_registered =
 
 LayerData::LayerData(const QString& path, const QString& id) :
     Layer( CLASS_NAME, path, id),
-    m_dataSource( new DataSource()),
+    m_dataSource( new DataSource())//,
 //    m_drawSync( nullptr ),
-    m_stateColor( nullptr ){
+    /*m_stateColor( nullptr )*/{
 
 //        m_renderQueued = false;
 
@@ -92,11 +92,11 @@ void LayerData::_addContourSet( std::shared_ptr<DataContours> contour ){
 }
 
 void LayerData::_clearColorMap(){
-    if ( m_stateColor ){
-       disconnect( m_stateColor.get() );
-       Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-       objMan->removeObject( m_stateColor->getId() );
-    }
+//    if ( m_stateColor ){
+//       disconnect( m_stateColor.get() );
+//       Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//       objMan->removeObject( m_stateColor->getId() );
+//    }
 }
 
 void LayerData::_colorChanged(){
@@ -174,17 +174,17 @@ QPointF LayerData::_getCenterPixel() const {
     return center;
 }
 
-std::shared_ptr<ColorState> LayerData::_getColorState(){
+/*std::shared_ptr<ColorState> LayerData::_getColorState(){
     return m_stateColor;
-}
+}*/
 
-std::vector< std::shared_ptr<ColorState> >  LayerData::_getSelectedColorStates( bool global){
+/*std::vector< std::shared_ptr<ColorState> >  LayerData::_getSelectedColorStates( bool global){
     std::vector< std::shared_ptr<ColorState> > colorStates;
     if ( _isSelected() || global ){
         colorStates.push_back( m_stateColor );
     }
     return colorStates;
-}
+}*/
 
 
 std::shared_ptr<DataContours> LayerData::_getContour( const QString& name ){
@@ -1138,7 +1138,7 @@ void LayerData::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterf
 }
 
 void LayerData::_updateColor(){
-    if ( m_dataSource ){
+/*    if ( m_dataSource ){
         QString mapName = m_stateColor->_getColorMap();
         m_dataSource->_setColorMap( mapName );
         m_dataSource->_setTransformData( m_stateColor->_getDataTransform() );
@@ -1173,7 +1173,7 @@ void LayerData::_updateColor(){
         int alphaAmount = m_stateColor->_getBorderTransparency();
 //        m_dataGrid->_setBorderColor( QColor(redBorder, greenBorder, blueBorder, alphaAmount) );
         Layer::_updateColor();
-    }
+    }*/
 }
 
 

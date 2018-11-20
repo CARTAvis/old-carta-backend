@@ -35,7 +35,7 @@ namespace Carta {
 
 namespace Carta {
 namespace Data {
-class ColorState;
+//class ColorState;
 class Layer;
 class LayerData;
 class Stack;

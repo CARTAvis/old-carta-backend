@@ -1127,7 +1127,7 @@ bool LayerGroup::_setSelected( QStringList& names){
     return stateChanged;
 }
 
-std::vector< std::shared_ptr<ColorState> >  LayerGroup::_getSelectedColorStates( bool global ){
+/*std::vector< std::shared_ptr<ColorState> >  LayerGroup::_getSelectedColorStates( bool global ){
     std::vector< std::shared_ptr<ColorState> > colorStates;
     int childCount = m_children.size();
     int currentIndex = _getIndexCurrent();
@@ -1140,7 +1140,7 @@ std::vector< std::shared_ptr<ColorState> >  LayerGroup::_getSelectedColorStates(
         }
     }
     return colorStates;
-}
+}*/
 
 void LayerGroup::_setMaskColorDefault(){
     int childCount = m_children.size();

@@ -37,7 +37,7 @@ namespace Core {
 
 namespace Data {
 
-class ColorState;
+//class ColorState;
 //class DrawSynchronizer;
 class DataContours;
 //class DataGrid;
@@ -91,7 +91,7 @@ protected:
 
     virtual QPointF _getCenterPixel() const Q_DECL_OVERRIDE;
 
-    virtual std::shared_ptr<ColorState> _getColorState() Q_DECL_OVERRIDE;
+//    virtual std::shared_ptr<ColorState> _getColorState() Q_DECL_OVERRIDE;
 
     /**
      * Return the point on the image corresponding to the pixel point in the context
@@ -279,7 +279,7 @@ protected:
      *      correspond to selected images.
      * @return - a list of color states whose states may be changed.
      */
-    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) Q_DECL_OVERRIDE;
+//    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) Q_DECL_OVERRIDE;
 
     /**
      * Return the state of this layer.
@@ -624,7 +624,7 @@ private:
 
     Carta::Lib::VectorGraphics::VGList m_regionGraphics;
 
-    std::shared_ptr<ColorState> m_stateColor;
+//    std::shared_ptr<ColorState> m_stateColor;
 
     LayerData(const LayerData& other);
     LayerData& operator=(const LayerData& other);

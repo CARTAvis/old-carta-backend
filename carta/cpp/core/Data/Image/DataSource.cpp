@@ -1,13 +1,13 @@
 #include "DataSource.h"
 #include "CoordinateSystems.h"
-#include "Data/Colormap/Colormaps.h"
+//#include "Data/Colormap/Colormaps.h"
 #include "Globals.h"
 #include "MainConfig.h"
 #include "PluginManager.h"
-#include "GrayColormap.h"
+//#include "GrayColormap.h"
 #include "CartaLib/IImage.h"
 #include "Data/Util.h"
-#include "Data/Colormap/TransformsData.h"
+//#include "Data/Colormap/TransformsData.h"
 #include "CartaLib/Hooks/LoadAstroImage.h"
 #include "CartaLib/Hooks/GetPersistentCache.h"
 #include "CartaLib/Hooks/ConversionSpectralHook.h"
@@ -61,15 +61,15 @@ DataSource::DataSource() :
         m_renderService.reset( new Carta::Core::ImageRenderService::Service() );
 
         // assign a default colormap to the view
-        auto rawCmap = std::make_shared < Carta::Core::GrayColormap > ();
+//        auto rawCmap = std::make_shared < Carta::Core::GrayColormap > ();
 
         // initialize pixel pipeline
         m_pixelPipeline = std::make_shared < Carta::Lib::PixelPipeline::CustomizablePixelPipeline > ();
         m_pixelPipeline-> setInvert( false );
         m_pixelPipeline-> setReverse( false );
-        m_pixelPipeline-> setColormap( std::make_shared < Carta::Core::GrayColormap > () );
+//        m_pixelPipeline-> setColormap( std::make_shared < Carta::Core::GrayColormap > () );
         m_pixelPipeline-> setMinMax( 0, 1 );
-        m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
+//        m_renderService-> setPixelPipeline( m_pixelPipeline, m_pixelPipeline-> cacheId());
 
         // initialize disk cache
         auto res = Globals::instance()-> pluginManager()

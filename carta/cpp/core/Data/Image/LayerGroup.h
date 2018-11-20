@@ -413,7 +413,7 @@ protected:
      *      correspond to selected images.
      * @return - a list of color states whose states may be changed.
      */
-    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) Q_DECL_OVERRIDE;
+//    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) Q_DECL_OVERRIDE;
 
     int _getStackSize() const;
     int _getStackSizeVisible() const;

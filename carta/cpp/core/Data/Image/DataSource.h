@@ -65,7 +65,7 @@ class DataSource : public QObject {
     friend class DataFactory;
     friend class Histogram;
     friend class Profiler;
-    friend class Colormap;
+//    friend class Colormap;
     friend class Controller;
     Q_OBJECT
 

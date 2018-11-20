@@ -2,7 +2,7 @@
 //#include "Grid/DataGrid.h"
 #include "Contour/DataContours.h"
 #include "Data/Util.h"
-#include "Data/Colormap/ColorState.h"
+//#include "Data/Colormap/ColorState.h"
 #include "Data/DataLoader.h"
 #include "Data/Image/LayerCompositionModes.h"
 #include "Data/Image/Render/RenderRequest.h"
@@ -61,9 +61,9 @@ QList<std::shared_ptr<Layer> > Layer::_getChildren(){
 }
 
 
-std::shared_ptr<ColorState> Layer::_getColorState(){
+/*std::shared_ptr<ColorState> Layer::_getColorState(){
     return std::shared_ptr<ColorState>(nullptr);
-}
+}*/
 
 QString Layer::_getCompositionMode() const {
     return LayerCompositionModes::NONE;

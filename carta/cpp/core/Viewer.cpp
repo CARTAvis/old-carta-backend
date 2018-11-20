@@ -1,7 +1,7 @@
 #include "CartaLib/CartaLib.h"
 #include "CartaLib/Hooks/ColormapsScalar.h"
 #include "CartaLib/Hooks/Initialize.h"
-#include "GrayColormap.h"
+//#include "GrayColormap.h"
 #include "Viewer.h"
 #include "Globals.h"
 #include "IPlatform.h"
