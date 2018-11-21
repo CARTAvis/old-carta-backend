@@ -49,13 +49,6 @@ HEADERS += \
     Data/ViewPlugins.h \
     Data/FitsHeaderExtractor.h \
     ImageRenderService.h \
-    Shape/ControlPoint.h \
-    Shape/ControlPointEditable.h \
-    Shape/ShapeBase.h \
-    Shape/ShapeEllipse.h \
-    Shape/ShapePoint.h \
-    Shape/ShapePolygon.h \
-    Shape/ShapeRectangle.h \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
     coreMain.h \
@@ -95,13 +88,6 @@ SOURCES += \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \
     Data/FitsHeaderExtractor.cpp \
-    Shape/ControlPoint.cpp \
-    Shape/ControlPointEditable.cpp \
-    Shape/ShapeBase.cpp \
-    Shape/ShapeEllipse.cpp \
-    Shape/ShapePoint.cpp \
-    Shape/ShapePolygon.cpp \
-    Shape/ShapeRectangle.cpp \
     ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
     coreMain.cpp \
