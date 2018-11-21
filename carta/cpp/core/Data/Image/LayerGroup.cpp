@@ -57,14 +57,14 @@ LayerGroup::LayerGroup(const QString& className, const QString& path, const QStr
 //                            this, SLOT(_renderingDone(QImage,Carta::Lib::VectorGraphics::VGList)));
 }
 
-void LayerGroup::_addContourSet( std::shared_ptr<DataContours> contourSet){
+/*void LayerGroup::_addContourSet( std::shared_ptr<DataContours> contourSet){
     int childCount = m_children.size();
     for ( int i = 0; i < childCount; i++ ){
         if ( m_children[i]->_isSelected() ){
             m_children[i]->_addContourSet( contourSet );
         }
     }
-}
+}*/
 
 QString LayerGroup::_addData(const QString& fileName, bool* success, int* stackIndex, int fileId) {
     QString result;
@@ -202,7 +202,7 @@ void LayerGroup::_clearData(){
     }
 }
 
-std::shared_ptr<DataContours> LayerGroup::_getContour( const QString& name ){
+/*std::shared_ptr<DataContours> LayerGroup::_getContour( const QString& name ){
     std::shared_ptr<DataContours> contourSet( nullptr );
     for ( std::shared_ptr<Layer> layer : m_children ){
         contourSet = layer->_getContour( name );
@@ -211,7 +211,7 @@ std::shared_ptr<DataContours> LayerGroup::_getContour( const QString& name ){
         }
     }
     return contourSet;
-}
+}*/
 
 
 
@@ -891,11 +891,11 @@ void LayerGroup::_removeData( int index ){
 }
 
 
-void LayerGroup::_removeContourSet( std::shared_ptr<DataContours> contourSet ){
+/*void LayerGroup::_removeContourSet( std::shared_ptr<DataContours> contourSet ){
     for ( std::shared_ptr<Layer> layer : m_children ){
         layer->_removeContourSet( contourSet );
     }
-}
+}*/
 
 void LayerGroup::_removeLayer( Layer* group ){
     if ( group ){

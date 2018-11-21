@@ -39,7 +39,7 @@ namespace Data {
 
 //class ColorState;
 //class DrawSynchronizer;
-class DataContours;
+//class DataContours;
 //class DataGrid;
 class DataSource;
 
@@ -67,7 +67,7 @@ protected:
          * Add a contour set.
          * @param contour - the contour set to add.
          */
-    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) Q_DECL_OVERRIDE;
+//    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) Q_DECL_OVERRIDE;
 
     /**
         * Remove the color map.
@@ -108,14 +108,14 @@ protected:
      * @return - the corresponding contour set with the designated name or a nullptr
      *  if no such set exists.
      */
-    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) Q_DECL_OVERRIDE;
+//    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) Q_DECL_OVERRIDE;
 
 
     /**
      * Return all contour sets for this particular layer.
      * @return - all contour sets in the layer.
      */
-    virtual std::set< std::shared_ptr<DataContours> > _getContours() Q_DECL_OVERRIDE;
+//    virtual std::set< std::shared_ptr<DataContours> > _getContours() Q_DECL_OVERRIDE;
 
     /**
      * Return the coordinates at pixel (x, y) in the given coordinate system.
@@ -476,7 +476,7 @@ protected:
      * Remove the contour set from this layer.
      * @param contourSet - the contour set to remove from the layer.
      */
-    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) Q_DECL_OVERRIDE;
+//    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) Q_DECL_OVERRIDE;
 
     /**
      * Generate a new QImage.
@@ -614,7 +614,7 @@ private:
     // std::unique_ptr<DataGrid> m_dataGrid;
 //    std::shared_ptr<DataGrid> m_dataGrid;
 
-    std::set< std::shared_ptr<DataContours> > m_dataContours;
+//    std::set< std::shared_ptr<DataContours> > m_dataContours;
 
     //Pointer to image interface.
     std::shared_ptr<DataSource> m_dataSource;

@@ -37,7 +37,7 @@ namespace Data {
 
 //class DataGrid;
 //class ColorState;
-class DataContours;
+//class DataContours;
 class DataSource;
 class LayerCompositionModes;
 
@@ -82,7 +82,7 @@ protected:
      * Add a contour set.
      * @param contour - the contour set to add.
      */
-    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) = 0;
+//    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) = 0;
 
     /**
      * Add a layer to this one at the given index.
@@ -155,13 +155,13 @@ protected:
      * @return - the corresponding contour set with the designated name or a nullptr
      *  if no such set exists.
      */
-    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) = 0;
+//    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) = 0;
 
     /**
      * Return all contour sets for this particular layer.
      * @return - all contour sets in the layer.
      */
-    virtual std::set< std::shared_ptr<DataContours> > _getContours();
+//    virtual std::set< std::shared_ptr<DataContours> > _getContours();
 
     /**
      * Return the coordinates at pixel (x, y) in the given coordinate system.
@@ -553,7 +553,7 @@ protected:
      * Remove the contour set from this layer.
      * @param contourSet - the contour set to remove from the layer.
      */
-    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) = 0;
+//    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) = 0;
 
     /**
      * Generate a new rendered image.

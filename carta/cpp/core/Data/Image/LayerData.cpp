@@ -1,5 +1,5 @@
 //#include "Grid/DataGrid.h"
-#include "Contour/DataContours.h"
+//#include "Contour/DataContours.h"
 #include "DataSource.h"
 //#include "Data/Image/Draw/DrawSynchronizer.h"
 #include "Data/DataLoader.h"
@@ -81,7 +81,7 @@ LayerData::LayerData(const QString& path, const QString& id) :
 
 }
 
-void LayerData::_addContourSet( std::shared_ptr<DataContours> contour ){
+/*void LayerData::_addContourSet( std::shared_ptr<DataContours> contour ){
     if ( contour ){
         QString targetName = contour->getName();
         std::shared_ptr<DataContours> contourSet = _getContour( targetName );
@@ -89,7 +89,7 @@ void LayerData::_addContourSet( std::shared_ptr<DataContours> contour ){
             m_dataContours.insert( contour );
         }
     }
-}
+}*/
 
 void LayerData::_clearColorMap(){
 //    if ( m_stateColor ){
@@ -187,7 +187,7 @@ QPointF LayerData::_getCenterPixel() const {
 }*/
 
 
-std::shared_ptr<DataContours> LayerData::_getContour( const QString& name ){
+/*std::shared_ptr<DataContours> LayerData::_getContour( const QString& name ){
     std::shared_ptr<DataContours> contourSet;
     for ( std::set<std::shared_ptr<DataContours> >::iterator it= m_dataContours.begin();
             it != m_dataContours.end(); it++ ){
@@ -197,11 +197,11 @@ std::shared_ptr<DataContours> LayerData::_getContour( const QString& name ){
         }
     }
     return contourSet;
-}
+}*/
 
-std::set<std::shared_ptr<DataContours>> LayerData::_getContours() {
+/*std::set<std::shared_ptr<DataContours>> LayerData::_getContours() {
     return m_dataContours;
-}
+}*/
 
 QStringList LayerData::_getCoordinates( double x, double y,
         Carta::Lib::KnownSkyCS system, const std::vector<int>& frames ) const{
@@ -696,13 +696,13 @@ void LayerData::_initializeState() {
 
 bool LayerData::_isContourDraw() const {
     bool contourDraw = false;
-    for ( std::set< std::shared_ptr<DataContours> >::iterator it = m_dataContours.begin();
+    /*for ( std::set< std::shared_ptr<DataContours> >::iterator it = m_dataContours.begin();
             it != m_dataContours.end(); it++ ){
         if ( (*it)->isContourDraw() ){
             contourDraw = true;
             break;
         }
-    }
+    }*/
     return contourDraw;
 }
 
@@ -759,7 +759,7 @@ void LayerData::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
 }
 
 
-void LayerData::_removeContourSet( std::shared_ptr<DataContours> contourSet ){
+/*void LayerData::_removeContourSet( std::shared_ptr<DataContours> contourSet ){
     if ( contourSet ){
         QString targetName = contourSet->getName();
         for ( std::set< std::shared_ptr<DataContours> >::iterator it = m_dataContours.begin();
@@ -770,7 +770,7 @@ void LayerData::_removeContourSet( std::shared_ptr<DataContours> contourSet ){
             }
         }
     }
-}
+}*/
 
 
 //void LayerData::_renderingDone(
@@ -909,7 +909,7 @@ void LayerData::_renderStart(){
 
 
 void LayerData::_resetStateContours(const Carta::State::StateInterface& restoreState ){
-    int contourCount = restoreState.getArraySize( DataContours::CONTOURS );
+    /*int contourCount = restoreState.getArraySize( DataContours::CONTOURS );
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     QStringList supportedContours;
 
@@ -943,7 +943,7 @@ void LayerData::_resetStateContours(const Carta::State::StateInterface& restoreS
             _removeContourSet( (*it) );
             emit contourSetRemoved( contourSetName );
         }
-    }
+    }*/
 }
 
 void LayerData::_resetState( const Carta::State::StateInterface& restoreState ){

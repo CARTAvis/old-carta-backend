@@ -1,6 +1,6 @@
 #include "Layer.h"
 //#include "Grid/DataGrid.h"
-#include "Contour/DataContours.h"
+//#include "Contour/DataContours.h"
 #include "Data/Util.h"
 //#include "Data/Colormap/ColorState.h"
 #include "Data/DataLoader.h"
@@ -70,10 +70,10 @@ QString Layer::_getCompositionMode() const {
 }
 
 
-std::set<std::shared_ptr<DataContours>> Layer::_getContours() {
+/*std::set<std::shared_ptr<DataContours>> Layer::_getContours() {
     std::set<std::shared_ptr<DataContours> > emptySet;
     return emptySet;
-}
+}*/
 
 
 std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > Layer::_getImages(){
