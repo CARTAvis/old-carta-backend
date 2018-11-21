@@ -9,7 +9,7 @@
 //#include "Data/Image/Contour/DataContours.h"
 //#include "Data/Region/RegionControls.h"
 //#include "Data/Region/Region.h"
-#include "Data/Settings.h"
+//#include "Data/Settings.h"
 #include "Data/DataLoader.h"
 #include "Data/Error/ErrorManager.h"
 #include "../../ImageRenderService.h"

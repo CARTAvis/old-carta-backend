@@ -30,7 +30,6 @@ HEADERS += \
     Data/Error/ErrorReport.h \
     Data/Error/ErrorManager.h \
     Data/ILinkable.h \
-    Data/Settings.h \
     Data/Image/Controller.h \
     Data/Image/DataFactory.h \
     Data/Image/LayerGroup.h \
@@ -67,7 +66,6 @@ SOURCES += \
     State/StateInterface.cpp \
     State/UtilState.cpp \
     ImageView.cpp \
-    Data/Settings.cpp \
     Data/Image/Controller.cpp \
     Data/Image/DataFactory.cpp \
     Data/Image/LayerData.cpp \

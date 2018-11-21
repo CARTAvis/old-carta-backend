@@ -41,7 +41,7 @@ class Stack;
 class DataSource;
 class DisplayControls;
 //class ContourControls;
-class Settings;
+//class Settings;
 //class Region;
 //class RegionControls;
 
