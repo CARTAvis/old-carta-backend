@@ -53,10 +53,6 @@ HEADERS += \
     Data/Region/RegionFactory.h \
     Data/Region/RegionTypes.h \
     Data/Statistics/Statistics.h \
-    Data/Units/UnitsFrequency.h \
-    Data/Units/UnitsIntensity.h \
-    Data/Units/UnitsSpectral.h \
-    Data/Units/UnitsWavelength.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
@@ -113,10 +109,6 @@ SOURCES += \
     Data/Region/RegionRectangle.cpp \
     Data/Region/RegionTypes.cpp \
     Data/Statistics/Statistics.cpp \
-    Data/Units/UnitsFrequency.cpp \
-    Data/Units/UnitsIntensity.cpp \
-    Data/Units/UnitsSpectral.cpp \
-    Data/Units/UnitsWavelength.cpp \
     Data/Util.cpp \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \

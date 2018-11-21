@@ -20,10 +20,10 @@
 #include "Data/Region/RegionTypes.h"
 #include "Data/Statistics/Statistics.h"
 #include "Data/ViewPlugins.h"
-#include "Data/Units/UnitsFrequency.h"
-#include "Data/Units/UnitsIntensity.h"
-#include "Data/Units/UnitsSpectral.h"
-#include "Data/Units/UnitsWavelength.h"
+//#include "Data/Units/UnitsFrequency.h"
+//#include "Data/Units/UnitsIntensity.h"
+//#include "Data/Units/UnitsSpectral.h"
+//#include "Data/Units/UnitsWavelength.h"
 #include "Data/Util.h"
 #include "State/UtilState.h"
 #include <QTime>
@@ -499,12 +499,12 @@ ViewManager::~ViewManager(){
     delete obj;
     obj = Util::findSingletonObject<RegionTypes>();
     delete obj;
-    obj =  Util::findSingletonObject<UnitsFrequency>();
-    delete obj;
-    obj =  Util::findSingletonObject<UnitsSpectral>();
-    delete obj;
-    obj =  Util::findSingletonObject<UnitsWavelength>();
-    delete obj;
+//    obj =  Util::findSingletonObject<UnitsFrequency>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<UnitsSpectral>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<UnitsWavelength>();
+//    delete obj;
 //    obj = Util::findSingletonObject<Fonts>();
 //    delete obj;
 
