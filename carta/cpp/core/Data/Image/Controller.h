@@ -34,16 +34,11 @@ namespace Carta {
 
 namespace Carta {
 namespace Data {
-//class ColorState;
 class Layer;
 class LayerData;
 class Stack;
 class DataSource;
 class DisplayControls;
-//class ContourControls;
-//class Settings;
-//class Region;
-//class RegionControls;
 
 typedef Carta::Lib::InputEvents::JsonEvent InputEvent;
 
@@ -76,50 +71,11 @@ public:
     void setFileId(int fileId);
 
     /**
-     * Apply the indicated clips to managed images.
-     * @param minIntensityPercentile the minimum clip percentile [0,1].
-     * @param maxIntensityPercentile the maximum clip percentile [0,1].
-     * @return a QString indicating if there was an error applying the clips or an empty
-     *      string if there was not an error.
-     */
-    QString applyClips( double minIntensityPercentile, double maxIntensityPercentile );
-
-    /**
      * Close the given image.
      * @param id - a stack id for the image to close.
      * @return - an error message if the image was not successfully closed.
      */
     QString closeImage( const QString& id );
-
-    /**
-     * Return the auto clip.
-     * @return the auto clip.
-     */
-    bool getAutoClip() const;
-
-    /**
-     * Return the minimum clip percentile.
-     * @return the minimum clip percentile.
-     */
-    double getClipPercentileMin() const;
-
-    /**
-     * Return the maximum clip percentile.
-     * @return the maximum clip percentile.
-     */
-    double getClipPercentileMax() const;
-
-    /**
-     * Return the data source of the selected image.
-     * @return - the data source of the selected image.
-     */
-    std::shared_ptr<DataSource> getDataSource() const;
-
-    /**
-     * Return a list of images that have been loaded.
-     * @return - a list of loaded images.
-     */
-    std::vector<std::shared_ptr<Carta::Lib::Image::ImageInterface> > getImages();
 
     std::shared_ptr<Carta::Lib::Image::ImageInterface> getImage();
 
@@ -205,40 +161,6 @@ public:
         Lib::IntensityUnitConverter::SharedPtr converter) const;
 
     /**
-     * Return a list of indices indicating the current frames of the selected
-     * image.
-     * @return - a list consisting of the current frames of the current image.
-     */
-    std::vector<int> getImageSlice() const;
-
-    /**
-     * Return percentiles corresponding to the given intensities.
-     * @param frameLow a lower bound for the channel range or -1 if there is no lower bound.
-     * @param frameHigh an upper bound for the channel range or -1 if there is no upper bound.
-     * @param intensities values for which percentiles are needed.
-     * @return the percentiles corresponding to the intensities.
-     */
-    std::vector<double> getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter=nullptr ) const;
-
-    /**
-     * Return the region controller.
-     * @return - the region controller.
-     */
-//    std::shared_ptr<RegionControls> getRegionControls();
-
-    /**
-     * Return the units of the pixels.
-     * @return the units of the pixels, or blank if units could not be obtained.
-     */
-    QString getPixelUnits() const;
-
-    /**
-     * Return the index of the image that is currently at the top of the stack.
-     * @return - the index of the current image.
-     */
-    int getSelectImageIndex() const;
-
-    /**
       * Returns a json string representing the state of this controller.
       * @param type - the type of snapshot to return.
       * @param sessionId - an identifier for the user's session.
@@ -287,12 +209,6 @@ private:
     QString _addDataImage(const QString& fileName, bool* success, int fileId);
 
 	static bool m_registered;
-
-	static const QString CLIP_VALUE_MIN;
-	static const QString CLIP_VALUE_MAX;
-	static const QString AUTO_CLIP;
-
-//	std::shared_ptr<RegionControls> m_regionControls;
 
 	//Data available to and managed by this controller.
 	std::unique_ptr<Stack> m_stack;

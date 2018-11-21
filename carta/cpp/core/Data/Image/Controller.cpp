@@ -5,15 +5,9 @@
 #include "Data/Image/DataFactory.h"
 #include "Data/Image/Stack.h"
 #include "Data/Image/DataSource.h"
-//#include "Data/Image/Contour/ContourControls.h"
-//#include "Data/Image/Contour/DataContours.h"
-//#include "Data/Region/RegionControls.h"
-//#include "Data/Region/Region.h"
-//#include "Data/Settings.h"
 #include "Data/DataLoader.h"
 #include "Data/Error/ErrorManager.h"
 #include "../../ImageRenderService.h"
-//#include "Data/Colormap/Colormaps.h"
 
 #include "Data/Util.h"
 #include "ImageView.h"
@@ -42,9 +36,6 @@ public:
     }
 };
 
-const QString Controller::CLIP_VALUE_MIN = "clipValueMin";
-const QString Controller::CLIP_VALUE_MAX = "clipValueMax";
-const QString Controller::AUTO_CLIP = "autoClip";
 const QString Controller::PLUGIN_NAME = "ImageViewer";
 
 const QString Controller::CLASS_NAME = "Controller";
@@ -86,11 +77,6 @@ QString Controller::_addDataImage(const QString& fileName, bool* success, int fi
     return result;
 }
 
-QString Controller::applyClips( double minIntensityPercentile, double maxIntensityPercentile ){
-    QString result("");
-    return result;
-}
-
 void Controller::clear(){
     unregisterView();
 }
@@ -104,44 +90,12 @@ QString Controller::closeImage( const QString& id ){
     return result;
 }
 
-bool Controller::getAutoClip() const {
-    bool autoClip = m_state.getValue<bool>(AUTO_CLIP);
-    return autoClip;
-}
-
-double Controller::getClipPercentileMax() const {
-    double clipValueMax = m_state.getValue<double>(CLIP_VALUE_MAX);
-    return clipValueMax;
-}
-
-double Controller::getClipPercentileMin() const {
-    double clipValueMin = m_state.getValue<double>(CLIP_VALUE_MIN);
-    return clipValueMin;
-}
-
-std::shared_ptr<DataSource> Controller::getDataSource() const {
-    return m_stack->_getDataSource();
-}
-
-//std::shared_ptr<RegionControls> Controller::getRegionControls() {
-//	return m_regionControls;
-//}
-
-std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > Controller::getImages() {
-    return m_stack->_getImages();
-}
-
 std::shared_ptr<Carta::Lib::Image::ImageInterface> Controller::getImage() {
     return m_stack->_getImage();
 }
 
 std::vector<int> Controller::getImageDimensions( ) const {
     std::vector<int> result = m_stack->_getImageDimensions();
-    return result;
-}
-
-std::vector<int> Controller::getImageSlice() const {
-    std::vector<int> result = m_stack->_getImageSlice();
     return result;
 }
 
@@ -191,19 +145,6 @@ PBMSharedPtr Controller::getRasterImageData(int fileId, int x_min, int x_max, in
                                                        isZFP, precision, numSubsets,
                                                        changeFrame, regionId, numberOfBins, converter);
     return result;
-}
-
-std::vector<double> Controller::getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const {
-    return m_stack->_getPercentiles( frameLow, frameHigh, intensities, converter );
-}
-
-QString Controller::getPixelUnits() const {
-    QString result = m_stack->_getPixelUnits();
-    return result;
-}
-
-int Controller::getSelectImageIndex() const {
-    return m_stack->_getSelectImageIndex();
 }
 
 QString Controller::getStateString( const QString& sessionId, SnapshotType type ) const{

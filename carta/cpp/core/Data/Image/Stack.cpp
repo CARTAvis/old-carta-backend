@@ -210,7 +210,7 @@ QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
     return datas;
 }
 
-int Stack::_getFrame( AxisInfo::KnownType axisType ) const {
+/*int Stack::_getFrame( AxisInfo::KnownType axisType ) const {
     int frame = -1;
     if ( axisType != AxisInfo::KnownType::OTHER ){
         std::vector<AxisInfo::KnownType> supportedAxes = _getAxisTypes();
@@ -223,7 +223,7 @@ int Stack::_getFrame( AxisInfo::KnownType axisType ) const {
         }
     }
     return frame;
-}
+}*/
 
 std::vector<int> Stack::_getFrameIndices( ) const {
     int selectCount = m_selects.size();
@@ -254,7 +254,7 @@ QStringList Stack::_getOpenedFileList() {
 }
 
 // need to check its correctness before applying this function!!
-std::vector<int> Stack::_getImageSlice() const {
+/*std::vector<int> Stack::_getImageSlice() const {
     std::vector<int> result;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
@@ -274,7 +274,7 @@ std::vector<int> Stack::_getImageSlice() const {
         }
     }
     return result;
-}
+}*/
 
 int Stack::_getIndex( const QString& layerId) const {
     int index = -1;
@@ -340,14 +340,14 @@ QString Stack::_getPixelVal( double x, double y) const {
 }
 
 
-int Stack::_getSelectImageIndex() const {
+/*int Stack::_getSelectImageIndex() const {
     int selectImageIndex = -1;
     int stackedImageVisibleCount = _getStackSizeVisible();
     if ( stackedImageVisibleCount >= 1 ){
         selectImageIndex = m_selectImage->getIndex();
     }
     return selectImageIndex;
-}
+}*/
 
 QString Stack::getStateString() const{
     QString result = m_state.toString();

@@ -116,17 +116,17 @@ private:
 //    Carta::State::StateInterface _getDataGridState();
 
     QList<std::shared_ptr<Layer> > _getDrawChildren() const;
-    int _getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
+//    int _getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
     int _getFrameUpperBound( Carta::Lib::AxisInfo::KnownType axisType ) const;
     std::vector<int> _getFrameIndices( ) const;
 
-    std::vector<int> _getImageSlice() const;
+//    std::vector<int> _getImageSlice() const;
     int _getIndex( const QString& layerId) const;
     QString _getPixelVal( double x, double y) const;
 //    QRectF _getInputRectangle() const;
 //     QList<std::shared_ptr<Region> > _getRegions() const;
 
-     int _getSelectImageIndex() const;
+//     int _getSelectImageIndex() const;
 
      /**
       * Return the state of this layer.
