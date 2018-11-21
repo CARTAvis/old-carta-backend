@@ -4,7 +4,7 @@
 #include "Data/Image/DataSource.h"
 //#include "Data/Region/Region.h"
 //#include "Data/Region/RegionControls.h"
-#include "Data/Region/RegionFactory.h"
+//#include "Data/Region/RegionFactory.h"
 #include "Data/Util.h"
 #include "CartaLib/Hooks/LoadRegion.h"
 #include "Globals.h"

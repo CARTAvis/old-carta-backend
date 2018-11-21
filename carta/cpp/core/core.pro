@@ -44,14 +44,6 @@ HEADERS += \
     Data/Image/Render/RenderResponse.h \
     Data/Selection.h \
     Data/LinkableImpl.h \
-    Data/Region/Region.h \
-#    Data/Region/RegionControls.h \
-    Data/Region/RegionPolygon.h \
-    Data/Region/RegionEllipse.h \
-    Data/Region/RegionPoint.h \
-    Data/Region/RegionRectangle.h \
-    Data/Region/RegionFactory.h \
-    Data/Region/RegionTypes.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
@@ -99,14 +91,6 @@ SOURCES += \
     Data/Error/ErrorManager.cpp \
     Data/LinkableImpl.cpp \
     Data/Selection.cpp \
-    Data/Region/Region.cpp \
-#    Data/Region/RegionControls.cpp \
-    Data/Region/RegionPoint.cpp \
-    Data/Region/RegionPolygon.cpp \
-    Data/Region/RegionEllipse.cpp \
-    Data/Region/RegionFactory.cpp \
-    Data/Region/RegionRectangle.cpp \
-    Data/Region/RegionTypes.cpp \
     Data/Util.cpp \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \

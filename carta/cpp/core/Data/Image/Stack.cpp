@@ -8,7 +8,7 @@
 //#include "Data/Image/Save/SaveService.h"
 //#include "Data/Preferences/PreferencesSave.h"
 //#include "Data/Region/Region.h"
-#include "Data/Region/RegionFactory.h"
+//#include "Data/Region/RegionFactory.h"
 #include "Data/Selection.h"
 //#include "Data/Units/UnitsIntensity.h"
 #include "Data/Util.h"
