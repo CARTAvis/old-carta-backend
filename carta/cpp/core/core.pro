@@ -38,7 +38,7 @@ HEADERS += \
     Data/Image/Layer.h \
     Data/Image/LayerData.h \
     Data/Image/Contour/Contour.h \
-    Data/Image/Contour/ContourControls.h \
+#    Data/Image/Contour/ContourControls.h \
     Data/Image/Contour/ContourGenerateModes.h \
     Data/Image/Contour/ContourTypes.h \
     Data/Image/Contour/ContourSpacingModes.h \
@@ -104,7 +104,7 @@ SOURCES += \
     Data/Image/LayerGroup.cpp \
     Data/Image/Stack.cpp \
     Data/Image/Contour/Contour.cpp \
-    Data/Image/Contour/ContourControls.cpp \
+#    Data/Image/Contour/ContourControls.cpp \
     Data/Image/Contour/ContourGenerateModes.cpp \
     Data/Image/Contour/ContourTypes.cpp \
     Data/Image/Contour/ContourSpacingModes.cpp \

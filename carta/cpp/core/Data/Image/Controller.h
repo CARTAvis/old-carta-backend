@@ -40,7 +40,7 @@ class LayerData;
 class Stack;
 class DataSource;
 class DisplayControls;
-class ContourControls;
+//class ContourControls;
 class Settings;
 class Region;
 class RegionControls;

@@ -5,7 +5,7 @@
 #include "GeneratorState.h"
 #include "DataContours.h"
 #include "Data/Util.h"
-#include "Data/Image/IPercentIntensityMap.h"
+//#include "Data/Image/IPercentIntensityMap.h"
 #include "Globals.h"
 #include "MainConfig.h"
 #include "State/UtilState.h"
