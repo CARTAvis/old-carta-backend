@@ -37,14 +37,6 @@ HEADERS += \
     Data/Image/Stack.h \
     Data/Image/Layer.h \
     Data/Image/LayerData.h \
-    Data/Image/Contour/Contour.h \
-#    Data/Image/Contour/ContourControls.h \
-    Data/Image/Contour/ContourGenerateModes.h \
-    Data/Image/Contour/ContourTypes.h \
-    Data/Image/Contour/ContourSpacingModes.h \
-    Data/Image/Contour/ContourStyles.h \
-#    Data/Image/Contour/DataContours.h \
-    Data/Image/Contour/GeneratorState.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
     Data/Image/LayerCompositionModes.h \
@@ -79,7 +71,6 @@ HEADERS += \
     Shape/ShapeRectangle.h \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
-    DefaultContourGeneratorService.h \
     coreMain.h \
     SimpleRemoteVGView.h
 
@@ -103,14 +94,6 @@ SOURCES += \
     Data/Image/Layer.cpp \
     Data/Image/LayerGroup.cpp \
     Data/Image/Stack.cpp \
-    Data/Image/Contour/Contour.cpp \
-#    Data/Image/Contour/ContourControls.cpp \
-    Data/Image/Contour/ContourGenerateModes.cpp \
-    Data/Image/Contour/ContourTypes.cpp \
-    Data/Image/Contour/ContourSpacingModes.cpp \
-    Data/Image/Contour/ContourStyles.cpp \
-#    Data/Image/Contour/DataContours.cpp \
-    Data/Image/Contour/GeneratorState.cpp \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
     Data/Image/LayerCompositionModes.cpp \
@@ -147,7 +130,6 @@ SOURCES += \
     Shape/ShapeRectangle.cpp \
     ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
-    DefaultContourGeneratorService.cpp \
     coreMain.cpp \
     SimpleRemoteVGView.cpp
 

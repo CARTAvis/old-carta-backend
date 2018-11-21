@@ -6,10 +6,10 @@
 //#include "Data/Image/Grid/Themes.h"
 //#include "Data/Image/Grid/Fonts.h"
 //#include "Data/Image/Grid/LabelFormats.h"
-#include "Data/Image/Contour/ContourGenerateModes.h"
-#include "Data/Image/Contour/ContourTypes.h"
-#include "Data/Image/Contour/ContourSpacingModes.h"
-#include "Data/Image/Contour/ContourStyles.h"
+//#include "Data/Image/Contour/ContourGenerateModes.h"
+//#include "Data/Image/Contour/ContourTypes.h"
+//#include "Data/Image/Contour/ContourSpacingModes.h"
+//#include "Data/Image/Contour/ContourStyles.h"
 #include "Data/Image/LayerCompositionModes.h"
 #include "Data/DataLoader.h"
 //#include "Data/Colormap/Gamma.h"
@@ -487,14 +487,14 @@ ViewManager::~ViewManager(){
     delete obj;
 //    obj =  Util::findSingletonObject<Themes>();
 //    delete obj;
-    obj =  Util::findSingletonObject<ContourGenerateModes>();
-    delete obj;
-    obj =  Util::findSingletonObject<ContourTypes>();
-    delete obj;
-    obj =  Util::findSingletonObject<ContourSpacingModes>();
-    delete obj;
-    obj =  Util::findSingletonObject<ContourStyles>();
-    delete obj;
+//    obj =  Util::findSingletonObject<ContourGenerateModes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<ContourTypes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<ContourSpacingModes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<ContourStyles>();
+//    delete obj;
     obj =  Util::findSingletonObject<LayerCompositionModes>();
     delete obj;
     obj = Util::findSingletonObject<RegionTypes>();
