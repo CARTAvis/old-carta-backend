@@ -17,7 +17,7 @@
 //#include "Data/Colormap/TransformsImage.h"
 #include "Data/Error/ErrorManager.h"
 #include "Data/ILinkable.h"
-#include "Data/Region/RegionTypes.h"
+//#include "Data/Region/RegionTypes.h"
 //#include "Data/Statistics/Statistics.h"
 #include "Data/ViewPlugins.h"
 //#include "Data/Units/UnitsFrequency.h"
@@ -497,8 +497,8 @@ ViewManager::~ViewManager(){
 //    delete obj;
     obj =  Util::findSingletonObject<LayerCompositionModes>();
     delete obj;
-    obj = Util::findSingletonObject<RegionTypes>();
-    delete obj;
+//    obj = Util::findSingletonObject<RegionTypes>();
+//    delete obj;
 //    obj =  Util::findSingletonObject<UnitsFrequency>();
 //    delete obj;
 //    obj =  Util::findSingletonObject<UnitsSpectral>();

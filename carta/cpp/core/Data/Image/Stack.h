@@ -18,7 +18,7 @@ namespace Data {
 
 //class DrawStackSynchronizer;
 //class DrawImageViewsSynchronizer;
-class Region;
+//class Region;
 class Selection;
 //class SaveService;
 
@@ -106,7 +106,7 @@ private:
 
 //    void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes, bool applyAll );
 
-    int _findRegionIndex( std::shared_ptr<Region> region ) const;
+//    int _findRegionIndex( std::shared_ptr<Region> region ) const;
 
     std::set<Carta::Lib::AxisInfo::KnownType> _getAxesHidden() const;
     QStringList _getCoords( double x, double y,
@@ -124,7 +124,7 @@ private:
     int _getIndex( const QString& layerId) const;
     QString _getPixelVal( double x, double y) const;
 //    QRectF _getInputRectangle() const;
-     QList<std::shared_ptr<Region> > _getRegions() const;
+//     QList<std::shared_ptr<Region> > _getRegions() const;
 
      int _getSelectImageIndex() const;
 

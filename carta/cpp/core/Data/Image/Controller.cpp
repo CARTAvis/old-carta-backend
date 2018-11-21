@@ -7,8 +7,8 @@
 #include "Data/Image/DataSource.h"
 //#include "Data/Image/Contour/ContourControls.h"
 //#include "Data/Image/Contour/DataContours.h"
-#include "Data/Region/RegionControls.h"
-#include "Data/Region/Region.h"
+//#include "Data/Region/RegionControls.h"
+//#include "Data/Region/Region.h"
 #include "Data/Settings.h"
 #include "Data/DataLoader.h"
 #include "Data/Error/ErrorManager.h"
@@ -123,9 +123,9 @@ std::shared_ptr<DataSource> Controller::getDataSource() const {
     return m_stack->_getDataSource();
 }
 
-std::shared_ptr<RegionControls> Controller::getRegionControls() {
-	return m_regionControls;
-}
+//std::shared_ptr<RegionControls> Controller::getRegionControls() {
+//	return m_regionControls;
+//}
 
 std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > Controller::getImages() {
     return m_stack->_getImages();

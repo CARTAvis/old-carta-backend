@@ -12,7 +12,7 @@ namespace Carta {
 namespace Data {
 
 class Controller;
-class Region;
+//class Region;
 
 class DataFactory {
 
@@ -41,10 +41,10 @@ private:
      * @param fileName - an identifier for a file.
      * @return - true if the file is a recognized format for region files; false otherwise.
      */
-    static bool _isRegion( const QString& fileName );
+//    static bool _isRegion( const QString& fileName );
 
-    static std::vector<std::shared_ptr<Region> > _loadRegions( Controller* controller,
-            const QString& fileName, bool* success, QString& errorMsg );
+//    static std::vector<std::shared_ptr<Region> > _loadRegions( Controller* controller,
+//            const QString& fileName, bool* success, QString& errorMsg );
 
     /**
      * Constructor.

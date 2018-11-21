@@ -2,8 +2,8 @@
 #include "Data/DataLoader.h"
 #include "Data/Image/Controller.h"
 #include "Data/Image/DataSource.h"
-#include "Data/Region/Region.h"
-#include "Data/Region/RegionControls.h"
+//#include "Data/Region/Region.h"
+//#include "Data/Region/RegionControls.h"
 #include "Data/Region/RegionFactory.h"
 #include "Data/Util.h"
 #include "CartaLib/Hooks/LoadRegion.h"
@@ -53,7 +53,7 @@ QString DataFactory::addData(Controller* controller, const QString& fileName, bo
 }
 
 
-bool DataFactory::_isRegion( const QString& fileName ){
+/*bool DataFactory::_isRegion( const QString& fileName ){
     bool regionFile = false;
     if ( fileName.endsWith( DataLoader::CRTF) ){
         regionFile = true;
@@ -82,10 +82,10 @@ bool DataFactory::_isRegion( const QString& fileName ){
         }
     }
     return regionFile;
-}
+}*/
 
 
-std::vector<std::shared_ptr<Region> > DataFactory::_loadRegions( Controller* controller,
+/*std::vector<std::shared_ptr<Region> > DataFactory::_loadRegions( Controller* controller,
         const QString& fileName, bool* success, QString& errorMsg ){
     std::vector< std::shared_ptr<Region> > regions;
     std::shared_ptr<DataSource> dataSource = controller->getDataSource();
@@ -94,7 +94,7 @@ std::vector<std::shared_ptr<Region> > DataFactory::_loadRegions( Controller* con
         std::shared_ptr<Carta::Lib::Image::ImageInterface> image = dataSource->_getImage();
         auto result = Globals::instance()-> pluginManager()
               -> prepare <Carta::Lib::Hooks::LoadRegion>(fileName, image );
-        auto lam = /*[=]*/[&regions,fileName] ( const Carta::Lib::Hooks::LoadRegion::ResultType &data ) {
+        auto lam = [&regions,fileName] ( const Carta::Lib::Hooks::LoadRegion::ResultType &data ) {
             int regionCount = data.size();
             //Return whether to continue the loop or not.  We continue until we
             //find the first plugin that can handle the region format and generate
@@ -123,7 +123,7 @@ std::vector<std::shared_ptr<Region> > DataFactory::_loadRegions( Controller* con
         }
     }
     return regions;
-}
+}*/
 
 
 DataFactory::~DataFactory(){

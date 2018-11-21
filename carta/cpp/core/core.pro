@@ -45,7 +45,7 @@ HEADERS += \
     Data/Selection.h \
     Data/LinkableImpl.h \
     Data/Region/Region.h \
-    Data/Region/RegionControls.h \
+#    Data/Region/RegionControls.h \
     Data/Region/RegionPolygon.h \
     Data/Region/RegionEllipse.h \
     Data/Region/RegionPoint.h \
@@ -100,7 +100,7 @@ SOURCES += \
     Data/LinkableImpl.cpp \
     Data/Selection.cpp \
     Data/Region/Region.cpp \
-    Data/Region/RegionControls.cpp \
+#    Data/Region/RegionControls.cpp \
     Data/Region/RegionPoint.cpp \
     Data/Region/RegionPolygon.cpp \
     Data/Region/RegionEllipse.cpp \

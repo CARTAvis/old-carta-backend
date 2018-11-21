@@ -42,8 +42,8 @@ class DataSource;
 class DisplayControls;
 //class ContourControls;
 class Settings;
-class Region;
-class RegionControls;
+//class Region;
+//class RegionControls;
 
 typedef Carta::Lib::InputEvents::JsonEvent InputEvent;
 
@@ -224,7 +224,7 @@ public:
      * Return the region controller.
      * @return - the region controller.
      */
-    std::shared_ptr<RegionControls> getRegionControls();
+//    std::shared_ptr<RegionControls> getRegionControls();
 
     /**
      * Return the units of the pixels.
@@ -292,7 +292,7 @@ private:
 	static const QString CLIP_VALUE_MAX;
 	static const QString AUTO_CLIP;
 
-	std::shared_ptr<RegionControls> m_regionControls;
+//	std::shared_ptr<RegionControls> m_regionControls;
 
 	//Data available to and managed by this controller.
 	std::unique_ptr<Stack> m_stack;
