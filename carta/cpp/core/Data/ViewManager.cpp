@@ -18,7 +18,7 @@
 #include "Data/Error/ErrorManager.h"
 #include "Data/ILinkable.h"
 #include "Data/Region/RegionTypes.h"
-#include "Data/Statistics/Statistics.h"
+//#include "Data/Statistics/Statistics.h"
 #include "Data/ViewPlugins.h"
 //#include "Data/Units/UnitsFrequency.h"
 //#include "Data/Units/UnitsIntensity.h"
@@ -70,9 +70,9 @@ void ViewManager::_clearControllers( int startIndex, int upperBound ){
 //        for ( Colormap* map : m_colormaps ){
 //            map->removeLink( m_controllers[i]);
 //        }
-        for ( Statistics* stat : m_statistics ){
-            stat->removeLink( m_controllers[i]);
-        }
+//        for ( Statistics* stat : m_statistics ){
+//            stat->removeLink( m_controllers[i]);
+//        }
         objMan->destroyObject( m_controllers[i]->getId() );
         m_controllers.removeAt(i);
     }
@@ -87,11 +87,11 @@ void ViewManager::_clearColormaps( int startIndex, int upperBound ){
 }
 
 void ViewManager::_clearStatistics( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        objMan->destroyObject( m_statistics[i]->getId() );
-        m_statistics.removeAt( i );
-    }
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        objMan->destroyObject( m_statistics[i]->getId() );
+//        m_statistics.removeAt( i );
+//    }
 }
 
 
@@ -134,7 +134,7 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             viewId = _makeColorMap( index );
         }
     }*/
-    else if ( plugin == Statistics::CLASS_NAME ){
+    /*else if ( plugin == Statistics::CLASS_NAME ){
         if ( 0 <= index && index < m_statistics.size() && !forceCreate){
             viewId = m_statistics[index]->getPath();
         }
@@ -144,7 +144,7 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             }
             viewId = _makeStatistics( index );
         }
-    }
+    }*/
     else if ( plugin == ViewPlugins::CLASS_NAME ){
         viewId = _makePluginList();
     }
@@ -412,7 +412,7 @@ QString ViewManager::_makePluginList(){
     return pluginsPath;
 }
 
-QString ViewManager::_makeStatistics( int index ){
+/*QString ViewManager::_makeStatistics( int index ){
     int currentCount = m_statistics.size();
     CARTA_ASSERT( 0 <= index && index <= currentCount );
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -427,7 +427,7 @@ QString ViewManager::_makeStatistics( int index ){
         m_statistics[0]->addLink( m_controllers[0] );
     }
     return m_statistics[index]->getPath();
-}
+}*/
 
 void ViewManager::_pluginsChanged( const QStringList& names, const QStringList& oldNames ){
     QMap<QString, int> pluginMap;
@@ -467,7 +467,7 @@ ViewManager::~ViewManager(){
     delete m_dataLoader;
     delete m_pluginsLoaded;
 //    _clearColormaps( 0, m_colormaps.size() );
-    _clearStatistics( 0, m_statistics.size() );
+//    _clearStatistics( 0, m_statistics.size() );
     _clearControllers( 0, m_controllers.size() );
 
     //Delete the statics

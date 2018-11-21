@@ -5,7 +5,7 @@
 #include "Image/Controller.h"
 //#include "Image/ImageContext.h"
 //#include "Image/ImageZoom.h"
-#include "Statistics/Statistics.h"
+//#include "Statistics/Statistics.h"
 //#include "Histogram/Histogram.h"
 //#include "Colormap/Colormap.h"
 //#include "Profile/Profiler.h"
@@ -78,8 +78,8 @@ void ViewPlugins::_initializeDefaultState(){
     ind++;
 //    _insertPlugin( ind, Animator::CLASS_NAME, "Animation of data sets", "", "", "");
 //    ind++;
-    _insertPlugin( ind, Statistics::CLASS_NAME, "Statistics", "", "", "");
-    ind++;
+//    _insertPlugin( ind, Statistics::CLASS_NAME, "Statistics", "", "", "");
+//    ind++;
 //    _insertPlugin( ind, Histogram::CLASS_NAME, "Histogram", "", "", "");
 //    ind++;
 //    _insertPlugin( ind, Colormap::CLASS_NAME, "Color Map", "", "", "");

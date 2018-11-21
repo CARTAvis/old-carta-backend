@@ -52,7 +52,6 @@ HEADERS += \
     Data/Region/RegionRectangle.h \
     Data/Region/RegionFactory.h \
     Data/Region/RegionTypes.h \
-    Data/Statistics/Statistics.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
@@ -108,7 +107,6 @@ SOURCES += \
     Data/Region/RegionFactory.cpp \
     Data/Region/RegionRectangle.cpp \
     Data/Region/RegionTypes.cpp \
-    Data/Statistics/Statistics.cpp \
     Data/Util.cpp \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \

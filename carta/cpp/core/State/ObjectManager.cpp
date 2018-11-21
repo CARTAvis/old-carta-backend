@@ -21,14 +21,10 @@ namespace Carta {
 namespace State {
 
 QList<QString> CartaObjectFactory::globalIds = {"ChannelUnits",
-        "Clips",
         "CoordinateSystems","ErrorManager",
         "GenerateModes",
         "LayerCompositionModes",
-         "PlotStyles", "ProfilePlotStyles",
-         "Preferences", "PreferencesSave","ProfileStatistics",
-         "RegionTypes"/*,
-         "UnitsFrequency","UnitsIntensity","UnitsSpectral","UnitsWavelength",*/
+         "RegionTypes"
          };
 
 //grimmer:
