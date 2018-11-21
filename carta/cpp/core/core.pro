@@ -50,8 +50,7 @@ HEADERS += \
     ImageRenderService.h \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
-    coreMain.h \
-    SimpleRemoteVGView.h
+    coreMain.h
 
 SOURCES += \
     Viewer.cpp \
@@ -88,8 +87,7 @@ SOURCES += \
     Data/FitsHeaderExtractor.cpp \
     ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
-    coreMain.cpp \
-    SimpleRemoteVGView.cpp
+    coreMain.cpp
 
 #message( "common            PWD=$$PWD")
 #message( "common         IN_PWD=$$IN_PWD")

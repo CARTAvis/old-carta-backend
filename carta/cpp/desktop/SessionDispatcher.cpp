@@ -5,7 +5,6 @@
 #include "SessionDispatcher.h"
 #include "CartaLib/LinearMap.h"
 #include "core/MyQApp.h"
-#include "core/SimpleRemoteVGView.h"
 #include <iostream>
 #include <QXmlInputSource>
 #include <cmath>
