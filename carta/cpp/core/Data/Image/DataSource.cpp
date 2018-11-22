@@ -1922,7 +1922,7 @@ bool DataSource::_setSpectralRequirements(int fileId, int regionId, int stokeFra
 
     // TODO: need to modify the way to get corresponding spectral data by checking the spatial profiles
     for (auto spectralConfig : spectralProfiles) {
-        m_profileInfo.setSpectralProfiles(std::pair<std::string, std::vector<int>>(spectralConfig.coordinate(), spectralConfig.stats_types()));
+        //m_profileInfo.setSpectralProfiles(std::pair<std::string, std::vector<int>>(spectralConfig.coordinate(), spectralConfig.stats_types()));
     }
 
     m_profileInfo.setStokesFrame(stokeFrame);

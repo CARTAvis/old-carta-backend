@@ -321,8 +321,8 @@ void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
             int regionId = setSpatialRequirements.region_id();
             google::protobuf::RepeatedPtrField<std::string> spatialProfiles = setSpatialRequirements.spatial_profiles();
             qDebug() << "[SessionDispatcher] Set Spatial Requirements fileId=" << fileId << ", regionId=" << regionId;
-            for(auto iter = spatialProfiles.begin(); iter != spatialProfiles.end(); iter++) {
-                qDebug() << "[SessionDispatcher] Spatial profile="  << QString::fromStdString(*iter);
+            for(auto profile : spatialProfiles) {
+                qDebug() << "[SessionDispatcher] Spatial profile="  << QString::fromStdString(profile);
             }
             emit connector->setSpatialRequirementsSignal(eventId, fileId, regionId, spatialProfiles);
 
@@ -334,11 +334,11 @@ void SessionDispatcher::onBinaryMessage(QByteArray qByteMessage) {
             int regionId = setSpectralRequirements.region_id();
             google::protobuf::RepeatedPtrField<CARTA::SetSpectralRequirements_SpectralConfig> spectralProfiles = setSpectralRequirements.spectral_profiles();
             qDebug() << "[SessionDispatcher] Set Spectral Requirements fileId=" << fileId << ", regionId=" << regionId;
-            for(auto iter = spectralProfiles.begin(); iter != spectralProfiles.end(); iter++) {
-                qDebug() << "[SessionDispatcher] Spectral profile coordinate="  << QString::fromStdString(iter->coordinate());
-                auto stats_types = iter->stats_types();
-                for(auto statIter = stats_types.begin(); statIter != stats_types.end(); statIter++) {
-                    qDebug() << "[SessionDispatcher] Statistic types="  << QString(*statIter);
+            for(auto profile : spectralProfiles) {
+                qDebug() << "[SessionDispatcher] Spectral profile coordinate="  << QString::fromStdString(profile.coordinate());
+                auto stats_types = profile.stats_types();
+                for(auto stat_type : stats_types) {
+                    qDebug() << "[SessionDispatcher] Statistic types="  << QString(stat_type);
                 }
             }
             emit connector->setSpectralRequirementsSignal(eventId, fileId, regionId, spectralProfiles);
