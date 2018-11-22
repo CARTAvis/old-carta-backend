@@ -18,7 +18,7 @@ namespace Data {
 
 //class DrawStackSynchronizer;
 //class DrawImageViewsSynchronizer;
-class Region;
+//class Region;
 class Selection;
 //class SaveService;
 
@@ -33,15 +33,15 @@ Q_OBJECT
 
 public:
 
-    using LayerGroup::_setLayersGrouped;
-    using LayerGroup::_displayAxesChanged;
-    using LayerGroup::_getCursorText;
-    using LayerGroup::_getStateString;
-    using LayerGroup::_resetPan;
-    using LayerGroup::_resetZoom;
-    using LayerGroup::_setMaskAlpha;
-    using LayerGroup::_setMaskColor;
-    using LayerGroup::_setPan;
+//    using LayerGroup::_setLayersGrouped;
+//    using LayerGroup::_displayAxesChanged;
+//    using LayerGroup::_getCursorText;
+//    using LayerGroup::_getStateString;
+//    using LayerGroup::_resetPan;
+//    using LayerGroup::_resetZoom;
+//    using LayerGroup::_setMaskAlpha;
+//    using LayerGroup::_setMaskColor;
+//    using LayerGroup::_setPan;
 
     /**
      * Returns a json string representing data selections.
@@ -69,11 +69,11 @@ protected:
     virtual QStringList _getLayerIds( ) const Q_DECL_OVERRIDE;
 
 
-    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
+//    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
 
-    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
+//    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
 
-    virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
+//    virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
 
     /**
      * Give the layer (a more user-friendly) name.
@@ -104,35 +104,35 @@ private:
 
     QString _addDataImage(const QString& fileName, bool* success , int fileId);
 
-    void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes, bool applyAll );
+//    void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes, bool applyAll );
 
-    int _findRegionIndex( std::shared_ptr<Region> region ) const;
+//    int _findRegionIndex( std::shared_ptr<Region> region ) const;
 
     std::set<Carta::Lib::AxisInfo::KnownType> _getAxesHidden() const;
     QStringList _getCoords( double x, double y,
                 Carta::Lib::KnownSkyCS system ) const;
 
 //    QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY );
-    Carta::State::StateInterface _getDataGridState();
+//    Carta::State::StateInterface _getDataGridState();
 
     QList<std::shared_ptr<Layer> > _getDrawChildren() const;
-    int _getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
+//    int _getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
     int _getFrameUpperBound( Carta::Lib::AxisInfo::KnownType axisType ) const;
     std::vector<int> _getFrameIndices( ) const;
 
-    std::vector<int> _getImageSlice() const;
+//    std::vector<int> _getImageSlice() const;
     int _getIndex( const QString& layerId) const;
     QString _getPixelVal( double x, double y) const;
 //    QRectF _getInputRectangle() const;
-     QList<std::shared_ptr<Region> > _getRegions() const;
+//     QList<std::shared_ptr<Region> > _getRegions() const;
 
-     int _getSelectImageIndex() const;
+//     int _getSelectImageIndex() const;
 
      /**
       * Return the state of this layer.
       * @return - a string representation of the layer state.
       */
-     QString _getStateString() const;
+//     QString _getStateString() const;
      QString _getCurrentId() const;
 
      /**
@@ -160,14 +160,14 @@ private:
     /**
      * Center the image.
      */
-    void _resetPan( bool panZoomAll );
+//    void _resetPan( bool panZoomAll );
 
     void _resetStack( const Carta::State::StateInterface& restoreState );
 
     /**
      * Reset the zoom to the original value.
      */
-    void _resetZoom( bool panZoomAll );
+//    void _resetZoom( bool panZoomAll );
     void _saveChildren( Carta::State::StateInterface& state, bool truncate ) const;
 
     /**
@@ -185,11 +185,11 @@ private:
     void _setFrameAxis(int value, Carta::Lib::AxisInfo::KnownType axisType);
     QString _setFrameImage( int val );
 
-    void _setMaskAlpha( const QString& id, int alphaAmount, QString& result );
+//    void _setMaskAlpha( const QString& id, int alphaAmount, QString& result );
 
-    void _setMaskColor( const QString& id, int redAmount,
-                       int greenAmount, int blueAmount, QStringList& result );
-    void _setPan( double imgX, double imgY, bool all );
+//    void _setMaskColor( const QString& id, int redAmount,
+//                       int greenAmount, int blueAmount, QStringList& result );
+//    void _setPan( double imgX, double imgY, bool all );
 
     void _setViewName( const QString& viewName );
 //    void _setViewDrawContext( std::shared_ptr<DrawStackSynchronizer> drawStack );

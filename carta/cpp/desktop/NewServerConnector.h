@@ -17,7 +17,6 @@
 #include "core/CallbackList.h"
 #include "core/Viewer.h"
 #include "core/MyQApp.h"
-#include "core/SimpleRemoteVGView.h"
 #include "core/State/ObjectManager.h"
 #include "core/Data/DataLoader.h"
 #include "core/Data/ViewManager.h"

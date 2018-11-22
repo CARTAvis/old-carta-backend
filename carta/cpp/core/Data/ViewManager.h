@@ -16,8 +16,8 @@ namespace Data {
 
 class Controller;
 class DataLoader;
-class Colormap;
-class Statistics;
+//class Colormap;
+//class Statistics;
 class ViewPlugins;
 
 class ViewManager : public QObject, public Carta::State::CartaObject {
@@ -123,9 +123,9 @@ private:
     QString _isDuplicateLink( const QString& sourceName, const QString& destId ) const;
 
     QString _makePluginList();
-    QString _makeColorMap( int index );
+//    QString _makeColorMap( int index );
     QString _makeController( int index );
-    QString _makeStatistics( int index );
+//    QString _makeStatistics( int index );
 
     void _makeDataLoader();
 
@@ -146,10 +146,10 @@ private:
     QList <Controller* > m_controllers;
 
     //Colormap
-    QList<Colormap* >m_colormaps;
+//    QList<Colormap* >m_colormaps;
 
     //Statistics
-    QList<Statistics* > m_statistics;
+//    QList<Statistics* > m_statistics;
 
     static bool m_registered;
     DataLoader* m_dataLoader;

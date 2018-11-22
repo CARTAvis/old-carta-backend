@@ -26,77 +26,31 @@ HEADERS += \
     State/StateInterface.h \
     State/UtilState.h \
     ImageView.h \
-    Data/Colormap/Colormap.h \
-    Data/Colormap/Colormaps.h \
-    Data/Colormap/ColorState.h \
-    Data/Colormap/Gamma.h \
-    Data/Colormap/TransformsData.h \
-    Data/Colormap/TransformsImage.h \
     Data/DataLoader.h \
     Data/Error/ErrorReport.h \
     Data/Error/ErrorManager.h \
     Data/ILinkable.h \
-    Data/Settings.h \
     Data/Image/Controller.h \
     Data/Image/DataFactory.h \
     Data/Image/LayerGroup.h \
     Data/Image/Stack.h \
     Data/Image/Layer.h \
     Data/Image/LayerData.h \
-    Data/Image/Contour/Contour.h \
-    Data/Image/Contour/ContourControls.h \
-    Data/Image/Contour/ContourGenerateModes.h \
-    Data/Image/Contour/ContourTypes.h \
-    Data/Image/Contour/ContourSpacingModes.h \
-    Data/Image/Contour/ContourStyles.h \
-    Data/Image/Contour/DataContours.h \
-    Data/Image/Contour/GeneratorState.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
-    Data/Image/Grid/AxisMapper.h \
-    Data/Image/Grid/DataGrid.h \
-    Data/Image/Grid/Fonts.h \
-#    Data/Image/Grid/GridControls.h \
-    Data/Image/Grid/Themes.h \
-    Data/Image/Grid/LabelFormats.h \
-    Data/Image/IPercentIntensityMap.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
     Data/Image/Render/RenderResponse.h \
     Data/Selection.h \
     Data/LinkableImpl.h \
-    Data/Region/Region.h \
-    Data/Region/RegionControls.h \
-    Data/Region/RegionPolygon.h \
-    Data/Region/RegionEllipse.h \
-    Data/Region/RegionPoint.h \
-    Data/Region/RegionRectangle.h \
-    Data/Region/RegionFactory.h \
-    Data/Region/RegionTypes.h \
-    Data/Statistics/Statistics.h \
-    Data/Units/UnitsFrequency.h \
-    Data/Units/UnitsIntensity.h \
-    Data/Units/UnitsSpectral.h \
-    Data/Units/UnitsWavelength.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
     Data/FitsHeaderExtractor.h \
-    GrayColormap.h \
     ImageRenderService.h \
-    Shape/ControlPoint.h \
-    Shape/ControlPointEditable.h \
-    Shape/ShapeBase.h \
-    Shape/ShapeEllipse.h \
-    Shape/ShapePoint.h \
-    Shape/ShapePolygon.h \
-    Shape/ShapeRectangle.h \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
-    DefaultContourGeneratorService.h \
-    DummyGridRenderer.h \
-    coreMain.h \
-    SimpleRemoteVGView.h
+    coreMain.h
 
 SOURCES += \
     Viewer.cpp \
@@ -111,35 +65,14 @@ SOURCES += \
     State/StateInterface.cpp \
     State/UtilState.cpp \
     ImageView.cpp \
-    Data/Settings.cpp \
-    Data/Colormap/Colormap.cpp \
-    Data/Colormap/Colormaps.cpp \
-    Data/Colormap/ColorState.cpp \
-    Data/Colormap/Gamma.cpp \
-    Data/Colormap/TransformsData.cpp \
-    Data/Colormap/TransformsImage.cpp \
     Data/Image/Controller.cpp \
     Data/Image/DataFactory.cpp \
     Data/Image/LayerData.cpp \
     Data/Image/Layer.cpp \
     Data/Image/LayerGroup.cpp \
     Data/Image/Stack.cpp \
-    Data/Image/Contour/Contour.cpp \
-    Data/Image/Contour/ContourControls.cpp \
-    Data/Image/Contour/ContourGenerateModes.cpp \
-    Data/Image/Contour/ContourTypes.cpp \
-    Data/Image/Contour/ContourSpacingModes.cpp \
-    Data/Image/Contour/ContourStyles.cpp \
-    Data/Image/Contour/DataContours.cpp \
-    Data/Image/Contour/GeneratorState.cpp \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
-    Data/Image/Grid/AxisMapper.cpp \
-    Data/Image/Grid/DataGrid.cpp \
-    Data/Image/Grid/Fonts.cpp \
-#    Data/Image/Grid/GridControls.cpp \
-    Data/Image/Grid/LabelFormats.cpp \
-    Data/Image/Grid/Themes.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
     Data/Image/Render/RenderResponse.cpp \
@@ -148,37 +81,13 @@ SOURCES += \
     Data/Error/ErrorManager.cpp \
     Data/LinkableImpl.cpp \
     Data/Selection.cpp \
-    Data/Region/Region.cpp \
-    Data/Region/RegionControls.cpp \
-    Data/Region/RegionPoint.cpp \
-    Data/Region/RegionPolygon.cpp \
-    Data/Region/RegionEllipse.cpp \
-    Data/Region/RegionFactory.cpp \
-    Data/Region/RegionRectangle.cpp \
-    Data/Region/RegionTypes.cpp \
-    Data/Statistics/Statistics.cpp \
-    Data/Units/UnitsFrequency.cpp \
-    Data/Units/UnitsIntensity.cpp \
-    Data/Units/UnitsSpectral.cpp \
-    Data/Units/UnitsWavelength.cpp \
     Data/Util.cpp \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \
     Data/FitsHeaderExtractor.cpp \
-    GrayColormap.cpp \
-    Shape/ControlPoint.cpp \
-    Shape/ControlPointEditable.cpp \
-    Shape/ShapeBase.cpp \
-    Shape/ShapeEllipse.cpp \
-    Shape/ShapePoint.cpp \
-    Shape/ShapePolygon.cpp \
-    Shape/ShapeRectangle.cpp \
     ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
-    DefaultContourGeneratorService.cpp \
-    DummyGridRenderer.cpp \
-    coreMain.cpp \
-    SimpleRemoteVGView.cpp
+    coreMain.cpp
 
 #message( "common            PWD=$$PWD")
 #message( "common         IN_PWD=$$IN_PWD")

@@ -1,29 +1,29 @@
 #include "Data/ViewManager.h"
-#include "Data/Colormap/Colormap.h"
-#include "Data/Colormap/Colormaps.h"
+//#include "Data/Colormap/Colormap.h"
+//#include "Data/Colormap/Colormaps.h"
 #include "Data/Image/Controller.h"
 #include "Data/Image/CoordinateSystems.h"
-#include "Data/Image/Grid/Themes.h"
-#include "Data/Image/Grid/Fonts.h"
-#include "Data/Image/Grid/LabelFormats.h"
-#include "Data/Image/Contour/ContourGenerateModes.h"
-#include "Data/Image/Contour/ContourTypes.h"
-#include "Data/Image/Contour/ContourSpacingModes.h"
-#include "Data/Image/Contour/ContourStyles.h"
+//#include "Data/Image/Grid/Themes.h"
+//#include "Data/Image/Grid/Fonts.h"
+//#include "Data/Image/Grid/LabelFormats.h"
+//#include "Data/Image/Contour/ContourGenerateModes.h"
+//#include "Data/Image/Contour/ContourTypes.h"
+//#include "Data/Image/Contour/ContourSpacingModes.h"
+//#include "Data/Image/Contour/ContourStyles.h"
 #include "Data/Image/LayerCompositionModes.h"
 #include "Data/DataLoader.h"
-#include "Data/Colormap/Gamma.h"
-#include "Data/Colormap/TransformsData.h"
-#include "Data/Colormap/TransformsImage.h"
+//#include "Data/Colormap/Gamma.h"
+//#include "Data/Colormap/TransformsData.h"
+//#include "Data/Colormap/TransformsImage.h"
 #include "Data/Error/ErrorManager.h"
 #include "Data/ILinkable.h"
-#include "Data/Region/RegionTypes.h"
-#include "Data/Statistics/Statistics.h"
+//#include "Data/Region/RegionTypes.h"
+//#include "Data/Statistics/Statistics.h"
 #include "Data/ViewPlugins.h"
-#include "Data/Units/UnitsFrequency.h"
-#include "Data/Units/UnitsIntensity.h"
-#include "Data/Units/UnitsSpectral.h"
-#include "Data/Units/UnitsWavelength.h"
+//#include "Data/Units/UnitsFrequency.h"
+//#include "Data/Units/UnitsIntensity.h"
+//#include "Data/Units/UnitsSpectral.h"
+//#include "Data/Units/UnitsWavelength.h"
 #include "Data/Util.h"
 #include "State/UtilState.h"
 #include <QTime>
@@ -67,31 +67,31 @@ ViewManager::ViewManager( const QString& path, const QString& id)
 void ViewManager::_clearControllers( int startIndex, int upperBound ){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     for ( int i = upperBound-1; i >= startIndex; i-- ){
-        for ( Colormap* map : m_colormaps ){
-            map->removeLink( m_controllers[i]);
-        }
-        for ( Statistics* stat : m_statistics ){
-            stat->removeLink( m_controllers[i]);
-        }
+//        for ( Colormap* map : m_colormaps ){
+//            map->removeLink( m_controllers[i]);
+//        }
+//        for ( Statistics* stat : m_statistics ){
+//            stat->removeLink( m_controllers[i]);
+//        }
         objMan->destroyObject( m_controllers[i]->getId() );
         m_controllers.removeAt(i);
     }
 }
 
 void ViewManager::_clearColormaps( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        objMan->destroyObject( m_colormaps[i]->getId() );
-        m_colormaps.removeAt( i );
-    }
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        objMan->destroyObject( m_colormaps[i]->getId() );
+//        m_colormaps.removeAt( i );
+//    }
 }
 
 void ViewManager::_clearStatistics( int startIndex, int upperBound ){
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    for ( int i = upperBound-1; i >= startIndex; i-- ){
-        objMan->destroyObject( m_statistics[i]->getId() );
-        m_statistics.removeAt( i );
-    }
+//    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//    for ( int i = upperBound-1; i >= startIndex; i-- ){
+//        objMan->destroyObject( m_statistics[i]->getId() );
+//        m_statistics.removeAt( i );
+//    }
 }
 
 
@@ -123,7 +123,7 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             viewId = _makeController(index);
         }
     }
-    else if ( plugin == Colormap::CLASS_NAME ){
+    /*else if ( plugin == Colormap::CLASS_NAME ){
         if ( 0 <= index && index < m_colormaps.size() && !forceCreate){
             viewId = m_colormaps[index]->getPath();
         }
@@ -133,8 +133,8 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             }
             viewId = _makeColorMap( index );
         }
-    }
-    else if ( plugin == Statistics::CLASS_NAME ){
+    }*/
+    /*else if ( plugin == Statistics::CLASS_NAME ){
         if ( 0 <= index && index < m_statistics.size() && !forceCreate){
             viewId = m_statistics[index]->getPath();
         }
@@ -144,7 +144,7 @@ QString ViewManager::getObjectId( const QString& plugin, int index, bool forceCr
             }
             viewId = _makeStatistics( index );
         }
-    }
+    }*/
     else if ( plugin == ViewPlugins::CLASS_NAME ){
         viewId = _makePluginList();
     }
@@ -159,10 +159,10 @@ int ViewManager::getControllerCount() const {
     return controllerCount;
 }
 
-int ViewManager::getColormapCount() const {
-    int colorMapCount = m_colormaps.size();
-    return colorMapCount;
-}
+//int ViewManager::getColormapCount() const {
+//    int colorMapCount = m_colormaps.size();
+//    return colorMapCount;
+//}
 
 QString ViewManager::dataLoaded(const QString & params) {
 
@@ -261,15 +261,15 @@ void ViewManager::_initCallbacks(){
 QString ViewManager::_isDuplicateLink( const QString& sourceName, const QString& destId ) const {
     QString result;
     bool alreadyLinked = false;
-    if ( sourceName == Colormap::CLASS_NAME ){
-        int colorCount = m_colormaps.size();
-        for ( int i = 0; i < colorCount; i++  ){
-            alreadyLinked = m_colormaps[i]->isLinked( destId );
-            if ( alreadyLinked ){
-                break;
-            }
-        }
-    }
+//    if ( sourceName == Colormap::CLASS_NAME ){
+//        int colorCount = m_colormaps.size();
+//        for ( int i = 0; i < colorCount; i++  ){
+//            alreadyLinked = m_colormaps[i]->isLinked( destId );
+//            if ( alreadyLinked ){
+//                break;
+//            }
+//        }
+//    }
 
     if ( alreadyLinked ){
         result = "Destination can only be linked to one "+sourceName;
@@ -354,21 +354,21 @@ void ViewManager::_moveView( const QString& plugin, int oldIndex, int newIndex )
                 m_controllers.insert( newIndex, controller );
             }
         }
-        else if ( plugin == Colormap::CLASS_NAME ){
-            int colorCount = m_colormaps.size();
-            if ( oldIndex < colorCount && newIndex < colorCount ){
-                Colormap* colormap = m_colormaps[oldIndex];
-                m_colormaps.removeAt(oldIndex );
-                m_colormaps.insert( newIndex, colormap );
-            }
-        }
+//        else if ( plugin == Colormap::CLASS_NAME ){
+//            int colorCount = m_colormaps.size();
+//            if ( oldIndex < colorCount && newIndex < colorCount ){
+//                Colormap* colormap = m_colormaps[oldIndex];
+//                m_colormaps.removeAt(oldIndex );
+//                m_colormaps.insert( newIndex, colormap );
+//            }
+//        }
     }
     else {
         qWarning() << "Move view insert indices don't make sense "<<oldIndex<<" and "<<newIndex;
     }
 }
 
-QString ViewManager::_makeColorMap( int index ){
+/*QString ViewManager::_makeColorMap( int index ){
     int currentCount = m_colormaps.size();
     CARTA_ASSERT( 0 <= index && index <= currentCount );
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -379,7 +379,7 @@ QString ViewManager::_makeColorMap( int index ){
     }
     QString path = m_colormaps[index]->getPath();
    return path;
-}
+}*/
 
 QString ViewManager::_makeController( int index ){
     int currentCount = m_controllers.size();
@@ -412,7 +412,7 @@ QString ViewManager::_makePluginList(){
     return pluginsPath;
 }
 
-QString ViewManager::_makeStatistics( int index ){
+/*QString ViewManager::_makeStatistics( int index ){
     int currentCount = m_statistics.size();
     CARTA_ASSERT( 0 <= index && index <= currentCount );
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
@@ -427,7 +427,7 @@ QString ViewManager::_makeStatistics( int index ){
         m_statistics[0]->addLink( m_controllers[0] );
     }
     return m_statistics[index]->getPath();
-}
+}*/
 
 void ViewManager::_pluginsChanged( const QStringList& names, const QStringList& oldNames ){
     QMap<QString, int> pluginMap;
@@ -466,47 +466,47 @@ void ViewManager::_pluginsChanged( const QStringList& names, const QStringList& 
 ViewManager::~ViewManager(){
     delete m_dataLoader;
     delete m_pluginsLoaded;
-    _clearColormaps( 0, m_colormaps.size() );
-    _clearStatistics( 0, m_statistics.size() );
+//    _clearColormaps( 0, m_colormaps.size() );
+//    _clearStatistics( 0, m_statistics.size() );
     _clearControllers( 0, m_controllers.size() );
 
     //Delete the statics
-    CartaObject* obj = Util::findSingletonObject<Colormaps>();
+//    CartaObject* obj = Util::findSingletonObject<Colormaps>();
+//    delete obj;
+//    CartaObject* obj =  Util::findSingletonObject<TransformsData>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<TransformsImage>();
+//    delete obj;
+//    CartaObject* obj = Util::findSingletonObject<Gamma>();
+//    delete obj;
+    CartaObject* obj =  Util::findSingletonObject<ErrorManager>();
     delete obj;
-    obj =  Util::findSingletonObject<TransformsData>();
-    delete obj;
-    obj =  Util::findSingletonObject<TransformsImage>();
-    delete obj;
-    obj = Util::findSingletonObject<Gamma>();
-    delete obj;
-    obj =  Util::findSingletonObject<ErrorManager>();
-    delete obj;
-    obj =  Util::findSingletonObject<LabelFormats>();
-    delete obj;
+//    obj =  Util::findSingletonObject<LabelFormats>();
+//    delete obj;
     obj =  Util::findSingletonObject<CoordinateSystems>();
     delete obj;
-    obj =  Util::findSingletonObject<Themes>();
-    delete obj;
-    obj =  Util::findSingletonObject<ContourGenerateModes>();
-    delete obj;
-    obj =  Util::findSingletonObject<ContourTypes>();
-    delete obj;
-    obj =  Util::findSingletonObject<ContourSpacingModes>();
-    delete obj;
-    obj =  Util::findSingletonObject<ContourStyles>();
-    delete obj;
+//    obj =  Util::findSingletonObject<Themes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<ContourGenerateModes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<ContourTypes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<ContourSpacingModes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<ContourStyles>();
+//    delete obj;
     obj =  Util::findSingletonObject<LayerCompositionModes>();
     delete obj;
-    obj = Util::findSingletonObject<RegionTypes>();
-    delete obj;
-    obj =  Util::findSingletonObject<UnitsFrequency>();
-    delete obj;
-    obj =  Util::findSingletonObject<UnitsSpectral>();
-    delete obj;
-    obj =  Util::findSingletonObject<UnitsWavelength>();
-    delete obj;
-    obj = Util::findSingletonObject<Fonts>();
-    delete obj;
+//    obj = Util::findSingletonObject<RegionTypes>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<UnitsFrequency>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<UnitsSpectral>();
+//    delete obj;
+//    obj =  Util::findSingletonObject<UnitsWavelength>();
+//    delete obj;
+//    obj = Util::findSingletonObject<Fonts>();
+//    delete obj;
 
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     objMan->printObjects();

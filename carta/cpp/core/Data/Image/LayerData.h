@@ -21,9 +21,9 @@ namespace Carta {
 namespace Lib {
     class IWcsGridRenderService;
     class IContourGeneratorService;
-    namespace PixelPipeline {
-        class CustomizablePixelPipeline;
-    }
+//    namespace PixelPipeline {
+//        class CustomizablePixelPipeline;
+//    }
     namespace NdArray {
         class RawViewInterface;
     }
@@ -37,10 +37,10 @@ namespace Core {
 
 namespace Data {
 
-class ColorState;
+//class ColorState;
 //class DrawSynchronizer;
-class DataContours;
-class DataGrid;
+//class DataContours;
+//class DataGrid;
 class DataSource;
 
 class LayerData : public Layer {
@@ -67,7 +67,7 @@ protected:
          * Add a contour set.
          * @param contour - the contour set to add.
          */
-    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) Q_DECL_OVERRIDE;
+//    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) Q_DECL_OVERRIDE;
 
     /**
         * Remove the color map.
@@ -79,8 +79,8 @@ protected:
      * @param displayAxisTypes - the x-, y-, and z- axes to display.
      * @param frames - list of image frames.
      */
-    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
-                const std::vector<int>& frames ) Q_DECL_OVERRIDE;
+//    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
+//                const std::vector<int>& frames ) Q_DECL_OVERRIDE;
 
     virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const Q_DECL_OVERRIDE;
     virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const Q_DECL_OVERRIDE;
@@ -91,7 +91,7 @@ protected:
 
     virtual QPointF _getCenterPixel() const Q_DECL_OVERRIDE;
 
-    virtual std::shared_ptr<ColorState> _getColorState() Q_DECL_OVERRIDE;
+//    virtual std::shared_ptr<ColorState> _getColorState() Q_DECL_OVERRIDE;
 
     /**
      * Return the point on the image corresponding to the pixel point in the context
@@ -101,21 +101,21 @@ protected:
      * @param valid - whether or not the returned point is valid.
      * @return - the pixel position of the point in image coordinates.
      */
-    virtual QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getContextPt( const QPointF& mousePt, const QSize& outputSize, bool* valid ) const Q_DECL_OVERRIDE;
 
     /**
      * Return the contour set with the indicated name.
      * @return - the corresponding contour set with the designated name or a nullptr
      *  if no such set exists.
      */
-    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) Q_DECL_OVERRIDE;
+//    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) Q_DECL_OVERRIDE;
 
 
     /**
      * Return all contour sets for this particular layer.
      * @return - all contour sets in the layer.
      */
-    virtual std::set< std::shared_ptr<DataContours> > _getContours() Q_DECL_OVERRIDE;
+//    virtual std::set< std::shared_ptr<DataContours> > _getContours() Q_DECL_OVERRIDE;
 
     /**
      * Return the coordinates at pixel (x, y) in the given coordinate system.
@@ -142,14 +142,14 @@ protected:
      * @param frames - list of image frames.
      * @return a QString containing cursor text.
      */
-    virtual QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
-            const std::vector<int>& frames, const QSize& outputSize) Q_DECL_OVERRIDE;
+//    virtual QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
+//            const std::vector<int>& frames, const QSize& outputSize) Q_DECL_OVERRIDE;
 
     /**
      * Return the data grid of the image.
      * @return - the data grid of the image.
      */
-    virtual std::shared_ptr<DataGrid> _getDataGrid() Q_DECL_OVERRIDE;
+//    virtual std::shared_ptr<DataGrid> _getDataGrid() Q_DECL_OVERRIDE;
 
     /**
      * Return the data source of the image.
@@ -189,7 +189,7 @@ protected:
     virtual int _getFrameCount( Carta::Lib::AxisInfo::KnownType type ) const Q_DECL_OVERRIDE;
 
     //Return data source state.
-     virtual Carta::State::StateInterface _getGridState() const Q_DECL_OVERRIDE;
+//     virtual Carta::State::StateInterface _getGridState() const Q_DECL_OVERRIDE;
 
      /**
       * Returns the underlying image.
@@ -279,14 +279,14 @@ protected:
      *      correspond to selected images.
      * @return - a list of color states whose states may be changed.
      */
-    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) Q_DECL_OVERRIDE;
+//    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) Q_DECL_OVERRIDE;
 
     /**
      * Return the state of this layer.
      * @param truncatePaths - true if full paths to files should not be given.
      * @return - a string representation of the layer state.
      */
-    virtual QString _getStateString( bool truncatePaths ) const Q_DECL_OVERRIDE;
+//    virtual QString _getStateString( bool truncatePaths ) const Q_DECL_OVERRIDE;
 
     /**
      * Return the zoom factor for this image.
@@ -323,12 +323,12 @@ protected:
     /**
      * Center the image.
      */
-    virtual void _resetPan() Q_DECL_OVERRIDE;
+//    virtual void _resetPan() Q_DECL_OVERRIDE;
 
     /**
      * Reset the zoom to the original value.
      */
-    virtual void _resetZoom() Q_DECL_OVERRIDE;
+//    virtual void _resetZoom() Q_DECL_OVERRIDE;
 
     virtual QString _getFileName() Q_DECL_OVERRIDE;
 
@@ -349,7 +349,7 @@ protected:
      * @param valid set to true if an image is loaded that can do the translation; otherwise false;
      * @return the corresponding location on the image.
      */
-    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize,  bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize,  bool* valid ) const Q_DECL_OVERRIDE;
 
     /**
      * Return the portion of the image that is displayed given current zoom and
@@ -357,7 +357,7 @@ protected:
      * @param size - the size of the displayed image.
      * @return - the portion of the image that is visible.
      */
-    virtual QRectF _getInputRect( const QSize& size ) const Q_DECL_OVERRIDE;
+//    virtual QRectF _getInputRect( const QSize& size ) const Q_DECL_OVERRIDE;
 
     /**
      * Returns the intensity corresponding to a given percentile.
@@ -476,7 +476,7 @@ protected:
      * Remove the contour set from this layer.
      * @param contourSet - the contour set to remove from the layer.
      */
-    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) Q_DECL_OVERRIDE;
+//    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) Q_DECL_OVERRIDE;
 
     /**
      * Generate a new QImage.
@@ -495,11 +495,11 @@ protected:
      */
     virtual void _resetStateContours(const Carta::State::StateInterface& restoreState ) Q_DECL_OVERRIDE;
 
-    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
+//    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
 
-    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
+//    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
 
-    virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
+//    virtual QString _setDataGridState( const QString stateName, const QString stateValue ) Q_DECL_OVERRIDE;
 
     /**
      * Group or ungroup any child layers.
@@ -507,7 +507,7 @@ protected:
      * @param viewSize - the view size.
      * @return - true if the operation was performed; false otherwise.
      */
-    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) Q_DECL_OVERRIDE;
+//    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) Q_DECL_OVERRIDE;
 
     /**
      * Set the opacity of the mask.
@@ -516,7 +516,7 @@ protected:
      *      an empty string otherwise.
      * @return - true if the mask opacity was changed; false otherwise.
      */
-    virtual bool _setMaskAlpha( const QString& id, int alphaAmount ) Q_DECL_OVERRIDE;
+//    virtual bool _setMaskAlpha( const QString& id, int alphaAmount ) Q_DECL_OVERRIDE;
 
     virtual void _setMaskAlphaDefault() Q_DECL_OVERRIDE;
 
@@ -529,8 +529,8 @@ protected:
      *      mask color; an empty string otherwise.
      * @return - true if the mask color was changed; false otherwise.
      */
-    virtual bool _setMaskColor( const QString& id, int redAmount,
-            int greenAmount, int blueAmount ) Q_DECL_OVERRIDE;
+//    virtual bool _setMaskColor( const QString& id, int redAmount,
+//            int greenAmount, int blueAmount ) Q_DECL_OVERRIDE;
 
     virtual void _setMaskColorDefault() Q_DECL_OVERRIDE;
 
@@ -540,13 +540,13 @@ protected:
      * @param imgX the x-coordinate of the center.
      * @param imgY the y-coordinate of the center.
      */
-    virtual void _setPan( double imgX, double imgY ) Q_DECL_OVERRIDE;
+//    virtual void _setPan( double imgX, double imgY ) Q_DECL_OVERRIDE;
 
     /**
      * Set a list of graphics for drawing the current regions.
      * @param regionVGList - graphics for drawing the current regions.
      */
-    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) Q_DECL_OVERRIDE;
+//    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) Q_DECL_OVERRIDE;
     virtual void _setSupportAlpha( bool supportAlpha ) Q_DECL_OVERRIDE;
     virtual void _setSupportColor( bool supportColor ) Q_DECL_OVERRIDE;
 
@@ -555,8 +555,8 @@ protected:
      * @param zoomFactor the zoom multiplier.
      */
     virtual void _setZoom( double zoomFactor ) Q_DECL_OVERRIDE;
-    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
-                double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) Q_DECL_OVERRIDE;
+//    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
+//                double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) Q_DECL_OVERRIDE;
 
 
     virtual void _updateColor() Q_DECL_OVERRIDE;
@@ -569,12 +569,12 @@ private slots:
 
     //Notification from the rendering service that a new image and assiciated vector
     //graphics have been produced.
-    void _renderingDone(  QImage image,
+/*    void _renderingDone(  QImage image,
                           Carta::Lib::VectorGraphics::VGList vgList,
                           Carta::Lib::VectorGraphics::VGList contourList,
 						  Carta::Lib::VectorGraphics::VGList regionList,
                           int64_t jobId );
-
+*/
 private:
 
     /**
@@ -585,15 +585,15 @@ private:
      */
     Carta::Lib::AxisLabelInfo _getAxisLabelInfo( int axisIndex, Carta::Lib::AxisInfo::KnownType axisType ) const;
 
-    QRectF _getInputRectangle( const QPointF& pan, double zoom,
-            const QSize& outputSize) const;
-    QRectF _getInputRectangle( const QPointF& pan, double zoom,
-            const QRectF& outputRect, const QSize& outputSize ) const;
+//    QRectF _getInputRectangle( const QPointF& pan, double zoom,
+//            const QSize& outputSize) const;
+//    QRectF _getInputRectangle( const QPointF& pan, double zoom,
+//            const QRectF& outputRect, const QSize& outputSize ) const;
     QRectF _getOutputRectangle( const QSize& outputSize, bool requestMain, bool requestContext ) const;
     QPointF _getPan() const;
 
 
-    bool _getTransform( const QPointF& pan, double zoom, const QSize& size, QTransform& tf ) const;
+//    bool _getTransform( const QPointF& pan, double zoom, const QSize& size, QTransform& tf ) const;
 
     void _initializeState();
 
@@ -612,9 +612,9 @@ private:
 
 
     // std::unique_ptr<DataGrid> m_dataGrid;
-    std::shared_ptr<DataGrid> m_dataGrid;
+//    std::shared_ptr<DataGrid> m_dataGrid;
 
-    std::set< std::shared_ptr<DataContours> > m_dataContours;
+//    std::set< std::shared_ptr<DataContours> > m_dataContours;
 
     //Pointer to image interface.
     std::shared_ptr<DataSource> m_dataSource;
@@ -624,7 +624,7 @@ private:
 
     Carta::Lib::VectorGraphics::VGList m_regionGraphics;
 
-    std::shared_ptr<ColorState> m_stateColor;
+//    std::shared_ptr<ColorState> m_stateColor;
 
     LayerData(const LayerData& other);
     LayerData& operator=(const LayerData& other);

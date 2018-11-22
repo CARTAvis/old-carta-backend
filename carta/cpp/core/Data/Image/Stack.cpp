@@ -3,14 +3,14 @@
 #include "Data/Image/LayerCompositionModes.h"
 //#include "Data/Image/Draw/DrawStackSynchronizer.h"
 //#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
-#include "Data/Image/Grid/AxisMapper.h"
-#include "Data/Image/Grid/DataGrid.h"
+//#include "Data/Image/Grid/AxisMapper.h"
+//#include "Data/Image/Grid/DataGrid.h"
 //#include "Data/Image/Save/SaveService.h"
 //#include "Data/Preferences/PreferencesSave.h"
-#include "Data/Region/Region.h"
-#include "Data/Region/RegionFactory.h"
+//#include "Data/Region/Region.h"
+//#include "Data/Region/RegionFactory.h"
 #include "Data/Selection.h"
-#include "Data/Units/UnitsIntensity.h"
+//#include "Data/Units/UnitsIntensity.h"
 #include "Data/Util.h"
 #include "State/UtilState.h"
 #include "State/StateInterface.h"
@@ -117,30 +117,30 @@ bool Stack::_closeData( const QString& id ){
 }
 
 
-void Stack::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes, bool applyAll ){
-
-    std::vector<int> frames = _getFrameIndices();
-    if ( !applyAll ){
-        int dataIndex = _getIndexCurrent();
-        if (dataIndex >= 0 ) {
-            if (m_children[dataIndex] != nullptr) {
-                std::vector<int> frames = _getFrameIndices();
-                m_children[dataIndex]->_displayAxesChanged( displayAxisTypes, frames );
-            }
-        }
-    }
-    else {
-        int dataCount = m_children.size();
-        std::vector<int> frames = _getFrameIndices();
-        for ( int i = 0; i < dataCount; i++ ){
-            if ( m_children[i] != nullptr ){
-                m_children[i]->_displayAxesChanged( displayAxisTypes, frames );
-            }
-        }
-    }
-     _saveState();
-    emit viewLoad( );
-}
+//void Stack::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes, bool applyAll ){
+//
+//    std::vector<int> frames = _getFrameIndices();
+//    if ( !applyAll ){
+//        int dataIndex = _getIndexCurrent();
+//        if (dataIndex >= 0 ) {
+//            if (m_children[dataIndex] != nullptr) {
+//                std::vector<int> frames = _getFrameIndices();
+//                m_children[dataIndex]->_displayAxesChanged( displayAxisTypes, frames );
+//            }
+//        }
+//    }
+//    else {
+//        int dataCount = m_children.size();
+//        std::vector<int> frames = _getFrameIndices();
+//        for ( int i = 0; i < dataCount; i++ ){
+//            if ( m_children[i] != nullptr ){
+//                m_children[i]->_displayAxesChanged( displayAxisTypes, frames );
+//            }
+//        }
+//    }
+//     _saveState();
+//    emit viewLoad( );
+//}
 
 
 std::set<AxisInfo::KnownType> Stack::_getAxesHidden() const {
@@ -187,11 +187,11 @@ QString Stack::_getCurrentId() const {
 //    return cursorText;
 //}
 
-Carta::State::StateInterface Stack::_getDataGridState(){
-    std::shared_ptr<DataGrid> dataGrid = _getDataGrid();
-    Carta::State::StateInterface dataGridState = dataGrid->_getState();
-    return dataGridState;
-}
+//Carta::State::StateInterface Stack::_getDataGridState(){
+//    std::shared_ptr<DataGrid> dataGrid = _getDataGrid();
+//    Carta::State::StateInterface dataGridState = dataGrid->_getState();
+//    return dataGridState;
+//}
 
 QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
     QList<std::shared_ptr<Layer> > datas;
@@ -210,7 +210,7 @@ QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
     return datas;
 }
 
-int Stack::_getFrame( AxisInfo::KnownType axisType ) const {
+/*int Stack::_getFrame( AxisInfo::KnownType axisType ) const {
     int frame = -1;
     if ( axisType != AxisInfo::KnownType::OTHER ){
         std::vector<AxisInfo::KnownType> supportedAxes = _getAxisTypes();
@@ -223,7 +223,7 @@ int Stack::_getFrame( AxisInfo::KnownType axisType ) const {
         }
     }
     return frame;
-}
+}*/
 
 std::vector<int> Stack::_getFrameIndices( ) const {
     int selectCount = m_selects.size();
@@ -254,7 +254,7 @@ QStringList Stack::_getOpenedFileList() {
 }
 
 // need to check its correctness before applying this function!!
-std::vector<int> Stack::_getImageSlice() const {
+/*std::vector<int> Stack::_getImageSlice() const {
     std::vector<int> result;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
@@ -274,7 +274,7 @@ std::vector<int> Stack::_getImageSlice() const {
         }
     }
     return result;
-}
+}*/
 
 int Stack::_getIndex( const QString& layerId) const {
     int index = -1;
@@ -340,28 +340,14 @@ QString Stack::_getPixelVal( double x, double y) const {
 }
 
 
-int Stack::_getSelectImageIndex() const {
+/*int Stack::_getSelectImageIndex() const {
     int selectImageIndex = -1;
     int stackedImageVisibleCount = _getStackSizeVisible();
     if ( stackedImageVisibleCount >= 1 ){
         selectImageIndex = m_selectImage->getIndex();
     }
     return selectImageIndex;
-}
-
-QString Stack::_getStateString() const{
-    Carta::State::StateInterface copyState( m_state );
-    _saveChildren( copyState, false );
-    copyState.insertValue<QString>( Selection::IMAGE, m_selectImage->getStateString());
-    int selectCount = m_selects.size();
-    // const Carta::Lib::KnownSkyCS cs = _getCoordinateSystem();
-    for ( int i = 0; i < selectCount; i++ ){
-        QString axisName = AxisMapper::getPurpose( static_cast<AxisInfo::KnownType>(i) );
-        copyState.insertValue<QString>( axisName, m_selects[i]->getStateString());
-    }
-    QString stateStr = copyState.toString();
-    return stateStr;
-}
+}*/
 
 QString Stack::getStateString() const{
     QString result = m_state.toString();
@@ -568,7 +554,7 @@ QString Stack::_resetFrames( int val ){
 
 
 void Stack::_resetStack( const Carta::State::StateInterface& restoreState ){
-    _resetState( restoreState );
+/*    _resetState( restoreState );
     QString dataStateStr = restoreState.getValue<QString>( Selection::IMAGE );
     m_selectImage ->resetState( dataStateStr );
     int selectCount = m_selects.size();
@@ -580,45 +566,45 @@ void Stack::_resetStack( const Carta::State::StateInterface& restoreState ){
         m_selects[i]->resetState( axisState );
     }
     _saveState();
-    emit viewLoad();
+    emit viewLoad();*/
 }
 
-void Stack::_resetPan( bool panZoomAll ){
-    if ( panZoomAll ){
-        int dataCount = m_children.size();
-        if ( dataCount > 0 ){
-            for ( int i = 0; i < dataCount; i++ ){
-                m_children[i]->_resetPan();
-            }
-        }
-    }
-    else {
-        int dataIndex = _getIndexCurrent();
-        if ( dataIndex >= 0 ){
-            m_children[dataIndex]->_resetPan();
-        }
-    }
-    emit viewLoad( );
-}
+//void Stack::_resetPan( bool panZoomAll ){
+//    if ( panZoomAll ){
+//        int dataCount = m_children.size();
+//        if ( dataCount > 0 ){
+//            for ( int i = 0; i < dataCount; i++ ){
+//                m_children[i]->_resetPan();
+//            }
+//        }
+//    }
+//    else {
+//        int dataIndex = _getIndexCurrent();
+//        if ( dataIndex >= 0 ){
+//            m_children[dataIndex]->_resetPan();
+//        }
+//    }
+//    emit viewLoad( );
+//}
 
 
-void Stack::_resetZoom( bool panZoomAll ){
-    if ( panZoomAll ){
-        int dataCount = m_children.size();
-        if ( dataCount > 0 ){
-            for ( int i = 0; i < dataCount; i++ ){
-                m_children[i]->_resetZoom();
-            }
-        }
-    }
-    else {
-        int dataIndex = _getIndexCurrent();
-        if ( dataIndex >= 0 ){
-            m_children[dataIndex]->_resetZoom();
-        }
-    }
-    emit viewLoad( );
-}
+//void Stack::_resetZoom( bool panZoomAll ){
+//    if ( panZoomAll ){
+//        int dataCount = m_children.size();
+//        if ( dataCount > 0 ){
+//            for ( int i = 0; i < dataCount; i++ ){
+//                m_children[i]->_resetZoom();
+//            }
+//        }
+//    }
+//    else {
+//        int dataIndex = _getIndexCurrent();
+//        if ( dataIndex >= 0 ){
+//            m_children[dataIndex]->_resetZoom();
+//        }
+//    }
+//    emit viewLoad( );
+//}
 
 
 void Stack::_saveChildren( Carta::State::StateInterface& state, bool truncate ) const {
@@ -627,11 +613,11 @@ void Stack::_saveChildren( Carta::State::StateInterface& state, bool truncate ) 
     if ( oldDataCount != dataCount ){
         state.resizeArray(LAYERS, dataCount, Carta::State::StateInterface::PreserveNone );
     }
-    for (int i = 0; i < dataCount; i++) {
-        QString layerString = m_children[i]->_getStateString( truncate );
-        QString dataKey = Carta::State::UtilState::getLookup( LAYERS, i);
-        state.setObject( dataKey, layerString);
-    }
+//    for (int i = 0; i < dataCount; i++) {
+//        QString layerString = m_children[i]->_getStateString( truncate );
+//        QString dataKey = Carta::State::UtilState::getLookup( LAYERS, i);
+//        state.setObject( dataKey, layerString);
+//    }
 }
 
 QString Stack::_saveImage( const QString& saveName ){
@@ -672,7 +658,7 @@ void Stack::_saveState( bool flush ) {
     }
 }
 
-QString Stack::_setAxis( const QString axis, const QString name ){
+//QString Stack::_setAxis( const QString axis, const QString name ){
     // bool axisChanged = false;
     // // TODO: should layergroup change all the datagrid of children?
     // std::shared_ptr<DataGrid> dataGrid = _getDataGrid();
@@ -690,42 +676,23 @@ QString Stack::_setAxis( const QString axis, const QString name ){
 
     //TODO: so far the _displayAxesChanged() should be called from Stack
     //due to the _getFrameIndices(), try to simplify this part
-    QString result = "";
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        result = m_children[dataIndex]->_setAxis( axis, name );
-
+//    QString result = "";
+//    int dataIndex = _getIndexCurrent();
+//    if ( dataIndex >= 0 ){
+//        result = m_children[dataIndex]->_setAxis( axis, name );
+//
         // Get the updated datagrid to update raster image
-        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
-        std::vector<AxisInfo::KnownType> displayTypes = dataGrid->_getDisplayAxes();
-        std::vector<int> frames = _getFrameIndices();
-        m_children[dataIndex]->_displayAxesChanged( displayTypes, frames );
-        emit viewLoad();
-    }
+//        std::shared_ptr<DataGrid> dataGrid = m_children[dataIndex]->_getDataGrid();
+//        std::vector<AxisInfo::KnownType> displayTypes = dataGrid->_getDisplayAxes();
+//        std::vector<int> frames = _getFrameIndices();
+//        m_children[dataIndex]->_displayAxesChanged( displayTypes, frames );
+//        emit viewLoad();
+//    }
 
     // TODO: the return value mix with exception, try to seperate them.
-    return result;
-}
+//    return result;
+//}
 
-QString Stack::_setCoordinateSystem( QString csName ){
-    QString result;
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        result = m_children[dataIndex]->_setCoordinateSystem( csName );
-        emit viewLoad();
-    }
-    return result;
-}
-
-QString Stack::_setDataGridState( const QString stateName, const QString stateValue ){
-    QString result;
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        result = m_children[dataIndex]->_setDataGridState( stateName, stateValue );
-        emit viewLoad();
-    }
-    return result;
-}
 
 bool Stack::_setCompositionMode( const QString& id, const QString& compositionMode,
         QString& errorMsg ){
@@ -795,54 +762,54 @@ bool Stack::_setLayerName( const QString& id, const QString& name ){
 //}
 
 
-void Stack::_setMaskColor( const QString& id, int redAmount,
-        int greenAmount, int blueAmount, QStringList& result ){
-    if ( 0 > redAmount || redAmount > 255 ){
-        result.append( "Invalid red mask color [0,255]: "+QString::number( redAmount ) );
-    }
-    if ( 0 > greenAmount || greenAmount > 255 ){
-        result.append( "Invalid green mask color [0,255]: "+QString::number( greenAmount ) );
-    }
-    if ( 0 > blueAmount || blueAmount > 255 ){
-        result.append( "Invalid blue mask color [0,255]: "+QString::number( blueAmount ) );
-    }
-    if ( result.length() == 0 ){
-        bool changed = LayerGroup::_setMaskColor( id, redAmount, greenAmount, blueAmount);
-        if ( changed ){
-            _saveState();
-            emit viewLoad();
-        }
-    }
-}
+//void Stack::_setMaskColor( const QString& id, int redAmount,
+//        int greenAmount, int blueAmount, QStringList& result ){
+//    if ( 0 > redAmount || redAmount > 255 ){
+//        result.append( "Invalid red mask color [0,255]: "+QString::number( redAmount ) );
+//    }
+//    if ( 0 > greenAmount || greenAmount > 255 ){
+//        result.append( "Invalid green mask color [0,255]: "+QString::number( greenAmount ) );
+//    }
+//    if ( 0 > blueAmount || blueAmount > 255 ){
+//        result.append( "Invalid blue mask color [0,255]: "+QString::number( blueAmount ) );
+//    }
+//    if ( result.length() == 0 ){
+//        bool changed = LayerGroup::_setMaskColor( id, redAmount, greenAmount, blueAmount);
+//        if ( changed ){
+//            _saveState();
+//            emit viewLoad();
+//        }
+//    }
+//}
 
-void Stack::_setMaskAlpha( const QString& id, int alphaAmount, QString& result ){
-    if ( 0 > alphaAmount || alphaAmount > 255 ){
-        result = "Invalid mask opacity [0,255]:"+QString::number( alphaAmount );
-    }
-    else {
-        bool changed = LayerGroup::_setMaskAlpha( id, alphaAmount );
-        if ( changed ){
-            _saveState();
-            emit viewLoad();
-        }
-    }
-}
+//void Stack::_setMaskAlpha( const QString& id, int alphaAmount, QString& result ){
+//    if ( 0 > alphaAmount || alphaAmount > 255 ){
+//        result = "Invalid mask opacity [0,255]:"+QString::number( alphaAmount );
+//    }
+//    else {
+//        bool changed = LayerGroup::_setMaskAlpha( id, alphaAmount );
+//        if ( changed ){
+//            _saveState();
+//            emit viewLoad();
+//        }
+//    }
+//}
 
-void Stack::_setPan( double imgX, double imgY, bool panZoomAll ){
-    if ( panZoomAll ){
-       int childCount = m_children.size();
-       for ( int i = 0; i < childCount; i++ ){
-           m_children[i]->_setPan( imgX, imgY );
-       }
-   }
-   else {
-       int dataIndex = _getIndexCurrent();
-       if ( dataIndex >= 0 ){
-           m_children[dataIndex]->_setPan( imgX, imgY );
-       }
-   }
-   emit viewLoad();
-}
+//void Stack::_setPan( double imgX, double imgY, bool panZoomAll ){
+//    if ( panZoomAll ){
+//       int childCount = m_children.size();
+//       for ( int i = 0; i < childCount; i++ ){
+//           m_children[i]->_setPan( imgX, imgY );
+//       }
+//   }
+//   else {
+//       int dataIndex = _getIndexCurrent();
+//       if ( dataIndex >= 0 ){
+//           m_children[dataIndex]->_setPan( imgX, imgY );
+//       }
+//   }
+//   emit viewLoad();
+//}
 
 bool Stack::_setSelected( QStringList& names){
     bool stateChanged = LayerGroup::_setSelected( names );

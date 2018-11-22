@@ -1,8 +1,8 @@
 #include "Layer.h"
-#include "Grid/DataGrid.h"
-#include "Contour/DataContours.h"
+//#include "Grid/DataGrid.h"
+//#include "Contour/DataContours.h"
 #include "Data/Util.h"
-#include "Data/Colormap/ColorState.h"
+//#include "Data/Colormap/ColorState.h"
 #include "Data/DataLoader.h"
 #include "Data/Image/LayerCompositionModes.h"
 #include "Data/Image/Render/RenderRequest.h"
@@ -61,19 +61,19 @@ QList<std::shared_ptr<Layer> > Layer::_getChildren(){
 }
 
 
-std::shared_ptr<ColorState> Layer::_getColorState(){
+/*std::shared_ptr<ColorState> Layer::_getColorState(){
     return std::shared_ptr<ColorState>(nullptr);
-}
+}*/
 
 QString Layer::_getCompositionMode() const {
     return LayerCompositionModes::NONE;
 }
 
 
-std::set<std::shared_ptr<DataContours>> Layer::_getContours() {
+/*std::set<std::shared_ptr<DataContours>> Layer::_getContours() {
     std::set<std::shared_ptr<DataContours> > emptySet;
     return emptySet;
-}
+}*/
 
 
 std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > Layer::_getImages(){
@@ -234,11 +234,6 @@ bool Layer::_setCompositionMode( const QString& id, const QString& /*composition
         errorMsg = "Composition mode is not implemented the layer";
     }
     return stateChanged;
-}
-
-QString Layer::_setDataGridState( const QString stateName, const QString stateValue ){
-    qCritical() << "Not implement";
-    return "";
 }
 
 

@@ -25,9 +25,9 @@ class CoordinateFormatterInterface;
 
 namespace Carta {
 namespace Lib {
-namespace PixelPipeline {
-class CustomizablePixelPipeline;
-}
+//namespace PixelPipeline {
+//class CustomizablePixelPipeline;
+//}
 namespace NdArray {
 class RawViewInterface;
 }
@@ -35,9 +35,9 @@ class RawViewInterface;
 
 namespace Data {
 
-class DataGrid;
-class ColorState;
-class DataContours;
+//class DataGrid;
+//class ColorState;
+//class DataContours;
 class DataSource;
 class LayerCompositionModes;
 
@@ -82,7 +82,7 @@ protected:
      * Add a contour set.
      * @param contour - the contour set to add.
      */
-    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) = 0;
+//    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) = 0;
 
     /**
      * Add a layer to this one at the given index.
@@ -110,8 +110,8 @@ protected:
      * @param displayAxisTypes - the x-, y-, and z- axes to display.
      * @param frames - list of image frames.
      */
-    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
-            const std::vector<int>& frames ) = 0;
+//    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
+//            const std::vector<int>& frames ) = 0;
 
     virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const = 0;
     virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const = 0;
@@ -132,7 +132,7 @@ protected:
      * Return stored information about the color map.
      * @return - information about the color map.
      */
-    virtual std::shared_ptr<ColorState> _getColorState();
+//    virtual std::shared_ptr<ColorState> _getColorState();
 
     /**
      * Return the mode used to composed the layer.
@@ -148,20 +148,20 @@ protected:
      * @param valid - whether or not the returned point is valid.
      * @return - the pixel position of the point in image coordinates.
      */
-    virtual QPointF _getContextPt( const QPointF& pixelPt, const QSize& outputSize, bool* valid ) const = 0;
+//    virtual QPointF _getContextPt( const QPointF& pixelPt, const QSize& outputSize, bool* valid ) const = 0;
 
     /**
      * Return the contour set with the indicated name.
      * @return - the corresponding contour set with the designated name or a nullptr
      *  if no such set exists.
      */
-    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) = 0;
+//    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) = 0;
 
     /**
      * Return all contour sets for this particular layer.
      * @return - all contour sets in the layer.
      */
-    virtual std::set< std::shared_ptr<DataContours> > _getContours();
+//    virtual std::set< std::shared_ptr<DataContours> > _getContours();
 
     /**
      * Return the coordinates at pixel (x, y) in the given coordinate system.
@@ -188,15 +188,15 @@ protected:
      * @param outputSize - the size of the image in pixels.
      * @return a QString containing cursor text.
      */
-    virtual QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
-            const std::vector<int>& frames, const QSize& outputSize ) = 0;
+//    virtual QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
+//            const std::vector<int>& frames, const QSize& outputSize ) = 0;
 
 
     /**
      * Return the data grid of the image.
      * @return - the data grid of the image.
      */
-    virtual std::shared_ptr<DataGrid> _getDataGrid() = 0;
+//    virtual std::shared_ptr<DataGrid> _getDataGrid() = 0;
 
     /**
      * Return the data source of the image.
@@ -236,7 +236,7 @@ protected:
 
 
     //Return grid state.
-    virtual Carta::State::StateInterface _getGridState() const = 0;
+//    virtual Carta::State::StateInterface _getGridState() const = 0;
 
 
     /**
@@ -261,7 +261,7 @@ protected:
      * @param valid set to true if an image is loaded that can do the translation; otherwise false;
      * @return the corresponding location on the image.
      */
-    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const = 0;
+//    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const = 0;
 
 
     /**
@@ -270,7 +270,7 @@ protected:
      * @param size - the size of the displayed image.
      * @return - the portion of the image that is visible.
      */
-    virtual QRectF _getInputRect( const QSize& size ) const = 0;
+//    virtual QRectF _getInputRect( const QSize& size ) const = 0;
 
 
     /**
@@ -484,7 +484,7 @@ protected:
      *      correspond to selected images.
      * @return - a list of color states whose states may be changed.
      */
-    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) = 0;
+//    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) = 0;
 
 
     /**
@@ -492,7 +492,7 @@ protected:
      * @param truncatePaths - true if full paths to files should not be given.
      * @return - a string representation of the layer state.
      */
-    virtual QString _getStateString( bool truncatePaths ) const = 0;
+//    virtual QString _getStateString( bool truncatePaths ) const = 0;
 
     /**
      * Return the zoom factor for this layer.
@@ -553,7 +553,7 @@ protected:
      * Remove the contour set from this layer.
      * @param contourSet - the contour set to remove from the layer.
      */
-    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) = 0;
+//    virtual void _removeContourSet( std::shared_ptr<DataContours> contourSet ) = 0;
 
     /**
      * Generate a new rendered image.
@@ -574,7 +574,7 @@ protected:
     /**
      * Center the image.
      */
-    virtual void _resetPan( ) = 0;
+//    virtual void _resetPan( ) = 0;
 
     /**
      * Reset the prefereence state of this layer.
@@ -591,9 +591,9 @@ protected:
     /**
      * Reset the zoom to the original value.
      */
-    virtual void _resetZoom( ) = 0;
+//    virtual void _resetZoom( ) = 0;
 
-    virtual QString _setAxis( const QString axis, const QString name ) = 0;
+//    virtual QString _setAxis( const QString axis, const QString name ) = 0;
 
     /**
      * Set the mode used to compose this layer.
@@ -604,9 +604,9 @@ protected:
     virtual bool _setCompositionMode( const QString& id, const QString& compositionMode,
             QString& errorMsg );
 
-    virtual QString _setCoordinateSystem( QString csName ) = 0;
+//    virtual QString _setCoordinateSystem( QString csName ) = 0;
 
-    virtual QString _setDataGridState( const QString stateName, const QString stateValue );
+//    virtual QString _setDataGridState( const QString stateName, const QString stateValue );
 
     /**
      * Attempts to load an image file.
@@ -634,7 +634,7 @@ protected:
      * @param viewSize - the view size.
      * @return - true if the operation was performed; false otherwise.
      */
-    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) = 0;
+//    virtual bool _setLayersGrouped( bool grouped, const QSize& viewSize ) = 0;
 
     /**
      * Set the color to use for the mask.
@@ -645,8 +645,8 @@ protected:
      *      mask color; an empty string otherwise.
      * @return - true if the mask color was changed; false otherwise.
      */
-    virtual bool _setMaskColor( const QString& id, int redAmount,
-            int greenAmount, int blueAmount ) = 0;
+//    virtual bool _setMaskColor( const QString& id, int redAmount,
+//            int greenAmount, int blueAmount ) = 0;
 
     /**
      * Set the mask color back to its default value.
@@ -660,7 +660,7 @@ protected:
      *      an empty string otherwise.
      * @return - true if the mask opacity was changed; false otherwise.
      */
-    virtual bool _setMaskAlpha( const QString& id, int alphaAmount ) = 0;
+//    virtual bool _setMaskAlpha( const QString& id, int alphaAmount ) = 0;
 
     /**
      * Set the mask transparency back to its default value.
@@ -673,13 +673,13 @@ protected:
      * @param imgX the x-coordinate of the center.
      * @param imgY the y-coordinate of the center.
      */
-    virtual void _setPan( double imgX, double imgY ) = 0;
+//    virtual void _setPan( double imgX, double imgY ) = 0;
 
     /**
      * Set a list of graphics for drawing the current regions.
      * @param regionVGList - graphics for drawing the current regions.
      */
-    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) = 0;
+//    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) = 0;
 
     /**
      * Set this data source selected.
@@ -704,8 +704,8 @@ protected:
     virtual void _setZoom( double zoomFactor ) = 0;
 
 
-    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
-            double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) = 0;
+//    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
+//            double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) = 0;
 
     virtual void _updateColor();
 

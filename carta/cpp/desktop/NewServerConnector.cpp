@@ -25,9 +25,6 @@ struct NewServerConnector::ViewInfo
     /// this is a NON-OWNING pointer
     IView * view;
 
-    /// last received client size
-    QSize clientSize;
-
     /// linear maps convert x,y from client to image coordinates
     Carta::Lib::LinearMap1D tx, ty;
 
@@ -40,7 +37,6 @@ struct NewServerConnector::ViewInfo
     ViewInfo( IView * pview )
     {
         view = pview;
-        clientSize = QSize(1,1);
         refreshTimer.setSingleShot( true);
         // just long enough that two successive calls will result in only one redraw :)
         refreshTimer.setInterval( 1000 / 120);

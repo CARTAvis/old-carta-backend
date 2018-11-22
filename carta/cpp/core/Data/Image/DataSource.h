@@ -35,9 +35,9 @@ class SliceND;
 
 namespace Carta {
 namespace Lib {
-namespace PixelPipeline {
-class CustomizablePixelPipeline;
-}
+//namespace PixelPipeline {
+//class CustomizablePixelPipeline;
+//}
 namespace Image {
 class ImageInterface;
 }
@@ -49,11 +49,11 @@ class IPCache;
 
 
 
-namespace Core {
-namespace ImageRenderService {
-class Service;
-}
-}
+//namespace Core {
+//namespace ImageRenderService {
+//class Service;
+//}
+//}
 
 namespace Data {
 
@@ -65,7 +65,7 @@ class DataSource : public QObject {
     friend class DataFactory;
     friend class Histogram;
     friend class Profiler;
-    friend class Colormap;
+//    friend class Colormap;
     friend class Controller;
     Q_OBJECT
 
@@ -163,8 +163,8 @@ private:
      * @param frames - a list of current image frames.
      * @return a QString containing cursor text.
      */
-    QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY, Carta::Lib::KnownSkyCS cs, const std::vector<int>& frames,
-            double zoom, const QPointF& pan, const QSize& outputSize );
+//    QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY, Carta::Lib::KnownSkyCS cs, const std::vector<int>& frames,
+//            double zoom, const QPointF& pan, const QSize& outputSize );
 
 
     /**
@@ -231,8 +231,8 @@ private:
      * @param valid set to true if an image is loaded that can do the translation; otherwise false;
      * @return the corresponding location on the image.
      */
-    QPointF _getImagePt( const QPointF& screenPt, double zoom, const QPointF& pan,
-            const QSize& outputSize, bool* valid ) const;
+//    QPointF _getImagePt( const QPointF& screenPt, double zoom, const QPointF& pan,
+//            const QSize& outputSize, bool* valid ) const;
 
     /**
      * Returns the intensity and error corresponding to a percentile value.
@@ -329,7 +329,7 @@ private:
      * Returns the color used to draw nan pixels.
      * @return - the color used to draw nan pixels.
      */
-    QColor _getNanColor() const;
+//    QColor _getNanColor() const;
 
     std::vector<double> _getHertzValues(const std::vector<int> dims) const;
 
@@ -349,7 +349,7 @@ private:
      * Returns the pipeline responsible for rendering the image.
      * @retun the pipeline responsible for rendering the image.
      */
-    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> _getPipeline() const;
+//    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> _getPipeline() const;
 
     /**
      * Return the pixel coordinates corresponding to the given world coordinates.
@@ -428,7 +428,7 @@ private:
      */
     Carta::Lib::NdArray::RawViewInterface* _getRawData( const std::vector<int> frames ) const;
 
-    std::shared_ptr<Carta::Core::ImageRenderService::Service> _getRenderer() const;
+//    std::shared_ptr<Carta::Core::ImageRenderService::Service> _getRenderer() const;
 
     /**
      * Returns the location on the screen corresponding to a location in image coordinates.
@@ -436,8 +436,8 @@ private:
      * @param valid set to true if an image is loaded that can do the translation; otherwise false;
      * @return the corresponding pixel coordinates.
      */
-    QPointF _getScreenPt( const QPointF& imagePt, const QPointF& pan, double zoom,
-            const QSize& outputSize, bool* valid ) const;
+//    QPointF _getScreenPt( const QPointF& imagePt, const QPointF& pan, double zoom,
+//            const QSize& outputSize, bool* valid ) const;
 
 
     //Returns an identifier for the current image slice being rendered.
@@ -467,32 +467,32 @@ private:
     /**
      * Center the image.
      */
-    void _resetPan();
+//    void _resetPan();
 
     /**
      * Reset the zoom to the original value.
      */
-    void _resetZoom();
+//    void _resetZoom();
 
     /**
      * Sets a new color map.
      * @param name the identifier for the color map.
      */
-    void _setColorMap( const QString& name );
+//    void _setColorMap( const QString& name );
 
     /**
      * Sets whether the colors in the map are inverted.
      * @param inverted true if the colors in the map are inverted; false
      *        otherwise.
      */
-    void _setColorInverted( bool inverted );
+//    void _setColorInverted( bool inverted );
 
     /**
      * Sets whether the colors in the map are reversed.
      * @param reversed true if the colors in the map are reversed; false
      *        otherwise.
      */
-    void _setColorReversed( bool reversed );
+//    void _setColorReversed( bool reversed );
 
     /**
      * Set the amount of red, green, and blue in the color scale.
@@ -500,7 +500,7 @@ private:
      * @param newGreen the amount of green; should be in the range [0,1].
      * @param newBlue the amount of blue; should be in the range[0,1].
      */
-    void _setColorAmounts( double newRed, double newGreen, double newBlue );
+//    void _setColorAmounts( double newRed, double newGreen, double newBlue );
 
     /**
      * Set the color used to draw nan pixels.
@@ -508,7 +508,7 @@ private:
      * @param green - the amount of green in [0,255].
      * @param blue - the amount of blue in [0,255].
      */
-    void _setColorNan( double red, double green, double blue );
+//    void _setColorNan( double red, double green, double blue );
 
     /**
      * Set the coordinate system in the duplicated coordinateformatter,
@@ -537,14 +537,14 @@ private:
      * Set the gamma color map parameter.
      * @param gamma a color map parameter.
      */
-    void _setGamma( double gamma );
+//    void _setGamma( double gamma );
 
     /**
      * Set whether or not to use the default nan color (bottom of the color map).
      * @param nanDefault - true if the default nan color should be used; false if
      *      a user set nan color should be used.
      */
-    void _setNanDefault( bool nanDefault );
+//    void _setNanDefault( bool nanDefault );
 
 
     /**
@@ -552,13 +552,13 @@ private:
      * @param imgX the x-coordinate of the center.
      * @param imgY the y-coordinate of the center.
      */
-    void _setPan( double imgX, double imgY );
+//    void _setPan( double imgX, double imgY );
 
     /**
      * Set the zoom factor for this image.
      * @param zoomFactor the zoom multiplier.
      */
-    void _setZoom( double zoomFactor );
+//    void _setZoom( double zoomFactor );
 
 
     /**
@@ -576,19 +576,19 @@ private:
      * Set the data transform.
      * @param name QString a unique identifier for a data transform.
      */
-    void _setTransformData( const QString& name );
+//    void _setTransformData( const QString& name );
 
     /**
      * Update the data when parameters that govern data selection have changed
      * such as when different display axes have been selected.
      * @param frames - a list of current image frames.
      */
-    std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> _updateRenderedView( const std::vector<int>& frames );
+//    std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> _updateRenderedView( const std::vector<int>& frames );
 
     /**
      * Resize the view of the image.
      */
-    void _viewResize( const QSize& newSize );
+//    void _viewResize( const QSize& newSize );
 
     std::vector<double> _getQuantileIntensityCache( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
             double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames, bool showMesg );
@@ -635,10 +635,10 @@ private:
     std::shared_ptr<CoordinateFormatterInterface> m_coordinateFormatter;
 
     /// the rendering service
-    std::shared_ptr<Carta::Core::ImageRenderService::Service> m_renderService;
+//    std::shared_ptr<Carta::Core::ImageRenderService::Service> m_renderService;
 
     ///pixel pipeline
-    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> m_pixelPipeline;
+//    std::shared_ptr<Carta::Lib::PixelPipeline::CustomizablePixelPipeline> m_pixelPipeline;
 
     // disk cache
     std::shared_ptr<Carta::Lib::IPCache> m_diskCache;
