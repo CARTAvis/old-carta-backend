@@ -42,7 +42,6 @@ HEADERS += \
     Data/Image/Render/RenderRequest.h \
     Data/Image/Render/RenderResponse.h \
     Data/Selection.h \
-    Data/LinkableImpl.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
@@ -79,7 +78,6 @@ SOURCES += \
     Data/DataLoader.cpp \
     Data/Error/ErrorReport.cpp \
     Data/Error/ErrorManager.cpp \
-    Data/LinkableImpl.cpp \
     Data/Selection.cpp \
     Data/Util.cpp \
     Data/ViewManager.cpp \
