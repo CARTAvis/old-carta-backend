@@ -99,7 +99,6 @@ HEADERS += \
     AxisInfo.h \
     AxisLabelInfo.h \
     AxisDisplayInfo.h \
-    Fit1DInfo.h \
     ICoordinateFormatter.h \
     IPlotLabelGenerator.h \
     Hooks/LoadAstroImage.h \
@@ -110,13 +109,9 @@ HEADERS += \
     PWLinear.h \
     StatInfo.h \
     VectorGraphics/VGList.h \
-    Hooks/GetWcsGridRenderer.h \
     Hooks/LoadPlugin.h \
     VectorGraphics/BetterQPainter.h \
     Algorithms/ContourConrec.h \
-    IWcsGridRenderService.h \
-    IContourGeneratorService.h \
-    ContourSet.h \
     Algorithms/LineCombiner.h \
     Hooks/GetInitialFileList.h \
     Hooks/Initialize.h \

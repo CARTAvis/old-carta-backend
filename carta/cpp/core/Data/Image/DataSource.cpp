@@ -10,7 +10,7 @@
 //#include "Data/Colormap/TransformsData.h"
 #include "CartaLib/Hooks/LoadAstroImage.h"
 #include "CartaLib/Hooks/GetPersistentCache.h"
-#include "CartaLib/Hooks/ConversionSpectralHook.h"
+//#include "CartaLib/Hooks/ConversionSpectralHook.h"
 #include "CartaLib/Hooks/PercentileToPixelHook.h"
 #include "CartaLib/PixelPipeline/CustomizablePixelPipeline.h"
 #include "CartaLib/IPCache.h"
@@ -601,9 +601,9 @@ std::vector<double> DataSource::_getIntensity(int frameLow, int frameHigh,
         // Find Hz values if they are required for the unit transformation
         std::vector<double> hertzValues;
 
-        if (converter && converter->frameDependent) {
-            hertzValues = _getHertzValues(doubleView.dims());
-        }
+//        if (converter && converter->frameDependent) {
+//            hertzValues = _getHertzValues(doubleView.dims());
+//        }
 
         // Calculate only the required percentiles
         std::map<double, double> clips_map;
@@ -723,9 +723,9 @@ RegionHistogramData DataSource::_getPixels2HistogramData(int fileId, int regionI
 
     // Find Hz values if they are required for the unit transformation
     std::vector<double> hertzValues;
-    if (converter && converter->frameDependent) {
-        hertzValues = _getHertzValues(doubleView.dims());
-    }
+//    if (converter && converter->frameDependent) {
+//        hertzValues = _getHertzValues(doubleView.dims());
+//    }
 
     int spectralIndex = Util::getAxisIndex( m_image, AxisInfo::KnownType::SPECTRAL );
     result = calculator->pixels2histogram(fileId, regionId, doubleView, minIntensity, maxIntensity,
@@ -992,12 +992,12 @@ PBMSharedPtr DataSource::_getXYProfiles(int fileId, int x, int y,
 
     if (converter && converter->frameDependent) {
         // Find Hz values if they are required for the unit transformation
-        std::vector<double> hertzValues = _getHertzValues(doubleView.dims());
-        for (size_t f = 0; f < hertzValues.size(); f++) {
-            double hertzVal = hertzValues[f];
-            Carta::Lib::NdArray::Double viewSlice = Carta::Lib::viewSliceForFrame(doubleView, spectralIndex, f);
-            _getXYProfiles(doubleView, imgWidth, imgHeight, x, y, xProfile, yProfile);
-        }
+//        std::vector<double> hertzValues = _getHertzValues(doubleView.dims());
+//        for (size_t f = 0; f < hertzValues.size(); f++) {
+//            double hertzVal = hertzValues[f];
+//            Carta::Lib::NdArray::Double viewSlice = Carta::Lib::viewSliceForFrame(doubleView, spectralIndex, f);
+//            _getXYProfiles(doubleView, imgWidth, imgHeight, x, y, xProfile, yProfile);
+//        }
     } else {
         _getXYProfiles(doubleView, imgWidth, imgHeight, x, y, xProfile, yProfile);
     }
@@ -1180,30 +1180,30 @@ std::vector<int32_t> DataSource::_getNanEncodingsBlock(std::vector<float>& array
     return nanColor;
 }*/
 
-std::vector<double> DataSource::_getHertzValues(const std::vector<int> dims) const {
-    int spectralIndex = Util::getAxisIndex( m_image, AxisInfo::KnownType::SPECTRAL );
-    std::vector<double> hertzValues;
-
-    if (spectralIndex >= 0) { // multiple frames
-        std::vector<double> Xvalues;
-
-        for (int i = 0; i < dims[spectralIndex]; i++) {
-            Xvalues.push_back((double)i);
-        }
-
+//std::vector<double> DataSource::_getHertzValues(const std::vector<int> dims) const {
+//    int spectralIndex = Util::getAxisIndex( m_image, AxisInfo::KnownType::SPECTRAL );
+//    std::vector<double> hertzValues;
+//
+//    if (spectralIndex >= 0) { // multiple frames
+//        std::vector<double> Xvalues;
+//
+//        for (int i = 0; i < dims[spectralIndex]; i++) {
+//            Xvalues.push_back((double)i);
+//        }
+//
         // convert frame indices to Hz
-        auto result = Globals::instance()-> pluginManager()-> prepare <Carta::Lib::Hooks::ConversionSpectralHook>(m_image, "", "Hz", Xvalues );
-        auto lam = [&hertzValues] ( const Carta::Lib::Hooks::ConversionSpectralHook::ResultType &data ) {
-            hertzValues = data;
-        };
-
-        result.forEach( lam );
-    } else {
-        qWarning() << "Could not calculate Hertz values. This image has no spectral axis.";
-    }
-
-    return hertzValues;
-}
+//        auto result = Globals::instance()-> pluginManager()-> prepare <Carta::Lib::Hooks::ConversionSpectralHook>(m_image, "", "Hz", Xvalues );
+//        auto lam = [&hertzValues] ( const Carta::Lib::Hooks::ConversionSpectralHook::ResultType &data ) {
+//            hertzValues = data;
+//        };
+//
+//        result.forEach( lam );
+//    } else {
+//        qWarning() << "Could not calculate Hertz values. This image has no spectral axis.";
+//    }
+//
+//    return hertzValues;
+//}
 
 std::vector<double> DataSource::_getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const {
     std::vector<double> percentiles(intensities.size());
@@ -1215,9 +1215,9 @@ std::vector<double> DataSource::_getPercentiles( int frameLow, int frameHigh, st
 
         std::vector<double> hertzValues;
 
-        if (converter && converter->frameDependent) {
-            hertzValues = _getHertzValues(view.dims());
-        }
+//        if (converter && converter->frameDependent) {
+//            hertzValues = _getHertzValues(view.dims());
+//        }
 
         Carta::Lib::IPixelsToPercentiles<double>::SharedPtr calculator = std::make_shared<Carta::Core::Algorithms::PixelsToPercentiles<double> >();
 

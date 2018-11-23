@@ -331,7 +331,7 @@ private:
      */
 //    QColor _getNanColor() const;
 
-    std::vector<double> _getHertzValues(const std::vector<int> dims) const;
+//    std::vector<double> _getHertzValues(const std::vector<int> dims) const;
 
     /**
      * Return percentiles corresponding to the given intensities.
