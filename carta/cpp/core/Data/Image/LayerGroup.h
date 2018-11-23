@@ -319,20 +319,20 @@ protected:
      * @name - the name of a layer or an empty string to specify the current layer.
      * @return - the current layer.
      */
-    virtual std::shared_ptr<Layer> _getLayer( const QString& name) Q_DECL_OVERRIDE;
+//    virtual std::shared_ptr<Layer> _getLayer( const QString& name) Q_DECL_OVERRIDE;
 
     /**
      * Return all layers containing images.
      * @return - all layers containing images.
      */
-    virtual std::vector<std::shared_ptr<Layer> > _getLayers() Q_DECL_OVERRIDE;
+//    virtual std::vector<std::shared_ptr<Layer> > _getLayers() Q_DECL_OVERRIDE;
 
 
     /**
      * Returns the identifier for this layer and its children.
      * @return - a list of identifiers for this layer and its children.
      */
-    virtual QStringList _getLayerIds( ) const Q_DECL_OVERRIDE;
+//    virtual QStringList _getLayerIds( ) const Q_DECL_OVERRIDE;
 
 
     /**
@@ -455,7 +455,7 @@ protected:
      * otherwise.
      * @return - true if the layer is empty; false otherwise.
      */
-    virtual bool _isEmpty() const Q_DECL_OVERRIDE;
+//    virtual bool _isEmpty() const Q_DECL_OVERRIDE;
 
     /**
      * Returns whether or not the layer can be loaded with the indicated frames.
@@ -468,7 +468,7 @@ protected:
      * Returns whether or not the layered images have spectral axes.
      * @return - true if the layered images all have spectral axes; false, otherwise.
      */
-    virtual bool _isSpectralAxis() const Q_DECL_OVERRIDE;
+//    virtual bool _isSpectralAxis() const Q_DECL_OVERRIDE;
 
     /**
      * Remove the contour set from this layer.
@@ -490,7 +490,7 @@ protected:
          * Reset the preference state of this layer.
          * @param restoreState - the new layer state.
          */
-    virtual void _resetState( const Carta::State::StateInterface& restoreState ) Q_DECL_OVERRIDE;
+//    virtual void _resetState( const Carta::State::StateInterface& restoreState ) Q_DECL_OVERRIDE;
 
     /**
      * Reset the zoom to the original value.
@@ -505,8 +505,8 @@ protected:
      * @param compositionMode - the mode used to compose this layer.
      * @param errorMsg - a error message if the composition mode was not successfully set.
      */
-    virtual bool _setCompositionMode( const QString& id, const QString& compositionMode,
-            QString& errorMsg ) Q_DECL_OVERRIDE;
+//    virtual bool _setCompositionMode( const QString& id, const QString& compositionMode,
+//            QString& errorMsg ) Q_DECL_OVERRIDE;
 
 //    virtual QString _setCoordinateSystem( QString csName ) Q_DECL_OVERRIDE;
 
@@ -518,7 +518,7 @@ protected:
      * @param name - the new name for the layer.
      * @return - true if the name was successfully reset; false otherwise.
      */
-    virtual bool _setLayerName( const QString& id, const QString& name ) Q_DECL_OVERRIDE;
+//    virtual bool _setLayerName( const QString& id, const QString& name ) Q_DECL_OVERRIDE;
 
     /**
      * Group or ungroup any child layers.
@@ -542,7 +542,7 @@ protected:
      * @param selected - true if the data source is selected; false otherwise.
      * @return -true if the selected state changed; false otherwise.
      */
-    virtual bool _setSelected( QStringList& names ) Q_DECL_OVERRIDE;
+//    virtual bool _setSelected( QStringList& names ) Q_DECL_OVERRIDE;
 
 
     /**
@@ -617,7 +617,7 @@ private:
     //Get a default name based on the id of the group.
     QString _getDefaultName( const QString& id ) const;
 
-    std::shared_ptr<Layer> _getSelectedGroup();
+//    std::shared_ptr<Layer> _getSelectedGroup();
 
 //    void _initializeState();
 

@@ -66,7 +66,7 @@ protected:
     virtual bool _closeData( const QString& id ) Q_DECL_OVERRIDE;
     virtual int _getIndexCurrent( ) const Q_DECL_OVERRIDE;
 
-    virtual QStringList _getLayerIds( ) const Q_DECL_OVERRIDE;
+//    virtual QStringList _getLayerIds( ) const Q_DECL_OVERRIDE;
 
 
 //    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
@@ -81,11 +81,11 @@ protected:
      * @param name - the new name for the layer.
      * @return - true if the name was successfully reset; false otherwise.
      */
-    virtual bool _setLayerName( const QString& id, const QString& name ) Q_DECL_OVERRIDE;
+//    virtual bool _setLayerName( const QString& id, const QString& name ) Q_DECL_OVERRIDE;
 
 //    virtual bool _setLayersGrouped( bool grouped  );
 
-    virtual bool _setSelected( QStringList& names ) Q_DECL_OVERRIDE;
+//    virtual bool _setSelected( QStringList& names ) Q_DECL_OVERRIDE;
 
 
 //    virtual bool _setVisible( const QString& id, bool visible ) Q_DECL_OVERRIDE;
@@ -93,7 +93,7 @@ protected:
 private slots:
 
 
-    void _viewResize();
+//    void _viewResize();
 
     // Asynchronous result from saveFullImage().
     void _saveImageResultCB( bool result );
@@ -115,13 +115,13 @@ private:
 //    QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY );
 //    Carta::State::StateInterface _getDataGridState();
 
-    QList<std::shared_ptr<Layer> > _getDrawChildren() const;
+//    QList<std::shared_ptr<Layer> > _getDrawChildren() const;
 //    int _getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
 //    int _getFrameUpperBound( Carta::Lib::AxisInfo::KnownType axisType ) const;
 //    std::vector<int> _getFrameIndices( ) const;
 
 //    std::vector<int> _getImageSlice() const;
-    int _getIndex( const QString& layerId) const;
+//    int _getIndex( const QString& layerId) const;
 //    QString _getPixelVal( double x, double y) const;
 //    QRectF _getInputRectangle() const;
 //     QList<std::shared_ptr<Region> > _getRegions() const;
@@ -133,7 +133,7 @@ private:
       * @return - a string representation of the layer state.
       */
 //     QString _getStateString() const;
-     QString _getCurrentId() const;
+//     QString _getCurrentId() const;
 
      /**
       * Returns the size in pixels of the main image display.
@@ -146,7 +146,7 @@ private:
 //    void _initializeSelections();
 //    void _initializeState();
 
-    QString _moveSelectedLayers( bool moveDown );
+//    QString _moveSelectedLayers( bool moveDown );
 //    void _render(QList<std::shared_ptr<Layer> > datas, int gridIndex,
 //    		bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile);
 //    void _renderAll(bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile);
@@ -178,10 +178,10 @@ private:
     QString _saveImage( const QString& saveName );
 
 
-    void _saveState( bool flush = true );
+//    void _saveState( bool flush = true );
 
-    bool _setCompositionMode( const QString& id, const QString& compositionMode,
-               QString& errorMsg ) Q_DECL_OVERRIDE;
+//    bool _setCompositionMode( const QString& id, const QString& compositionMode,
+//               QString& errorMsg ) Q_DECL_OVERRIDE;
 //    void _setFrameAxis(int value, Carta::Lib::AxisInfo::KnownType axisType);
 //    QString _setFrameImage( int val );
 

@@ -731,13 +731,13 @@ bool LayerData::_isLoadable( const std::vector<int>& frames ) const {
 	return loadable;
 }
 
-bool LayerData::_isSpectralAxis() const {
+/*bool LayerData::_isSpectralAxis() const {
 	bool spectralAxis = false;
 	if ( m_dataSource ){
 		spectralAxis = m_dataSource->_isSpectralAxis();
 	}
 	return spectralAxis;
-}
+}*/
 
 void LayerData::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
         double minClipPercentile, double maxClipPercentile ){
@@ -908,7 +908,7 @@ void LayerData::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
 //}
 
 
-void LayerData::_resetStateContours(const Carta::State::StateInterface& restoreState ){
+//void LayerData::_resetStateContours(const Carta::State::StateInterface& restoreState ){
     /*int contourCount = restoreState.getArraySize( DataContours::CONTOURS );
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     QStringList supportedContours;
@@ -944,9 +944,9 @@ void LayerData::_resetStateContours(const Carta::State::StateInterface& restoreS
             emit contourSetRemoved( contourSetName );
         }
     }*/
-}
+//}
 
-void LayerData::_resetState( const Carta::State::StateInterface& restoreState ){
+//void LayerData::_resetState( const Carta::State::StateInterface& restoreState ){
     //Restore the other state variables
 /*    Layer::_resetState( restoreState );
 
@@ -990,7 +990,7 @@ void LayerData::_resetState( const Carta::State::StateInterface& restoreState ){
     QString panYKey = Carta::State::UtilState::getLookup( PAN, Util::YCOORD );
     m_state.setValue<double>( panXKey, restoreState.getValue<double>( panXKey ));
     m_state.setValue<double>( panYKey, restoreState.getValue<double>( panYKey ));*/
-}
+//}
 
 
 //void LayerData::_resetZoom( ){

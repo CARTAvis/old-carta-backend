@@ -231,25 +231,25 @@ protected:
      * @name - the name of a layer or an empty string to specify the current layer.
      * @return - the current layer.
      */
-    virtual std::shared_ptr<Layer> _getLayer( const QString& name );
+//    virtual std::shared_ptr<Layer> _getLayer( const QString& name );
 
     /**
      * Return all layers containing images.
      * @return - all layers containing images.
      */
-    virtual std::vector<std::shared_ptr<Layer> > _getLayers();
+//    virtual std::vector<std::shared_ptr<Layer> > _getLayers();
 
     /**
      * Returns an identifier for the layer.
      * @return - an identifier for the layer.
      */
-    virtual QString _getLayerId() const;
+//    virtual QString _getLayerId() const;
 
     /**
      * Returns the layer identifiers.
      * @return - a list containing identifiers for this layer and its children.
      */
-    virtual QStringList _getLayerIds( ) const;
+//    virtual QStringList _getLayerIds( ) const;
 
     /**
      * Get the transparency for the layer.
@@ -366,7 +366,7 @@ protected:
      * otherwise.
      * @return - true if the layer is empty; false otherwise.
      */
-    virtual bool _isEmpty() const;
+//    virtual bool _isEmpty() const;
 
     /**
      * Returns whether the layer is diaplayed on the celestial (RA-DEC) plane
@@ -379,13 +379,13 @@ protected:
      * Returns true if this data is selected; false otherwise.
      * @return true if this data is selected; false otherwise.
      */
-    bool _isSelected() const;
+//    bool _isSelected() const;
 
     /**
      * Returns whether or not the layered images have spectral axes.
      * @return - true if the layered images all have spectral axes; false, otherwise.
      */
-    virtual bool _isSpectralAxis() const;
+//    virtual bool _isSpectralAxis() const;
 
     /**
      * Remove the contour set from this layer.
@@ -418,13 +418,13 @@ protected:
      * Reset the prefereence state of this layer.
      * @param restoreState - the new layer state.
      */
-    virtual void _resetState( const Carta::State::StateInterface& restoreState );
+//    virtual void _resetState( const Carta::State::StateInterface& restoreState );
 
     /**
          * Reset the layer contours.
          * @param restoreeState - the new layer state.
          */
-    virtual void _resetStateContours(const Carta::State::StateInterface& restoreState );
+//    virtual void _resetStateContours(const Carta::State::StateInterface& restoreState );
 
     /**
      * Reset the zoom to the original value.
@@ -439,8 +439,8 @@ protected:
      * @param compositionMode - the mode used to compose this layer.
      * @param errorMsg - a error message if the composition mode was not successfully set.
      */
-    virtual bool _setCompositionMode( const QString& id, const QString& compositionMode,
-            QString& errorMsg );
+//    virtual bool _setCompositionMode( const QString& id, const QString& compositionMode,
+//            QString& errorMsg );
 
 //    virtual QString _setCoordinateSystem( QString csName ) = 0;
 
@@ -464,7 +464,7 @@ protected:
      * @return - true if this layers identifier matches that of the one passed
      *      in and the name was successfully reset; false otherwise.
      */
-    virtual bool _setLayerName( const QString& id, const QString& name );
+//    virtual bool _setLayerName( const QString& id, const QString& name );
 
     /**
      * Group or ungroup any child layers.
@@ -524,7 +524,7 @@ protected:
      * @param selected - true if the data source is selected; false otherwise.
      * @return -true if the selected state changed; false otherwise.
      */
-    virtual bool _setSelected( QStringList& selectNames );
+//    virtual bool _setSelected( QStringList& selectNames );
 
 //    virtual void _setSupportAlpha( bool supportAlpha );
 //    virtual void _setSupportColor( bool supportColor );
@@ -557,7 +557,7 @@ protected:
     static const QString GROUP;
     static const QString LAYER;
 
-    bool m_renderQueued;
+//    bool m_renderQueued;
 
 //    QStack<std::shared_ptr<RenderRequest>> m_renderRequests;
 
@@ -570,7 +570,7 @@ protected slots:
 
 private:
 
-    QString _getLayerName() const;
+//    QString _getLayerName() const;
 
 //    void _initializeSingletons( );
 //    void _initializeState();

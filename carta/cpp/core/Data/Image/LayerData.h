@@ -308,7 +308,7 @@ protected:
      * Returns whether or not the image has a spectral axis.
      * @return - true if the image has a spectral axes; false, otherwise.
      */
-    virtual bool _isSpectralAxis() const Q_DECL_OVERRIDE;
+//    virtual bool _isSpectralAxis() const Q_DECL_OVERRIDE;
 
     /**
      * Return a QImage representation of this data.
@@ -487,13 +487,13 @@ protected:
      * Reset the prefereence state of this layer.
      * @param restoreState - the new layer state.
      */
-    virtual void _resetState( const Carta::State::StateInterface& restoreState ) Q_DECL_OVERRIDE;
+//    virtual void _resetState( const Carta::State::StateInterface& restoreState ) Q_DECL_OVERRIDE;
 
     /**
      * Reset the layer contours.
      * @param restoreeState - the new layer state.
      */
-    virtual void _resetStateContours(const Carta::State::StateInterface& restoreState ) Q_DECL_OVERRIDE;
+//    virtual void _resetStateContours(const Carta::State::StateInterface& restoreState ) Q_DECL_OVERRIDE;
 
 //    virtual QString _setAxis( const QString axis, const QString name ) Q_DECL_OVERRIDE;
 

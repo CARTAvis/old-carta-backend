@@ -604,7 +604,7 @@ PBMSharedPtr LayerGroup::_getRasterImageData(int fileId, int xMin, int xMax, int
     return results;
 }
 
-std::shared_ptr<Layer> LayerGroup::_getLayer( const QString& name ){
+/*std::shared_ptr<Layer> LayerGroup::_getLayer( const QString& name ){
     std::shared_ptr<Layer> layer(nullptr);
     int dataIndex = -1;
     //Use the current layer
@@ -641,10 +641,10 @@ std::shared_ptr<Layer> LayerGroup::_getLayer( const QString& name ){
     }
 
     return layer;
-}
+}*/
 
 
-std::vector<std::shared_ptr<Layer> > LayerGroup::_getLayers(){
+/*std::vector<std::shared_ptr<Layer> > LayerGroup::_getLayers(){
     std::vector<std::shared_ptr<Layer> > layers;
     int dataCount = m_children.size();
     for ( int i = 0; i < dataCount; i++ ){
@@ -660,15 +660,15 @@ std::vector<std::shared_ptr<Layer> > LayerGroup::_getLayers(){
         }
     }
     return layers;
-}
+}*/
 
-QStringList LayerGroup::_getLayerIds( ) const {
+/*QStringList LayerGroup::_getLayerIds( ) const {
     QStringList idList = Layer::_getLayerIds();
     for ( std::shared_ptr<Layer> layer : m_children ){
         idList.append( layer->_getLayerIds());
     }
     return idList;
-}
+}*/
 
 
 std::vector<double> LayerGroup::_getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const {
@@ -738,17 +738,17 @@ std::pair<double,QString> LayerGroup::_getRestFrequency() const {
 	return restFreq;
 }
 
-std::shared_ptr<Layer> LayerGroup::_getSelectedGroup() {
+/*std::shared_ptr<Layer> LayerGroup::_getSelectedGroup() {
     std::shared_ptr<Layer> group( nullptr );
     int childCount = m_children.size();
     for ( int i = 0; i < childCount; i++ ){
         if ( m_children[i]->_isComposite() ){
             //See if the child is selected.  If so, it is the one
             //we are looking for.
-            if ( m_children[i]->_isSelected() ){
-                group = m_children[i];
-                break;
-            }
+//            if ( m_children[i]->_isSelected() ){
+//                group = m_children[i];
+//                break;
+//            }
             else {
                 //See if the child has descendants that are groups and
                 //selected.
@@ -761,7 +761,7 @@ std::shared_ptr<Layer> LayerGroup::_getSelectedGroup() {
         }
     }
     return group;
-}
+}*/
 
 int LayerGroup::_getStackSize() const {
     return m_children.size();
@@ -770,11 +770,11 @@ int LayerGroup::_getStackSize() const {
 int LayerGroup::_getStackSizeVisible() const {
     int visibleCount = 0;
     int imageCount = m_children.size();
-    for ( int i = 0; i < imageCount; i++ ){
-        if ( m_children[i]->_isVisible() && !m_children[i]->_isEmpty()){
-            visibleCount++;
-        }
-    }
+//    for ( int i = 0; i < imageCount; i++ ){
+//        if ( m_children[i]->_isVisible() && !m_children[i]->_isEmpty()){
+//            visibleCount++;
+//        }
+//    }
     return visibleCount;
 }
 
@@ -835,7 +835,7 @@ bool LayerGroup::_isComposite() const {
     return descendant;
 }*/
 
-bool LayerGroup::_isEmpty() const {
+/*bool LayerGroup::_isEmpty() const {
     bool empty = true;
     int childCount = m_children.size();
     for ( int i = 0; i < childCount; i++ ){
@@ -845,7 +845,7 @@ bool LayerGroup::_isEmpty() const {
         }
     }
     return empty;
-}
+}*/
 
 bool LayerGroup::_isLoadable( const std::vector<int>& frames ) const {
 	//A group is loadable if there is one loadable image in the group.
@@ -860,7 +860,7 @@ bool LayerGroup::_isLoadable( const std::vector<int>& frames ) const {
 	return loadable;
 }
 
-bool LayerGroup::_isSpectralAxis() const {
+/*bool LayerGroup::_isSpectralAxis() const {
 	bool spectralAxis = false;
 
 	//All children must have a spectral axis if the group is to have one.
@@ -875,7 +875,7 @@ bool LayerGroup::_isSpectralAxis() const {
 		}
 	}
 	return spectralAxis;
-}
+}*/
 
 
 void LayerGroup::_removeData( int index ){
@@ -956,7 +956,7 @@ void LayerGroup::_removeLayer( Layer* group ){
 }*/
 
 
-void LayerGroup::_resetState( const Carta::State::StateInterface& restoreState ){
+/*void LayerGroup::_resetState( const Carta::State::StateInterface& restoreState ){
     Layer::_resetState( restoreState);
     m_state.setValue<QString>( COMPOSITION_MODE, restoreState.getValue<QString>(COMPOSITION_MODE) );
 
@@ -989,7 +989,7 @@ void LayerGroup::_resetState( const Carta::State::StateInterface& restoreState )
             m_children[dataIndex]->_resetState( childState );
         }
     }
-}
+}*/
 
 
 //void LayerGroup::_resetZoom(){
@@ -1031,7 +1031,7 @@ void LayerGroup::_resetState( const Carta::State::StateInterface& restoreState )
 //    return result;
 //}
 
-bool LayerGroup::_setCompositionMode( const QString& id, const QString& compositionMode,
+/*bool LayerGroup::_setCompositionMode( const QString& id, const QString& compositionMode,
         QString& errorMsg ){
     bool stateChanged = false;
     if ( id == _getLayerId() ){
@@ -1060,7 +1060,7 @@ bool LayerGroup::_setCompositionMode( const QString& id, const QString& composit
         }
     }
     return stateChanged;
-}
+}*/
 
 //bool LayerGroup::_setMaskAlpha( const QString& id, int alphaAmount){
 //    bool changed = false;
@@ -1089,7 +1089,7 @@ bool LayerGroup::_setCompositionMode( const QString& id, const QString& composit
 //    return changed;
 //}
 
-bool LayerGroup::_setLayerName( const QString& id, const QString& name ){
+/*bool LayerGroup::_setLayerName( const QString& id, const QString& name ){
     bool nameSet = Layer::_setLayerName( id, name );
     if ( !nameSet ){
         int childCount = m_children.size();
@@ -1101,7 +1101,7 @@ bool LayerGroup::_setLayerName( const QString& id, const QString& name ){
         }
     }
     return nameSet;
-}
+}*/
 
 //void LayerGroup::_setPan( double imgX, double imgY ){
 //    for ( std::shared_ptr<Layer> node : m_children ){
@@ -1116,7 +1116,7 @@ bool LayerGroup::_setLayerName( const QString& id, const QString& name ){
 //	}
 //}
 
-bool LayerGroup::_setSelected( QStringList& names){
+/*bool LayerGroup::_setSelected( QStringList& names){
     bool stateChanged = Layer::_setSelected( names );
     for ( std::shared_ptr<Layer> layer : m_children ){
         bool layerChange = layer->_setSelected( names );
@@ -1125,7 +1125,7 @@ bool LayerGroup::_setSelected( QStringList& names){
         }
     }
     return stateChanged;
-}
+}*/
 
 /*std::vector< std::shared_ptr<ColorState> >  LayerGroup::_getSelectedColorStates( bool global ){
     std::vector< std::shared_ptr<ColorState> > colorStates;

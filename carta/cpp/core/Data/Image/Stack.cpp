@@ -76,9 +76,9 @@ QString Stack::_addDataImage(const QString& fileName, bool* success, int fileId)
 
 bool Stack::_addGroup( ){
     bool groupAdded = LayerGroup::_addGroup();
-    if ( groupAdded ){
-        _saveState();
-    }
+//    if ( groupAdded ){
+//        _saveState();
+//    }
     return groupAdded;
 }
 
@@ -166,14 +166,14 @@ bool Stack::_closeData( const QString& id ){
 }*/
 
 
-QString Stack::_getCurrentId() const {
+/*QString Stack::_getCurrentId() const {
     QString id = "";
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         id = m_children[dataIndex]->_getLayerId();
     }
     return id;
-}
+}*/
 
 //QString Stack::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY) {
 //    int dataIndex = _getIndexCurrent();
@@ -193,7 +193,7 @@ QString Stack::_getCurrentId() const {
 //    return dataGridState;
 //}
 
-QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
+/*QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
     QList<std::shared_ptr<Layer> > datas;
     int dataCount = m_children.size();
     int currentIndex = _getIndexCurrent();
@@ -208,7 +208,7 @@ QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
 		}
     }
     return datas;
-}
+}*/
 
 /*int Stack::_getFrame( AxisInfo::KnownType axisType ) const {
     int frame = -1;
@@ -276,8 +276,8 @@ QStringList Stack::_getOpenedFileList() {
     return result;
 }*/
 
-int Stack::_getIndex( const QString& layerId) const {
-    int index = -1;
+//int Stack::_getIndex( const QString& layerId) const {
+//    int index = -1;
 /*    int dataCount = m_children.size();
     for ( int i = 0; i < dataCount; i++  ){
         if ( m_children[i]->_isDescendant( layerId ) ){
@@ -285,8 +285,8 @@ int Stack::_getIndex( const QString& layerId) const {
             break;
         }
     }*/
-    return index;
-}
+//    return index;
+//}
 
 int Stack::_getIndexCurrent( ) const {
     int dataIndex = 0;
@@ -322,13 +322,13 @@ int Stack::_getIndexCurrent( ) const {
 //    return rect;
 //}
 
-QStringList Stack::_getLayerIds( ) const {
+/*QStringList Stack::_getLayerIds( ) const {
     QStringList idList;
     for ( std::shared_ptr<Layer> layer : m_children ){
         idList.append( layer->_getLayerIds());
     }
     return idList;
-}
+}*/
 
 //QSize Stack::_getOutputSize() const {
 //    return m_stackDraw->getClientSize();
@@ -392,15 +392,15 @@ QString Stack::getStateString() const{
 }*/
 
 
-QString Stack::_moveSelectedLayers( bool moveDown ){
+/*QString Stack::_moveSelectedLayers( bool moveDown ){
     QString result;
     QList<int> selectIndices;
     int dataCount = m_children.size();
-    for ( int i = 0; i < dataCount; i++ ){
-        if ( m_children[i]->_isSelected() ){
-            selectIndices.append(i);
-        }
-    }
+//    for ( int i = 0; i < dataCount; i++ ){
+//        if ( m_children[i]->_isSelected() ){
+//            selectIndices.append(i);
+//        }
+//    }
     int selectedCount = selectIndices.size();
     bool stackChanged = false;
     if ( selectedCount == 0 ){
@@ -453,7 +453,7 @@ QString Stack::_moveSelectedLayers( bool moveDown ){
         }
     }
     return result;
-}
+}*/
 
 /*void Stack::_render( QList<std::shared_ptr<Layer> > datas, int gridIndex,
 		bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile ){
@@ -651,12 +651,12 @@ void Stack::_saveImageResultCB( bool result ){
 
 
 
-void Stack::_saveState( bool flush ) {
+/*void Stack::_saveState( bool flush ) {
     _saveChildren( m_state, true );
     if ( flush ){
         m_state.flushState();
     }
-}
+}*/
 
 //QString Stack::_setAxis( const QString axis, const QString name ){
     // bool axisChanged = false;
@@ -694,7 +694,7 @@ void Stack::_saveState( bool flush ) {
 //}
 
 
-bool Stack::_setCompositionMode( const QString& id, const QString& compositionMode,
+/*bool Stack::_setCompositionMode( const QString& id, const QString& compositionMode,
         QString& errorMsg ){
     QString actualCompMode;
     bool stateChanged = false;
@@ -710,7 +710,7 @@ bool Stack::_setCompositionMode( const QString& id, const QString& compositionMo
         errorMsg = "Unrecognized layer composition mode: "+compositionMode;
     }
     return stateChanged;
-}
+}*/
 
 /*void Stack::_setFrameAxis(int value, AxisInfo::KnownType axisType ) {
     int axisIndex = static_cast<int>( axisType );
@@ -743,13 +743,13 @@ bool Stack::_setCompositionMode( const QString& id, const QString& compositionMo
 
 
 
-bool Stack::_setLayerName( const QString& id, const QString& name ){
-    bool nameSet = LayerGroup::_setLayerName( id, name );
-    if ( nameSet ){
-        _saveState();
-    }
-    return nameSet;
-}
+//bool Stack::_setLayerName( const QString& id, const QString& name ){
+//    bool nameSet = LayerGroup::_setLayerName( id, name );
+//    if ( nameSet ){
+//        _saveState();
+//    }
+//    return nameSet;
+//}
 
 //bool Stack::_setLayersGrouped( bool grouped  ){
 //	QSize clientSize = m_stackDraw->getClientSize();
@@ -811,13 +811,13 @@ bool Stack::_setLayerName( const QString& id, const QString& name ){
 //   emit viewLoad();
 //}
 
-bool Stack::_setSelected( QStringList& names){
-    bool stateChanged = LayerGroup::_setSelected( names );
-    if ( stateChanged ){
-        _saveState( true );
-    }
-    return stateChanged;
-}
+//bool Stack::_setSelected( QStringList& names){
+//    bool stateChanged = LayerGroup::_setSelected( names );
+//    if ( stateChanged ){
+//        _saveState( true );
+//    }
+//    return stateChanged;
+//}
 
 void Stack::_setViewName( const QString& viewName ){
 //    m_stackDraw.reset( new DrawStackSynchronizer(makeRemoteView( viewName)));
@@ -921,7 +921,7 @@ void Stack::_setZoomLevel( double zoomLevel, bool zoomPanAll ){
 
 
 void Stack::updateZoom(double zoomFactor, bool zoomPanAll, double zoomLevel, double layerId){
-    if ( zoomPanAll ){
+    /*if ( zoomPanAll ){
         for (std::shared_ptr<Layer> data : m_children ){
             _updateZoom( zoomFactor, data, zoomLevel );
         }
@@ -936,7 +936,7 @@ void Stack::updateZoom(double zoomFactor, bool zoomPanAll, double zoomLevel, dou
             }
         }
     }
-    emit viewLoad();
+    emit viewLoad();*/
 }
 
 void Stack::_updateZoom(double zoomFactor,
@@ -1003,9 +1003,9 @@ void Stack::_updateZoom(double zoomFactor,
 
 
 
-void Stack::_viewResize(){
-    emit viewLoad();
-}
+//void Stack::_viewResize(){
+//    emit viewLoad();
+//}
 
 void Stack::_setFileId(int fileId) {
     m_fileId = fileId;

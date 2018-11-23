@@ -26,7 +26,7 @@ LayerCompositionModes* Layer::m_compositionModes = nullptr;
 
 Layer::Layer( const QString& className, const QString& path, const QString& id) :
     CartaObject( className, path, id){
-    m_renderQueued = false;
+//    m_renderQueued = false;
 //    _initializeSingletons();
 //    _initializeState();
 }
@@ -81,32 +81,32 @@ std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > Layer::_getIma
     return images;
 }
 
-std::shared_ptr<Layer> Layer::_getLayer( const QString& /*name*/ ){
-    std::shared_ptr<Layer> layer( nullptr );
-    return layer;
-}
+//std::shared_ptr<Layer> Layer::_getLayer( const QString& /*name*/ ){
+//    std::shared_ptr<Layer> layer( nullptr );
+//    return layer;
+//}
 
-std::vector<std::shared_ptr<Layer> > Layer::_getLayers(){
+/*std::vector<std::shared_ptr<Layer> > Layer::_getLayers(){
     std::vector<std::shared_ptr<Layer> >layers;
     return layers;
-}
+}*/
 
-QString Layer::_getLayerId() const {
+/*QString Layer::_getLayerId() const {
     return m_state.getValue<QString>(Util::ID);
-}
+}*/
 
-QStringList Layer::_getLayerIds( ) const {
+/*QStringList Layer::_getLayerIds( ) const {
     QStringList idList( m_state.getValue<QString>( Util::ID));
     return idList;
-}
+}*/
 
 QString Layer::_getFileName() {
     return "";
 }
 
-QString Layer::_getLayerName() const {
+/*QString Layer::_getLayerName() const {
     return m_state.getValue<QString>( Util::NAME );
-}
+}*/
 
 float Layer::_getMaskAlpha() const {
     return 1.0f;
@@ -148,9 +148,9 @@ bool Layer::_isContourDraw() const {
     return _isMatch( id );
 }*/
 
-bool Layer::_isEmpty() const {
+/*bool Layer::_isEmpty() const {
     return false;
-}
+}*/
 
 /*bool Layer::_isOnCelestialPlane( bool ) const {
     return false;
@@ -169,13 +169,13 @@ bool Layer::_isLoadable( const std::vector<int>& /*frames*/ ) const {
     return matched;
 }*/
 
-bool Layer::_isSelected() const {
+/*bool Layer::_isSelected() const {
     return m_state.getValue<bool>( Util::SELECTED );
-}
+}*/
 
-bool Layer::_isSpectralAxis() const {
+/*bool Layer::_isSpectralAxis() const {
 	return false;
-}
+}*/
 
 bool Layer::_isVisible() const {
     return m_state.getValue<bool>(Util::VISIBLE);
@@ -198,11 +198,11 @@ bool Layer::_isVisible() const {
 }*/
 
 
-void Layer::_resetStateContours(const Carta::State::StateInterface& /*restoreState*/ ){
+//void Layer::_resetStateContours(const Carta::State::StateInterface& /*restoreState*/ ){
 
-}
+//}
 
-void Layer::_resetState( const Carta::State::StateInterface& restoreState ){
+/*void Layer::_resetState( const Carta::State::StateInterface& restoreState ){
     m_state.setValue<bool>(Util::VISIBLE, restoreState.getValue<bool>(Util::VISIBLE) );
     m_state.setValue<bool>(Util::SELECTED, restoreState.getValue<bool>( Util::SELECTED) );
     QString layerName = restoreState.getValue<QString>(Util::NAME);
@@ -217,7 +217,7 @@ void Layer::_resetState( const Carta::State::StateInterface& restoreState ){
     }
     m_state.setValue<QString>(Util::ID, restoreState.getValue<QString>(Util::ID));
     m_state.setValue<QString>(Util::NAME, shortName);
-}
+}*/
 
 
 QString Layer::_setFileName( const QString& /*fileName*/, bool* success ){
@@ -227,26 +227,26 @@ QString Layer::_setFileName( const QString& /*fileName*/, bool* success ){
 }
 
 
-bool Layer::_setCompositionMode( const QString& id, const QString& /*compositionMode*/,
-        QString& errorMsg ){
-    bool stateChanged = false;
-    if ( id == _getLayerId() ){
-        errorMsg = "Composition mode is not implemented the layer";
-    }
-    return stateChanged;
-}
+//bool Layer::_setCompositionMode( const QString& id, const QString& /*compositionMode*/,
+//        QString& errorMsg ){
+//    bool stateChanged = false;
+//    if ( id == _getLayerId() ){
+//        errorMsg = "Composition mode is not implemented the layer";
+//    }
+//    return stateChanged;
+//}
 
 
-bool Layer::_setLayerName( const QString& id, const QString& name ){
+/*bool Layer::_setLayerName( const QString& id, const QString& name ){
     bool nameChanged = false;
     if ( id == _getLayerId() ){
         m_state.setValue<QString>( Util::NAME, name);
         nameChanged = true;
     }
     return nameChanged;
-}
+}*/
 
-bool Layer::_setSelected( QStringList& names ){
+/*bool Layer::_setSelected( QStringList& names ){
     bool stateChanged = false;
     bool selected = false;
     QString layerId = _getLayerId();
@@ -262,7 +262,7 @@ bool Layer::_setSelected( QStringList& names ){
         stateChanged = true;
     }
     return stateChanged;
-}
+}*/
 
 //void Layer::_setSupportAlpha( bool /*supportAlpha*/ ){
 //
