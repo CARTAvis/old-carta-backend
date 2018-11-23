@@ -44,17 +44,8 @@ SOURCES += \
     CartaLib.cpp \
     HtmlString.cpp \
     LinearMap.cpp \
-    Hooks/ColormapsScalar.cpp \
-    Hooks/ConversionIntensityHook.cpp \
-    Hooks/ConversionSpectralHook.cpp \
-    Hooks/Fit1DHook.cpp \
-    Hooks/FitResult.cpp \
-    Hooks/Histogram.cpp \
-    Hooks/HistogramResult.cpp \
     Hooks/ProfileHook.cpp \
     Hooks/ImageStatisticsHook.cpp \
-    Hooks/LoadRegion.cpp \
-    Hooks/Plot2DResult.cpp \
     Hooks/ProfileResult.cpp \
     IImage.cpp \
     PixelType.cpp \
@@ -96,18 +87,9 @@ HEADERS += \
     cartalib_global.h \
     HtmlString.h \
     LinearMap.h \
-    Hooks/ColormapsScalar.h \
-    Hooks/ConversionIntensityHook.h \
-    Hooks/ConversionSpectralHook.h \
-    Hooks/Fit1DHook.h \
-    Hooks/FitResult.h \
-    Hooks/Histogram.h \
-    Hooks/HistogramResult.h \
     Hooks/ProfileHook.h \
     Hooks/HookIDs.h \
     Hooks/ImageStatisticsHook.h \
-    Hooks/LoadRegion.h \
-    Hooks/Plot2DResult.h \
     Hooks/ProfileResult.h \
     IPlugin.h \
     IImage.h \
