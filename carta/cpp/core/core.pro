@@ -46,7 +46,6 @@ HEADERS += \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
     Data/FitsHeaderExtractor.h \
-    ImageRenderService.h \
     Algorithms/percentileAlgorithms.h \
     Algorithms/percentileManku99.h \
     coreMain.h
@@ -83,7 +82,6 @@ SOURCES += \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \
     Data/FitsHeaderExtractor.cpp \
-    ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
     coreMain.cpp
 

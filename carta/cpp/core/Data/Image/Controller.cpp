@@ -7,7 +7,7 @@
 #include "Data/Image/DataSource.h"
 #include "Data/DataLoader.h"
 #include "Data/Error/ErrorManager.h"
-#include "../../ImageRenderService.h"
+//#include "../../ImageRenderService.h"
 
 #include "Data/Util.h"
 #include "ImageView.h"

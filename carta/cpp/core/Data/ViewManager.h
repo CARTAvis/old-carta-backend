@@ -40,7 +40,7 @@ public:
      * @param destId the unique server side id for the plugin that is the destination of the link.
      * @return an error message if the link does not succeed.
      */
-    QString linkAdd( const QString& sourceId, const QString& destId );
+//    QString linkAdd( const QString& sourceId, const QString& destId );
 
     /**
      * Remove a link from a source to a destination.
@@ -48,7 +48,7 @@ public:
      * @param destId the unique server side id for the plugin that is the destination of the link.
      * @return an error message if the link does not succeed.
      */
-    QString linkRemove( const QString& sourceId, const QString& destId );
+//    QString linkRemove( const QString& sourceId, const QString& destId );
 
     /**
      * Return the number of controllers (image views).

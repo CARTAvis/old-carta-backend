@@ -238,24 +238,24 @@ void ViewManager::_initCallbacks(){
     });
 
     //Callback for linking a window with another window
-    addCommandCallback( "linkAdd", [=] (const QString & /*cmd*/,
-            const QString & params, const QString & /*sessionId*/) -> QString {
-        std::set<QString> keys = {SOURCE_ID, DEST_ID};
-        std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
-        QString result = linkAdd( dataValues[SOURCE_ID], dataValues[DEST_ID]);
-        Util::commandPostProcess( result);
-        return result;
-    });
+//    addCommandCallback( "linkAdd", [=] (const QString & /*cmd*/,
+//            const QString & params, const QString & /*sessionId*/) -> QString {
+//        std::set<QString> keys = {SOURCE_ID, DEST_ID};
+//        std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
+//        QString result = linkAdd( dataValues[SOURCE_ID], dataValues[DEST_ID]);
+//        Util::commandPostProcess( result);
+//        return result;
+//    });
 
     //Callback for linking a window with another window.
-    addCommandCallback( "linkRemove", [=] (const QString & /*cmd*/,
-            const QString & params, const QString & /*sessionId*/) -> QString {
-        std::set<QString> keys = {SOURCE_ID, DEST_ID};
-        std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
-        QString result = linkRemove( dataValues[SOURCE_ID], dataValues[DEST_ID]);
-        Util::commandPostProcess( result );
-        return result;
-    });
+//    addCommandCallback( "linkRemove", [=] (const QString & /*cmd*/,
+//            const QString & params, const QString & /*sessionId*/) -> QString {
+//        std::set<QString> keys = {SOURCE_ID, DEST_ID};
+//        std::map<QString,QString> dataValues = Carta::State::UtilState::parseParamMap( params, keys );
+//        QString result = linkRemove( dataValues[SOURCE_ID], dataValues[DEST_ID]);
+//        Util::commandPostProcess( result );
+//        return result;
+//    });
 }
 
 QString ViewManager::_isDuplicateLink( const QString& sourceName, const QString& destId ) const {
@@ -278,7 +278,7 @@ QString ViewManager::_isDuplicateLink( const QString& sourceName, const QString&
 }
 
 
-QString ViewManager::linkAdd( const QString& sourceId, const QString& destId ){
+/*QString ViewManager::linkAdd( const QString& sourceId, const QString& destId ){
     QString result;
     Carta::State::ObjectManager* objManager = Carta::State::ObjectManager::objectManager();
     QString dId = objManager->parseId( destId );
@@ -303,9 +303,9 @@ QString ViewManager::linkAdd( const QString& sourceId, const QString& destId ){
         result = "Unrecognized add link destination: "+dId;
     }
     return result;
-}
+}*/
 
-QString ViewManager::linkRemove( const QString& sourceId, const QString& destId ){
+/*QString ViewManager::linkRemove( const QString& sourceId, const QString& destId ){
     QString result;
     Carta::State::ObjectManager* objManager = Carta::State::ObjectManager::objectManager();
     QString dId = objManager->parseId( destId );
@@ -325,7 +325,7 @@ QString ViewManager::linkRemove( const QString& sourceId, const QString& destId 
         result = "Could not remove link, unrecognized destination: "+destId;
     }
     return result;
-}
+}*/
 
 QString ViewManager::loadFile( const QString& controlId, const QString& fileName, bool* fileLoaded){
     QString result;

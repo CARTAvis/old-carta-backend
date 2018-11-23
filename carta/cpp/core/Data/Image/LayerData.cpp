@@ -12,7 +12,7 @@
 #include "CartaLib/PixelPipeline/CustomizablePixelPipeline.h"
 #include "CartaLib/IWcsGridRenderService.h"
 #include "CartaLib/AxisDisplayInfo.h"
-#include "../../ImageRenderService.h"
+//#include "../../ImageRenderService.h"
 
 #include <QDebug>
 #include <QTime>

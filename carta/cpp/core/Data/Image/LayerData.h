@@ -28,11 +28,11 @@ namespace Lib {
         class RawViewInterface;
     }
 }
-namespace Core {
-    namespace ImageRenderService {
-        class Service;
-    }
-}
+//namespace Core {
+//    namespace ImageRenderService {
+//        class Service;
+//    }
+//}
 
 
 namespace Data {

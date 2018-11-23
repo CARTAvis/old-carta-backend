@@ -14,7 +14,7 @@
 #include "CartaLib/Hooks/PercentileToPixelHook.h"
 #include "CartaLib/PixelPipeline/CustomizablePixelPipeline.h"
 #include "CartaLib/IPCache.h"
-#include "../../ImageRenderService.h"
+//#include "../../ImageRenderService.h"
 #include "../../Algorithms/percentileAlgorithms.h"
 //#include "../Clips.h"
 #include <QDebug>
