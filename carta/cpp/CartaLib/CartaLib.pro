@@ -53,7 +53,7 @@ SOURCES += \
     AxisInfo.cpp \
     AxisLabelInfo.cpp \
     AxisDisplayInfo.cpp \
-    Fit1DInfo.cpp \
+#    Fit1DInfo.cpp \
     ICoordinateFormatter.cpp \
     IPlotLabelGenerator.cpp \
     Hooks/LoadAstroImage.cpp \
@@ -64,8 +64,8 @@ SOURCES += \
     VectorGraphics/VGList.cpp \
     VectorGraphics/BetterQPainter.cpp \
     Algorithms/ContourConrec.cpp \
-    IWcsGridRenderService.cpp \
-    ContourSet.cpp \
+#    IWcsGridRenderService.cpp \
+#    ContourSet.cpp \
     Algorithms/LineCombiner.cpp \
     IImageRenderService.cpp \
     IRemoteVGView.cpp \

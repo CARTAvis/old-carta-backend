@@ -53,7 +53,7 @@ Stack::Stack(const QString& path, const QString& id) :
 //    m_stackDraw(nullptr),
 //    m_imageDraws( new DrawImageViewsSynchronizer() ),
     /*m_selectImage(nullptr)*/{
-    _initializeState();
+//    _initializeState();
 //    _initializeSelections();
 }
 
@@ -386,10 +386,10 @@ QString Stack::getStateString() const{
 }*/
 
 
-void Stack::_initializeState(){
+/*void Stack::_initializeState(){
     m_state.setValue<QString>( LayerGroup::COMPOSITION_MODE, LayerCompositionModes::NONE );
     m_state.flushState();
-}
+}*/
 
 
 QString Stack::_moveSelectedLayers( bool moveDown ){

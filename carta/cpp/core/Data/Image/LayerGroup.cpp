@@ -133,10 +133,10 @@ void LayerGroup::_addLayer( std::shared_ptr<Layer> layer, int targetIndex ){
     else if (tIndex >= 0 && tIndex < childCount){
         m_children.insert( tIndex, layer );
     }
-    if ( tIndex >= 0 && tIndex < m_children.size() ){
-        _setColorSupport( m_children[ tIndex ].get());
+//    if ( tIndex >= 0 && tIndex < m_children.size() ){
+//        _setColorSupport( m_children[ tIndex ].get());
 //        _assignColor( tIndex );
-    }
+//    }
 }
 
 //void LayerGroup::_assignColor( int index ){
@@ -1008,13 +1008,13 @@ void LayerGroup::_resetState( const Carta::State::StateInterface& restoreState )
 //}
 
 
-void LayerGroup::_setColorSupport( Layer* layer ){
+/*void LayerGroup::_setColorSupport( Layer* layer ){
     QString compMode = _getCompositionMode();
     bool colorSupport = m_compositionModes->isColorSupport( compMode );
     bool alphaSupport = m_compositionModes->isAlphaSupport( compMode );
     layer->_setSupportColor( colorSupport );
     layer->_setSupportAlpha( alphaSupport );
-}
+}*/
 
 //QString LayerGroup::_setAxis( const QString axis, const QString name ){
 //    QString result;

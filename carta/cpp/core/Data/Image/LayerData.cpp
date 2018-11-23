@@ -10,7 +10,7 @@
 //#include "Data/Image/Grid/LabelFormats.h"
 #include "State/UtilState.h"
 #include "CartaLib/PixelPipeline/CustomizablePixelPipeline.h"
-#include "CartaLib/IWcsGridRenderService.h"
+//#include "CartaLib/IWcsGridRenderService.h"
 #include "CartaLib/AxisDisplayInfo.h"
 //#include "../../ImageRenderService.h"
 

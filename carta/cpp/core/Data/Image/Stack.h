@@ -144,7 +144,7 @@ private:
     void _gridChanged( const Carta::State::StateInterface& state, bool applyAll);
 
 //    void _initializeSelections();
-    void _initializeState();
+//    void _initializeState();
 
     QString _moveSelectedLayers( bool moveDown );
 //    void _render(QList<std::shared_ptr<Layer> > datas, int gridIndex,

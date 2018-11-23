@@ -624,7 +624,7 @@ private:
     void _removeData( int index );
 
     //Set the color support of the child to conform to that of the group.
-    void _setColorSupport( Layer* layer );
+//    void _setColorSupport( Layer* layer );
 
     void _setViewSize( const QSize& size );
 
