@@ -28,7 +28,6 @@ HEADERS += \
     Data/DataLoader.h \
     Data/Error/ErrorReport.h \
     Data/Error/ErrorManager.h \
-    Data/ILinkable.h \
     Data/Image/Controller.h \
     Data/Image/DataFactory.h \
     Data/Image/LayerGroup.h \

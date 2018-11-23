@@ -16,7 +16,7 @@
 //#include "Data/Colormap/TransformsData.h"
 //#include "Data/Colormap/TransformsImage.h"
 #include "Data/Error/ErrorManager.h"
-#include "Data/ILinkable.h"
+//#include "Data/ILinkable.h"
 //#include "Data/Region/RegionTypes.h"
 //#include "Data/Statistics/Statistics.h"
 #include "Data/ViewPlugins.h"
