@@ -1164,7 +1164,7 @@ void LayerGroup::_setViewSize( const QSize& size ){
 //	}
 }
 
-bool LayerGroup::_setVisible( const QString& id, bool visible ){
+/*bool LayerGroup::_setVisible( const QString& id, bool visible ){
     bool layerFound = Layer::_setVisible( id, visible );
     if ( !layerFound ){
         int dataCount = m_children.size();
@@ -1177,7 +1177,7 @@ bool LayerGroup::_setVisible( const QString& id, bool visible ){
         }
     }
     return layerFound;
-}
+}*/
 
 void LayerGroup::_setZoom( double zoomAmount){
     for ( std::shared_ptr<Layer> node : m_children ){

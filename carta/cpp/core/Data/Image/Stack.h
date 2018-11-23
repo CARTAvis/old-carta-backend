@@ -19,7 +19,7 @@ namespace Data {
 //class DrawStackSynchronizer;
 //class DrawImageViewsSynchronizer;
 //class Region;
-class Selection;
+//class Selection;
 //class SaveService;
 
 typedef Carta::Lib::InputEvents::JsonEvent InputEvent;
@@ -88,7 +88,7 @@ protected:
     virtual bool _setSelected( QStringList& names ) Q_DECL_OVERRIDE;
 
 
-    virtual bool _setVisible( const QString& id, bool visible ) Q_DECL_OVERRIDE;
+//    virtual bool _setVisible( const QString& id, bool visible ) Q_DECL_OVERRIDE;
 
 private slots:
 
@@ -109,20 +109,20 @@ private:
 //    int _findRegionIndex( std::shared_ptr<Region> region ) const;
 
     std::set<Carta::Lib::AxisInfo::KnownType> _getAxesHidden() const;
-    QStringList _getCoords( double x, double y,
-                Carta::Lib::KnownSkyCS system ) const;
+//    QStringList _getCoords( double x, double y,
+//                Carta::Lib::KnownSkyCS system ) const;
 
 //    QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY );
 //    Carta::State::StateInterface _getDataGridState();
 
     QList<std::shared_ptr<Layer> > _getDrawChildren() const;
 //    int _getFrame( Carta::Lib::AxisInfo::KnownType axisType ) const;
-    int _getFrameUpperBound( Carta::Lib::AxisInfo::KnownType axisType ) const;
-    std::vector<int> _getFrameIndices( ) const;
+//    int _getFrameUpperBound( Carta::Lib::AxisInfo::KnownType axisType ) const;
+//    std::vector<int> _getFrameIndices( ) const;
 
 //    std::vector<int> _getImageSlice() const;
     int _getIndex( const QString& layerId) const;
-    QString _getPixelVal( double x, double y) const;
+//    QString _getPixelVal( double x, double y) const;
 //    QRectF _getInputRectangle() const;
 //     QList<std::shared_ptr<Region> > _getRegions() const;
 
@@ -143,18 +143,18 @@ private:
 
     void _gridChanged( const Carta::State::StateInterface& state, bool applyAll);
 
-    void _initializeSelections();
+//    void _initializeSelections();
     void _initializeState();
 
     QString _moveSelectedLayers( bool moveDown );
-    void _render(QList<std::shared_ptr<Layer> > datas, int gridIndex,
-    		bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile);
-    void _renderAll(bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile);
+//    void _render(QList<std::shared_ptr<Layer> > datas, int gridIndex,
+//    		bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile);
+//    void _renderAll(bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile);
     void _renderContext( double zoomFactor );
 //    void _renderZoom( int mouseX, int mouseY, double factor );
 
     QString _reorderImages( const std::vector<int> & indices );
-    QString _resetFrames( int val);
+//    QString _resetFrames( int val);
 
 
     /**
@@ -182,8 +182,8 @@ private:
 
     bool _setCompositionMode( const QString& id, const QString& compositionMode,
                QString& errorMsg ) Q_DECL_OVERRIDE;
-    void _setFrameAxis(int value, Carta::Lib::AxisInfo::KnownType axisType);
-    QString _setFrameImage( int val );
+//    void _setFrameAxis(int value, Carta::Lib::AxisInfo::KnownType axisType);
+//    QString _setFrameImage( int val );
 
 //    void _setMaskAlpha( const QString& id, int alphaAmount, QString& result );
 
@@ -221,8 +221,8 @@ private:
 //    std::shared_ptr<DrawStackSynchronizer> m_stackDraw;
 //    std::unique_ptr<DrawImageViewsSynchronizer> m_imageDraws;
 
-    Selection* m_selectImage;
-    std::vector<Selection*> m_selects;
+//    Selection* m_selectImage;
+//    std::vector<Selection*> m_selects;
 
     /// Saves images
 //    SaveService *m_saveService;

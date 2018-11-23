@@ -575,7 +575,7 @@ protected:
      * Show/hide this layer.
      * @param visible - true to show the layer; false to hide it.
      */
-    virtual bool _setVisible( const QString& id, bool visible ) Q_DECL_OVERRIDE;
+//    virtual bool _setVisible( const QString& id, bool visible ) Q_DECL_OVERRIDE;
 
     /**
      * Set the zoom factor for this image.

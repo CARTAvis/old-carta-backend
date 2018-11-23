@@ -273,7 +273,7 @@ void Layer::_setSupportColor( bool /*supportColor*/ ){
 }
 
 
-bool Layer::_setVisible( const QString& id, bool visible ){
+/*bool Layer::_setVisible( const QString& id, bool visible ){
     bool foundLayer = false;
     if ( id == _getLayerId() ){
         bool oldVisible = m_state.getValue<bool>(Util::VISIBLE);
@@ -283,7 +283,7 @@ bool Layer::_setVisible( const QString& id, bool visible ){
         foundLayer = true;
     }
     return foundLayer;
-}
+}*/
 
 void Layer::_updateColor(){
     emit colorStateChanged();

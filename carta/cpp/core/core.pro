@@ -19,7 +19,7 @@ HEADERS += \
     PluginManager.h \
     Globals.h \
     Algorithms/Graphs/TopoSort.h \
-    stable.h \
+#    stable.h \
     CmdLine.h \
     MainConfig.h \
     State/ObjectManager.h \
@@ -40,13 +40,12 @@ HEADERS += \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
     Data/Image/Render/RenderResponse.h \
-    Data/Selection.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
     Data/FitsHeaderExtractor.h \
     Algorithms/percentileAlgorithms.h \
-    Algorithms/percentileManku99.h \
+#    Algorithms/percentileManku99.h \
     coreMain.h
 
 SOURCES += \
@@ -75,7 +74,6 @@ SOURCES += \
     Data/DataLoader.cpp \
     Data/Error/ErrorReport.cpp \
     Data/Error/ErrorManager.cpp \
-    Data/Selection.cpp \
     Data/Util.cpp \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \

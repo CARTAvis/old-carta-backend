@@ -9,7 +9,7 @@
 //#include "Data/Preferences/PreferencesSave.h"
 //#include "Data/Region/Region.h"
 //#include "Data/Region/RegionFactory.h"
-#include "Data/Selection.h"
+//#include "Data/Selection.h"
 //#include "Data/Units/UnitsIntensity.h"
 #include "Data/Util.h"
 #include "State/UtilState.h"
@@ -49,12 +49,12 @@ bool Stack::m_registered =
 
 
 Stack::Stack(const QString& path, const QString& id) :
-    LayerGroup( CLASS_NAME, path, id),
+    LayerGroup( CLASS_NAME, path, id)//,
 //    m_stackDraw(nullptr),
 //    m_imageDraws( new DrawImageViewsSynchronizer() ),
-    m_selectImage(nullptr){
+    /*m_selectImage(nullptr)*/{
     _initializeState();
-    _initializeSelections();
+//    _initializeSelections();
 }
 
 QString Stack::_addDataImage(const QString& fileName, bool* success, int fileId) {
@@ -159,11 +159,11 @@ std::set<AxisInfo::KnownType> Stack::_getAxesHidden() const {
 }
 
 
-QStringList Stack::_getCoords( double x, double y,
+/*QStringList Stack::_getCoords( double x, double y,
         Carta::Lib::KnownSkyCS system ) const{
     std::vector<int> indices = _getFrameIndices();
     return _getCoordinates( x, y, system, indices );
-}
+}*/
 
 
 QString Stack::_getCurrentId() const {
@@ -225,7 +225,7 @@ QList<std::shared_ptr<Layer> > Stack::_getDrawChildren() const {
     return frame;
 }*/
 
-std::vector<int> Stack::_getFrameIndices( ) const {
+/*std::vector<int> Stack::_getFrameIndices( ) const {
     int selectCount = m_selects.size();
     std::vector<int> frames( selectCount );
     //Determine the index of the frame to load.
@@ -233,16 +233,16 @@ std::vector<int> Stack::_getFrameIndices( ) const {
         frames[i] = m_selects[i]->getIndex();
     }
     return frames;
-}
+}*/
 
-int Stack::_getFrameUpperBound( AxisInfo::KnownType axisType ) const {
+/*int Stack::_getFrameUpperBound( AxisInfo::KnownType axisType ) const {
     int upperBound = 0;
     if ( axisType != AxisInfo::KnownType::OTHER ){
         int selectIndex = static_cast<int>(axisType );
         upperBound = m_selects[selectIndex]->getUpperBound();
     }
     return upperBound;
-}
+}*/
 
 QStringList Stack::_getOpenedFileList() {
 
@@ -334,10 +334,10 @@ QStringList Stack::_getLayerIds( ) const {
 //    return m_stackDraw->getClientSize();
 //}
 
-QString Stack::_getPixelVal( double x, double y) const {
+/*QString Stack::_getPixelVal( double x, double y) const {
     std::vector<int> frames = _getFrameIndices();
     return _getPixelValue( x, y, frames );
-}
+}*/
 
 
 /*int Stack::_getSelectImageIndex() const {
@@ -372,7 +372,7 @@ QString Stack::getStateString() const{
 //     }
 // }
 
-void Stack::_initializeSelections(){
+/*void Stack::_initializeSelections(){
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     m_selectImage = objMan->createObject<Selection>();
 
@@ -383,7 +383,7 @@ void Stack::_initializeSelections(){
         // This signal-slot connection causes the duplicate rendering in Stack::_setFrameImage
         // connect( m_selects[i], SIGNAL(indexChanged()), this, SIGNAL(viewLoad()));
     }
-}
+}*/
 
 
 void Stack::_initializeState(){
@@ -455,7 +455,7 @@ QString Stack::_moveSelectedLayers( bool moveDown ){
     return result;
 }
 
-void Stack::_render( QList<std::shared_ptr<Layer> > datas, int gridIndex,
+/*void Stack::_render( QList<std::shared_ptr<Layer> > datas, int gridIndex,
 		bool recomputeClipsOnNewFrame, double minClipPercentile, double maxClipPercentile ){
     std::vector<int> frames =_getFrameIndices();
     const Carta::Lib::KnownSkyCS& cs = _getCoordinateSystem();
@@ -467,16 +467,16 @@ void Stack::_render( QList<std::shared_ptr<Layer> > datas, int gridIndex,
     request->setRecomputeClips( recomputeClipsOnNewFrame );
     request->setClipPercents( minClipPercentile, maxClipPercentile );
 //    m_imageDraws->render( request);
-}
+}*/
 
 
 
-void Stack::_renderAll(bool recomputeClipsOnNewFrame,
-        double minClipPercentile, double maxClipPercentile){
-    int gridIndex = 0;
-    QList<std::shared_ptr<Layer> > datas = _getDrawChildren();
-    _render( datas, gridIndex, recomputeClipsOnNewFrame, minClipPercentile, maxClipPercentile );
-}
+//void Stack::_renderAll(bool recomputeClipsOnNewFrame,
+ //       double minClipPercentile, double maxClipPercentile){
+//    int gridIndex = 0;
+//    QList<std::shared_ptr<Layer> > datas = _getDrawChildren();
+//    _render( datas, gridIndex, recomputeClipsOnNewFrame, minClipPercentile, maxClipPercentile );
+//}
 
 void Stack::_renderContext( double zoomFactor ){
 //    if ( m_imageDraws->isContextView()){
@@ -523,7 +523,7 @@ void Stack::_renderContext( double zoomFactor ){
 //    }
 //}
 
-QString Stack::_resetFrames( int val ){
+/*QString Stack::_resetFrames( int val ){
 	//Set the image frame.
 	QString layerId;
 	if ( 0 <= val && val < m_children.size()){
@@ -550,7 +550,7 @@ QString Stack::_resetFrames( int val ){
 //		}
 	}
 	return layerId;
-}
+}*/
 
 
 void Stack::_resetStack( const Carta::State::StateInterface& restoreState ){
@@ -712,7 +712,7 @@ bool Stack::_setCompositionMode( const QString& id, const QString& compositionMo
     return stateChanged;
 }
 
-void Stack::_setFrameAxis(int value, AxisInfo::KnownType axisType ) {
+/*void Stack::_setFrameAxis(int value, AxisInfo::KnownType axisType ) {
     int axisIndex = static_cast<int>( axisType );
     int selectCount = m_selects.size();
     if ( 0 <= axisIndex && axisIndex < selectCount ){
@@ -728,9 +728,9 @@ void Stack::_setFrameAxis(int value, AxisInfo::KnownType axisType ) {
             }
         }
     }
-}
+}*/
 
-QString Stack::_setFrameImage( int val ){
+/*QString Stack::_setFrameImage( int val ){
     //Set the image frame.
     int oldIndex = m_selectImage->getIndex();
     QString layerId;
@@ -739,7 +739,7 @@ QString Stack::_setFrameImage( int val ){
         emit viewLoad();
     }
     return layerId;
-}
+}*/
 
 
 
@@ -835,7 +835,7 @@ void Stack::_setViewName( const QString& viewName ){
 //    m_imageDraws->setViewDrawZoom( drawZoom );
 //}
 
-bool Stack::_setVisible( const QString& id, bool visible ){
+/*bool Stack::_setVisible( const QString& id, bool visible ){
     bool layerFound = LayerGroup::_setVisible( id, visible );
     if ( layerFound ){
         int visibleCount = _getStackSizeVisible();
@@ -844,7 +844,7 @@ bool Stack::_setVisible( const QString& id, bool visible ){
         _saveState();
     }
     return layerFound;
-}
+}*/
 
 void Stack::_setZoomLevelForLayerId(double zoomLevel, double layerId) {
     int dataCount = m_children.size();
@@ -1012,20 +1012,20 @@ void Stack::_setFileId(int fileId) {
 }
 
 Stack::~Stack() {
-	if ( m_selectImage != nullptr ){
-		Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-		objMan->destroyObject( m_selectImage->getId());
-		m_selectImage = nullptr;
-	}
-	Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-	int selectCount = m_selects.size();
-	for ( int i = 0; i < selectCount; i++ ){
-		if ( m_selects[i] != nullptr){
-			objMan->destroyObject(m_selects[i]->getId());
-			m_selects[i] = nullptr;
-		}
-	}
-	m_selects.clear();
+//	if ( m_selectImage != nullptr ){
+//		Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//		objMan->destroyObject( m_selectImage->getId());
+//		m_selectImage = nullptr;
+//	}
+//	Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+//	int selectCount = m_selects.size();
+//	for ( int i = 0; i < selectCount; i++ ){
+//		if ( m_selects[i] != nullptr){
+//			objMan->destroyObject(m_selects[i]->getId());
+//			m_selects[i] = nullptr;
+//		}
+//	}
+//	m_selects.clear();
 }
 }
 }
