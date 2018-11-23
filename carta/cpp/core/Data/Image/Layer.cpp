@@ -108,14 +108,14 @@ QString Layer::_getFileName() {
     return m_state.getValue<QString>( Util::NAME );
 }*/
 
-float Layer::_getMaskAlpha() const {
+/*float Layer::_getMaskAlpha() const {
     return 1.0f;
-}
+}*/
 
-quint32 Layer::_getMaskColor() const {
+/*quint32 Layer::_getMaskColor() const {
     QRgb rgbCol = qRgba( 255,255,255,255);
     return rgbCol;
-}
+}*/
 
 
 /*void Layer::_initializeSingletons( ){

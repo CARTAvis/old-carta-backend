@@ -682,7 +682,7 @@ std::vector<double> LayerGroup::_getPercentiles( int frameLow, int frameHigh, st
 
 
 
-QPointF LayerGroup::_getPixelCoordinates( double ra, double dec, bool* valid ) const{
+/*QPointF LayerGroup::_getPixelCoordinates( double ra, double dec, bool* valid ) const{
     QPointF result;
     int dataIndex = _getIndexCurrent();
     *valid = false;
@@ -690,7 +690,7 @@ QPointF LayerGroup::_getPixelCoordinates( double ra, double dec, bool* valid ) c
         result = m_children[dataIndex]->_getPixelCoordinates( ra, dec, valid );
     }
     return result;
-}
+}*/
 
 
 QString LayerGroup::_getPixelUnits() const {
@@ -779,7 +779,7 @@ int LayerGroup::_getStackSizeVisible() const {
 }
 
 
-QPointF LayerGroup::_getWorldCoordinates( double pixelX, double pixelY,
+/*QPointF LayerGroup::_getWorldCoordinates( double pixelX, double pixelY,
         Carta::Lib::KnownSkyCS coordSys, bool* valid ) const{
     QPointF result;
     int dataIndex = _getIndexCurrent();
@@ -788,7 +788,7 @@ QPointF LayerGroup::_getWorldCoordinates( double pixelX, double pixelY,
         result = m_children[dataIndex]->_getWorldCoordinates( pixelX, pixelY, coordSys, valid );
     }
     return result;
-}
+}*/
 
 double LayerGroup::_getZoom() const {
     double zoom = DataSource::ZOOM_DEFAULT;

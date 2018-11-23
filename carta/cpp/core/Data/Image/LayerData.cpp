@@ -455,14 +455,14 @@ PBMSharedPtr LayerData::_getRasterImageData(int fileId, int xMin, int xMax, int 
     return results;
 }
 
-float LayerData::_getMaskAlpha() const {
+/*float LayerData::_getMaskAlpha() const {
     QString key = Carta::State::UtilState::getLookup( MASK, Util::ALPHA );
     float maskInt = m_state.getValue<int>( key );
     float mask = maskInt / Util::MAX_COLOR;
     return mask;
-}
+}*/
 
-quint32 LayerData::_getMaskColor() const {
+/*quint32 LayerData::_getMaskColor() const {
     QString redKey = Carta::State::UtilState::getLookup( MASK, Util::RED );
     int redColor = m_state.getValue<int>( redKey );
     QString greenKey = Carta::State::UtilState::getLookup( MASK, Util::GREEN );
@@ -471,7 +471,7 @@ quint32 LayerData::_getMaskColor() const {
     int blueColor = m_state.getValue<int>( blueKey );
     QRgb rgbCol = qRgba( redColor, greenColor, blueColor, 255 );
     return rgbCol;
-}
+}*/
 
 QRectF LayerData::_getOutputRectangle( const QSize& outputSize, bool requestMain,
         bool requestContext) const {
@@ -524,16 +524,16 @@ std::vector<double> LayerData::_getPercentiles( int frameLow, int frameHigh, std
 }
 
 
-QPointF LayerData::_getPixelCoordinates( double ra, double dec, bool* valid ) const{
+/*QPointF LayerData::_getPixelCoordinates( double ra, double dec, bool* valid ) const{
     QPointF result;
     *valid = false;
     if ( m_dataSource ){
         result = m_dataSource->_getPixelCoordinates( ra, dec, valid );
     }
     return result;
-}
+}*/
 
-QPointF LayerData::_getWorldCoordinates( double pixelX, double pixelY,
+/*QPointF LayerData::_getWorldCoordinates( double pixelX, double pixelY,
         Carta::Lib::KnownSkyCS coordSys, bool* valid ) const{
     QPointF result;
     *valid = false;
@@ -541,7 +541,7 @@ QPointF LayerData::_getWorldCoordinates( double pixelX, double pixelY,
         result = m_dataSource->_getWorldCoordinates( pixelX, pixelY, coordSys, valid );
     }
     return result;
-}
+}*/
 
 QString LayerData::_getPixelUnits() const {
     QString units;

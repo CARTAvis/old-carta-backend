@@ -255,13 +255,13 @@ protected:
      * Get the transparency for the layer.
      * @return - a transparency amount for the layer.
      */
-    virtual float _getMaskAlpha() const;
+//    virtual float _getMaskAlpha() const;
 
     /**
      * Return the color filter for the layer.
      * @return - a color filter for the layer.
      */
-    virtual quint32 _getMaskColor() const;
+//    virtual quint32 _getMaskColor() const;
 
 
     /**
@@ -281,7 +281,7 @@ protected:
      * @param valid - true if the coordinates are valid; false, otherwise.
      * @return - a point containing the pixel coordinates.
      */
-    virtual QPointF _getPixelCoordinates( double ra, double dec, bool* valid ) const = 0;
+//    virtual QPointF _getPixelCoordinates( double ra, double dec, bool* valid ) const = 0;
 
     /**
      * Return the world coordinates corresponding to the given pixel coordinates.
@@ -291,8 +291,8 @@ protected:
      * @param valid - true if the pixel coordinates are valid; false otherwise.
      * @return - a point containing the pixel coordinates.
      */
-    virtual QPointF _getWorldCoordinates( double ra, double dec,
-            Carta::Lib::KnownSkyCS coordSys, bool* valid ) const = 0;
+//    virtual QPointF _getWorldCoordinates( double ra, double dec,
+//            Carta::Lib::KnownSkyCS coordSys, bool* valid ) const = 0;
 
     /**
      * Return the units of the pixels.

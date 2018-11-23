@@ -352,7 +352,7 @@ protected:
      * @param valid - true if the pixel coordinates are valid; false, otherwise.
      * @return - a point containing the pixel coordinates..
      */
-    virtual QPointF _getPixelCoordinates( double ra, double dec, bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getPixelCoordinates( double ra, double dec, bool* valid ) const Q_DECL_OVERRIDE;
 
 
     /**
@@ -363,8 +363,8 @@ protected:
       * @param valid - true if the pixel coordinates are valid; false otherwise.
       * @return - a point containing the pixel coordinates.
       */
-    virtual QPointF _getWorldCoordinates( double pixelX, double pixelY,
-            Carta::Lib::KnownSkyCS coordSys, bool* valid ) const Q_DECL_OVERRIDE;
+//    virtual QPointF _getWorldCoordinates( double pixelX, double pixelY,
+//            Carta::Lib::KnownSkyCS coordSys, bool* valid ) const Q_DECL_OVERRIDE;
 
     /**
      * Return the units of the pixels.
