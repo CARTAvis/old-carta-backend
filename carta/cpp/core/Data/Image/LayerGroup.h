@@ -72,7 +72,7 @@ protected:
     /**
      * Remove the color map.
      */
-    virtual void _clearColorMap() Q_DECL_OVERRIDE;
+//    virtual void _clearColorMap() Q_DECL_OVERRIDE;
 
     virtual bool _closeData( const QString& id ) Q_DECL_OVERRIDE;
 
@@ -127,8 +127,8 @@ protected:
      * @param system - an enumerated coordinate system type.
      * @return the coordinates at pixel (x, y).
      */
-    virtual QStringList _getCoordinates( double x, double y, Carta::Lib::KnownSkyCS system,
-            const std::vector<int>& frames) const Q_DECL_OVERRIDE;
+//    virtual QStringList _getCoordinates( double x, double y, Carta::Lib::KnownSkyCS system,
+//            const std::vector<int>& frames) const Q_DECL_OVERRIDE;
 
     /**
      * Return the coordinate system in use.
@@ -601,7 +601,7 @@ protected:
 
 protected slots:
 
-    virtual void _colorChanged() Q_DECL_OVERRIDE;
+//    virtual void _colorChanged() Q_DECL_OVERRIDE;
 
 private slots:
 //    void _renderingDone( QImage image, Carta::Lib::VectorGraphics::VGList graphics );

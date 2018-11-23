@@ -91,18 +91,18 @@ LayerData::LayerData(const QString& path, const QString& id) :
     }
 }*/
 
-void LayerData::_clearColorMap(){
+//void LayerData::_clearColorMap(){
 //    if ( m_stateColor ){
 //       disconnect( m_stateColor.get() );
 //       Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
 //       objMan->removeObject( m_stateColor->getId() );
 //    }
-}
+//}
 
-void LayerData::_colorChanged(){
-    _updateColor();
-    Layer::_colorChanged();
-}
+//void LayerData::_colorChanged(){
+//    _updateColor();
+//    Layer::_colorChanged();
+//}
 
 
 //void LayerData::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes,
@@ -203,14 +203,14 @@ QPointF LayerData::_getCenterPixel() const {
     return m_dataContours;
 }*/
 
-QStringList LayerData::_getCoordinates( double x, double y,
+/*QStringList LayerData::_getCoordinates( double x, double y,
         Carta::Lib::KnownSkyCS system, const std::vector<int>& frames ) const{
     QStringList coordStr;
     if ( m_dataSource ){
         coordStr = m_dataSource->_getCoordinates( x, y, system, frames );
     }
     return coordStr;
-}
+}*/
 
 Carta::Lib::KnownSkyCS LayerData::_getCoordinateSystem() const {
     Carta::Lib::KnownSkyCS cs = Carta::Lib::KnownSkyCS::Unknown;
@@ -1137,7 +1137,7 @@ void LayerData::_setZoom( double zoomAmount){
     }
 }*/
 
-void LayerData::_updateColor(){
+//void LayerData::_updateColor(){
 /*    if ( m_dataSource ){
         QString mapName = m_stateColor->_getColorMap();
         m_dataSource->_setColorMap( mapName );
@@ -1174,7 +1174,7 @@ void LayerData::_updateColor(){
 //        m_dataGrid->_setBorderColor( QColor(redBorder, greenBorder, blueBorder, alphaAmount) );
         Layer::_updateColor();
     }*/
-}
+//}
 
 
 LayerData::~LayerData() {

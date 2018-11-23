@@ -11,8 +11,6 @@
 #include "CartaLib/AxisLabelInfo.h"
 #include "CartaLib/IntensityUnitConverter.h"
 #include "CartaLib/VectorGraphics/VGList.h"
-//#include "Data/Image/Render/RenderRequest.h"
-//#include "Data/Image/Render/RenderResponse.h"
 #include <QImage>
 #include <QStack>
 #include <set>
@@ -25,9 +23,6 @@ class CoordinateFormatterInterface;
 
 namespace Carta {
 namespace Lib {
-//namespace PixelPipeline {
-//class CustomizablePixelPipeline;
-//}
 namespace NdArray {
 class RawViewInterface;
 }
@@ -35,54 +30,26 @@ class RawViewInterface;
 
 namespace Data {
 
-//class DataGrid;
-//class ColorState;
-//class DataContours;
 class DataSource;
 class LayerCompositionModes;
 
 class Layer : public QObject, public Carta::State::CartaObject {
 
     friend class Controller;
-    friend class CurveData;
     friend class LayerGroup;
-    friend class Profiler;
-    friend class ProfileRenderService;
-    friend class ProfileRenderRequest;
     friend class Stack;
-    friend class DrawGroupSynchronizer;
-    friend class DrawStackSynchronizer;
-    friend class SaveService;
 
     Q_OBJECT
 
 public:
 
-
     static const QString CLASS_NAME;
-
 
     virtual ~Layer();
 
-
-
 signals:
-    void contourSetRemoved( const QString& name );
-    void contourSetAdded(Layer* data, const QString& name );
-    void colorStateChanged();
-
-
-    //Notification that a new image has been produced.
-//    void renderingDone( const std::shared_ptr<RenderResponse>& response );
-
 
 protected:
-
-    /**
-     * Add a contour set.
-     * @param contour - the contour set to add.
-     */
-//    virtual void _addContourSet( std::shared_ptr<DataContours> contour ) = 0;
 
     /**
      * Add a layer to this one at the given index.
@@ -97,21 +64,7 @@ protected:
     //Used when putting layers into groups.
     virtual void _clearChildren();
 
-
-    /**
-     * Remove the color map.
-     */
-    virtual void _clearColorMap();
-
     virtual bool _closeData( const QString& id );
-
-    /**
-     * Respond to a change in display axes.
-     * @param displayAxisTypes - the x-, y-, and z- axes to display.
-     * @param frames - list of image frames.
-     */
-//    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
-//            const std::vector<int>& frames ) = 0;
 
     virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const = 0;
     virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const = 0;
@@ -129,51 +82,11 @@ protected:
     virtual QList<std::shared_ptr<Layer> > _getChildren();
 
     /**
-     * Return stored information about the color map.
-     * @return - information about the color map.
-     */
-//    virtual std::shared_ptr<ColorState> _getColorState();
-
-    /**
      * Return the mode used to composed the layer.
      * @return - a string identifier for the composition mode.
      */
     virtual QString _getCompositionMode() const;
 
-    /**
-     * Return the point on the image corresponding to the pixel point in the context
-     * view.
-     * @param pixelPt - a pixel position in the context view.
-     * @param outputSize - the size of the context view in pixels.
-     * @param valid - whether or not the returned point is valid.
-     * @return - the pixel position of the point in image coordinates.
-     */
-//    virtual QPointF _getContextPt( const QPointF& pixelPt, const QSize& outputSize, bool* valid ) const = 0;
-
-    /**
-     * Return the contour set with the indicated name.
-     * @return - the corresponding contour set with the designated name or a nullptr
-     *  if no such set exists.
-     */
-//    virtual std::shared_ptr<DataContours> _getContour( const QString& name ) = 0;
-
-    /**
-     * Return all contour sets for this particular layer.
-     * @return - all contour sets in the layer.
-     */
-//    virtual std::set< std::shared_ptr<DataContours> > _getContours();
-
-    /**
-     * Return the coordinates at pixel (x, y) in the given coordinate system.
-     * @param x the x-coordinate of the desired pixel.
-     * @param y the y-coordinate of the desired pixel.
-     * @param system the desired coordinate system.
-     * @param frames - list of image frames.
-     * @param system - an enumerated coordinate system type.
-     * @return the coordinates at pixel (x, y).
-     */
-    virtual QStringList _getCoordinates( double x, double y, Carta::Lib::KnownSkyCS system,
-            const std::vector<int>& frames) const = 0;
     /**
      * Return the coordinate system in use.
      * @return - an enumerated coordinate system type.
@@ -181,29 +94,10 @@ protected:
     virtual Carta::Lib::KnownSkyCS _getCoordinateSystem() const = 0;
 
     /**
-     * Returns information about the image at the current location of the cursor.
-     * @param mouseX the mouse x-position in screen coordinates.
-     * @param mouseY the mouse y-position in screen coordinates.
-     * @param frames - list of image frames.
-     * @param outputSize - the size of the image in pixels.
-     * @return a QString containing cursor text.
-     */
-//    virtual QString _getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
-//            const std::vector<int>& frames, const QSize& outputSize ) = 0;
-
-
-    /**
-     * Return the data grid of the image.
-     * @return - the data grid of the image.
-     */
-//    virtual std::shared_ptr<DataGrid> _getDataGrid() = 0;
-
-    /**
      * Return the data source of the image.
      * @return - the data source of the image.
      */
     virtual std::shared_ptr<DataSource> _getDataSource() = 0;
-
 
     /**
      * Return the image size for the given coordinate index.
@@ -234,16 +128,10 @@ protected:
      */
     virtual int _getFrameCount( Carta::Lib::AxisInfo::KnownType type ) const = 0;
 
-
-    //Return grid state.
-//    virtual Carta::State::StateInterface _getGridState() const = 0;
-
-
     /**
      * Returns the underlying image.
      */
     virtual std::shared_ptr<Carta::Lib::Image::ImageInterface> _getImage() = 0;
-
 
     /**
      * Get the image dimensions.
@@ -252,38 +140,6 @@ protected:
     virtual std::vector<int> _getImageDimensions( ) const = 0;
 
     virtual std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > _getImages();
-
-    /**
-     * Returns the location on the image corresponding to a screen point in
-     * pixels.
-     * @param screenPt an (x,y) pair of pixel coordinates.
-     * @param outputSize - the size in pixels of the output image.
-     * @param valid set to true if an image is loaded that can do the translation; otherwise false;
-     * @return the corresponding location on the image.
-     */
-//    virtual QPointF _getImagePt( const QPointF& screenPt, const QSize& outputSize, bool* valid ) const = 0;
-
-
-    /**
-     * Return the portion of the image that is displayed given current zoom and
-     * pan values.
-     * @param size - the size of the displayed image.
-     * @return - the portion of the image that is visible.
-     */
-//    virtual QRectF _getInputRect( const QSize& size ) const = 0;
-
-
-    /**
-     * Returns the intensity corresponding to a given percentile.
-     * @param frameLow - a lower bound for the image frames or -1 if there is no lower bound.
-     * @param frameHigh - an upper bound for the image frames or -1 if there is no upper bound.
-     * @param percentiles - a list of numbers in [0,1] for which an intensity is desired.
-     * @param stokeFrame - the index number of stoke slice
-     * @return - a list of intensity values.
-     */
-//    virtual std::vector<double> _getIntensity( int frameLow, int frameHigh,
-//            const std::vector<double>& percentiles, int stokeFrame,
-//            Carta::Lib::IntensityUnitConverter::SharedPtr converter) const = 0;
 
     /**
      * Returns the histogram of pixels.
@@ -479,28 +335,10 @@ protected:
     virtual QSize _getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const = 0;
 
     /**
-     * Return the color states that are eligible for state changes.
-     * @param global - whether color state changes apply to all color maps or only to those that
-     *      correspond to selected images.
-     * @return - a list of color states whose states may be changed.
-     */
-//    virtual std::vector< std::shared_ptr<ColorState> >  _getSelectedColorStates( bool global ) = 0;
-
-
-    /**
-     * Return the state of this layer.
-     * @param truncatePaths - true if full paths to files should not be given.
-     * @return - a string representation of the layer state.
-     */
-//    virtual QString _getStateString( bool truncatePaths ) const = 0;
-
-    /**
      * Return the zoom factor for this layer.
      * @return the zoom multiplier.
      */
     virtual double _getZoom() const = 0;
-
-    // virtual void _gridChanged( const Carta::State::StateInterface& state) = 0;
 
     /**
      * Returns whether or not the layer can contain other layers.
@@ -707,7 +545,7 @@ protected:
 //    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
 //            double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) = 0;
 
-    virtual void _updateColor();
+//    virtual void _updateColor();
 
 
 
@@ -726,7 +564,7 @@ protected:
     static LayerCompositionModes* m_compositionModes;
 
 protected slots:
-    virtual void _colorChanged();
+//    virtual void _colorChanged();
 
 
 

@@ -42,8 +42,8 @@ void Layer::_clearChildren(){
 
 
 
-void Layer::_clearColorMap(){
-}
+//void Layer::_clearColorMap(){
+//}
 
 
 bool Layer::_closeData( const QString& /*id*/ ){
@@ -51,9 +51,9 @@ bool Layer::_closeData( const QString& /*id*/ ){
 }
 
 
-void Layer::_colorChanged(){
-    _updateColor();
-}
+//void Layer::_colorChanged(){
+//    _updateColor();
+//}
 
 QList<std::shared_ptr<Layer> > Layer::_getChildren(){
     QList<std::shared_ptr<Layer> > children;
@@ -285,9 +285,9 @@ void Layer::_setSupportColor( bool /*supportColor*/ ){
     return foundLayer;
 }*/
 
-void Layer::_updateColor(){
+/*void Layer::_updateColor(){
     emit colorStateChanged();
-}
+}*/
 
 
 Layer::~Layer() {

@@ -70,11 +70,11 @@ QString LayerGroup::_addData(const QString& fileName, bool* success, int* stackI
     QString result;
     Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
     LayerData* targetSource = objMan->createObject<LayerData>();
-    connect( targetSource, SIGNAL(contourSetAdded(Layer*,const QString&)),
-            this, SIGNAL(contourSetAdded(Layer*, const QString&)));
-    connect( targetSource, SIGNAL(contourSetRemoved(const QString&)),
-            this, SIGNAL(contourSetRemoved(const QString&)));
-    connect( targetSource, SIGNAL(colorStateChanged()), this, SIGNAL(colorStateChanged() ));
+//    connect( targetSource, SIGNAL(contourSetAdded(Layer*,const QString&)),
+//            this, SIGNAL(contourSetAdded(Layer*, const QString&)));
+//    connect( targetSource, SIGNAL(contourSetRemoved(const QString&)),
+//            this, SIGNAL(contourSetRemoved(const QString&)));
+//    connect( targetSource, SIGNAL(colorStateChanged()), this, SIGNAL(colorStateChanged() ));
     result = targetSource->_setFileName(fileName, success );
     //If we are making a new layer, see if there is a selected group.  If so,
     //add to the group.  If not, add to this group.
@@ -183,13 +183,13 @@ void LayerGroup::_addLayer( std::shared_ptr<Layer> layer, int targetIndex ){
 //}
 
 
-void LayerGroup::_clearColorMap(){
+/*void LayerGroup::_clearColorMap(){
     Layer::_clearColorMap();
     int childCount = m_children.size();
     for ( int i = 0; i < childCount; i++ ){
         m_children[i]->_clearColorMap();
     }
-}
+}*/
 
 void LayerGroup::_clearChildren(){
     m_children.clear();
@@ -250,12 +250,12 @@ bool LayerGroup::_closeData( const QString& id ){
 }
 
 
-void LayerGroup::_colorChanged(){
+/*void LayerGroup::_colorChanged(){
     int childCount = m_children.size();
     for ( int i = 0; i < childCount; i++ ){
         m_children[i]->_colorChanged();
     }
-}
+}*/
 
 
 //void LayerGroup::_displayAxesChanged(std::vector<AxisInfo::KnownType> displayAxisTypes,
@@ -337,7 +337,7 @@ QString LayerGroup::_getCompositionMode() const {
     return m_state.getValue<QString>( COMPOSITION_MODE );
 }
 
-QStringList LayerGroup::_getCoordinates( double x, double y,
+/*QStringList LayerGroup::_getCoordinates( double x, double y,
         Carta::Lib::KnownSkyCS system , const std::vector<int>& frames ) const{
     QStringList coordStr;
     int dataIndex = _getIndexCurrent();
@@ -345,7 +345,7 @@ QStringList LayerGroup::_getCoordinates( double x, double y,
         coordStr = m_children[dataIndex]->_getCoordinates( x, y, system, frames );
     }
     return coordStr;
-}
+}*/
 
 Carta::Lib::KnownSkyCS LayerGroup::_getCoordinateSystem() const {
     Carta::Lib::KnownSkyCS cs = Carta::Lib::KnownSkyCS::Unknown;
