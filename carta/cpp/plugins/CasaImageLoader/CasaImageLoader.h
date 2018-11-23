@@ -22,6 +22,6 @@ public:
 
 private:
 
-    Carta::Lib::Image::ImageInterface::SharedPtr loadImage(const QString & fname);
+    Carta::Lib::Image::ImageInterface::SharedPtr loadImage(const QString & fname, const QString & hdu);
     QMutex mutex;
 };

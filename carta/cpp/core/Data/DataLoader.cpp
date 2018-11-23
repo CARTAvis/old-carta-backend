@@ -250,7 +250,8 @@ DataLoader::PBMSharedPtr DataLoader::getFileInfo(CARTA::FileInfoRequest fileInfo
     QString fileFullName = fileDir + "/" + fileName;
 
     QString file = fileFullName.trimmed();
-    auto res = Globals::instance()->pluginManager()->prepare<Carta::Lib::Hooks::LoadAstroImage>(file).first();
+    QString hdu = QString::fromStdString(fileInfoRequest.hdu());
+    auto res = Globals::instance()->pluginManager()->prepare<Carta::Lib::Hooks::LoadAstroImage>(file, hdu).first();
     std::shared_ptr<Carta::Lib::Image::ImageInterface> image;
     if (!res.isNull()) {
         image = res.val();

@@ -1652,7 +1652,7 @@ QString DataSource::_setFileName( const QString& fileName, bool* success ){
         if ( file != m_fileName ){
             try {
                 auto res = Globals::instance()-> pluginManager()
-                                      -> prepare <Carta::Lib::Hooks::LoadAstroImage>( file )
+                                      -> prepare <Carta::Lib::Hooks::LoadAstroImage>( file, "")
                                       .first();
                 if (!res.isNull()){
                     m_image = res.val();

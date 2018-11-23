@@ -36,7 +36,8 @@ bool CasaImageLoader::handleHook(BaseHook & hookData)
         Carta::Lib::Hooks::LoadAstroImage & hook
                 = static_cast<Carta::Lib::Hooks::LoadAstroImage &>(hookData);
         auto fname = hook.paramsPtr->fileName;
-        hook.result = loadImage(fname);
+        auto hdu = hook.paramsPtr->hdu;
+        hook.result = loadImage(fname, hdu);
         return hook.result != nullptr;
     }
 
@@ -71,7 +72,7 @@ static CCImageBase::SharedPtr tryCast( casacore::LatticeBase * lat)
 /// \param result where to store the result
 /// \return true if successful, false otherwise
 ///
-Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QString & fname)
+Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QString & fname, const QString & hdu)
 {
     qDebug() << "CasaImageLoader plugin trying to load image: " << fname;
 
@@ -87,7 +88,9 @@ Carta::Lib::Image::ImageInterface::SharedPtr CasaImageLoader::loadImage(const QS
                 casa_mutex.unlock();
             } else if (filetype == casacore::ImageOpener::ImageTypes::HDF5) {
                 casa_mutex.lock();
-                lat = casacore::ImageOpener::openHDF5Image(fname.toStdString());
+                casacore::HDF5Lattice<float> hdf5Lat = casacore::HDF5Lattice<float>(fname.toStdString(), "DATA", hdu.toStdString());
+                lat = &hdf5Lat;
+                //lat = casacore::ImageOpener::openHDF5Image(fname.toStdString());
                 casa_mutex.unlock();
             } else {
                 casa_mutex.lock();
