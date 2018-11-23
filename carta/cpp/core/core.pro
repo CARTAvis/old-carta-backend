@@ -19,7 +19,6 @@ HEADERS += \
     PluginManager.h \
     Globals.h \
     Algorithms/Graphs/TopoSort.h \
-#    stable.h \
     CmdLine.h \
     MainConfig.h \
     State/ObjectManager.h \
@@ -45,7 +44,6 @@ HEADERS += \
     Data/ViewPlugins.h \
     Data/FitsHeaderExtractor.h \
     Algorithms/percentileAlgorithms.h \
-#    Algorithms/percentileManku99.h \
     coreMain.h
 
 SOURCES += \
