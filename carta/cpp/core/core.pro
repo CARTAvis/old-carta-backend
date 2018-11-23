@@ -38,7 +38,6 @@ HEADERS += \
     Data/Image/LayerData.h \
     Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
-    Data/Image/CASAProfiler.h \
     Data/Image/CASACubeInterface.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
@@ -56,7 +55,7 @@ HEADERS += \
     Data/Image/FileLoader/FileLoader.h \
     Data/Image/FileLoader/CasaLoader.h \
     Data/Image/FileLoader/FitsLoader.h \
-    Data/Image/FileLoader//MIRIADLoader.h
+    Data/Image/FileLoader/MIRIADLoader.h
 
 SOURCES += \
     Viewer.cpp \
@@ -79,7 +78,6 @@ SOURCES += \
     Data/Image/Stack.cpp \
     Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
-    Data/Image/CASAProfiler.cpp \
     Data/Image/CASACubeInterface.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \
