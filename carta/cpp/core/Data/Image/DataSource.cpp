@@ -1,5 +1,5 @@
 #include "DataSource.h"
-#include "CoordinateSystems.h"
+//#include "CoordinateSystems.h"
 //#include "Data/Colormap/Colormaps.h"
 #include "Globals.h"
 #include "MainConfig.h"
@@ -45,7 +45,7 @@ const int DataSource::INDEX_FRAME_HIGH = 4;
 const bool DataSource::IS_MULTITHREAD_ZFP = true;
 const int DataSource::MAX_SUBSETS = 8;
 
-CoordinateSystems* DataSource::m_coords = nullptr;
+//CoordinateSystems* DataSource::m_coords = nullptr;
 
 DataSource::DataSource() :
     m_image( nullptr ),
@@ -235,7 +235,7 @@ QStringList DataSource::_getCoordinates( double x, double y,
     return list;
 }
 
-QString DataSource::_getDefaultCoordinateSystem() const{
+/*QString DataSource::_getDefaultCoordinateSystem() const{
 
     casa_mutex.lock();
 
@@ -246,7 +246,7 @@ QString DataSource::_getDefaultCoordinateSystem() const{
     casa_mutex.unlock();
 
     return coordName;
-}
+}*/
 
 // print the pixel value and x-y coordinate for the cursor on the image viewer
 /*QString DataSource::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
@@ -1567,9 +1567,9 @@ QString DataSource::_getViewIdCurrent( const std::vector<int>& frames ) const {
 
 void DataSource::_initializeSingletons( ){
     //Load the available color maps.
-    if ( m_coords == nullptr ){
-        m_coords = Util::findSingletonObject<CoordinateSystems>();
-    }
+//    if ( m_coords == nullptr ){
+//        m_coords = Util::findSingletonObject<CoordinateSystems>();
+//    }
 }
 
 

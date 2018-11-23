@@ -36,7 +36,6 @@ HEADERS += \
     Data/Image/Stack.h \
     Data/Image/Layer.h \
     Data/Image/LayerData.h \
-    Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
     Data/Image/LayerCompositionModes.h \
     Data/Image/Render/RenderRequest.h \
@@ -69,7 +68,6 @@ SOURCES += \
     Data/Image/Layer.cpp \
     Data/Image/LayerGroup.cpp \
     Data/Image/Stack.cpp \
-    Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
     Data/Image/LayerCompositionModes.cpp \
     Data/Image/Render/RenderRequest.cpp \

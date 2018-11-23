@@ -21,7 +21,7 @@ namespace Carta {
 namespace State {
 
 QList<QString> CartaObjectFactory::globalIds = {"ChannelUnits",
-        "CoordinateSystems","ErrorManager",
+        "ErrorManager",
         "GenerateModes",
         "LayerCompositionModes"
          };

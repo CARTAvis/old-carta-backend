@@ -1,7 +1,7 @@
 #include "State/ObjectManager.h"
 #include "State/UtilState.h"
 #include "Data/Image/Controller.h"
-#include "Data/Image/CoordinateSystems.h"
+//#include "Data/Image/CoordinateSystems.h"
 #include "Data/Image/DataFactory.h"
 #include "Data/Image/Stack.h"
 #include "Data/Image/DataSource.h"

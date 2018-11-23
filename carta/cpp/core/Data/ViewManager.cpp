@@ -2,7 +2,7 @@
 //#include "Data/Colormap/Colormap.h"
 //#include "Data/Colormap/Colormaps.h"
 #include "Data/Image/Controller.h"
-#include "Data/Image/CoordinateSystems.h"
+//#include "Data/Image/CoordinateSystems.h"
 //#include "Data/Image/Grid/Themes.h"
 //#include "Data/Image/Grid/Fonts.h"
 //#include "Data/Image/Grid/LabelFormats.h"
@@ -483,8 +483,8 @@ ViewManager::~ViewManager(){
     delete obj;
 //    obj =  Util::findSingletonObject<LabelFormats>();
 //    delete obj;
-    obj =  Util::findSingletonObject<CoordinateSystems>();
-    delete obj;
+//    obj =  Util::findSingletonObject<CoordinateSystems>();
+//    delete obj;
 //    obj =  Util::findSingletonObject<Themes>();
 //    delete obj;
 //    obj =  Util::findSingletonObject<ContourGenerateModes>();

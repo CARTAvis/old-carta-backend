@@ -57,7 +57,7 @@ class IPCache;
 
 namespace Data {
 
-class CoordinateSystems;
+//class CoordinateSystems;
 
 class DataSource : public QObject {
 
@@ -154,7 +154,7 @@ private:
      * Get the name of the default celestial coordinate system of image.
      * @return the name of the default coordinate coordinate system
      */
-    QString _getDefaultCoordinateSystem() const;
+//    QString _getDefaultCoordinateSystem() const;
 
     /**
      * Returns information about the image at the current location of the cursor.
@@ -616,7 +616,7 @@ private:
     int m_cmapCacheSize;
 
     //Used pointer to coordinate systems.
-    static CoordinateSystems* m_coords;
+//    static CoordinateSystems* m_coords;
 
     //Pointer to image interface.
     std::shared_ptr<Carta::Lib::Image::ImageInterface> m_image;
