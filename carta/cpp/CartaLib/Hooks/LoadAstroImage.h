@@ -24,12 +24,14 @@ public:
 
     typedef Image::ImageInterface::SharedPtr ResultType;
     struct Params {
-        Params( QString p_fileName )
+        Params( QString p_fileName,  QString p_hdu)
         {
             fileName = p_fileName;
+            hdu = p_hdu;
         }
 
         QString fileName;
+        QString hdu;
     };
 
     LoadAstroImage( Params * pptr ) : BaseHook( staticId ), paramsPtr( pptr )
