@@ -298,7 +298,7 @@ protected:
      * Return the units of the pixels.
      * @return the units of the pixels, or blank if units could not be obtained.
      */
-    virtual QString _getPixelUnits() const = 0;
+//    virtual QString _getPixelUnits() const = 0;
 
     /**
      * Return the value of the pixel at (x, y).
@@ -316,14 +316,14 @@ protected:
      * Return the graphics for drawing regions.
      * @return - a list of graphics for drawing regions.
      */
-    virtual Carta::Lib::VectorGraphics::VGList _getRegionGraphics() const = 0;
+//    virtual Carta::Lib::VectorGraphics::VGList _getRegionGraphics() const = 0;
 
     /**
      * Return the rest frequency and units for the image.
      * @return - the image rest frequency and units; a blank string and a negative
      * 		value are returned with the rest frequency can not be found.
      */
-    virtual std::pair<double,QString> _getRestFrequency() const = 0;
+//    virtual std::pair<double,QString> _getRestFrequency() const = 0;
 
     /**
      * Return the size of the saved image based on the user defined output size and the aspect
@@ -332,25 +332,25 @@ protected:
      * @param aspectMode - whether the aspect ratio of the image should be preserved (etc).
      * @return - the size of the saved image.
      */
-    virtual QSize _getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const = 0;
+//    virtual QSize _getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const = 0;
 
     /**
      * Return the zoom factor for this layer.
      * @return the zoom multiplier.
      */
-    virtual double _getZoom() const = 0;
+//    virtual double _getZoom() const = 0;
 
     /**
      * Returns whether or not the layer can contain other layers.
      * @return - true if the layer is composite; false otherwise.
      */
-    virtual bool _isComposite() const;
+//    virtual bool _isComposite() const;
 
     /**
      * Returns true if at least one contour set should be drawn; false otherwise.
      * @return - true if there is at least one contour set to draw; false otherwise.
      */
-    virtual bool _isContourDraw() const;
+//    virtual bool _isContourDraw() const;
 
     /**
      * Returns true if the identifier passed in matches the id of this layer or one
@@ -561,7 +561,7 @@ protected:
 
 //    QStack<std::shared_ptr<RenderRequest>> m_renderRequests;
 
-    static LayerCompositionModes* m_compositionModes;
+//    static LayerCompositionModes* m_compositionModes;
 
 protected slots:
 //    virtual void _colorChanged();

@@ -4,7 +4,7 @@
 //#include "Grid/AxisMapper.h"
 //#include "Grid/DataGrid.h"
 #include "Data/Util.h"
-#include "Data/Image/LayerCompositionModes.h"
+//#include "Data/Image/LayerCompositionModes.h"
 #include "CartaLib/IRemoteVGView.h"
 //#include "Data/Image/Draw/DrawGroupSynchronizer.h"
 #include "State/UtilState.h"
@@ -693,14 +693,14 @@ std::vector<double> LayerGroup::_getPercentiles( int frameLow, int frameHigh, st
 }*/
 
 
-QString LayerGroup::_getPixelUnits() const {
+/*QString LayerGroup::_getPixelUnits() const {
     QString units;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         units = m_children[dataIndex]->_getPixelUnits();
     }
     return units;
-}
+}*/
 
 QString LayerGroup::_getPixelValue( double x, double y, const std::vector<int>& frames ) const {
     QString pixelValue("");
@@ -711,32 +711,32 @@ QString LayerGroup::_getPixelValue( double x, double y, const std::vector<int>& 
     return pixelValue;
 }
 
-Carta::Lib::VectorGraphics::VGList LayerGroup::_getRegionGraphics() const {
+/*Carta::Lib::VectorGraphics::VGList LayerGroup::_getRegionGraphics() const {
 	Carta::Lib::VectorGraphics::VGList vgList;
 	int dataIndex = _getIndexCurrent();
 	if ( dataIndex >= 0 ){
 		vgList = m_children[dataIndex]->_getRegionGraphics();
 	}
 	return vgList;
-}
+}*/
 
-QSize LayerGroup::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const {
+/*QSize LayerGroup::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const {
     QSize saveSize = outputSize;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         saveSize = m_children[dataIndex]->_getSaveSize( outputSize, aspectMode );
     }
     return saveSize;
-}
+}*/
 
-std::pair<double,QString> LayerGroup::_getRestFrequency() const {
+/*std::pair<double,QString> LayerGroup::_getRestFrequency() const {
 	std::pair<double,QString> restFreq( -1, "");
 	int dataIndex = _getIndexCurrent();
 	if ( dataIndex >= 0 ){
 		restFreq = m_children[dataIndex]->_getRestFrequency();
 	}
 	return restFreq;
-}
+}*/
 
 /*std::shared_ptr<Layer> LayerGroup::_getSelectedGroup() {
     std::shared_ptr<Layer> group( nullptr );
@@ -790,14 +790,14 @@ int LayerGroup::_getStackSizeVisible() const {
     return result;
 }*/
 
-double LayerGroup::_getZoom() const {
+/*double LayerGroup::_getZoom() const {
     double zoom = DataSource::ZOOM_DEFAULT;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         zoom = m_children[dataIndex]-> _getZoom();
     }
     return zoom;
-}
+}*/
 
 // void LayerGroup::_gridChanged( const Carta::State::StateInterface& state ){
 //     int dataCount = m_children.size();
@@ -817,9 +817,9 @@ double LayerGroup::_getZoom() const {
     m_state.setValue<QString>( Util::NAME, Layer::GROUP+_getLayerId());
 }*/
 
-bool LayerGroup::_isComposite() const {
+/*bool LayerGroup::_isComposite() const {
     return true;
-}
+}*/
 
 /*bool LayerGroup::_isDescendant( const QString& id ) const {
     bool descendant = _isMatch( id );

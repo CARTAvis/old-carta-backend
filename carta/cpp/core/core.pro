@@ -35,7 +35,6 @@ HEADERS += \
     Data/Image/Layer.h \
     Data/Image/LayerData.h \
     Data/Image/DataSource.h \
-    Data/Image/LayerCompositionModes.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \

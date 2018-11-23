@@ -543,13 +543,13 @@ std::vector<double> LayerData::_getPercentiles( int frameLow, int frameHigh, std
     return result;
 }*/
 
-QString LayerData::_getPixelUnits() const {
+/*QString LayerData::_getPixelUnits() const {
     QString units;
     if ( m_dataSource ){
         units = m_dataSource->_getPixelUnits();
     }
     return units;
-}
+}*/
 
 QString LayerData::_getPixelValue( double x, double y, const std::vector<int>& frames ) const {
     QString pixelValue( "" );
@@ -559,20 +559,20 @@ QString LayerData::_getPixelValue( double x, double y, const std::vector<int>& f
     return pixelValue;
 }
 
-Carta::Lib::VectorGraphics::VGList LayerData::_getRegionGraphics() const {
+/*Carta::Lib::VectorGraphics::VGList LayerData::_getRegionGraphics() const {
 	return m_regionGraphics;
-}
+}*/
 
-std::pair<double,QString> LayerData::_getRestFrequency() const {
+/*std::pair<double,QString> LayerData::_getRestFrequency() const {
 	std::pair<double,QString> restFreq(-1,"");
 	if ( m_dataSource ){
 		restFreq = m_dataSource->_getRestFrequency();
 	}
 	return restFreq;
-}
+}*/
 
-QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const {
-    QSize saveSize = outputSize;
+//QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const {
+//    QSize saveSize = outputSize;
 
     //Get the grid margin space.
 //    int leftMargin = m_dataGrid->_getMargin( LabelFormats::EAST );
@@ -620,8 +620,8 @@ QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode asp
             saveSize.setHeight( minHeight );
         }
     }*/
-    return saveSize;
-}
+//    return saveSize;
+//}
 
 /*bool LayerData::_getTransform( const QPointF& pan, double zoom, const QSize& size,
 		QTransform& tf ) const {
@@ -649,10 +649,10 @@ QSize LayerData::_getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode asp
 }*/
 
 
-double LayerData::_getZoom() const {
+/*double LayerData::_getZoom() const {
     double zoom = m_state.getValue<double>( Util::ZOOM );
     return zoom;
-}
+}*/
 
 // void LayerData::_gridChanged( const Carta::State::StateInterface& state ){
 //     QString skyCS = Carta::Data::DataGrid::COORD_SYSTEM;
@@ -694,8 +694,8 @@ double LayerData::_getZoom() const {
     m_state.insertValue<double>( panYKey, 0 );
 }*/
 
-bool LayerData::_isContourDraw() const {
-    bool contourDraw = false;
+//bool LayerData::_isContourDraw() const {
+//    bool contourDraw = false;
     /*for ( std::set< std::shared_ptr<DataContours> >::iterator it = m_dataContours.begin();
             it != m_dataContours.end(); it++ ){
         if ( (*it)->isContourDraw() ){
@@ -703,8 +703,8 @@ bool LayerData::_isContourDraw() const {
             break;
         }
     }*/
-    return contourDraw;
-}
+//    return contourDraw;
+//}
 
 /*bool LayerData::_isOnCelestialPlane( bool includelinear ) const {
     auto xType = _getAxisXType();

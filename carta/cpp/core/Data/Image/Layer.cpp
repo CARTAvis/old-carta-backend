@@ -4,7 +4,7 @@
 #include "Data/Util.h"
 //#include "Data/Colormap/ColorState.h"
 #include "Data/DataLoader.h"
-#include "Data/Image/LayerCompositionModes.h"
+//#include "Data/Image/LayerCompositionModes.h"
 //#include "Data/Image/Render/RenderRequest.h"
 #include "State/UtilState.h"
 
@@ -21,7 +21,7 @@ const QString Layer::GROUP = "group";
 const QString Layer::LAYER = "layer";
 
 
-LayerCompositionModes* Layer::m_compositionModes = nullptr;
+//LayerCompositionModes* Layer::m_compositionModes = nullptr;
 
 
 Layer::Layer( const QString& className, const QString& path, const QString& id) :
@@ -135,14 +135,14 @@ QString Layer::_getFileName() {
     m_state.insertValue<QString>( Util::NAME, "");
 }*/
 
-bool Layer::_isComposite() const {
+/*bool Layer::_isComposite() const {
     return false;
-}
+}*/
 
-bool Layer::_isContourDraw() const {
+/*bool Layer::_isContourDraw() const {
     bool contourDraw = false;
     return contourDraw;
-}
+}*/
 
 /*bool Layer::_isDescendant( const QString& id ) const {
     return _isMatch( id );

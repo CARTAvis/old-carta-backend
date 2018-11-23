@@ -10,7 +10,7 @@
 //#include "Data/Image/Contour/ContourTypes.h"
 //#include "Data/Image/Contour/ContourSpacingModes.h"
 //#include "Data/Image/Contour/ContourStyles.h"
-#include "Data/Image/LayerCompositionModes.h"
+//#include "Data/Image/LayerCompositionModes.h"
 #include "Data/DataLoader.h"
 //#include "Data/Colormap/Gamma.h"
 //#include "Data/Colormap/TransformsData.h"
@@ -495,8 +495,8 @@ ViewManager::~ViewManager(){
 //    delete obj;
 //    obj =  Util::findSingletonObject<ContourStyles>();
 //    delete obj;
-    obj =  Util::findSingletonObject<LayerCompositionModes>();
-    delete obj;
+//    obj =  Util::findSingletonObject<LayerCompositionModes>();
+//    delete obj;
 //    obj = Util::findSingletonObject<RegionTypes>();
 //    delete obj;
 //    obj =  Util::findSingletonObject<UnitsFrequency>();

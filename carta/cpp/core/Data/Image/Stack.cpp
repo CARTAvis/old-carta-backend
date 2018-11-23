@@ -1,6 +1,6 @@
 #include "LayerGroup.h"
 #include "Data/Image/DataSource.h"
-#include "Data/Image/LayerCompositionModes.h"
+//#include "Data/Image/LayerCompositionModes.h"
 //#include "Data/Image/Draw/DrawStackSynchronizer.h"
 //#include "Data/Image/Draw/DrawImageViewsSynchronizer.h"
 //#include "Data/Image/Grid/AxisMapper.h"

@@ -239,7 +239,7 @@ protected:
       * @return - the image rest frequency and units; a blank string and a negative
       * 		value are returned with the rest frequency can not be found.
       */
-     virtual std::pair<double,QString> _getRestFrequency() const Q_DECL_OVERRIDE;
+//     virtual std::pair<double,QString> _getRestFrequency() const Q_DECL_OVERRIDE;
 
      /**
       * Return the world coordinates corresponding to the given pixel coordinates.
@@ -271,7 +271,7 @@ protected:
      * @param aspectMode - whether the aspect ratio of the image should be preserved (etc).
      * @return - the size of the saved image.
      */
-    virtual QSize _getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const Q_DECL_OVERRIDE;
+//    virtual QSize _getSaveSize( const QSize& outputSize,  Qt::AspectRatioMode aspectMode) const Q_DECL_OVERRIDE;
 
     /**
      * Return the color states that are eligible for state changes.
@@ -292,7 +292,7 @@ protected:
      * Return the zoom factor for this image.
      * @return the zoom multiplier.
      */
-    virtual double _getZoom() const Q_DECL_OVERRIDE;
+//    virtual double _getZoom() const Q_DECL_OVERRIDE;
 
 
     // virtual void _gridChanged( const Carta::State::StateInterface& state) Q_DECL_OVERRIDE;
@@ -451,19 +451,19 @@ protected:
      * Return the units of the pixels.
      * @return the units of the pixels, or blank if units could not be obtained.
      */
-    virtual QString _getPixelUnits() const Q_DECL_OVERRIDE;
+//    virtual QString _getPixelUnits() const Q_DECL_OVERRIDE;
 
     /**
      * Return the graphics for drawing regions.
      * @return - a list of graphics for drawing regions.
      */
-    virtual Carta::Lib::VectorGraphics::VGList _getRegionGraphics() const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::VectorGraphics::VGList _getRegionGraphics() const Q_DECL_OVERRIDE;
 
     /**
      * Returns true if at least one contour set should be drawn; false otherwise.
      * @return - true if there is at least one contour set to draw; false otherwise.
      */
-    virtual bool _isContourDraw() const Q_DECL_OVERRIDE;
+//    virtual bool _isContourDraw() const Q_DECL_OVERRIDE;
 
     /**
      * Returns whether the layer is diaplayed on the celestial (RA-DEC) plane
