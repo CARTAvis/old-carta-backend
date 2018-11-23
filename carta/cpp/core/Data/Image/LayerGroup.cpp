@@ -925,7 +925,7 @@ void LayerGroup::_removeLayer( Layer* group ){
 }
 
 
-void LayerGroup::_renderStart( ){
+/*void LayerGroup::_renderStart( ){
     if ( m_renderRequests.size() > 0 ){
         m_renderQueued = true;
         std::shared_ptr<RenderRequest> request = m_renderRequests.pop();
@@ -947,13 +947,13 @@ void LayerGroup::_renderStart( ){
         request->setTopIndex( topIndex );
 //        m_drawSync->render( request );
     }
-}
+}*/
 
 
-void LayerGroup ::_renderingDone( QImage image, Carta::Lib::VectorGraphics::VGList graphics ){
+/*void LayerGroup ::_renderingDone( QImage image, Carta::Lib::VectorGraphics::VGList graphics ){
     std::shared_ptr<RenderResponse> response( new RenderResponse(image, graphics, _getLayerId()));
     emit renderingDone( response );
-}
+}*/
 
 
 void LayerGroup::_resetState( const Carta::State::StateInterface& restoreState ){

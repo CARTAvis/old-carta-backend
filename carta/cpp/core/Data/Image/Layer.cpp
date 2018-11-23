@@ -5,7 +5,7 @@
 //#include "Data/Colormap/ColorState.h"
 #include "Data/DataLoader.h"
 #include "Data/Image/LayerCompositionModes.h"
-#include "Data/Image/Render/RenderRequest.h"
+//#include "Data/Image/Render/RenderRequest.h"
 #include "State/UtilState.h"
 
 #include <QDebug>
@@ -27,7 +27,7 @@ LayerCompositionModes* Layer::m_compositionModes = nullptr;
 Layer::Layer( const QString& className, const QString& path, const QString& id) :
     CartaObject( className, path, id){
     m_renderQueued = false;
-    _initializeSingletons();
+//    _initializeSingletons();
     _initializeState();
 }
 
@@ -118,12 +118,12 @@ quint32 Layer::_getMaskColor() const {
 }
 
 
-void Layer::_initializeSingletons( ){
+/*void Layer::_initializeSingletons( ){
     //Load the available color maps.
     if ( m_compositionModes == nullptr ){
         m_compositionModes = Util::findSingletonObject<LayerCompositionModes>();
     }
-}
+}*/
 
 
 void Layer::_initializeState(){
@@ -181,21 +181,21 @@ bool Layer::_isVisible() const {
     return m_state.getValue<bool>(Util::VISIBLE);
 }
 
-void Layer::_render( const std::shared_ptr<RenderRequest>& request ){
+/*void Layer::_render( const std::shared_ptr<RenderRequest>& request ){
     m_renderRequests.push( request );
     if ( !m_renderQueued ){
         _renderStart();
     }
-}
+}*/
 
-void Layer::_renderDone(){
+/*void Layer::_renderDone(){
     // schedule a repaint with the connector
     m_renderQueued = false;
 
     if ( m_renderRequests.size() > 0 ){
         _renderStart();
     }
-}
+}*/
 
 
 void Layer::_resetStateContours(const Carta::State::StateInterface& /*restoreState*/ ){

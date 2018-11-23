@@ -479,7 +479,7 @@ protected:
     /**
      * Generate a new QImage.
      */
-    virtual void _renderStart( ) Q_DECL_OVERRIDE;
+//    virtual void _renderStart( ) Q_DECL_OVERRIDE;
 
     /**
      * Center the image.
@@ -604,7 +604,7 @@ protected slots:
     virtual void _colorChanged() Q_DECL_OVERRIDE;
 
 private slots:
-    void _renderingDone( QImage image, Carta::Lib::VectorGraphics::VGList graphics );
+//    void _renderingDone( QImage image, Carta::Lib::VectorGraphics::VGList graphics );
     void _removeLayer( Layer* group );
 
 private:

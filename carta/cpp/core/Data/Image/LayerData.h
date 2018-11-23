@@ -481,7 +481,7 @@ protected:
     /**
      * Generate a new QImage.
      */
-    virtual void _renderStart() Q_DECL_OVERRIDE;
+//    virtual void _renderStart() Q_DECL_OVERRIDE;
 
     /**
      * Reset the prefereence state of this layer.

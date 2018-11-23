@@ -816,7 +816,7 @@ void LayerData::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
 
 
 
-void LayerData::_renderStart(){
+//void LayerData::_renderStart(){
 /*
     m_renderQueued = true;
 
@@ -905,7 +905,7 @@ void LayerData::_renderStart(){
     }
 */
 //    m_drawSync-> start( contourDraw, gridDraw );
-}
+//}
 
 
 void LayerData::_resetStateContours(const Carta::State::StateInterface& restoreState ){

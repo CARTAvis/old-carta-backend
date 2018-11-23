@@ -11,8 +11,8 @@
 #include "CartaLib/AxisLabelInfo.h"
 #include "CartaLib/IntensityUnitConverter.h"
 #include "CartaLib/VectorGraphics/VGList.h"
-#include "Data/Image/Render/RenderRequest.h"
-#include "Data/Image/Render/RenderResponse.h"
+//#include "Data/Image/Render/RenderRequest.h"
+//#include "Data/Image/Render/RenderResponse.h"
 #include <QImage>
 #include <QStack>
 #include <set>
@@ -73,7 +73,7 @@ signals:
 
 
     //Notification that a new image has been produced.
-    void renderingDone( const std::shared_ptr<RenderResponse>& response );
+//    void renderingDone( const std::shared_ptr<RenderResponse>& response );
 
 
 protected:
@@ -559,17 +559,17 @@ protected:
      * Generate a new rendered image.
      * @param request - parameters to use in rendering the image.
      */
-    void _render( const std::shared_ptr<RenderRequest>& request );
+//    void _render( const std::shared_ptr<RenderRequest>& request );
 
     /**
      * Finish the render.
      */
-    void _renderDone();
+//    void _renderDone();
 
     /**
      * Start the render.
      */
-    virtual void _renderStart() = 0;
+//    virtual void _renderStart() = 0;
 
     /**
      * Center the image.
@@ -721,7 +721,7 @@ protected:
 
     bool m_renderQueued;
 
-    QStack<std::shared_ptr<RenderRequest>> m_renderRequests;
+//    QStack<std::shared_ptr<RenderRequest>> m_renderRequests;
 
     static LayerCompositionModes* m_compositionModes;
 
@@ -734,7 +734,7 @@ private:
 
     QString _getLayerName() const;
 
-    void _initializeSingletons( );
+//    void _initializeSingletons( );
     void _initializeState();
 
 

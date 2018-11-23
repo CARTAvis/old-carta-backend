@@ -37,8 +37,6 @@ HEADERS += \
     Data/Image/LayerData.h \
     Data/Image/DataSource.h \
     Data/Image/LayerCompositionModes.h \
-    Data/Image/Render/RenderRequest.h \
-    Data/Image/Render/RenderResponse.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
@@ -67,8 +65,6 @@ SOURCES += \
     Data/Image/Stack.cpp \
     Data/Image/DataSource.cpp \
     Data/Image/LayerCompositionModes.cpp \
-    Data/Image/Render/RenderRequest.cpp \
-    Data/Image/Render/RenderResponse.cpp \
     Data/DataLoader.cpp \
     Data/Error/ErrorReport.cpp \
     Data/Error/ErrorManager.cpp \
