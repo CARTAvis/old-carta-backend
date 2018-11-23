@@ -66,14 +66,14 @@ protected:
 
     virtual bool _closeData( const QString& id );
 
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const = 0;
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const = 0;
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisYType() const = 0;
-    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const = 0;
-    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisTypes() const = 0;
-    virtual std::vector<Carta::Lib::AxisInfo> _getAxisInfos() const = 0;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const = 0;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const = 0;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisYType() const = 0;
+//    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const = 0;
+//    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisTypes() const = 0;
+//    virtual std::vector<Carta::Lib::AxisInfo> _getAxisInfos() const = 0;
 
-    virtual QPointF _getCenterPixel() const = 0;
+//    virtual QPointF _getCenterPixel() const = 0;
 
     /**
      * Return a list of child layers.
@@ -85,13 +85,13 @@ protected:
      * Return the mode used to composed the layer.
      * @return - a string identifier for the composition mode.
      */
-    virtual QString _getCompositionMode() const;
+//    virtual QString _getCompositionMode() const;
 
     /**
      * Return the coordinate system in use.
      * @return - an enumerated coordinate system type.
      */
-    virtual Carta::Lib::KnownSkyCS _getCoordinateSystem() const = 0;
+//    virtual Carta::Lib::KnownSkyCS _getCoordinateSystem() const = 0;
 
     /**
      * Return the data source of the image.
@@ -104,13 +104,13 @@ protected:
      * @param coordIndex an index of a coordinate of the image.
      * @return the corresponding dimension for that coordinate or -1 if none exists.
      */
-    virtual int _getDimension( int coordIndex ) const = 0;
+//    virtual int _getDimension( int coordIndex ) const = 0;
 
     /**
      * Return the number of dimensions in the image.
      * @return the number of image dimensions.
      */
-    virtual int _getDimension() const = 0;
+//    virtual int _getDimension() const = 0;
 
     /**
      * Return the dimensions of the displayed image; normally, this will
@@ -119,7 +119,7 @@ protected:
      * the number of frames in the frequency & DEC axes.
      * @return - the displayed dimensions of the image.
      */
-    virtual QSize _getDisplaySize() const = 0;
+ //   virtual QSize _getDisplaySize() const = 0;
 
     /**
      * Return the number of frames for the given axis in the image.
@@ -359,7 +359,7 @@ protected:
      * @return - true if the passed in identifier matches this layer or one of its
      *      children; false otherwise.
      */
-    virtual bool _isDescendant( const QString& id ) const;
+//    virtual bool _isDescendant( const QString& id ) const;
 
     /**
      * Returns true if the layer contains nothing visible to the user; false
@@ -373,7 +373,7 @@ protected:
      * @param includelinear - true when consider LINEAR-LINEAR plane
      * as another type of celestial plane.
      */
-    virtual bool _isOnCelestialPlane( bool includelinear = 1 ) const;
+//    virtual bool _isOnCelestialPlane( bool includelinear = 1 ) const;
 
     /**
      * Returns true if this data is selected; false otherwise.
@@ -489,7 +489,7 @@ protected:
     /**
      * Set the mask color back to its default value.
      */
-    virtual void _setMaskColorDefault() = 0;
+//    virtual void _setMaskColorDefault() = 0;
 
     /**
      * Set the opacity of the mask.
@@ -503,7 +503,7 @@ protected:
     /**
      * Set the mask transparency back to its default value.
      */
-    virtual void _setMaskAlphaDefault() = 0;
+//    virtual void _setMaskAlphaDefault() = 0;
 
 
     /**
@@ -526,8 +526,8 @@ protected:
      */
     virtual bool _setSelected( QStringList& selectNames );
 
-    virtual void _setSupportAlpha( bool supportAlpha );
-    virtual void _setSupportColor( bool supportColor );
+//    virtual void _setSupportAlpha( bool supportAlpha );
+//    virtual void _setSupportColor( bool supportColor );
 
     /**
      * Show/hide this layer.
@@ -539,7 +539,7 @@ protected:
      * Set the zoom factor for this image.
      * @param zoomFactor the zoom multiplier.
      */
-    virtual void _setZoom( double zoomFactor ) = 0;
+//    virtual void _setZoom( double zoomFactor ) = 0;
 
 
 //    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
@@ -573,14 +573,14 @@ private:
     QString _getLayerName() const;
 
 //    void _initializeSingletons( );
-    void _initializeState();
+//    void _initializeState();
 
 
     /**
      * Returns true if the name identifies this layer; false otherwise.
      * @return true if the name identifies this layer; false otherwise.
      */
-    bool _isMatch( const QString& name ) const;
+//    bool _isMatch( const QString& name ) const;
 
     /**
      * Returns true if this layer is not hidden; false otherwise.

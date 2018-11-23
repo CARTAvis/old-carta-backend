@@ -28,7 +28,7 @@ Layer::Layer( const QString& className, const QString& path, const QString& id) 
     CartaObject( className, path, id){
     m_renderQueued = false;
 //    _initializeSingletons();
-    _initializeState();
+//    _initializeState();
 }
 
 void Layer::_addLayer( std::shared_ptr<Layer> /*layer*/, int /*targetIndex*/ ){
@@ -65,9 +65,9 @@ QList<std::shared_ptr<Layer> > Layer::_getChildren(){
     return std::shared_ptr<ColorState>(nullptr);
 }*/
 
-QString Layer::_getCompositionMode() const {
+/*QString Layer::_getCompositionMode() const {
     return LayerCompositionModes::NONE;
-}
+}*/
 
 
 /*std::set<std::shared_ptr<DataContours>> Layer::_getContours() {
@@ -126,14 +126,14 @@ quint32 Layer::_getMaskColor() const {
 }*/
 
 
-void Layer::_initializeState(){
+/*void Layer::_initializeState(){
     m_state.insertValue<bool>(Util::VISIBLE, true );
     m_state.insertValue<bool>(Util::SELECTED, false );
     QString idStr = getId();
     idStr = idStr.replace( "c", "");
     m_state.insertValue<QString>(Util::ID, idStr);
     m_state.insertValue<QString>( Util::NAME, "");
-}
+}*/
 
 bool Layer::_isComposite() const {
     return false;
@@ -144,30 +144,30 @@ bool Layer::_isContourDraw() const {
     return contourDraw;
 }
 
-bool Layer::_isDescendant( const QString& id ) const {
+/*bool Layer::_isDescendant( const QString& id ) const {
     return _isMatch( id );
-}
+}*/
 
 bool Layer::_isEmpty() const {
     return false;
 }
 
-bool Layer::_isOnCelestialPlane( bool ) const {
+/*bool Layer::_isOnCelestialPlane( bool ) const {
     return false;
-}
+}*/
 
 bool Layer::_isLoadable( const std::vector<int>& /*frames*/ ) const {
 	return false;
 }
 
-bool Layer::_isMatch( const QString& name ) const {
+/*bool Layer::_isMatch( const QString& name ) const {
     bool matched = false;
     QString id = _getLayerId();
     if ( name == id ){
         matched = true;
     }
     return matched;
-}
+}*/
 
 bool Layer::_isSelected() const {
     return m_state.getValue<bool>( Util::SELECTED );
@@ -264,13 +264,13 @@ bool Layer::_setSelected( QStringList& names ){
     return stateChanged;
 }
 
-void Layer::_setSupportAlpha( bool /*supportAlpha*/ ){
+//void Layer::_setSupportAlpha( bool /*supportAlpha*/ ){
+//
+//}
 
-}
-
-void Layer::_setSupportColor( bool /*supportColor*/ ){
-
-}
+//void Layer::_setSupportColor( bool /*supportColor*/ ){
+//
+//}
 
 
 /*bool Layer::_setVisible( const QString& id, bool visible ){

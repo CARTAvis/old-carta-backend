@@ -84,14 +84,14 @@ protected:
 //    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
 //            const std::vector<int>& frames ) Q_DECL_OVERRIDE;
 
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const Q_DECL_OVERRIDE;
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const Q_DECL_OVERRIDE;
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisYType() const Q_DECL_OVERRIDE;
-    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const Q_DECL_OVERRIDE;
-    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisTypes() const Q_DECL_OVERRIDE;
-    virtual std::vector<Carta::Lib::AxisInfo> _getAxisInfos() const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisYType() const Q_DECL_OVERRIDE;
+//    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const Q_DECL_OVERRIDE;
+//    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisTypes() const Q_DECL_OVERRIDE;
+//    virtual std::vector<Carta::Lib::AxisInfo> _getAxisInfos() const Q_DECL_OVERRIDE;
 
-    virtual QPointF _getCenterPixel() const Q_DECL_OVERRIDE;
+//    virtual QPointF _getCenterPixel() const Q_DECL_OVERRIDE;
 
     /**
      * Return a list of child layers.
@@ -103,7 +103,7 @@ protected:
      * Return the mode used to composed the layer.
      * @return - a string identifier for the composition mode.
      */
-    virtual QString _getCompositionMode() const Q_DECL_OVERRIDE;
+//    virtual QString _getCompositionMode() const Q_DECL_OVERRIDE;
 
     /**
      * Return the point on the image corresponding to the pixel point in the context
@@ -134,7 +134,7 @@ protected:
      * Return the coordinate system in use.
      * @return - an enumerated coordinate system type.
      */
-    virtual Carta::Lib::KnownSkyCS _getCoordinateSystem() const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::KnownSkyCS _getCoordinateSystem() const Q_DECL_OVERRIDE;
 
     /**
      * Returns information about the image at the current location of the cursor.
@@ -163,14 +163,14 @@ protected:
      * @param coordIndex an index of a coordinate of the image.
      * @return the corresponding dimension for that coordinate or -1 if none exists.
      */
-    virtual int _getDimension( int coordIndex ) const Q_DECL_OVERRIDE;
+//    virtual int _getDimension( int coordIndex ) const Q_DECL_OVERRIDE;
 
 
     /**
      * Return the number of dimensions in the image.
      * @return the number of image dimensions.
      */
-    virtual int _getDimension() const Q_DECL_OVERRIDE;
+//    virtual int _getDimension() const Q_DECL_OVERRIDE;
 
     /**
      * Return the dimensions of the displayed image; normally, this will
@@ -179,7 +179,7 @@ protected:
      * the number of frames in the frequency & DEC axes.
      * @return - the displayed dimensions of the image.
      */
-    virtual QSize _getDisplaySize() const Q_DECL_OVERRIDE;
+//    virtual QSize _getDisplaySize() const Q_DECL_OVERRIDE;
 
 
     /**
@@ -448,7 +448,7 @@ protected:
      * @return - true if the passed in identifier matches this layer or one of its
      *      children; false otherwise.
      */
-    virtual bool _isDescendant( const QString& id ) const Q_DECL_OVERRIDE;
+//    virtual bool _isDescendant( const QString& id ) const Q_DECL_OVERRIDE;
 
     /**
      * Returns true if the layer contains nothing visible to the user; false
@@ -548,7 +548,7 @@ protected:
     /**
      * Reset the default mask color.
      */
-    virtual void _setMaskColorDefault() Q_DECL_OVERRIDE;
+//    virtual void _setMaskColorDefault() Q_DECL_OVERRIDE;
 
     /**
      * Set the opacity of the mask.
@@ -562,7 +562,7 @@ protected:
     /**
      * Reset the default mask transparency.
      */
-    virtual void _setMaskAlphaDefault() Q_DECL_OVERRIDE;
+//    virtual void _setMaskAlphaDefault() Q_DECL_OVERRIDE;
 
     /**
      * Set the center for this image's display.
@@ -581,7 +581,7 @@ protected:
      * Set the zoom factor for this image.
      * @param zoomFactor the zoom multiplier.
      */
-    virtual void _setZoom( double zoomFactor ) Q_DECL_OVERRIDE;
+//    virtual void _setZoom( double zoomFactor ) Q_DECL_OVERRIDE;
 
 
 
@@ -619,7 +619,7 @@ private:
 
     std::shared_ptr<Layer> _getSelectedGroup();
 
-    void _initializeState();
+//    void _initializeState();
 
     void _removeData( int index );
 

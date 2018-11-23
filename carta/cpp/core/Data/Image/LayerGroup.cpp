@@ -47,7 +47,7 @@ LayerGroup::LayerGroup( const QString& path, const QString& id ):
 LayerGroup::LayerGroup(const QString& className, const QString& path, const QString& id) :
     Layer( className, path, id) {
 
-    _initializeState();
+//    _initializeState();
 
     // create the synchronizer
 //    m_drawSync.reset( new DrawGroupSynchronizer( ) );
@@ -265,77 +265,77 @@ bool LayerGroup::_closeData( const QString& id ){
 //    }
 //}
 
-Carta::Lib::AxisInfo::KnownType LayerGroup::_getAxisType( int index ) const {
+/*Carta::Lib::AxisInfo::KnownType LayerGroup::_getAxisType( int index ) const {
     AxisInfo::KnownType axisType = AxisInfo::KnownType::OTHER;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         axisType = m_children[dataIndex]->_getAxisType( index );
     }
     return axisType;
-}
+}*/
 
-Carta::Lib::AxisInfo::KnownType LayerGroup::_getAxisXType() const {
+/*Carta::Lib::AxisInfo::KnownType LayerGroup::_getAxisXType() const {
     AxisInfo::KnownType axisType = AxisInfo::KnownType::OTHER;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         axisType = m_children[dataIndex]->_getAxisXType();
     }
     return axisType;
-}
+}*/
 
-Carta::Lib::AxisInfo::KnownType LayerGroup::_getAxisYType() const {
+/*Carta::Lib::AxisInfo::KnownType LayerGroup::_getAxisYType() const {
     AxisInfo::KnownType axisType = AxisInfo::KnownType::OTHER;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         axisType = m_children[dataIndex]->_getAxisYType();
     }
     return axisType;
-}
+}*/
 
 
-std::vector<Carta::Lib::AxisInfo::KnownType> LayerGroup::_getAxisZTypes() const {
+/*std::vector<Carta::Lib::AxisInfo::KnownType> LayerGroup::_getAxisZTypes() const {
     std::vector<Carta::Lib::AxisInfo::KnownType> zTypes;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         zTypes = m_children[dataIndex]->_getAxisZTypes();
     }
     return zTypes;
-}
+}*/
 
-std::vector<Carta::Lib::AxisInfo::KnownType> LayerGroup::_getAxisTypes() const {
+/*std::vector<Carta::Lib::AxisInfo::KnownType> LayerGroup::_getAxisTypes() const {
     std::vector<Carta::Lib::AxisInfo::KnownType> axisTypes;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         axisTypes = m_children[dataIndex]->_getAxisTypes();
     }
     return axisTypes;
-}
+}*/
 
-std::vector<Carta::Lib::AxisInfo> LayerGroup::_getAxisInfos() const {
+/*std::vector<Carta::Lib::AxisInfo> LayerGroup::_getAxisInfos() const {
     std::vector<Carta::Lib::AxisInfo> axisInfos;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         axisInfos = m_children[dataIndex]->_getAxisInfos();
     }
     return axisInfos;
-}
+}*/
 
-QPointF LayerGroup::_getCenterPixel() const {
+/*QPointF LayerGroup::_getCenterPixel() const {
     int dataIndex = _getIndexCurrent();
     QPointF center = QPointF( nan(""), nan("") );
     if ( dataIndex >= 0 ) {
         center = m_children[dataIndex]->_getCenterPixel();
     }
     return center;
-}
+}*/
 
 QList<std::shared_ptr<Layer> > LayerGroup::_getChildren(){
     return m_children;
 }
 
-QString LayerGroup::_getCompositionMode() const {
+/*QString LayerGroup::_getCompositionMode() const {
     return m_state.getValue<QString>( COMPOSITION_MODE );
-}
+}*/
 
 /*QStringList LayerGroup::_getCoordinates( double x, double y,
         Carta::Lib::KnownSkyCS system , const std::vector<int>& frames ) const{
@@ -347,14 +347,14 @@ QString LayerGroup::_getCompositionMode() const {
     return coordStr;
 }*/
 
-Carta::Lib::KnownSkyCS LayerGroup::_getCoordinateSystem() const {
+/*Carta::Lib::KnownSkyCS LayerGroup::_getCoordinateSystem() const {
     Carta::Lib::KnownSkyCS cs = Carta::Lib::KnownSkyCS::Unknown;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0){
         cs = m_children[dataIndex]->_getCoordinateSystem();
     }
     return cs;
-}
+}*/
 
 //QString LayerGroup::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY,
 //        const std::vector<int>& frames, const QSize& outputSize) {
@@ -373,7 +373,7 @@ QString LayerGroup::_getDefaultName( const QString& id ) const {
     return GROUP + " "+id;
 }
 
-int LayerGroup::_getDimension( int coordIndex ) const {
+/*int LayerGroup::_getDimension( int coordIndex ) const {
     int dim = -1;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
@@ -390,7 +390,7 @@ int LayerGroup::_getDimension() const {
         imageSize = m_children[dataIndex]->_getDimension();
     }
     return imageSize;
-}
+}*/
 
 
 int LayerGroup::_getFrameCount( AxisInfo::KnownType type ) const {
@@ -423,14 +423,14 @@ std::shared_ptr<DataSource> LayerGroup::_getDataSource(){
 
 
 
-QSize LayerGroup::_getDisplaySize() const {
+/*QSize LayerGroup::_getDisplaySize() const {
     QSize size;
     int dataIndex = _getIndexCurrent();
     if ( dataIndex >= 0 ){
         size = m_children[dataIndex]->_getDisplaySize();
     }
     return size;
-}
+}*/
 
 
 std::vector<int> LayerGroup::_getImageDimensions( ) const {
@@ -809,19 +809,19 @@ double LayerGroup::_getZoom() const {
 // }
 
 
-void LayerGroup::_initializeState(){
+/*void LayerGroup::_initializeState(){
 
     QString defaultCompMode = m_compositionModes->getDefault();
     m_state.insertValue<QString>( COMPOSITION_MODE, defaultCompMode );
     m_state.insertArray( LayerGroup::LAYERS, 0 );
     m_state.setValue<QString>( Util::NAME, Layer::GROUP+_getLayerId());
-}
+}*/
 
 bool LayerGroup::_isComposite() const {
     return true;
 }
 
-bool LayerGroup::_isDescendant( const QString& id ) const {
+/*bool LayerGroup::_isDescendant( const QString& id ) const {
     bool descendant = _isMatch( id );
     if ( !descendant ){
         int childCount = m_children.size();
@@ -833,7 +833,7 @@ bool LayerGroup::_isDescendant( const QString& id ) const {
         }
     }
     return descendant;
-}
+}*/
 
 bool LayerGroup::_isEmpty() const {
     bool empty = true;
@@ -1042,8 +1042,8 @@ bool LayerGroup::_setCompositionMode( const QString& id, const QString& composit
             bool alphaSupport = m_compositionModes->isAlphaSupport( compositionMode );
             int childCount = m_children.size();
             for ( int i = 0; i < childCount; i++ ){
-                  m_children[i]->_setSupportColor( colorSupport );
-                  m_children[i]->_setSupportAlpha( alphaSupport );
+//                  m_children[i]->_setSupportColor( colorSupport );
+//                  m_children[i]->_setSupportAlpha( alphaSupport );
             }
             stateChanged = true;
         }
@@ -1142,21 +1142,21 @@ bool LayerGroup::_setSelected( QStringList& names){
     return colorStates;
 }*/
 
-void LayerGroup::_setMaskColorDefault(){
+/*void LayerGroup::_setMaskColorDefault(){
     int childCount = m_children.size();
     for ( int i = 0; i < childCount; i++ ){
         m_children[i]->_setMaskColorDefault();
     }
-}
+}*/
 
 
-void LayerGroup::_setMaskAlphaDefault(){
+/*void LayerGroup::_setMaskAlphaDefault(){
     QString result;
     int childCount = m_children.size();
     for ( int i = 0; i < childCount; i++ ){
         m_children[i]->_setMaskAlphaDefault();
     }
-}
+}*/
 
 void LayerGroup::_setViewSize( const QSize& size ){
 //	if ( m_drawSync ){
@@ -1179,11 +1179,11 @@ void LayerGroup::_setViewSize( const QSize& size ){
     return layerFound;
 }*/
 
-void LayerGroup::_setZoom( double zoomAmount){
+/*void LayerGroup::_setZoom( double zoomAmount){
     for ( std::shared_ptr<Layer> node : m_children ){
         node-> _setZoom( zoomAmount );
     }
-}
+}*/
 
 
 /*void LayerGroup::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,

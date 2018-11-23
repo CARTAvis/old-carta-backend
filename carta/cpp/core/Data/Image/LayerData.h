@@ -82,14 +82,14 @@ protected:
 //    virtual void _displayAxesChanged(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
 //                const std::vector<int>& frames ) Q_DECL_OVERRIDE;
 
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const Q_DECL_OVERRIDE;
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const Q_DECL_OVERRIDE;
-    virtual Carta::Lib::AxisInfo::KnownType _getAxisYType() const Q_DECL_OVERRIDE;
-    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const Q_DECL_OVERRIDE;
-    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisTypes() const Q_DECL_OVERRIDE;
-    virtual std::vector<Carta::Lib::AxisInfo> _getAxisInfos() const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisType( int index ) const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisXType() const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::AxisInfo::KnownType _getAxisYType() const Q_DECL_OVERRIDE;
+//    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const Q_DECL_OVERRIDE;
+//    virtual std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisTypes() const Q_DECL_OVERRIDE;
+//    virtual std::vector<Carta::Lib::AxisInfo> _getAxisInfos() const Q_DECL_OVERRIDE;
 
-    virtual QPointF _getCenterPixel() const Q_DECL_OVERRIDE;
+//    virtual QPointF _getCenterPixel() const Q_DECL_OVERRIDE;
 
 //    virtual std::shared_ptr<ColorState> _getColorState() Q_DECL_OVERRIDE;
 
@@ -133,7 +133,7 @@ protected:
      * Return the coordinate system in use.
      * @return - an enumerated coordinate system type.
      */
-    virtual Carta::Lib::KnownSkyCS _getCoordinateSystem() const Q_DECL_OVERRIDE;
+//    virtual Carta::Lib::KnownSkyCS _getCoordinateSystem() const Q_DECL_OVERRIDE;
 
     /**
      * Returns information about the image at the current location of the cursor.
@@ -163,14 +163,14 @@ protected:
      * @param coordIndex an index of a coordinate of the image.
      * @return the corresponding dimension for that coordinate or -1 if none exists.
      */
-    virtual int _getDimension( int coordIndex ) const Q_DECL_OVERRIDE;
+//    virtual int _getDimension( int coordIndex ) const Q_DECL_OVERRIDE;
 
 
     /**
      * Return the number of dimensions in the image.
      * @return the number of image dimensions.
      */
-    virtual int _getDimension() const Q_DECL_OVERRIDE;
+//    virtual int _getDimension() const Q_DECL_OVERRIDE;
 
     /**
      * Return the dimensions of the displayed image; normally, this will
@@ -179,7 +179,7 @@ protected:
      * the number of frames in the frequency & DEC axes.
      * @return - the displayed dimensions of the image.
      */
-    QSize _getDisplaySize() const Q_DECL_OVERRIDE;
+//    QSize _getDisplaySize() const Q_DECL_OVERRIDE;
 
     /**
      * Return the number of frames for the given axis in the image.
@@ -470,7 +470,7 @@ protected:
      * @param includelinear - true when consider LINEAR-LINEAR plane
      * as another type of celestial plane.
      */
-    virtual bool _isOnCelestialPlane( bool includelinear=1 ) const Q_DECL_OVERRIDE;
+//    virtual bool _isOnCelestialPlane( bool includelinear=1 ) const Q_DECL_OVERRIDE;
 
     /**
      * Remove the contour set from this layer.
@@ -518,7 +518,7 @@ protected:
      */
 //    virtual bool _setMaskAlpha( const QString& id, int alphaAmount ) Q_DECL_OVERRIDE;
 
-    virtual void _setMaskAlphaDefault() Q_DECL_OVERRIDE;
+//    virtual void _setMaskAlphaDefault() Q_DECL_OVERRIDE;
 
     /**
      * Set the color to use for the mask.
@@ -532,7 +532,7 @@ protected:
 //    virtual bool _setMaskColor( const QString& id, int redAmount,
 //            int greenAmount, int blueAmount ) Q_DECL_OVERRIDE;
 
-    virtual void _setMaskColorDefault() Q_DECL_OVERRIDE;
+//    virtual void _setMaskColorDefault() Q_DECL_OVERRIDE;
 
 
     /**
@@ -547,14 +547,14 @@ protected:
      * @param regionVGList - graphics for drawing the current regions.
      */
 //    virtual void _setRegionGraphics( const Carta::Lib::VectorGraphics::VGList& regionVGList ) Q_DECL_OVERRIDE;
-    virtual void _setSupportAlpha( bool supportAlpha ) Q_DECL_OVERRIDE;
-    virtual void _setSupportColor( bool supportColor ) Q_DECL_OVERRIDE;
+//    virtual void _setSupportAlpha( bool supportAlpha ) Q_DECL_OVERRIDE;
+//    virtual void _setSupportColor( bool supportColor ) Q_DECL_OVERRIDE;
 
     /**
      * Set the zoom factor for this image.
      * @param zoomFactor the zoom multiplier.
      */
-    virtual void _setZoom( double zoomFactor ) Q_DECL_OVERRIDE;
+//    virtual void _setZoom( double zoomFactor ) Q_DECL_OVERRIDE;
 //    virtual void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
 //                double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames ) Q_DECL_OVERRIDE;
 
@@ -595,7 +595,7 @@ private:
 
 //    bool _getTransform( const QPointF& pan, double zoom, const QSize& size, QTransform& tf ) const;
 
-    void _initializeState();
+//    void _initializeState();
 
     /**
      *  Constructor.

@@ -108,7 +108,7 @@ private:
 
 //    int _findRegionIndex( std::shared_ptr<Region> region ) const;
 
-    std::set<Carta::Lib::AxisInfo::KnownType> _getAxesHidden() const;
+//    std::set<Carta::Lib::AxisInfo::KnownType> _getAxesHidden() const;
 //    QStringList _getCoords( double x, double y,
 //                Carta::Lib::KnownSkyCS system ) const;
 

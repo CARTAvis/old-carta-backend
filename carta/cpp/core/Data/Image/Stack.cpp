@@ -143,7 +143,7 @@ bool Stack::_closeData( const QString& id ){
 //}
 
 
-std::set<AxisInfo::KnownType> Stack::_getAxesHidden() const {
+/*std::set<AxisInfo::KnownType> Stack::_getAxesHidden() const {
     int dataCount = m_children.size();
     std::set<AxisInfo::KnownType> axes;
     for ( int i = 0; i < dataCount; i++ ){
@@ -156,7 +156,7 @@ std::set<AxisInfo::KnownType> Stack::_getAxesHidden() const {
         }
     }
     return axes;
-}
+}*/
 
 
 /*QStringList Stack::_getCoords( double x, double y,
@@ -278,13 +278,13 @@ QStringList Stack::_getOpenedFileList() {
 
 int Stack::_getIndex( const QString& layerId) const {
     int index = -1;
-    int dataCount = m_children.size();
+/*    int dataCount = m_children.size();
     for ( int i = 0; i < dataCount; i++  ){
         if ( m_children[i]->_isDescendant( layerId ) ){
             index = i;
             break;
         }
-    }
+    }*/
     return index;
 }
 
@@ -847,18 +847,18 @@ void Stack::_setViewName( const QString& viewName ){
 }*/
 
 void Stack::_setZoomLevelForLayerId(double zoomLevel, double layerId) {
-    int dataCount = m_children.size();
-    for ( int i = 0; i < dataCount; i++ ){
-        if (m_children[i]->_getLayerId() == QString::number(layerId)){
-            m_children[i]->_setZoom( zoomLevel );
-            break;
-        }
-    }
-    emit viewLoad();
+//    int dataCount = m_children.size();
+//    for ( int i = 0; i < dataCount; i++ ){
+//        if (m_children[i]->_getLayerId() == QString::number(layerId)){
+//            m_children[i]->_setZoom( zoomLevel );
+//            break;
+ //       }
+//    }
+//    emit viewLoad();
 }
 
 void Stack::_setZoomLevel( double zoomLevel, bool zoomPanAll ){
-    if ( zoomPanAll ){
+    /*if ( zoomPanAll ){
         int dataCount = m_children.size();
         for ( int i = 0; i < dataCount; i++ ){
             m_children[i]->_setZoom(  zoomLevel );
@@ -870,7 +870,7 @@ void Stack::_setZoomLevel( double zoomLevel, bool zoomPanAll ){
             m_children[dataIndex]->_setZoom( zoomLevel );
         }
     }
-    emit viewLoad();
+    emit viewLoad();*/
 }
 
 //void Stack::_updatePan( double centerX , double centerY, bool zoomPanAll ){
@@ -943,7 +943,7 @@ void Stack::_updateZoom(double zoomFactor,
          std::shared_ptr<Layer> data, double zoomLevel){
 
     //Set the zoom
-    double newZoom = 1;
+    /*double newZoom = 1;
 
     if (zoomLevel >=0) {
         newZoom = zoomLevel;
@@ -957,7 +957,7 @@ void Stack::_updateZoom(double zoomFactor,
         }
     }
 
-    data->_setZoom( newZoom );
+    data->_setZoom( newZoom );*/
 }
 
 //void Stack::_updatePanZoom( double centerX, double centerY, double zoomFactor,

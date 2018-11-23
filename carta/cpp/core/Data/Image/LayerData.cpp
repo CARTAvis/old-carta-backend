@@ -117,62 +117,62 @@ LayerData::LayerData(const QString& path, const QString& id) :
 
 
 
-Carta::Lib::AxisInfo::KnownType LayerData::_getAxisType( int index ) const {
+/*Carta::Lib::AxisInfo::KnownType LayerData::_getAxisType( int index ) const {
     AxisInfo::KnownType type = AxisInfo::KnownType::OTHER;
     if ( m_dataSource ){
         type = m_dataSource->_getAxisType( index );
     }
     return type;
-}
+}*/
 
-AxisInfo::KnownType LayerData::_getAxisXType() const {
+/*AxisInfo::KnownType LayerData::_getAxisXType() const {
     AxisInfo::KnownType axisType = AxisInfo::KnownType::OTHER;
     if ( m_dataSource ){
         axisType = m_dataSource->_getAxisXType();
     }
     return axisType;
-}
+}*/
 
-AxisInfo::KnownType LayerData::_getAxisYType() const {
+/*AxisInfo::KnownType LayerData::_getAxisYType() const {
     AxisInfo::KnownType axisType = AxisInfo::KnownType::OTHER;
     if ( m_dataSource ){
         axisType = m_dataSource->_getAxisYType();
     }
     return axisType;
-}
+}*/
 
-std::vector<AxisInfo::KnownType> LayerData::_getAxisZTypes() const {
+/*std::vector<AxisInfo::KnownType> LayerData::_getAxisZTypes() const {
     std::vector<AxisInfo::KnownType> axisTypes;
     if ( m_dataSource ){
         axisTypes = m_dataSource->_getAxisZTypes();
     }
     return axisTypes;
-}
+}*/
 
-std::vector<AxisInfo::KnownType> LayerData::_getAxisTypes() const {
+/*std::vector<AxisInfo::KnownType> LayerData::_getAxisTypes() const {
     std::vector<AxisInfo::KnownType> axisTypes;
     if ( m_dataSource ){
         axisTypes = m_dataSource->_getAxisTypes();
     }
     return axisTypes;
-}
+}*/
 
-std::vector<AxisInfo> LayerData::_getAxisInfos() const {
+/*std::vector<AxisInfo> LayerData::_getAxisInfos() const {
     std::vector<AxisInfo> axisInfos;
     if ( m_dataSource ){
         axisInfos = m_dataSource->_getAxisInfos();
     }
     return axisInfos;
-}
+}*/
 
-QPointF LayerData::_getCenterPixel() const {
+/*QPointF LayerData::_getCenterPixel() const {
     QPointF center;
     QString centerXKey = Carta::State::UtilState::getLookup( PAN, Util::XCOORD );
     QString centerYKey = Carta::State::UtilState::getLookup( PAN, Util::YCOORD );
     center.setX( m_state.getValue<double>( centerXKey) );
     center.setY( m_state.getValue<double>( centerYKey) );
     return center;
-}
+}*/
 
 /*std::shared_ptr<ColorState> LayerData::_getColorState(){
     return m_stateColor;
@@ -212,13 +212,13 @@ QPointF LayerData::_getCenterPixel() const {
     return coordStr;
 }*/
 
-Carta::Lib::KnownSkyCS LayerData::_getCoordinateSystem() const {
-    Carta::Lib::KnownSkyCS cs = Carta::Lib::KnownSkyCS::Unknown;
+//Carta::Lib::KnownSkyCS LayerData::_getCoordinateSystem() const {
+//    Carta::Lib::KnownSkyCS cs = Carta::Lib::KnownSkyCS::Unknown;
 //    if ( m_dataGrid ){
 //        cs = m_dataGrid->_getSkyCS();
 //    }
-    return cs;
-}
+//    return cs;
+//}
 
 //QString LayerData::_getCursorText(bool isAutoClip, double minPercent, double maxPercent, int mouseX, int mouseY, const std::vector<int>& frames,
 //        const QSize& outputSize){
@@ -238,7 +238,7 @@ std::shared_ptr<DataSource> LayerData::_getDataSource(){
 }
 
 
-int LayerData::_getDimension( int coordIndex ) const {
+/*int LayerData::_getDimension( int coordIndex ) const {
     int dim = -1;
     if ( m_dataSource ){
         dim = m_dataSource->_getDimension( coordIndex );
@@ -253,17 +253,17 @@ int LayerData::_getDimension() const {
         imageSize = m_dataSource->_getDimensions();
     }
     return imageSize;
-}
+}*/
 
 
 
-QSize LayerData::_getDisplaySize() const {
+/*QSize LayerData::_getDisplaySize() const {
     Carta::Lib::AxisInfo::KnownType xType = _getAxisXType();
     Carta::Lib::AxisInfo::KnownType yType = _getAxisYType();
     int frameCountX = _getFrameCount( xType );
     int frameCountY = _getFrameCount( yType );
     return QSize( frameCountX, frameCountY );
-}
+}*/
 
 
 std::vector<int> LayerData::_getImageDimensions( ) const {
@@ -669,7 +669,7 @@ double LayerData::_getZoom() const {
 // }
 
 
-void LayerData::_initializeState() {
+/*void LayerData::_initializeState() {
     //Color mix
     m_state.insertObject( MASK );
     QString redKey = Carta::State::UtilState::getLookup( MASK, Util::RED );
@@ -692,7 +692,7 @@ void LayerData::_initializeState() {
     QString panYKey = Carta::State::UtilState::getLookup( PAN, Util::YCOORD );
     m_state.insertValue<double>( panXKey, 0 );
     m_state.insertValue<double>( panYKey, 0 );
-}
+}*/
 
 bool LayerData::_isContourDraw() const {
     bool contourDraw = false;
@@ -706,7 +706,7 @@ bool LayerData::_isContourDraw() const {
     return contourDraw;
 }
 
-bool LayerData::_isOnCelestialPlane( bool includelinear ) const {
+/*bool LayerData::_isOnCelestialPlane( bool includelinear ) const {
     auto xType = _getAxisXType();
     auto yType = _getAxisYType();
     bool isRADECPlane = false;
@@ -721,7 +721,7 @@ bool LayerData::_isOnCelestialPlane( bool includelinear ) const {
         isDualLiPlane = true;
     }
     return ( isRADECPlane||( isDualLiPlane && includelinear ) );
-}
+}*/
 
 bool LayerData::_isLoadable( const std::vector<int>& frames ) const {
 	bool loadable = false;
@@ -1070,9 +1070,9 @@ QString LayerData::_setFileName( const QString& fileName, bool * success ){
 //    return changed;
 //}
 
-void LayerData::_setMaskColorDefault(){
+//void LayerData::_setMaskColorDefault(){
 //    _setMaskColor( _getLayerId(), 255,255,255);
-}
+//}
 
 
 //bool LayerData::_setMaskAlpha( const QString& id, int alphaAmount ){
@@ -1089,9 +1089,9 @@ void LayerData::_setMaskColorDefault(){
 //}
 
 
-void LayerData::_setMaskAlphaDefault(){
+//void LayerData::_setMaskAlphaDefault(){
 //    _setMaskAlpha( _getLayerId(), 255);
-}
+//}
 
 
 //void LayerData::_setPan( double imgX, double imgY ){
@@ -1105,29 +1105,29 @@ void LayerData::_setMaskAlphaDefault(){
 //	m_regionGraphics = regionVGList;
 //}
 
-void LayerData::_setSupportAlpha( bool supportAlpha ){
-    QString layerAlphaKey = Carta::State::UtilState::getLookup( MASK, LAYER_ALPHA );
-    m_state.setValue( layerAlphaKey , supportAlpha );
-    if ( !supportAlpha ){
-        _setMaskAlphaDefault();
-    }
-}
+//void LayerData::_setSupportAlpha( bool supportAlpha ){
+//    QString layerAlphaKey = Carta::State::UtilState::getLookup( MASK, LAYER_ALPHA );
+//    m_state.setValue( layerAlphaKey , supportAlpha );
+//    if ( !supportAlpha ){
+//        _setMaskAlphaDefault();
+//    }
+//}
 
-void LayerData::_setSupportColor( bool supportColor ){
-    QString layerColorKey = Carta::State::UtilState::getLookup( MASK, LAYER_COLOR );
-    m_state.setValue( layerColorKey , supportColor );
-    if ( !supportColor ){
-        _setMaskColorDefault();
-    }
-}
+//void LayerData::_setSupportColor( bool supportColor ){
+//    QString layerColorKey = Carta::State::UtilState::getLookup( MASK, LAYER_COLOR );
+//    m_state.setValue( layerColorKey , supportColor );
+//    if ( !supportColor ){
+//        _setMaskColorDefault();
+//    }
+//}
 
 
-void LayerData::_setZoom( double zoomAmount){
+/*void LayerData::_setZoom( double zoomAmount){
     double oldZoom = m_state.getValue<double>( Util::ZOOM );
     if ( oldZoom != zoomAmount ){
         m_state.setValue<double>( Util::ZOOM, zoomAmount );
     }
-}
+}*/
 
 
 /*void LayerData::_updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
