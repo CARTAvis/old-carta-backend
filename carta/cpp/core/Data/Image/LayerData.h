@@ -302,7 +302,7 @@ protected:
      * @param frames - list of frame indices to load.
      * @return - whether or not the layer can be loaded with the indicated frames.
      */
-    virtual bool _isLoadable( const std::vector<int>& frames ) const Q_DECL_OVERRIDE;
+//    virtual bool _isLoadable( const std::vector<int>& frames ) const Q_DECL_OVERRIDE;
 
     /**
      * Returns whether or not the image has a spectral axis.

@@ -67,7 +67,7 @@ protected:
      * Set the child count to zero without actually deleting them.
      */
     //Used when putting layers into groups.
-    virtual void _clearChildren() Q_DECL_OVERRIDE;
+//    virtual void _clearChildren() Q_DECL_OVERRIDE;
 
     /**
      * Remove the color map.
@@ -97,7 +97,7 @@ protected:
      * Return a list of child layers.
      * @return - a list of child layers.
      */
-    virtual QList<std::shared_ptr<Layer> > _getChildren() Q_DECL_OVERRIDE;
+//    virtual QList<std::shared_ptr<Layer> > _getChildren() Q_DECL_OVERRIDE;
 
     /**
      * Return the mode used to composed the layer.
@@ -203,7 +203,7 @@ protected:
      */
     virtual std::vector<int> _getImageDimensions( ) const Q_DECL_OVERRIDE;
 
-    virtual std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > _getImages() Q_DECL_OVERRIDE;
+//    virtual std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > _getImages() Q_DECL_OVERRIDE;
 
     /**
      * Returns the location on the image corresponding to a screen point in
@@ -462,7 +462,7 @@ protected:
      * @param frames - list of frame indices to load.
      * @return - whether or not the layer can be loaded with the indicated frames.
      */
-    virtual bool _isLoadable( const std::vector<int>& frames ) const Q_DECL_OVERRIDE;
+//    virtual bool _isLoadable( const std::vector<int>& frames ) const Q_DECL_OVERRIDE;
 
     /**
      * Returns whether or not the layered images have spectral axes.

@@ -191,9 +191,9 @@ void LayerGroup::_addLayer( std::shared_ptr<Layer> layer, int targetIndex ){
     }
 }*/
 
-void LayerGroup::_clearChildren(){
+/*void LayerGroup::_clearChildren(){
     m_children.clear();
-}
+}*/
 
 void LayerGroup::_clearData(){
     int childCount = m_children.size();
@@ -329,9 +329,9 @@ bool LayerGroup::_closeData( const QString& id ){
     return center;
 }*/
 
-QList<std::shared_ptr<Layer> > LayerGroup::_getChildren(){
+/*QList<std::shared_ptr<Layer> > LayerGroup::_getChildren(){
     return m_children;
-}
+}*/
 
 /*QString LayerGroup::_getCompositionMode() const {
     return m_state.getValue<QString>( COMPOSITION_MODE );
@@ -467,7 +467,7 @@ std::vector<int> LayerGroup::_getImageDimensions( ) const {
 	return contextPt;
 }*/
 
-std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > LayerGroup::_getImages(){
+/*std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > LayerGroup::_getImages(){
     std::vector<std::shared_ptr<Carta::Lib::Image::ImageInterface> > images;
     int dataCount = m_children.size();
     //Return the images in stack order.
@@ -479,7 +479,7 @@ std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > LayerGroup::_g
         }
     }
     return images;
-}
+}*/
 
 // this function is replaced in the Stack.cpp, so it is just a dummy function.
 int LayerGroup::_getIndexCurrent( ) const {
@@ -847,7 +847,7 @@ int LayerGroup::_getStackSizeVisible() const {
     return empty;
 }*/
 
-bool LayerGroup::_isLoadable( const std::vector<int>& frames ) const {
+/*bool LayerGroup::_isLoadable( const std::vector<int>& frames ) const {
 	//A group is loadable if there is one loadable image in the group.
 	bool loadable = false;
 	int childCount = m_children.size();
@@ -858,7 +858,7 @@ bool LayerGroup::_isLoadable( const std::vector<int>& frames ) const {
 		}
 	}
 	return loadable;
-}
+}*/
 
 /*bool LayerGroup::_isSpectralAxis() const {
 	bool spectralAxis = false;
@@ -911,7 +911,7 @@ void LayerGroup::_removeLayer( Layer* group ){
 
             }
         }
-        if ( targetIndex >= 0 ){
+        /*if ( targetIndex >= 0 ){
             QList<std::shared_ptr<Layer> > children = group->_getChildren();
             group->_clearChildren();
             _removeData( targetIndex );
@@ -920,7 +920,7 @@ void LayerGroup::_removeLayer( Layer* group ){
                 int addIndex = targetIndex + i;
                 _addLayer( children[i], addIndex );
             }
-        }
+        }*/
     }
 }
 

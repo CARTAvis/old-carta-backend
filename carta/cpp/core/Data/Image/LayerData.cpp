@@ -723,13 +723,13 @@ QString LayerData::_getPixelValue( double x, double y, const std::vector<int>& f
     return ( isRADECPlane||( isDualLiPlane && includelinear ) );
 }*/
 
-bool LayerData::_isLoadable( const std::vector<int>& frames ) const {
+/*bool LayerData::_isLoadable( const std::vector<int>& frames ) const {
 	bool loadable = false;
 	if ( m_dataSource ){
 		loadable = m_dataSource->_isLoadable( frames );
 	}
 	return loadable;
-}
+}*/
 
 /*bool LayerData::_isSpectralAxis() const {
 	bool spectralAxis = false;

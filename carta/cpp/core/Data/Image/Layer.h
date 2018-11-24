@@ -31,7 +31,7 @@ class RawViewInterface;
 namespace Data {
 
 class DataSource;
-class LayerCompositionModes;
+//class LayerCompositionModes;
 
 class Layer : public QObject, public Carta::State::CartaObject {
 
@@ -62,7 +62,7 @@ protected:
      * Set the child count to zero without actually deleting them.
      */
     //Used when putting layers into groups.
-    virtual void _clearChildren();
+//    virtual void _clearChildren();
 
     virtual bool _closeData( const QString& id );
 
@@ -79,7 +79,7 @@ protected:
      * Return a list of child layers.
      * @return - a list of child layers.
      */
-    virtual QList<std::shared_ptr<Layer> > _getChildren();
+//    virtual QList<std::shared_ptr<Layer> > _getChildren();
 
     /**
      * Return the mode used to composed the layer.
@@ -139,7 +139,7 @@ protected:
      */
     virtual std::vector<int> _getImageDimensions( ) const = 0;
 
-    virtual std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > _getImages();
+//    virtual std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > _getImages();
 
     /**
      * Returns the histogram of pixels.
@@ -222,7 +222,7 @@ protected:
      * @param frames - list of frame indices to load.
      * @return - whether or not the layer can be loaded with the indicated frames.
      */
-    virtual bool _isLoadable( const std::vector<int>& frames ) const;
+//    virtual bool _isLoadable( const std::vector<int>& frames ) const;
 
 
     /**
@@ -586,7 +586,7 @@ private:
      * Returns true if this layer is not hidden; false otherwise.
      * @return true if the layer is visible; false otherwise.
      */
-    bool _isVisible() const;
+//    bool _isVisible() const;
 
     Layer(const Layer& other);
     Layer& operator=(const Layer& other);

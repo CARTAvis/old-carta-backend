@@ -36,9 +36,9 @@ void Layer::_addLayer( std::shared_ptr<Layer> /*layer*/, int /*targetIndex*/ ){
 }
 
 
-void Layer::_clearChildren(){
+/*void Layer::_clearChildren(){
 
-}
+}*/
 
 
 
@@ -55,10 +55,10 @@ bool Layer::_closeData( const QString& /*id*/ ){
 //    _updateColor();
 //}
 
-QList<std::shared_ptr<Layer> > Layer::_getChildren(){
+/*QList<std::shared_ptr<Layer> > Layer::_getChildren(){
     QList<std::shared_ptr<Layer> > children;
     return children;
-}
+}*/
 
 
 /*std::shared_ptr<ColorState> Layer::_getColorState(){
@@ -76,10 +76,10 @@ QList<std::shared_ptr<Layer> > Layer::_getChildren(){
 }*/
 
 
-std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > Layer::_getImages(){
+/*std::vector< std::shared_ptr<Carta::Lib::Image::ImageInterface> > Layer::_getImages(){
     std::vector<std::shared_ptr<Carta::Lib::Image::ImageInterface> > images;
     return images;
-}
+}*/
 
 //std::shared_ptr<Layer> Layer::_getLayer( const QString& /*name*/ ){
 //    std::shared_ptr<Layer> layer( nullptr );
@@ -156,9 +156,9 @@ QString Layer::_getFileName() {
     return false;
 }*/
 
-bool Layer::_isLoadable( const std::vector<int>& /*frames*/ ) const {
-	return false;
-}
+//bool Layer::_isLoadable( const std::vector<int>& /*frames*/ ) const {
+//	return false;
+//}
 
 /*bool Layer::_isMatch( const QString& name ) const {
     bool matched = false;
@@ -177,9 +177,9 @@ bool Layer::_isLoadable( const std::vector<int>& /*frames*/ ) const {
 	return false;
 }*/
 
-bool Layer::_isVisible() const {
+/*bool Layer::_isVisible() const {
     return m_state.getValue<bool>(Util::VISIBLE);
-}
+}*/
 
 /*void Layer::_render( const std::shared_ptr<RenderRequest>& request ){
     m_renderRequests.push( request );

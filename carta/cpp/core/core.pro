@@ -62,7 +62,6 @@ SOURCES += \
     Data/Image/LayerGroup.cpp \
     Data/Image/Stack.cpp \
     Data/Image/DataSource.cpp \
-    Data/Image/LayerCompositionModes.cpp \
     Data/DataLoader.cpp \
     Data/Error/ErrorReport.cpp \
     Data/Error/ErrorManager.cpp \
