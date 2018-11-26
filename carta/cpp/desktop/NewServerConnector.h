@@ -113,18 +113,6 @@ signals:
     void fileListRequestSignal(uint32_t eventId, CARTA::FileListRequest fileListRequest);
     void fileInfoRequestSignal(uint32_t eventId, CARTA::FileInfoRequest fileInfoRequest);
 
-    // /// we emit this signal when state is changed (either by c++ or by javascript)
-    // /// we listen to this signal, and so does javascript
-    // /// our listener then calls callbacks registered for this value
-    // /// javascript listener caches the new value and also calls registered callbacks
-    // void stateChangedSignal( const QString & key, const QString & value);
-
-    // /// we emit this signal when command results are ready
-    // /// javascript listens to it
-    // void jsCommandResultsSignal(const QString & sessionID, const QString & senderSession, const QString & cmd, const QString & results, const QString & subIdentifier);
-    // /// emitted by c++ when we want javascript to repaint the view
-    // void jsViewUpdatedSignal(const QString & sessionID, const QString & viewName, const QString & img, qint64 id);
-
 public:
 
     typedef std::vector<CommandCallback> CommandCallbackList;
@@ -149,8 +137,6 @@ public:
     std::map< QString, ViewInfo *> m_views;
 
     ViewInfo * findViewInfo(const QString &viewName);
-
-    // virtual void refreshViewNow(IView *view);
 
     IConnector* getConnectorInMap(const QString & sessionID) override;
     void setConnectorInMap(const QString & sessionID, IConnector *connector) override;

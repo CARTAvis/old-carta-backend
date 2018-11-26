@@ -46,11 +46,6 @@ struct NewServerConnector::ViewInfo
 
 NewServerConnector::NewServerConnector()
 {
-    // // queued connection to prevent callbacks from firing inside setState
-    // connect( this, & NewServerConnector::stateChangedSignal,
-    //          this, & NewServerConnector::stateChangedSlot,
-    //          Qt::QueuedConnection );
-
     m_callbackNextId = 0;
 }
 
@@ -67,23 +62,6 @@ void NewServerConnector::initialize(const InitializeCallback & cb)
 // Deprecated since newArch, remove the func after removing Hack directory
 void NewServerConnector::setState(const QString& path, const QString & newValue)
 {
-    // // find the path
-    // auto it = m_state.find( path);
-
-    // // if we cannot find it, insert it, together with the new value, and emit a change
-    // if( it == m_state.end()) {
-    //     m_state[path] = newValue;
-    //     emit stateChangedSignal( path, newValue);
-    //     return;
-    // }
-
-    // // if we did find it, but the value is different, set it to new value and emit signal
-    // if( it-> second != newValue) {
-    //     it-> second = newValue;
-    //     emit stateChangedSignal( path, newValue);
-    // }
-
-    // // otherwise there was no change to state, so do dothing
 }
 
 
@@ -147,17 +125,7 @@ void NewServerConnector::registerView(IView * view)
 
     // insert this view int our list of views
     ViewInfo * viewInfo = new ViewInfo( view);
-//    viewInfo-> view = view;
-//    viewInfo-> clientSize = QSize(1,1);
     m_views[ view-> name()] = viewInfo;
-
-    // connect the view's refresh timer to a lambda, which will in turn call
-    // refreshViewNow()
-    // this is instead of using std::bind...
-    // connect( & viewInfo->refreshTimer, & QTimer::timeout,
-    //         [=] () {
-    //                  refreshViewNow( view);
-    // });
 }
 
 // unregister the view
@@ -205,7 +173,6 @@ void NewServerConnector::removeStateCallback(const IConnector::CallbackID & /*id
 
 Carta::Lib::IRemoteVGView * NewServerConnector::makeRemoteVGView(QString viewName)
 {
-//    return new Carta::Core::SimpleRemoteVGView( this, viewName, this);
     return nullptr;
 }
 
@@ -639,17 +606,3 @@ Carta::Data::Controller* NewServerConnector::_getController() {
 
     return controller;
 }
-
-// void NewServerConnector::stateChangedSlot(const QString & key, const QString & value)
-// {
-//     // find the list of callbacks for this path
-//     auto iter = m_stateCallbackList.find( key);
-
-//     // if it does not exist, do nothing
-//     if( iter == m_stateCallbackList.end()) {
-//         return;
-//     }
-
-//     // call all registered callbacks for this key
-//     iter-> second-> callEveryone( key, value);
-// }
