@@ -60,7 +60,6 @@ SOURCES += \
     StatInfo.cpp \
     VectorGraphics/VGList.cpp \
     VectorGraphics/BetterQPainter.cpp \
-    IImageRenderService.cpp \
     IRemoteVGView.cpp \
     IPCache.cpp \
     Hooks/GetPersistentCache.cpp \
@@ -95,17 +94,12 @@ HEADERS += \
     ICoordinateFormatter.h \
     IPlotLabelGenerator.h \
     Hooks/LoadAstroImage.h \
-    TPixelPipeline/IScalar2Scalar.h \
-    PixelPipeline/IPixelPipeline.h \
     ProfileInfo.h \
     StatInfo.h \
     VectorGraphics/VGList.h \
     Hooks/LoadPlugin.h \
     VectorGraphics/BetterQPainter.h \
-    Hooks/GetInitialFileList.h \
     Hooks/Initialize.h \
-    IImageRenderService.h \
-    Hooks/GetImageRenderService.h \
     IRemoteVGView.h \
     Regions/IRegion.h \
     InputEvents.h \
