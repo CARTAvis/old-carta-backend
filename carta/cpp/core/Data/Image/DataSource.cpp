@@ -7,7 +7,6 @@
 #include "CartaLib/Hooks/LoadAstroImage.h"
 #include "CartaLib/Hooks/GetPersistentCache.h"
 #include "CartaLib/Hooks/PercentileToPixelHook.h"
-#include "CartaLib/PixelPipeline/CustomizablePixelPipeline.h"
 #include "CartaLib/IPCache.h"
 #include "../../Algorithms/percentileAlgorithms.h"
 #include <QDebug>

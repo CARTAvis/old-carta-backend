@@ -2,7 +2,6 @@
 #include "Data/DataLoader.h"
 #include "Data/Util.h"
 #include "State/UtilState.h"
-#include "CartaLib/PixelPipeline/CustomizablePixelPipeline.h"
 #include "CartaLib/AxisDisplayInfo.h"
 
 #include <QDebug>

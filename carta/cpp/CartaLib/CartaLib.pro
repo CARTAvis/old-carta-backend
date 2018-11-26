@@ -56,7 +56,6 @@ SOURCES += \
     ICoordinateFormatter.cpp \
     IPlotLabelGenerator.cpp \
     Hooks/LoadAstroImage.cpp \
-    PixelPipeline/CustomizablePixelPipeline.cpp \
     ProfileInfo.cpp \
     StatInfo.cpp \
     VectorGraphics/VGList.cpp \
@@ -98,7 +97,6 @@ HEADERS += \
     Hooks/LoadAstroImage.h \
     TPixelPipeline/IScalar2Scalar.h \
     PixelPipeline/IPixelPipeline.h \
-    PixelPipeline/CustomizablePixelPipeline.h \
     ProfileInfo.h \
     StatInfo.h \
     VectorGraphics/VGList.h \
