@@ -46,8 +46,6 @@ DataSource::DataSource() :
 
     m_cmapCacheSize = 1000;
 
-    _initializeSingletons();
-
     // initialize disk cache
     auto res = Globals::instance()-> pluginManager()
                    -> prepare < Carta::Lib::Hooks::GetPersistentCache > ().first();
@@ -208,22 +206,6 @@ QStringList DataSource::_getCoordinates( double x, double y,
     QStringList list = cf-> formatFromPixelCoordinate( pixel );
     casa_mutex.unlock();
     return list;
-}
-
-QPointF DataSource::_getCenter() const{
-    QPointF center( nan(""), nan(""));
-    if ( m_permuteImage != nullptr ){
-         double xCenter =  m_permuteImage-> dims()[0] / 2.0;
-         double yCenter = m_permuteImage-> dims()[1] / 2.0;
-         // This is due to casa uses [0,0] as the center of the first pixel,
-         // so there is 0.5 (image pixel coordinate, not screen pixel coordinate)
-         // shift for the center of the whole image
-         xCenter -= 0.5;
-         yCenter -= 0.5;
-         center.setX( xCenter );
-         center.setY( yCenter );
-     }
-    return center;
 }
 
 std::vector<AxisDisplayInfo> DataSource::_getAxisDisplayInfo() const {
@@ -1341,9 +1323,6 @@ QString DataSource::_getViewIdCurrent( const std::vector<int>& frames ) const {
    return renderId;
 }
 
-void DataSource::_initializeSingletons( ){
-}
-
 bool DataSource::_isLoadable( std::vector<int> frames ) const {
         int imageDim =m_image->dims().size();
 	bool loadable = true;
@@ -1379,19 +1358,6 @@ bool DataSource::_isSpectralAxis() const {
 	return spectralAxis;
 }
 
-void DataSource::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
-        double minClipPercentile, double maxClipPercentile){
-	//Only load if the frames make sense for the image.  I.e., the frame index
-	//should be less than the image size.
-	if ( _isLoadable( frames ) ){
-		int frameSize = frames.size();
-		CARTA_ASSERT( frameSize == static_cast<int>(AxisInfo::KnownType::OTHER));
-		std::vector<int> mFrames = _fitFramesToImage( frames );
-		std::shared_ptr<Carta::Lib::NdArray::RawViewInterface> view ( _getRawData( mFrames ) );
-		std::vector<int> dimVector = view->dims();
-	}
-}
-
 QString DataSource::_setFileName( const QString& fileName, bool* success ){
     QString file = fileName.trimmed();
     *success = true;
@@ -1408,10 +1374,6 @@ QString DataSource::_setFileName( const QString& fileName, bool* success ){
                     std::shared_ptr<CoordinateFormatterInterface> cf(
                         m_image->metaData()->coordinateFormatter()->clone() );
                     m_coordinateFormatter = cf;
-                    // reset zoom/pan
-                    //_resetZoom();
-                    //_resetPan();
-
                     m_fileName = file;
                     //qDebug() << "[DataSource] m_fileName=" << m_fileName;
                 }
@@ -1456,122 +1418,6 @@ bool DataSource::_setDisplayAxis( AxisInfo::KnownType axisType, int* axisIndex )
         }
     }
     return displayAxisChanged;
-}
-
-void DataSource::_setDisplayAxes(std::vector<AxisInfo::KnownType> displayAxisTypes,
-        const std::vector<int>& frames ){
-
-    int m_axisIndexX_copy = m_axisIndexX;
-    int m_axisIndexY_copy = m_axisIndexY;
-
-    int displayAxisCount = displayAxisTypes.size();
-    CARTA_ASSERT( displayAxisCount == 2 );
-    bool axisXChanged = false;
-    bool axisYChanged = false;
-    //We could have an image with two linear display axes.  In this case, we can't
-    //distinguish by the type of axis as we do below.
-    if ( displayAxisTypes[0] == AxisInfo::KnownType::LINEAR &&
-            displayAxisTypes[1] == AxisInfo::KnownType::LINEAR ){
-        if ( m_axisIndexX != 0 ){
-            m_axisIndexX = 0;
-            axisXChanged = true;
-        }
-        if ( m_axisIndexY != 1 ){
-            m_axisIndexY = 1;
-            axisYChanged = true;
-        }
-    }
-    else {
-        axisXChanged = _setDisplayAxis( displayAxisTypes[0], &m_axisIndexX );
-        axisYChanged = _setDisplayAxis( displayAxisTypes[1], &m_axisIndexY );
-    }
-
-    // invalid displayAxisTypes
-    if (m_axisIndexX == -1 || m_axisIndexY == -1 ){
-        m_axisIndexX = m_axisIndexX_copy;
-        m_axisIndexY = m_axisIndexY_copy;
-
-        axisXChanged = false;
-        axisYChanged = false;
-    }
-
-    if ( axisXChanged || axisYChanged ){
-        m_permuteImage = _getPermutedImage();
-        //_resetPan();
-    }
-    //std::vector<int> mFrames = _fitFramesToImage( frames );
-    //_updateRenderedView( mFrames );
-}
-
-// TODO: should this function be eliminated in favour of _getIntensity?
-std::vector<double> DataSource::_getQuantileIntensityCache(std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
-        double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames, bool showMesg) {
-    std::vector<int> mFrames = _fitFramesToImage( frames );
-    std::vector<int> stokeIndex = _getStokeIndex( mFrames );
-    std::vector<int> channelIndex = _getChannelIndex( mFrames );
-
-
-    int setChannelIndex;
-    if (channelIndex[1] == -1) {
-        // channelIndex[1] == -1 means there is only one channel in the image file,
-        // in such case we rename the channel index (setChannelIndex) = 0
-        setChannelIndex = 0;
-    } else {
-        setChannelIndex = channelIndex[1];
-    }
-
-    std::vector<double> clips;
-
-    // If the disk cache exists, try to find the clips in the cache first
-    std::shared_ptr<Carta::Lib::IntensityValue> minClipInCache = _readIntensityCache(setChannelIndex, setChannelIndex, minClipPercentile, stokeIndex[1], "NONE");
-    std::shared_ptr<Carta::Lib::IntensityValue> maxClipInCache = _readIntensityCache(setChannelIndex, setChannelIndex, maxClipPercentile, stokeIndex[1], "NONE");
-    // if both of caches exist, we get their values
-    if (minClipInCache && minClipInCache->error == 0 /* minimum intensity cache exists and has a zero error order */ &&
-        maxClipInCache && maxClipInCache->error == 0 /* maximum intensity cache exists and has a zero error order */) {
-        clips.push_back(minClipInCache->value);
-        clips.push_back(maxClipInCache->value);
-        if (showMesg == true) {
-            qDebug() << "++++++++ [find cache] for percentile (per frame)= [" << minClipPercentile << "," << maxClipPercentile << "], intensity= [" << clips[0] << "," << clips[1] << "]";
-        }
-    }
-
-
-    // If the clips were not found in the cache, calculate them
-    if (clips.size() < 2) {
-        Carta::Lib::NdArray::Double doubleView( view.get(), false );
-
-        // start the timer for computing percentile per frame
-        QElapsedTimer timer;
-        timer.start();
-
-        // calculate pixel values with respect to percentiles per frame
-        Carta::Lib::IPercentilesToPixels<double>::SharedPtr calculator = std::make_shared<Carta::Core::Algorithms::PercentilesToPixels<double> >();
-
-        std::map<double, double> clips_map = calculator->percentile2pixels(doubleView, {minClipPercentile, maxClipPercentile}, -1, nullptr, {});
-
-        // end of timer for computing percentile per frame
-        int elapsedTime = timer.elapsed();
-
-        if (CARTA_RUNTIME_CHECKS) {
-            if (elapsedTime > 5) {
-                // only save the elapsed time to log file if it is greater than 5 ms
-                qCritical() << "<> Time to get the percentile per frame:" << elapsedTime << "ms";
-            } else {
-                qDebug() << "++++++++ [percentile per frame] calculating time (for std::nth_element):" << elapsedTime << "ms";
-            }
-        }
-
-        clips = {clips_map[minClipPercentile], clips_map[maxClipPercentile]};
-
-        // If the disk cache exists, put the calculated clips in it
-        // this step is done in DataSource::_getCursorText() first !!
-        // the intensity error is zero, because we use percentile2pixels() --> "std::nth_element" algorithm
-        // for precise percentile calculation
-        _setIntensityCache(clips[0], 0, setChannelIndex, setChannelIndex, minClipPercentile, stokeIndex[1], "NONE");
-        _setIntensityCache(clips[1], 0, setChannelIndex, setChannelIndex, maxClipPercentile, stokeIndex[1], "NONE");
-        qDebug() << "++++++++ [find cache] for percentile (per frame)= [" << minClipPercentile << "," << maxClipPercentile << "], intensity= [" << clips[0] << "," << clips[1] << "]";
-    }
-    return clips;
 }
 
 bool DataSource::_setSpatialRequirements(int fileId, int regionId,

@@ -116,12 +116,6 @@ private:
     std::vector<Carta::Lib::AxisInfo::KnownType> _getAxisZTypes() const;
 
     /**
-     * Return the current pan center.
-     * @return the centered image location.
-     */
-    QPointF _getCenter() const;
-
-    /**
      * Return the coordinates at pixel (x, y) in the given coordinate system.
      * @param x the x-coordinate of the desired pixel.
      * @param y the y-coordinate of the desired pixel.
@@ -343,7 +337,7 @@ private:
      * @param axisIndex - the axis for the frames or -1 for all axes.
      * @return the raw data or nullptr if there is none.
      */
-    Carta::Lib::NdArray::RawViewInterface *  _getRawData( int frameLow, int frameHigh, int axisIndex ) const;
+    Carta::Lib::NdArray::RawViewInterface* _getRawData( int frameLow, int frameHigh, int axisIndex ) const;
 
     /**
      * Returns the raw data as an array.
@@ -367,10 +361,6 @@ private:
     //Returns an identifier for the current image slice being rendered.
     QString _getViewIdCurrent( const std::vector<int>& frames ) const;
 
-
-    //Initialize static objects.
-    void _initializeSingletons( );
-
     ///Returns whether the frames actually exist in the image.
     bool _isLoadable( std::vector<int> frames ) const;
 
@@ -378,30 +368,11 @@ private:
     bool _isSpectralAxis() const;
 
     /**
-     * Generate a QImage representation of this data.
-     * @param -frames a list of frames to load, one for each axis.
-     * @param - recomputeClipsOnNewFrame - true if the clips should be recalculated when the frame
-     *      is changed; false otherwise.
-     * @param clipMinPercentile the minimum clip value.
-     * @param clipMaxPercentile the maximum clip value.
-     */
-    void _load( std::vector<int> frames, bool recomputeClipsOnNewFrame,
-            double clipMinPercentile, double clipMaxPercentile );
-
-    /**
      * Set the coordinate system in the duplicated coordinateformatter,
      * i.e. m_coordinateFormatter.
      * @param cs - the target coordinate system (defined in CartaLib::KnownSkyCS)
      */
     void _setCoordinateSystem( Carta::Lib::KnownSkyCS cs );
-
-    /**
-     * Set the x-, y-, and z- axes that are to be displayed.
-     * @param displayAxisTypes - the list of display axes.
-     * @param frames - a list of current image frames.
-     */
-    void _setDisplayAxes(std::vector<Carta::Lib::AxisInfo::KnownType> displayAxisTypes,
-            const std::vector<int>& frames );
 
     /**
      * Set a particular axis type to be one of the display axes.
@@ -420,12 +391,6 @@ private:
      *      an empty string.
      */
     QString _setFileName( const QString& fileName, bool* success );
-
-    std::vector<double> _getQuantileIntensityCache( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
-            double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames, bool showMesg );
-
-    void _updateClips( std::shared_ptr<Carta::Lib::NdArray::RawViewInterface>& view,
-            double minClipPercentile, double maxClipPercentile, const std::vector<int>& frames );
 
     // set spatial requirements
     bool _setSpatialRequirements(int fileId, int regionId,
