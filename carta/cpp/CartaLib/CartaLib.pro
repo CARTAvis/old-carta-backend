@@ -58,12 +58,9 @@ SOURCES += \
     Hooks/LoadAstroImage.cpp \
     PixelPipeline/CustomizablePixelPipeline.cpp \
     ProfileInfo.cpp \
-    PWLinear.cpp \
     StatInfo.cpp \
     VectorGraphics/VGList.cpp \
     VectorGraphics/BetterQPainter.cpp \
-    Algorithms/ContourConrec.cpp \
-    Algorithms/LineCombiner.cpp \
     IImageRenderService.cpp \
     IRemoteVGView.cpp \
     IPCache.cpp \
@@ -103,13 +100,10 @@ HEADERS += \
     PixelPipeline/IPixelPipeline.h \
     PixelPipeline/CustomizablePixelPipeline.h \
     ProfileInfo.h \
-    PWLinear.h \
     StatInfo.h \
     VectorGraphics/VGList.h \
     Hooks/LoadPlugin.h \
     VectorGraphics/BetterQPainter.h \
-    Algorithms/ContourConrec.h \
-    Algorithms/LineCombiner.h \
     Hooks/GetInitialFileList.h \
     Hooks/Initialize.h \
     IImageRenderService.h \
