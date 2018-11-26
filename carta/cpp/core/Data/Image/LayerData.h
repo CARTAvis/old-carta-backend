@@ -15,12 +15,8 @@
 #include <memory>
 #include <set>
 
-class CoordinateFormatterInterface;
-
 namespace Carta {
 namespace Lib {
-    class IWcsGridRenderService;
-    class IContourGeneratorService;
     namespace NdArray {
         class RawViewInterface;
     }
@@ -34,7 +30,6 @@ class LayerData : public Layer {
 
 friend class Controller;
 friend class LayerGroup;
-friend class DrawStackSynchronizer;
 
 Q_OBJECT
 
@@ -90,16 +85,6 @@ protected:
      * the CENTER of the left-bottom-most pixel is 0.0,0.0.
      */
     virtual QString _getPixelValue( double x, double y, const std::vector<int>& frames ) const Q_DECL_OVERRIDE;
-
-    /**
-     * Return a QImage representation of this data.
-     * @param frames - a list of frames to load, one for each of the known axis types.
-     * @param autoClip true if clips should be automatically generated; false otherwise.
-     * @param clipMinPercentile the minimum clip value.
-     * @param clipMaxPercentile the maximum clip value.
-     */
-    void _load( std::vector<int> frames, bool autoClip, double clipMinPercentile,
-    		double clipMaxPercentile );
 
     virtual QString _getFileName() Q_DECL_OVERRIDE;
 
@@ -195,28 +180,12 @@ private slots:
 private:
 
     /**
-     * Get label format information for the given axis and type.
-     * @param axisIndex - the plotting index of the axis (0 or 1).
-     * @param axisType - the type of the axis (declination, ra, etc )
-     * @return - information about how the axis labels should be formatted.
-     */
-    Carta::Lib::AxisLabelInfo _getAxisLabelInfo( int axisIndex, Carta::Lib::AxisInfo::KnownType axisType ) const;
-
-    QRectF _getOutputRectangle( const QSize& outputSize, bool requestMain, bool requestContext ) const;
-    QPointF _getPan() const;
-
-    /**
      *  Constructor.
      */
     LayerData( const QString& path, const QString& id );
 
     class Factory;
     static bool m_registered;
-
-    static const QString LAYER_COLOR;
-    static const QString LAYER_ALPHA;
-    static const QString MASK;
-    static const QString PAN;
 
     //Pointer to image interface.
     std::shared_ptr<DataSource> m_dataSource;

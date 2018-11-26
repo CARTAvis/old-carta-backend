@@ -13,16 +13,9 @@ using Carta::Lib::AxisInfo;
 using Carta::Lib::AxisDisplayInfo;
 
 namespace Carta {
-
 namespace Data {
 
 const QString LayerData::CLASS_NAME = "LayerData";
-const QString LayerData::MASK = "mask";
-const QString LayerData::LAYER_COLOR="colorSupport";
-const QString LayerData::LAYER_ALPHA="alphaSupport";
-
-const QString LayerData::PAN = "pan";
-
 
 class LayerData::Factory : public Carta::State::CartaObjectFactory {
 
@@ -33,10 +26,10 @@ public:
         return new LayerData(path, id);
     }
 };
+
 bool LayerData::m_registered =
         Carta::State::ObjectManager::objectManager()->registerClass (CLASS_NAME,
                                                    new LayerData::Factory());
-
 
 LayerData::LayerData(const QString& path, const QString& id) :
     Layer( CLASS_NAME, path, id),
@@ -152,26 +145,6 @@ PBMSharedPtr LayerData::_getRasterImageData(int fileId, int xMin, int xMax, int 
     return results;
 }
 
-QRectF LayerData::_getOutputRectangle( const QSize& outputSize, bool requestMain,
-        bool requestContext) const {
-    int leftMargin = 0;
-    int rightMargin = 0;
-    int topMargin = 0;
-    int bottomMargin = 0;
-    int outWidth = outputSize.width() - leftMargin - rightMargin;
-    int outHeight = outputSize.height() - topMargin - bottomMargin;
-    QRectF outputRect( leftMargin, topMargin, outWidth, outHeight );
-    return outputRect;
-}
-
-QPointF LayerData::_getPan() const {
-    QString panXKey = Carta::State::UtilState::getLookup( PAN, Util::XCOORD );
-    QString panYKey = Carta::State::UtilState::getLookup( PAN, Util::YCOORD );
-    double panX = m_state.getValue<double>( panXKey );
-    double panY = m_state.getValue<double>( panYKey );
-    return QPointF( panX, panY );
-}
-
 std::vector<double> LayerData::_getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const {
     std::vector<double> percentiles(intensities.size());
     if ( m_dataSource ){
@@ -186,14 +159,6 @@ QString LayerData::_getPixelValue( double x, double y, const std::vector<int>& f
         pixelValue = m_dataSource->_getPixelValue( x, y, frames );
     }
     return pixelValue;
-}
-
-void LayerData::_load(std::vector<int> frames, bool recomputeClipsOnNewFrame,
-        double minClipPercentile, double maxClipPercentile ){
-    if ( m_dataSource ){
-        m_dataSource->_load( frames, recomputeClipsOnNewFrame,
-                minClipPercentile, maxClipPercentile );
-    }
 }
 
 QString LayerData::_getFileName() {
