@@ -60,7 +60,6 @@ SOURCES += \
     StatInfo.cpp \
     VectorGraphics/VGList.cpp \
     VectorGraphics/BetterQPainter.cpp \
-    IRemoteVGView.cpp \
     IPCache.cpp \
     Hooks/GetPersistentCache.cpp \
     Regions/IRegion.cpp \
@@ -100,7 +99,6 @@ HEADERS += \
     Hooks/LoadPlugin.h \
     VectorGraphics/BetterQPainter.h \
     Hooks/Initialize.h \
-    IRemoteVGView.h \
     Regions/IRegion.h \
     InputEvents.h \
     Regions/ICoordSystem.h \

@@ -9,7 +9,6 @@
 #include <QList>
 #include <QByteArray>
 
-#include "CartaLib/IRemoteVGView.h"
 #include "CartaLib/IPercentileCalculator.h"
 #include "CartaLib/LinearMap.h"
 

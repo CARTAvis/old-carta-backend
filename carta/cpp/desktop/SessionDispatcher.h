@@ -11,7 +11,6 @@
 #include "NewServerConnector.h"
 
 #include "core/IConnector.h"
-#include "CartaLib/IRemoteVGView.h"
 #include "QtWebSockets/qwebsocketserver.h"
 #include "QtWebSockets/qwebsocket.h"
 

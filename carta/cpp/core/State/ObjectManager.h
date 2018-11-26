@@ -116,15 +116,8 @@ protected:
     /// unregister a view with the connector
     void unregisterView();
 
-    /**
-     * Construct a layered view and return it.
-     * @param path - a unique identifier for the remote view.
-     */
-    Carta::Lib::LayeredViewArbitrary* makeRemoteView( const QString& path );
-
     //Return the full location for the state with the given name.
     QString getStateLocation( const QString& name ) const;
-
 
     QString removeId (const QString & commandAndId);
 

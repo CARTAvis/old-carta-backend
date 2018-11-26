@@ -2,7 +2,6 @@
 #include "LayerData.h"
 #include "DataSource.h"
 #include "Data/Util.h"
-#include "CartaLib/IRemoteVGView.h"
 #include "State/UtilState.h"
 
 #include <QDebug>
