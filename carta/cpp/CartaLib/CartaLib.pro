@@ -43,7 +43,6 @@ PROTOS = Proto/enums.proto \
 SOURCES += \
     CartaLib.cpp \
     HtmlString.cpp \
-    LinearMap.cpp \
     Hooks/ProfileHook.cpp \
     Hooks/ImageStatisticsHook.cpp \
     Hooks/ProfileResult.cpp \
@@ -77,7 +76,6 @@ HEADERS += \
     CartaLib.h\
     cartalib_global.h \
     HtmlString.h \
-    LinearMap.h \
     Hooks/ProfileHook.h \
     Hooks/HookIDs.h \
     Hooks/ImageStatisticsHook.h \

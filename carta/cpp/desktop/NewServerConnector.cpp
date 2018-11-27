@@ -26,7 +26,7 @@ struct NewServerConnector::ViewInfo
     IView * view;
 
     /// linear maps convert x,y from client to image coordinates
-    Carta::Lib::LinearMap1D tx, ty;
+//    Carta::Lib::LinearMap1D tx, ty;
 
     /// refresh timer for this object
     QTimer refreshTimer;

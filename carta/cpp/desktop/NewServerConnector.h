@@ -10,7 +10,6 @@
 #include <QByteArray>
 
 #include "CartaLib/IPercentileCalculator.h"
-#include "CartaLib/LinearMap.h"
 
 #include "core/IConnector.h"
 #include "core/CallbackList.h"
