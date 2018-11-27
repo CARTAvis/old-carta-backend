@@ -444,10 +444,6 @@ void SessionDispatcher::setState(const QString& path, const QString & newValue) 
 
 }
 
-QString SessionDispatcher::getState(const QString & path) {
-    return "";
-}
-
 QString SessionDispatcher::getStateLocation(const QString& saveName) const {
     return "";
 }

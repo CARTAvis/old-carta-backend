@@ -35,13 +35,6 @@ void NewServerConnector::setState(const QString& path, const QString & newValue)
 {
 }
 
-
-QString NewServerConnector::getState(const QString & path  )
-{
-    return m_state[ path ];
-}
-
-
 /// Return the location where the state is saved.
 QString NewServerConnector::getStateLocation( const QString& saveName ) const {
 	// \todo Generalize this.

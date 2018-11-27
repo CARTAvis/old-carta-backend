@@ -61,9 +61,6 @@ public:
     /// set state to a new value
     virtual void setState( const QString & path,  const QString & value) = 0;
 
-    /// read state
-    virtual QString getState( const QString & path) = 0;
-
     /// add a callback for a command
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) = 0;
 

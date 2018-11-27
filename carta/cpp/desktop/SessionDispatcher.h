@@ -36,7 +36,6 @@ public:
     virtual CallbackID addStateCallback(CSR path, const StateChangedCallback &cb) override;
 
     virtual void setState(const QString& state, const QString & newValue) override;
-    virtual QString getState(const QString&) override;
     virtual void removeStateCallback( const CallbackID & id) override;
     virtual Carta::Lib::IRemoteVGView * makeRemoteVGView( QString viewName) override;
     virtual QString getStateLocation( const QString& saveName ) const override;

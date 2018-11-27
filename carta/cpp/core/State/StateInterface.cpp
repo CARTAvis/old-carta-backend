@@ -163,8 +163,7 @@ StateInterface::fetchStateImpl ()
 {
     // Put in appropriate PW state accessor to read the state
     IConnector * connector = Globals::instance()->connector();
-    QString state = connector->getState( impl_p->path_p );
-    return state;
+    return "";
 }
 
 void
