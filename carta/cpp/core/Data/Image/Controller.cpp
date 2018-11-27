@@ -7,7 +7,6 @@
 #include "Data/DataLoader.h"
 #include "Data/Error/ErrorManager.h"
 #include "Data/Util.h"
-#include "ImageView.h"
 #include "CartaLib/IImage.h"
 #include "Globals.h"
 

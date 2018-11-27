@@ -24,7 +24,6 @@ HEADERS += \
     State/ObjectManager.h \
     State/StateInterface.h \
     State/UtilState.h \
-    ImageView.h \
     Data/DataLoader.h \
     Data/Error/ErrorReport.h \
     Data/Error/ErrorManager.h \
@@ -54,7 +53,6 @@ SOURCES += \
     State/ObjectManager.cpp\
     State/StateInterface.cpp \
     State/UtilState.cpp \
-    ImageView.cpp \
     Data/Image/Controller.cpp \
     Data/Image/DataFactory.cpp \
     Data/Image/LayerData.cpp \
