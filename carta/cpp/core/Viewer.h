@@ -8,12 +8,10 @@
 #include <memory>
 #include <rapidjson/document.h>
 
-//class ScriptedCommandListener;
 namespace Carta {
 namespace Data {
 class ViewManager;
 }
-
 }
 
 ///
@@ -51,14 +49,9 @@ protected slots:
 
 protected:
 
-    /// pointer to scripted command listener
-    /// @todo make it unique ptr for auto-delete niceness
-//    ScriptedCommandListener * m_scl = nullptr;
-
 private:
 
     bool m_devView;
-
 
 };
 
