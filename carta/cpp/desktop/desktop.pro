@@ -17,14 +17,6 @@ SOURCES += \
     NewServerConnector.cpp \
     SessionDispatcher.cpp
 
-HEADERS += \
-    websockettransport.h \
-    websocketclientwrapper.h
-
-SOURCES += \
-    websockettransport.cpp \
-    websocketclientwrapper.cpp
-
 INCLUDEPATH += ../../../ThirdParty/rapidjson/include
 INCLUDEPATH += ../core
 

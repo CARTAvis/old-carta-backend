@@ -15,9 +15,6 @@
 #include <QStringList>
 
 #include <thread>
-//#include "websocketclientwrapper.h"
-//#include "websockettransport.h"
-//#include "qwebchannel.h"
 #include <QBuffer>
 #include <QThread>
 #include <QUuid>
