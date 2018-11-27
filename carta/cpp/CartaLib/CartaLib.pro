@@ -62,7 +62,6 @@ SOURCES += \
     Regions/IRegion.cpp \
     InputEvents.cpp \
     Regions/ICoordSystem.cpp \
-    Hooks/CoordSystemHook.cpp \
     Regions/CoordinateSystemFormatter.cpp \
     Regions/Ellipse.cpp \
     Regions/Point.cpp \
@@ -96,7 +95,6 @@ HEADERS += \
     Regions/IRegion.h \
     InputEvents.h \
     Regions/ICoordSystem.h \
-    Hooks/CoordSystemHook.h \
     Regions/CoordinateSystemFormatter.h \
     Hooks/GetPersistentCache.h \
     Regions/Ellipse.h \
