@@ -20,7 +20,6 @@
 
 // File_Info implementation needs
 #include "CartaLib/Hooks/LoadAstroImage.h"
-//#include "CartaLib/Hooks/ImageStatisticsHook.h"
 #include "Globals.h"
 
 namespace Carta {
@@ -131,10 +130,6 @@ private:
     DataLoader( const QString& path, const QString& id);
     DataLoader( const DataLoader& other);
     DataLoader& operator=( const DataLoader& other );
-
-    // Get statistic informtion using ImageStats plugin
-    bool _getStatisticInfo(std::map<QString, QString>& infoMap,
-                         const std::shared_ptr<Carta::Lib::Image::ImageInterface> image);
 
     // Generate customized file information for human readiblity using some fits headers
     bool _genCustomizedInfo(std::map<QString, QString>& infoMap,

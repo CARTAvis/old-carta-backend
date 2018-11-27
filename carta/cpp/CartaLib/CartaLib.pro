@@ -44,7 +44,6 @@ SOURCES += \
     CartaLib.cpp \
     HtmlString.cpp \
     Hooks/ProfileHook.cpp \
-    Hooks/ImageStatisticsHook.cpp \
     Hooks/ProfileResult.cpp \
     IImage.cpp \
     PixelType.cpp \
@@ -56,7 +55,6 @@ SOURCES += \
     IPlotLabelGenerator.cpp \
     Hooks/LoadAstroImage.cpp \
     ProfileInfo.cpp \
-    StatInfo.cpp \
     VectorGraphics/VGList.cpp \
     VectorGraphics/BetterQPainter.cpp \
     IPCache.cpp \
@@ -78,7 +76,6 @@ HEADERS += \
     HtmlString.h \
     Hooks/ProfileHook.h \
     Hooks/HookIDs.h \
-    Hooks/ImageStatisticsHook.h \
     Hooks/ProfileResult.h \
     IPlugin.h \
     IImage.h \
@@ -92,7 +89,6 @@ HEADERS += \
     IPlotLabelGenerator.h \
     Hooks/LoadAstroImage.h \
     ProfileInfo.h \
-    StatInfo.h \
     VectorGraphics/VGList.h \
     Hooks/LoadPlugin.h \
     VectorGraphics/BetterQPainter.h \
