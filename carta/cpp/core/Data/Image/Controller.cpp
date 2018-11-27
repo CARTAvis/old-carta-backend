@@ -73,10 +73,6 @@ QString Controller::_addDataImage(const QString& fileName, bool* success, int fi
     return result;
 }
 
-void Controller::clear(){
-    unregisterView();
-}
-
 QString Controller::closeImage( const QString& id ){
     QString result;
     bool imageClosed = m_stack->_closeData( id );
@@ -162,9 +158,7 @@ void Controller::resetState( const QString& state ) {
 void Controller::resetStateData( const QString& state ) {
 }
 
-Controller::~Controller(){
-    //unregisterView();
-    clear();
+Controller::~Controller() {
 }
 
 }

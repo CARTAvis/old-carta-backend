@@ -1,15 +1,13 @@
 #ifndef ICONNECTOR_H
 #define ICONNECTOR_H
 
-#include "IView.h"
 #include "IPlatform.h"
 
 #include <memory>
 #include <functional>
 #include <cstdint>
 #include <QString>
-//#include <QMouseEvent>
-//#include <QKeyEvent>
+
 #include <google/protobuf/message_lite.h>
 
 namespace Carta {
@@ -58,17 +56,6 @@ public:
     /// callback is executed when connection is established or failed
     /// callback receives a boolean indicating whether connection is valid or not
     virtual void initialize( const InitializeCallback & cb) = 0;
-
-    /// registers a view with the connector
-    virtual void registerView( IView * view) = 0;
-
-    /// asks the connector to schedule a redraw of the view
-    /// \param view which view to refresh
-    /// \return the id for the refresh (always increasing)
-    virtual qint64 refreshView( IView * view) = 0;
-
-    /// unregister a view with the connector
-    virtual void unregisterView( const QString& viewName ) = 0;
 
     // Deprecated, remove the func after removing Hack directory
     /// set state to a new value

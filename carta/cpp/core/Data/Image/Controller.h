@@ -52,11 +52,6 @@ class Controller: public QObject, public Carta::State::CartaObject {
 public:
 
     /**
-     * Clear the view.
-     */
-    void clear();
-
-    /**
      * Add data to this controller.
      * @param fileName the location of the data;
      *        this could represent a url or an absolute path on a local filesystem.

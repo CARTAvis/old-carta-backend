@@ -144,21 +144,6 @@ int64_t CartaObject::addStateCallback( const QString& statePath, const IConnecto
     return conn()-> addStateCallback( statePath, cb );
 }
 
-void CartaObject::registerView( IView * view)
-{
-    conn()-> registerView( view );
-}
-
-void CartaObject::refreshView( IView* view )
-{
-    conn()-> refreshView( view );
-}
-
-void CartaObject::unregisterView()
-{
-    conn()-> unregisterView( m_path +"/view" );
-}
-
 QString CartaObject::getStateLocation( const QString& name ) const
 {
     return conn()-> getStateLocation( name );

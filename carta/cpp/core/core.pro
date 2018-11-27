@@ -13,7 +13,6 @@ HEADERS += \
     IConnector.h \
     IPlatform.h \
     Viewer.h \
-    IView.h \
     MyQApp.h \
     CallbackList.h \
     PluginManager.h \

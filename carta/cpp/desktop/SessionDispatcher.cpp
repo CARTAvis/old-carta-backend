@@ -473,18 +473,6 @@ IConnector::CallbackID SessionDispatcher::addStateCallback (
     return 0;
 }
 
-void SessionDispatcher::registerView(IView * view) {
-
-}
-
-void SessionDispatcher::unregisterView(const QString& viewName) {
-
-}
-
-qint64 SessionDispatcher::refreshView(IView * view) {
-    return 0;
-}
-
 void SessionDispatcher::removeStateCallback(const IConnector::CallbackID & /*id*/) {
     qCritical( "not implemented");
 }

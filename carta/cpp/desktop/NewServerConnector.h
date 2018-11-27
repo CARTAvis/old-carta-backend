@@ -35,12 +35,6 @@
 #include "CartaLib/Proto/close_file.pb.h"
 #include "CartaLib/Proto/animation.pb.h"
 
-class IView;
-
-/// private info we keep with each view
-/// unfortunately it needs to live as it's own class because we need to give it slots...
-//class ViewInfo;
-
 class NewServerConnector : public QObject, public IConnector
 {
     Q_OBJECT
@@ -56,9 +50,6 @@ public:
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) override;
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) override;
     virtual CallbackID addStateCallback(CSR path, const StateChangedCallback &cb) override;
-    virtual void registerView(IView * view) override;
-    void unregisterView( const QString& viewName ) override;
-    virtual qint64 refreshView( IView * view) override;
     virtual void removeStateCallback( const CallbackID & id) override;
     virtual Carta::Lib::IRemoteVGView * makeRemoteVGView( QString viewName) override;
 
@@ -127,14 +118,6 @@ public:
 
     /// IDs for command callbacks
     CallbackID m_callbackNextId;
-
-    /// private info we keep with each view
-    struct ViewInfo;
-
-    /// map of view names to view infos
-    std::map< QString, ViewInfo *> m_views;
-
-    ViewInfo * findViewInfo(const QString &viewName);
 
     IConnector* getConnectorInMap(const QString & sessionID) override;
     void setConnectorInMap(const QString & sessionID, IConnector *connector) override;

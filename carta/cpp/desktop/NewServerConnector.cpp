@@ -15,35 +15,6 @@
 #include <QBuffer>
 #include <QThread>
 
-/// \brief internal class of NewServerConnector, containing extra information we like
-///  to remember with each view
-///
-struct NewServerConnector::ViewInfo
-{
-
-    /// pointer to user supplied IView
-    /// this is a NON-OWNING pointer
-    IView * view;
-
-    /// linear maps convert x,y from client to image coordinates
-//    Carta::Lib::LinearMap1D tx, ty;
-
-    /// refresh timer for this object
-    QTimer refreshTimer;
-
-    /// refresh ID
-    qint64 refreshId = -1;
-
-    ViewInfo( IView * pview )
-    {
-        view = pview;
-        refreshTimer.setSingleShot( true);
-        // just long enough that two successive calls will result in only one redraw :)
-        refreshTimer.setInterval( 1000 / 120);
-    }
-
-};
-
 NewServerConnector::NewServerConnector()
 {
     m_callbackNextId = 0;
@@ -118,53 +89,6 @@ IConnector::CallbackID NewServerConnector::addStateCallback(
 //    return m_stateCallbackList[ path].add( cb);
 }
 
-void NewServerConnector::registerView(IView * view)
-{
-    // let the view know it's registered, and give it access to the connector
-//    view->registration( this);
-
-    // insert this view int our list of views
-    ViewInfo * viewInfo = new ViewInfo( view);
-    m_views[ view-> name()] = viewInfo;
-}
-
-// unregister the view
-void NewServerConnector::unregisterView( const QString& viewName ){
-    ViewInfo* viewInfo = this->findViewInfo( viewName );
-    if ( viewInfo != nullptr ){
-
-        (& viewInfo->refreshTimer)->disconnect();
-        m_views.erase( viewName );
-    }
-}
-
-//    static QTime st;
-
-// schedule a view refresh
-qint64 NewServerConnector::refreshView(IView * view)
-{
-    // find the corresponding view info
-    ViewInfo * viewInfo = findViewInfo( view-> name());
-    if( ! viewInfo) {
-        // this is an internal error...
-        qCritical() << "refreshView cannot find this view: " << view-> name();
-        return -1;
-    }
-
-    // start the timer for this view if it's not already started
-//    if( ! viewInfo-> refreshTimer.isActive()) {
-//        viewInfo-> refreshTimer.start();
-//    }
-//    else {
-//        qDebug() << "########### saved refresh for " << view->name();
-//    }
-
-    // refreshViewNow(view);
-
-    viewInfo-> refreshId ++;
-    return viewInfo-> refreshId;
-}
-
 void NewServerConnector::removeStateCallback(const IConnector::CallbackID & /*id*/)
 {
     qCritical( "not implemented");
@@ -174,17 +98,6 @@ void NewServerConnector::removeStateCallback(const IConnector::CallbackID & /*id
 Carta::Lib::IRemoteVGView * NewServerConnector::makeRemoteVGView(QString viewName)
 {
     return nullptr;
-}
-
-NewServerConnector::ViewInfo * NewServerConnector::findViewInfo( const QString & viewName)
-{
-    auto viewIter = m_views.find( viewName);
-    if( viewIter == m_views.end()) {
-        qWarning() << "NewServerConnector::findViewInfo: Unknown view " << viewName;
-        return nullptr;
-    }
-
-    return viewIter-> second;
 }
 
 IConnector* NewServerConnector::getConnectorInMap(const QString & sessionID){

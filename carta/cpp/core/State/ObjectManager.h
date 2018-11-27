@@ -107,15 +107,6 @@ protected:
 
     int64_t addStateCallback( const QString& statePath, const IConnector::StateChangedCallback &);
 
-    /// asks the connector to schedule a redraw of the view
-    void refreshView( IView * view);
-
-    /// registers a view with the connector
-    void registerView( IView * view);
-
-    /// unregister a view with the connector
-    void unregisterView();
-
     //Return the full location for the state with the given name.
     QString getStateLocation( const QString& name ) const;
 
