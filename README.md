@@ -27,7 +27,7 @@ The CARTA backend development environment should now be ready.
 1. `cd  ~/cartawork/carta-backend`
 2. Set up the protobuffer submodule `git submodule init && git submodule update`
 3. Make the build directory `mkdir build && cd build`
-4. Add qmake to the system path, e.g. `export PATH=/qt/5.9.4/gcc_64/bin:$PATH`
+4. Add qmake to the system path, e.g. `export PATH=/qt/5.9.4/gcc_64/bin:$PATH` (Not necessary if using Dockerfile method).
 5. `qmake NOSERVER=1 CARTA_BUILD_TYPE=dev ../carta -r` (or to suppress all terminal output, use `qmake NOSERVER=1 CARTA_BUILD_TYPE=release ../carta -r`)
 6. `make -j 4`
 
@@ -35,7 +35,7 @@ The CARTA backend should now be ready to run.
 
 ## To run the CARTA backend
 
-To run CARTA in this non-packaged state, we need to manually define some library paths.
+To run CARTA in this non-packaged state, we need to manually define some library paths (Not necessary if using the Dockerfile method).
 
 For Linux:
 
@@ -43,8 +43,9 @@ For Linux:
 `export LD_LIBRARY_PATH=/cartawork/CARTAvis-externals/ThirdParty/protobuf/lib:$LD_LIBRARY_PATH`
 `export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH`
 
-`cd /cpp/desktop/`
-`./CARTA`
+`cd cpp/desktop/`
+
+Run CARTA `./CARTA`
 
 By default, CARTA uses port 3002, this can be changed by specifying the port flag, e.g. `./CARTA --port=4000`
 
