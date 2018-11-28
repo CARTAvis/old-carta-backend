@@ -17,7 +17,7 @@ SOURCES += \
     NewServerConnector.cpp \
     SessionDispatcher.cpp
 
-INCLUDEPATH += ../../../ThirdParty/rapidjson/include
+#INCLUDEPATH += ../../../ThirdParty/rapidjson/include
 INCLUDEPATH += ../core
 
 INCLUDEPATH += ../../../ThirdParty/protobuf/include

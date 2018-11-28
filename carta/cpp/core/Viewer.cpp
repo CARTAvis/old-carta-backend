@@ -28,38 +28,6 @@
 
 #include <QThread>
 
-#include <rapidjson/document.h>
-
-using namespace rapidjson;
-
-// no one use this
-/// Recursively parse through a directory structure contained in a json value
-static QStringList _parseDirectory( const Value& dir, QString prefix )
-{
-    QStringList fileList;
-    for (rapidjson::SizeType i = 0; i < dir.Size(); i++)
-    {
-        const Value& name = dir[i];
-        QString filename = QString::fromStdString(name["name"].GetString());
-        if (name.HasMember("dir")) {
-            const Value& subdir = name["dir"];
-            QStringList subFileList = _parseDirectory( subdir, prefix + "/" + filename );
-            fileList.append( subFileList );
-        }
-        else {
-            if (prefix != "")
-            {
-                filename = prefix + "/" + filename;
-            }
-            fileList.append(filename);
-            //const char *printableName = filename.toLocal8Bit().constData();
-            //printf("%s \n", printableName);
-        }
-    }
-    //return fileList.join(',');
-    return fileList;
-}
-
 Viewer::Viewer() :
     QObject( nullptr ),
     m_viewManager( nullptr)
@@ -112,6 +80,3 @@ void Viewer::DBClose() {
 void Viewer::setDeveloperView( ){
     m_devView = true;
 }
-
-
-

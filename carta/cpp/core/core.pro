@@ -76,7 +76,7 @@ SOURCES += \
 #PRECOMPILED_HEADER = stable.h
 #QMAKE_CXXFLAGS += -H
 
-INCLUDEPATH += $$absolute_path(../../../ThirdParty/rapidjson/include)
+#INCLUDEPATH += $$absolute_path(../../../ThirdParty/rapidjson/include)
 
 #INCLUDEPATH += ../../../ThirdParty/qwt/include
 #LIBS += -L../../../ThirdParty/qwt/lib -lqwt

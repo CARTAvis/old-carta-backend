@@ -6,7 +6,6 @@
 
 #include <QObject>
 #include <memory>
-#include <rapidjson/document.h>
 
 namespace Carta {
 namespace Data {

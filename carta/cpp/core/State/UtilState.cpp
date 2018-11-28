@@ -1,5 +1,4 @@
 #include "UtilState.h"
-#include "StateInterface.h"
 #include <QDebug>
 
 namespace Carta {
