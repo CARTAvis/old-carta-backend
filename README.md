@@ -9,7 +9,7 @@ The easiest way to run CARTA (with a backend and frontend) is through our packag
 ### Dockerfile
 The easiest way to prepare a development environment that can build and run the CARTA backend is to use one of our Dockerfiles at this repository: https://github.com/CARTAvis/carta-backend-docker-env
 
-## OR
+**OR**
 
 ### Manually
 Here are step by step instructions if you wish to prepare a CARTA backend development environment natively on your Mac or Linux system:
@@ -18,11 +18,11 @@ Here are step by step instructions if you wish to prepare a CARTA backend develo
 2. Clone the carta-backend repository `git clone https://github.com/CARTAvis/carta-backend.git`
 2. Install the required 3rd party packages. This process is automated through a script supporting CentOS, Ubuntu, and Mac. Run it from outside the carta-backend directory. `sudo ./carta-backend/carta/scripts/install3party.sh` It will create a `~/cartawork/CARTAvis-external/Thirdparty` directory. Note it requires sudo privalege.
 3. Install casacore and code. This process is also automated with a script and requires sudo privalege `sudo ./carta-backend/carta/scripts/buildcasa.sh`
-4. Download Qt [here] (https://download.qt.io/archive/qt/) and install using the GUI installer. Any version starting from 5.7 is acceptable as that is when QtWebEngine was included as standard. Ensure that you select the QtWebEngine module in order to install it.
+4. Download Qt [here](https://download.qt.io/archive/qt/) and install using the GUI installer. Any version starting from 5.7 is acceptable as that is when QtWebEngine was included as standard. Ensure that you select the QtWebEngine module in order to install it.
 
 The CARTA backend development environment should now be ready.
 
-## To build CARTA backend
+## To build the CARTA backend
 
 1. `cd  ~/cartawork/carta-backend`
 2. Set up the protobuffer submodule `git submodule init && git submodule update`
@@ -35,7 +35,10 @@ The CARTA backend should now be ready to run.
 
 ## To run the CARTA backend
 
-To run CARTA in this non-packaged state, we need to manually define some library paths:
+To run CARTA in this non-packaged state, we need to manually define some library paths.
+
+For Linux:
+
 `export LD_LIBRARY_PATH=/cartawork/CARTAvis-externals/ThirdParty/casacore/lib:$LD_LIBRARY_PATH`
 `export LD_LIBRARY_PATH=/cartawork/CARTAvis-externals/ThirdParty/protobuf/lib:$LD_LIBRARY_PATH`
 `export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH`
@@ -74,11 +77,11 @@ Explanation of the branches
 =======
 `master`: Mainstream branch, no development.
 
-`develop`: Development branch, Usually we will merge a feature branch to it and include hot fixes for those features. For each phase of release, we wil merge `develop` to `master`.  
+`develop`: Development branch. Usually we will merge a feature branch to it and include hot fixes for those features. For each phase of release, we wil merge `develop` to `master`.  
 
-`feature branchs`: People develop each feature in a branch whose name can be `peter/drawImage`, or `issue-131` if we use tickets. When it is finished, use `pull request` to proceed code review and then merge to develop. After merging, evaluate those added features on `develop`.
+`feature branches`: People develop each feature in a branch whose name can be `peter/drawImage`, or `issue-131` if we use tickets. When it is finished, use `pull request` to proceed code review and then merge to develop. After merging, evaluate those added features on `develop`.
 
-`Fix Bug`: Except some special cases, such as modifying documents, changing build scripts, low/no-risk fixes, otherwise you need to commit your bug fixes in Hotfix branch or the original feature branch, then make a pull request to do code review.
+`Fix Bug`: Except for some special cases, such as modifying documents, changing build scripts, or low/no-risk fixes, you will need to commit your bug fixes in Hotfix branch or the original feature branch, then make a pull request to do code review.
 
 Supported systems
 =======
@@ -113,7 +116,10 @@ CARTA can be built by Qt 5.7 or greater as it includes QtWebEngine
 
 ## CI/CD
 Note: These CI scripts require updating
-CirclCI (docker): https://circleci.com/gh/CARTAvis/carta
+
+CircleCI (docker): https://circleci.com/gh/CARTAvis/carta
+
 Travis CI (Mac): https://travis-ci.org/CARTAvis/carta/.
+
 Mac auto build repo: https://goo.gl/3pRsjs.
 
