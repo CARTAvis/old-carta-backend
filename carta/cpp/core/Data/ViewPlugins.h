@@ -21,10 +21,6 @@ public:
 
 private:
 
-    void _initializeDefaultState();
-    void _insertPlugin( int ind, const QString& name, const QString& description,
-                        const QString& type, const QString& version, const QString& errors );
-
     static bool m_registered;
     ViewPlugins( const QString& path, const QString& id );
 

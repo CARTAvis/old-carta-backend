@@ -39,19 +39,6 @@ bool ViewPlugins::m_registered =
 
 ViewPlugins::ViewPlugins( const QString& path, const QString& id):
     CartaObject( CLASS_NAME, path, id ){
-    _initializeDefaultState();
-}
-
-void ViewPlugins::_insertPlugin( int ind, const QString& name, const QString& description,
-        const QString& type, const QString& version, const QString& errors ){
-    QString index = QString("%1").arg(ind);
-    QString arrayIndex = UtilState::getLookup(PLUGINS, index);
-}
-
-void ViewPlugins::_initializeDefaultState(){
-    int ind = 0;
-    _insertPlugin( ind, Controller::PLUGIN_NAME, "Image Display", "", "", "");
-    ind++;
 }
 
 ViewPlugins::~ViewPlugins(){

@@ -12,14 +12,6 @@ UtilState::UtilState( ) {
 
 }
 
-QString UtilState::getLookup( const QString& arrayName, int index ){
-    return arrayName + StateInterface::DELIMITER + QString::number( index );
-}
-
-QString UtilState::getLookup( const QString& baseName, const QString& subName ){
-    return baseName + StateInterface::DELIMITER + subName;
-}
-
 std::map < QString, QString >
 UtilState::parseParamMap( const QString & paramsToParse, const std::set < QString > & keyList )
 {

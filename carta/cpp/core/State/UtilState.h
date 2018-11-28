@@ -17,22 +17,6 @@ class UtilState {
 
 public:
 
-    /**
-      * Return the lookup key for an array element with a given name and index.
-      * @param arrayName - the name of a state array.
-      * @param index - the array index.
-      * @return the lookup key for the array element.
-      */
-     static QString getLookup( const QString& arrayName, int index );
-
-     /**
-      * Return the lookup key for a child element based on a parent name.
-      * @param baseName - a lookup for a parent element.
-      * @param subName - an identifier for a child of the parent element.
-      * @return the lookup key for the child element.
-      */
-     static QString getLookup( const QString& baseName, const QString& subName );
-
      /**
       * Parses a string of the form:  key1:value1,key2:value2,etc for
       * keys contained in the QList and returns a map of key value pairs.

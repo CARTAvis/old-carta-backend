@@ -222,16 +222,6 @@ public:
      */
     CartaObject * getObject (const QString & id);
 
-    /**
-     * Returns a string containing the state of all managed objects as JSON array of strings.
-     * @param sessionId - an identifier for a user's session.
-     * @param snapName - the name of the snapshot.
-     * @param type - the type of state needed.
-     * @return a QString containing the entire state of managed objects.
-     */
-    QString getStateString( const QString& sessionId, const QString& snapName, CartaObject::SnapshotType type ) const;
-
-
     void initialize();
 
     void printObjects();

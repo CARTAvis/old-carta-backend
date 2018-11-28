@@ -151,28 +151,6 @@ QString ObjectManager::getRoot() const {
     return m_root;
 }
 
-QString ObjectManager::getStateString( const QString& sessionId, const QString& rootName, CartaObject::SnapshotType type ) const {
-    StateInterface state( rootName );
-    int stateCount = m_objects.size();
-    state.insertArray( STATE_ARRAY, stateCount );
-    int arrayIndex = 0;
-    //Create an array of object with each object having an id and state.
-    for(map<QString,ObjectRegistryEntry>::const_iterator it = m_objects.begin(); it != m_objects.end(); ++it) {
-        CartaObject* obj = it->second.getObject();
-        QString objState = obj->getStateString( sessionId, type );
-        if ( !objState.isEmpty() && objState.trimmed().length() > 0){
-           QString lookup = UtilState::getLookup(STATE_ARRAY, arrayIndex );
-           state.setObject( lookup, objState );
-           arrayIndex++;
-        }
-    }
-    //Because some of the objects may not support a snapshot of type,
-    //the original array that was created may be too large.  We resize
-    //it according to actual contents.
-    state.resizeArray( STATE_ARRAY, arrayIndex, StateInterface::PreserveAll );
-    return state.toString();
-}
-
 QString ObjectManager::parseId( const QString& path ) const {
     QString basePath = m_sep + m_root + m_sep;
     int rootIndex = path.indexOf( basePath );

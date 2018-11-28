@@ -54,8 +54,6 @@ private:
 
     QString _addDataImage(const QString& fileName, bool* success , int fileId);
 
-    void _gridChanged( const Carta::State::StateInterface& state, bool applyAll);
-
     QString _reorderImages( const std::vector<int> & indices );
 
     /**

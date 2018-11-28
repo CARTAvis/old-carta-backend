@@ -38,7 +38,6 @@ const QString Controller::CLASS_NAME = "Controller";
 bool Controller::m_registered = Carta::State::ObjectManager::objectManager()->registerClass (CLASS_NAME, new Controller::Factory());
 
 using Carta::State::UtilState;
-using Carta::State::StateInterface;
 using Carta::Lib::AxisInfo;
 
 Controller::Controller( const QString& path, const QString& id ) :
