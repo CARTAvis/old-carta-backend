@@ -45,11 +45,6 @@ QString ErrorManager::_commandGetErrors( const QString& /*params*/ ){
             errors.append( ERROR_SEPARATOR );
         }
     }
-    bool existingErrors = m_state.getValue<bool>( ERRORS_EXIST );
-    if ( existingErrors ){
-        m_state.setValue<bool>( ERRORS_EXIST, false );
-        m_state.flushState();
-    }
     return errors;
 }
 
@@ -62,8 +57,6 @@ void ErrorManager::_initializeCallbacks(){
 }
 
 void ErrorManager::_initializeState(){
-    m_state.insertValue<bool>( ERRORS_EXIST, false);
-    m_state.flushState();
 }
 
 void ErrorManager::registerInformation( const QString& informMsg ){
@@ -101,16 +94,6 @@ void ErrorManager::_addReport( const QString& msg, ErrorSeverity sev){
     cleanedMsg.replace(ERROR_SEPARATOR, ' ');
     ErrorReport* errorReport = new ErrorReport( cleanedMsg, sev );
     bool errorAdded = _addReport( errorReport );
-    if ( errorAdded ){
-        bool existingErrors = m_state.getValue<bool>( ERRORS_EXIST );
-        if ( !existingErrors ){
-            m_state.setValue<bool>(ERRORS_EXIST, true  );
-        }
-        m_state.flushState();
-    }
-    else {
-        delete errorReport;
-    }
 }
 
 ErrorManager::~ErrorManager() {

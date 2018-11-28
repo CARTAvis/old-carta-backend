@@ -79,8 +79,7 @@ int Stack::_getIndexCurrent( ) const {
 }
 
 QString Stack::getStateString() const{
-    QString result = m_state.toString();
-    return result;
+    return "";
 }
 
 void Stack::_setFileId(int fileId) {

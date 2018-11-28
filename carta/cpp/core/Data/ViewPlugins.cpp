@@ -46,20 +46,12 @@ void ViewPlugins::_insertPlugin( int ind, const QString& name, const QString& de
         const QString& type, const QString& version, const QString& errors ){
     QString index = QString("%1").arg(ind);
     QString arrayIndex = UtilState::getLookup(PLUGINS, index);
-    m_state.insertValue<QString>( UtilState::getLookup( arrayIndex, Util::NAME), name);
-    m_state.insertValue<QString>( UtilState::getLookup( arrayIndex, DESCRIPTION), description);
-    m_state.insertValue<QString>( UtilState::getLookup( arrayIndex, Util::TYPE), type);
-    m_state.insertValue<QString>( UtilState::getLookup(arrayIndex, VERSION), version);
-    m_state.insertValue<QString>( UtilState::getLookup(arrayIndex, ERRORS), errors);
 }
 
 void ViewPlugins::_initializeDefaultState(){
-    m_state.insertArray( PLUGINS, 8 );
     int ind = 0;
     _insertPlugin( ind, Controller::PLUGIN_NAME, "Image Display", "", "", "");
     ind++;
-    m_state.insertValue<int>( STAMP, ind);
-    m_state.flushState();
 }
 
 ViewPlugins::~ViewPlugins(){
