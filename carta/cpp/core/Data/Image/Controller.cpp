@@ -149,9 +149,6 @@ QString Controller::getSnapType(CartaObject::SnapshotType snapType) const {
     return objType;
 }
 
-void Controller::resetState( const QString& state ) {
-}
-
 void Controller::resetStateData( const QString& state ) {
 }
 

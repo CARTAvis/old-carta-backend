@@ -50,23 +50,11 @@ public:
     QString getPath () const;
 
     /**
-     * Reset the state of this object.
-     * @param state a QString representing a new state for this object.
-     */
-    void resetState( const QString& state, SnapshotType type );
-
-    /**
      * Reset the data state of this object.
      * @param state a QString representing the data state of the object.
      */
     //By default; does nothing.  Override for objects containing a data state.
     virtual void resetStateData( const QString& state );
-
-    /**
-     * Reset the user preferences for this object.
-     * @param state - the user preferences for the object.
-     */
-    virtual void resetState( const QString& state );
 
     /**
      * Return the index of the object (withen its type).

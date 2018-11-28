@@ -164,12 +164,6 @@ public:
     virtual QString getStateString( const QString& sessionId, SnapshotType type ) const Q_DECL_OVERRIDE;
 
     /**
-     * Restore the state from a string representation.
-     * @param state- a json representation of state.
-     */
-    void resetState( const QString& state ) Q_DECL_OVERRIDE;
-
-    /**
      * Reset the images that are loaded and other data associated state.
      * @param state - the data state.
      */

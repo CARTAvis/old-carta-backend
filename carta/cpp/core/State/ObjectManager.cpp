@@ -68,6 +68,7 @@ CartaObject::CartaObject (const QString & className,
     }
 
 int CartaObject::getIndex() const {
+    qDebug() << "******************************************* getIndex:" << m_state.getValue<int>(StateInterface::INDEX);
     return m_state.getValue<int>(StateInterface::INDEX);
 }
 
@@ -80,34 +81,13 @@ QString CartaObject::getType() const {
 }
 
 void CartaObject::setIndex( int index ){
+    qDebug() << "******************************************* setIndex:" << index;
     CARTA_ASSERT( index >= 0 );
-    int oldIndex = m_state.getValue<int>( StateInterface::INDEX );
+    int oldIndex = m_state.getValue<int>(StateInterface::INDEX);
     if ( oldIndex != index ){
-        m_state.setValue<int>(StateInterface::INDEX, index );
+        m_state.setValue<int>(StateInterface::INDEX, index);
         m_state.flushState();
     }
-}
-
-void CartaObject::resetState( const QString& state, SnapshotType type ){
-    //Make sure the index does not get overwritten, if we are doing
-    //a global restore.
-
-    if ( type == SNAPSHOT_DATA){
-        resetStateData( state );
-    }
-    else if ( type == SNAPSHOT_PREFERENCES ){
-        int index = getIndex();
-        resetState( state );
-        setIndex( index );
-    }
-    else {
-        qDebug() << "Unsupport resetState type="<<type;
-    }
-}
-
-void CartaObject::resetState( const QString& state ){
-    m_state.setState( state );
-    m_state.flushState();
 }
 
 void CartaObject::resetStateData( const QString& /*state*/ ){
