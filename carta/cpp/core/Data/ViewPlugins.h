@@ -6,7 +6,6 @@
 #pragma once
 
 #include "State/ObjectManager.h"
-#include "State/StateInterface.h"
 
 namespace Carta {
 

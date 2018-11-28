@@ -2,7 +2,6 @@
 #include "Data/Image/DataSource.h"
 #include "Data/Util.h"
 #include "State/UtilState.h"
-#include "State/StateInterface.h"
 #include "Globals.h"
 
 #include <QDebug>

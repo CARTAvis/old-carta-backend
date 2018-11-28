@@ -21,7 +21,6 @@ HEADERS += \
     CmdLine.h \
     MainConfig.h \
     State/ObjectManager.h \
-    State/StateInterface.h \
     State/UtilState.h \
     Data/DataLoader.h \
     Data/Error/ErrorReport.h \
@@ -50,7 +49,6 @@ SOURCES += \
     CmdLine.cpp \
     MainConfig.cpp \
     State/ObjectManager.cpp\
-    State/StateInterface.cpp \
     State/UtilState.cpp \
     Data/Image/Controller.cpp \
     Data/Image/DataFactory.cpp \

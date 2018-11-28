@@ -5,7 +5,6 @@
 #pragma once
 #include "Layer.h"
 #include "State/ObjectManager.h"
-#include "State/StateInterface.h"
 #include "CartaLib/IImage.h"
 #include "CartaLib/AxisInfo.h"
 #include "CartaLib/AxisLabelInfo.h"

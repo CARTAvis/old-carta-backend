@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <State/StateInterface.h>
 #include <State/ObjectManager.h>
 #include "CartaLib/CartaLib.h"
 #include "CartaLib/AxisInfo.h"

@@ -10,7 +10,6 @@
 #include <map>
 #include <QString>
 #include <QTextStream>
-#include "StateInterface.h"
 #include "../IConnector.h"
 #include <QMutex>
 

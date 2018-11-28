@@ -23,7 +23,6 @@ namespace MainConfig { class ParsedInfo; }
 
 class Globals {
 
-    friend class StateInterface;
     friend class ImageView;
     friend class ObjectManager;
     friend class CartaObject;

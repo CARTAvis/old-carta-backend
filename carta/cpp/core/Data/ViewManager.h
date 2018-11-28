@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include "State/StateInterface.h"
 #include "State/ObjectManager.h"
 #include <QVector>
 #include <QObject>
