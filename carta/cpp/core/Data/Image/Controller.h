@@ -164,11 +164,6 @@ public:
     virtual QString getStateString( const QString& sessionId, SnapshotType type ) const Q_DECL_OVERRIDE;
 
     /**
-     * Force a state refresh.
-     */
-    virtual void refreshState() Q_DECL_OVERRIDE;
-
-    /**
      * Restore the state from a string representation.
      * @param state- a json representation of state.
      */

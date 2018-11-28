@@ -67,10 +67,6 @@ CartaObject::CartaObject (const QString & className,
   m_path (path){
     }
 
-void CartaObject::refreshState(){
-    m_state.refreshState();
-}
-
 int CartaObject::getIndex() const {
     return m_state.getValue<int>(StateInterface::INDEX);
 }

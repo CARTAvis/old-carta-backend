@@ -49,8 +49,6 @@ public:
     QString getId () const;
     QString getPath () const;
 
-    virtual void refreshState();
-
     /**
      * Reset the state of this object.
      * @param state a QString representing a new state for this object.
