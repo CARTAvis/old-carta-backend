@@ -460,12 +460,6 @@ IConnector::CallbackID SessionDispatcher::addMessageCallback (
     return 0;
 }
 
-IConnector::CallbackID SessionDispatcher::addStateCallback (
-        IConnector::CSR path,
-        const IConnector::StateChangedCallback & cb) {
-    return 0;
-}
-
 void SessionDispatcher::removeStateCallback(const IConnector::CallbackID & /*id*/) {
     qCritical( "not implemented");
 }

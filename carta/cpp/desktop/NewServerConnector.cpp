@@ -57,36 +57,10 @@ IConnector::CallbackID NewServerConnector::addMessageCallback(
     return m_callbackNextId++;
 }
 
-IConnector::CallbackID NewServerConnector::addStateCallback(
-        IConnector::CSR path,
-        const IConnector::StateChangedCallback & cb)
-{
-    // find the list of callbacks for this path
-    auto iter = m_stateCallbackList.find( path);
-
-    // if it does not exist, create it
-    if( iter == m_stateCallbackList.end()) {
-//        qDebug() << "Creating callback list for variable " << path;
-        auto res = m_stateCallbackList.insert( std::make_pair(path, new StateCBList));
-        iter = res.first;
-    }
-
-//    iter = m_stateCallbackList.find( path);
-//    if( iter == m_stateCallbackList.end()) {
-////        qDebug() << "What the hell";
-//    }
-
-    // add the calllback
-    return iter-> second-> add( cb);
-
-//    return m_stateCallbackList[ path].add( cb);
-}
-
 void NewServerConnector::removeStateCallback(const IConnector::CallbackID & /*id*/)
 {
     qCritical( "not implemented");
 }
-
 
 Carta::Lib::IRemoteVGView * NewServerConnector::makeRemoteVGView(QString viewName)
 {

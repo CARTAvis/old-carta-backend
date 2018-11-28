@@ -139,11 +139,6 @@ CartaObject::addMessageCallback (const QString & messageType, IConnector::Messag
     // conn() -> addMessageCallback( messageType, callback);
 }
 
-int64_t CartaObject::addStateCallback( const QString& statePath, const IConnector::StateChangedCallback & cb)
-{
-    return conn()-> addStateCallback( statePath, cb );
-}
-
 QString CartaObject::getStateLocation( const QString& name ) const
 {
     return conn()-> getStateLocation( name );

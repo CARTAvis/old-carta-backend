@@ -67,9 +67,6 @@ public:
     /// similar to addCommandCallback, different callback function definition
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) = 0;
 
-    /// add a callback for a state change event
-    virtual CallbackID addStateCallback( CSR path, const StateChangedCallback & cb) = 0;
-
     /// add a callback for a tree change
 
     /// remove a callback for a state change event
