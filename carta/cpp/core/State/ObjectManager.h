@@ -266,14 +266,6 @@ public:
     bool registerClass (const QString & className, CartaObjectFactory * factory);
 
     /**
-     * Restore a snapshot of the application state.
-     * @param stateStr - a string representation of the state to restore.
-     * @param snapType - the type of application state to restore.
-     * @return true if the state was successfully restored; false otherwise.
-     */
-    bool restoreSnapshot(const QString stateStr, CartaObject::SnapshotType snapType ) const;
-
-    /**
      * Returns the singleton instance of the object manager.
      * @return a pointer to the object manager.
      */

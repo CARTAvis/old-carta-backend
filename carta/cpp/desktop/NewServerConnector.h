@@ -111,9 +111,6 @@ public:
     // list of callbacks
     typedef CallbackList<CSR, CSR> StateCBList;
 
-    /// for each state we maintain a list of callbacks
-    std::map<QString, StateCBList *> m_stateCallbackList;
-
     /// IDs for command callbacks
     CallbackID m_callbackNextId;
 

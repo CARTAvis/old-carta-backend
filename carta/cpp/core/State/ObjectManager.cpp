@@ -19,10 +19,7 @@ namespace Carta {
 
 namespace State {
 
-QList<QString> CartaObjectFactory::globalIds = {"ChannelUnits",
-        "ErrorManager",
-        "GenerateModes"
-         };
+QList<QString> CartaObjectFactory::globalIds = {"ChannelUnits", "ErrorManager", "GenerateModes"};
 
 //grimmer:
 //  become non-singleton:Layout", "ViewManager", "DataLoader"
@@ -41,8 +38,6 @@ QString CartaObject::addIdToCommand (const QString & command) const {
 QString CartaObject::getStateString( const QString& /*sessionId*/, SnapshotType /*type*/ ) const {
     return "";
 }
-
-
 
 QString
 CartaObject::getClassName () const
@@ -189,55 +184,6 @@ QString ObjectManager::getRoot() const {
     return m_root;
 }
 
-bool ObjectManager::restoreSnapshot(const QString stateStr, CartaObject::SnapshotType snapType ) const {
-    bool stateRestored = false;
-    if ( !stateStr.isEmpty() && stateStr.length() > 0 ){
-        StateInterface state("");
-        state.setState( stateStr );
-        int stateCount = state.getArraySize( STATE_ARRAY );
-        for(map<QString,ObjectRegistryEntry>::const_iterator it = m_objects.begin(); it != m_objects.end(); ++it) {
-            CartaObject* obj = it->second.getObject();
-            //Try to assign by index and matching type.  Note:  May want to remove the assigning by id.
-            int targetIndex = obj->getIndex();
-            QString targetType = obj->getSnapType( snapType );
-            bool restored = false;
-            for ( int j = 0; j < stateCount; j++ ){
-                QString stateLookup = UtilState::getLookup( STATE_ARRAY, j );
-                int objIndex = state.getValue<int>( UtilState::getLookup(stateLookup, StateInterface::INDEX ) );
-                QString objType = state.getValue<QString>( UtilState::getLookup(stateLookup, StateInterface::OBJECT_TYPE ));
-                if ( objType == targetType && objIndex == targetIndex ){
-                    restored = true;
-                    QString stateVal = state.toString( stateLookup );
-                    obj->resetState( stateVal, snapType );
-                    break;
-                }
-            }
-
-            if ( !restored ){
-                //We lower our standard and just use the first object with matching type, assuming
-                //we can find one.
-                for ( int j = 0; j < stateCount; j++ ){
-                    QString stateLookup = UtilState::getLookup( STATE_ARRAY, j );
-                    QString typeLookup = UtilState::getLookup(stateLookup,StateInterface::OBJECT_TYPE);
-                    QString objType = state.getValue<QString>( typeLookup );
-                    if ( objType == targetType ){
-                        restored = true;
-                        QString stateVal = state.toString( stateLookup );
-                        obj->resetState( stateVal, snapType );
-                        break;
-                    }
-                }
-            }
-            if ( !restored ){
-                //qDebug() << "Unable to restore "<<targetType<<" snapType="<<snapType;
-            }
-        }
-        stateRestored = true;
-    }
-    return stateRestored;
-}
-
-
 QString ObjectManager::getStateString( const QString& sessionId, const QString& rootName, CartaObject::SnapshotType type ) const {
     StateInterface state( rootName );
     int stateCount = m_objects.size();
@@ -259,7 +205,6 @@ QString ObjectManager::getStateString( const QString& sessionId, const QString& 
     state.resizeArray( STATE_ARRAY, arrayIndex, StateInterface::PreserveAll );
     return state.toString();
 }
-
 
 QString ObjectManager::parseId( const QString& path ) const {
     QString basePath = m_sep + m_root + m_sep;
@@ -294,8 +239,6 @@ ObjectManager::destroyObject (const QString & id)
     delete object;
     return "";
 }
-
-
 
 CartaObject *
 ObjectManager::getObject (const QString & id)
