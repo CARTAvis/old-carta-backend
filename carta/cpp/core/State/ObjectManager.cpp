@@ -61,15 +61,9 @@ CartaObject::CartaObject (const QString & className,
                           const QString & path,
                           const QString & id)
 :
-  m_state( path, className ),
   m_className (className),
   m_id (id),
-  m_path (path){
-    }
-
-int CartaObject::getIndex() const {
-    qDebug() << "******************************************* getIndex:" << m_state.getValue<int>(StateInterface::INDEX);
-    return m_state.getValue<int>(StateInterface::INDEX);
+  m_path (path) {
 }
 
 QString CartaObject::getSnapType(CartaObject::SnapshotType /*snapType*/) const {
@@ -81,12 +75,9 @@ QString CartaObject::getType() const {
 }
 
 void CartaObject::setIndex( int index ){
-    qDebug() << "******************************************* setIndex:" << index;
     CARTA_ASSERT( index >= 0 );
-    int oldIndex = m_state.getValue<int>(StateInterface::INDEX);
-    if ( oldIndex != index ){
-        m_state.setValue<int>(StateInterface::INDEX, index);
-        m_state.flushState();
+    if (m_index != index) {
+        m_index = index;
     }
 }
 
@@ -229,18 +220,6 @@ ObjectManager::getObject (const QString & id)
     }
 
     return result;
-}
-
-CartaObject* ObjectManager::getObject( int index, const QString & typeStr ){
-    CartaObject* target = nullptr;
-    for( ObjectRegistry::iterator i = m_objects.begin(); i != m_objects.end(); ++i){
-        CartaObject* obj = i->second.getObject();
-        if ( obj->getIndex() == index && typeStr == obj->getSnapType()){
-            target = obj;
-            break;
-        }
-    }
-    return target;
 }
 
 void

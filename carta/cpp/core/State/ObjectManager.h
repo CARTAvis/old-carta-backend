@@ -57,12 +57,6 @@ public:
     virtual void resetStateData( const QString& state );
 
     /**
-     * Return the index of the object (withen its type).
-     * @return index the index of the object.
-     */
-    int getIndex() const;
-
-    /**
      * Set the index of the object.
      * @param index - the index of the object withen its type.
      */
@@ -120,13 +114,13 @@ protected:
     static IConnector * conn();
 
 protected:
-    StateInterface m_state;
 
 private:
 
     QString m_className;
     QString m_id;
     QString m_path;
+    int m_index = 0;
 
     static const char CommandDelimiter = ':';
 
@@ -227,14 +221,6 @@ public:
      * @return the corresponding CartaObject or a nullptr if none exists.
      */
     CartaObject * getObject (const QString & id);
-
-    /**
-     * Return the object of the given type an index if one exists; otherwise return a nullptr.
-     * @param index - the index of the object withen its type.
-     * @param typeStr - an identifier for the type of object.
-     * @return the corresponding CartaObject or a nullptr if none exists.
-     */
-    CartaObject* getObject( int index, const QString & typeStr );
 
     /**
      * Returns a string containing the state of all managed objects as JSON array of strings.
