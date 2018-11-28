@@ -112,6 +112,9 @@ CARTA can be built by Qt 5.7 or greater as it includes QtWebEngine
 | CFITSIO (need by casacore) | 3.39 | [link \(NASA license\)](https://heasarc.gsfc.nasa.gov/docs/software/fitsio/c/f_user/node9.html) |
 | GSL (need by casacore) | 2.3 | GPLv3 |
 | flex (need by casacore) | 2.5.37 | [link \(flex license\)](https://raw.githubusercontent.com/westes/flex/master/COPYING) |
+| zfp | | |
+| µWS | | |
+| protobuf | | |
 | Qt | 5.7+ | LGPLv3 |
 | libstdc++ \(Included for CentOS 6\) | 4.8.1+ | [GCC Runtime Exception](https://www.gnu.org/licenses/gcc-exception-3.1-faq.html) |
 
