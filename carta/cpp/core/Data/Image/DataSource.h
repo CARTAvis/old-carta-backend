@@ -48,8 +48,6 @@ class DataSource : public QObject {
 
     friend class LayerData;
     friend class DataFactory;
-    friend class Histogram;
-    friend class Profiler;
     friend class Controller;
     Q_OBJECT
 
@@ -203,7 +201,7 @@ private:
      * @param transformationLabel - a string identifier for the per-frame unit conversion used in the calculation
      * @return - a list of intensity values.
      */
-    std::vector<double> _getIntensity( int frameLow, int frameHigh,
+    std::vector<double> _getMinMaxIntensity( int frameLow, int frameHigh,
             const std::vector<double>& percentiles, int stokeFrame,
             Carta::Lib::IntensityUnitConverter::SharedPtr converter) const;
 
@@ -324,10 +322,6 @@ private:
      * the CENTER of the left-bottom-most pixel is 0.0,0.0.
      */
     QString _getPixelValue( double x, double y, const std::vector<int>& frames ) const;
-
-    std::vector<int> _getStokeIndex( const std::vector<int>& frames ) const;
-
-    std::vector<int> _getChannelIndex( const std::vector<int>& frames ) const;
 
     /**
      * Returns the raw data as an array.

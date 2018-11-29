@@ -318,33 +318,14 @@ void DataSource::_setIntensityCache(double intensity, double error, int frameLow
     }
 }
 
-std::vector<double> DataSource::_getIntensity(int frameLow, int frameHigh,
+std::vector<double> DataSource::_getMinMaxIntensity(int frameLow, int frameHigh,
         const std::vector<double>& percentiles, int stokeFrame,
         Carta::Lib::IntensityUnitConverter::SharedPtr converter) const {
 
     // Pick a calculator
     Carta::Lib::IPercentilesToPixels<double>::SharedPtr calculator = nullptr;
 
-    if (percentiles.size() == 2 && percentiles[0] == 0 && percentiles[1] == 1) {
-        // Special case: always use the min/max algorithm for min and max
-        calculator = std::make_shared<Carta::Core::Algorithms::MinMaxPercentiles<double> >();
-    } else {
-        // Look for the best approximate plugin
-        auto result = Globals::instance()-> pluginManager()-> prepare <Carta::Lib::Hooks::PercentileToPixelHook<double> >(m_image);
-
-        auto lam = [&calculator] ( const Carta::Lib::Hooks::PercentileToPixelHook<double>::ResultType &data ) {
-            if (!calculator || data->error < calculator->error) {
-                calculator = data;
-            }
-        };
-
-        result.forEach( lam );
-
-        if (!calculator) {
-            // No approximate plugin found; use exact algorithm
-            calculator = std::make_shared<Carta::Core::Algorithms::PercentilesToPixels<double> >();
-        }
-    }
+    calculator = std::make_shared<Carta::Core::Algorithms::MinMaxPercentiles<double> >();
 
     qDebug() << "++++++++ Chosen percentile calculator:" << calculator->label;
 
@@ -353,7 +334,6 @@ std::vector<double> DataSource::_getIntensity(int frameLow, int frameHigh,
     size_t foundCount = 0;
 
     QString transformationLabel = converter ? converter->label : "NONE";
-
 
     // If the disk cache exists, try to look up cached intensity values
 
@@ -410,16 +390,9 @@ std::vector<double> DataSource::_getIntensity(int frameLow, int frameHigh,
         // Calculate only the required percentiles
         std::map<double, double> clips_map;
 
-        // Some algorithms need the min and max; we handle this explicitly for now
-        if (calculator->needsMinMax) {
-            // If an approximate algorithm requires min and max, they will always be calculated exactly
-            // Because any approximate values in the cache will not satisfy the error requirement inside this call
-            std::vector<double> minMaxIntensities = _getIntensity(frameLow, frameHigh, std::vector<double>({0, 1}), stokeFrame, converter);
-            calculator->setMinMax(minMaxIntensities);
-        }
-
         // perform the calculation on all of the percentiles
         int spectralIndex = Util::getAxisIndex( m_image, AxisInfo::KnownType::SPECTRAL );
+
         clips_map = calculator->percentile2pixels(doubleView, percentilesToCalculate, spectralIndex, converter, hertzValues);
 
         // add all the calculated values to the cache
@@ -504,7 +477,7 @@ RegionHistogramData DataSource::_getPixels2HistogramData(int fileId, int regionI
     // get the min/max intensities
     double minIntensity = 0.0;
     double maxIntensity = 0.0;
-    std::vector<double> minMaxIntensities = _getIntensity(frameLow, frameHigh, std::vector<double>({0, 1}), stokeFrame, converter);
+    std::vector<double> minMaxIntensities = _getMinMaxIntensity(frameLow, frameHigh, std::vector<double>({0, 1}), stokeFrame, converter);
     if (minMaxIntensities.size() != 2) {
         qCritical() << "[DataSource] Error: can not get the min/max intensities!!";
         return result;
@@ -1181,52 +1154,6 @@ Carta::Lib::NdArray::RawViewInterface* DataSource::_getRawDataForStoke( int fram
         rawData = m_image->getDataSlice( frameSlice );
     }
     return rawData;
-}
-
-std::vector<int> DataSource::_getStokeIndex( const std::vector<int>& frames ) const {
-    std::vector<int> stokeIndex = {-1, -1};
-    if ( m_permuteImage ) {
-        int imageDim =m_permuteImage->dims().size();
-        std::vector<int> indices = _getPermOrder();
-        for ( int i = 0; i < imageDim; i++ ) {
-            if ( i != 0 && i != 1 ) {
-                int frameIndex = 0;
-                int axisIndex = -1;
-                int thisAxis = indices[i];
-                AxisInfo::KnownType type = _getAxisType( thisAxis );
-                if ( type == AxisInfo::KnownType::STOKES ) {
-                    axisIndex = static_cast<int>( type );
-                    frameIndex = frames[axisIndex];
-                    stokeIndex[0] = axisIndex;
-                    stokeIndex[1] = frameIndex;
-                }
-            }
-        }
-    }
-    return stokeIndex;
-}
-
-std::vector<int> DataSource::_getChannelIndex( const std::vector<int>& frames ) const {
-    std::vector<int> channelIndex = {-1, -1};
-    if ( m_permuteImage ) {
-        int imageDim =m_permuteImage->dims().size();
-        std::vector<int> indices = _getPermOrder();
-        for ( int i = 0; i < imageDim; i++ ) {
-            if ( i != 0 && i != 1 ) {
-                int frameIndex = 0;
-                int axisIndex = -1;
-                int thisAxis = indices[i];
-                AxisInfo::KnownType type = _getAxisType( thisAxis );
-                if ( type == AxisInfo::KnownType::SPECTRAL ) {
-                    axisIndex = static_cast<int>( type );
-                    frameIndex = frames[axisIndex];
-                    channelIndex[0] = axisIndex;
-                    channelIndex[1] = frameIndex;
-                }
-            }
-        }
-    }
-    return channelIndex;
 }
 
 std::shared_ptr<Carta::Lib::Image::ImageInterface> DataSource::_getPermutedImage() const {
