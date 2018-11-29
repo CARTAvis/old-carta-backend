@@ -13,43 +13,30 @@ HEADERS += \
     IConnector.h \
     IPlatform.h \
     Viewer.h \
-    IView.h \
     MyQApp.h \
     CallbackList.h \
     PluginManager.h \
     Globals.h \
     Algorithms/Graphs/TopoSort.h \
-    stable.h \
     CmdLine.h \
     MainConfig.h \
     State/ObjectManager.h \
-    State/StateInterface.h \
     State/UtilState.h \
-    ImageView.h \
     Data/DataLoader.h \
     Data/Error/ErrorReport.h \
     Data/Error/ErrorManager.h \
-    Data/ILinkable.h \
     Data/Image/Controller.h \
     Data/Image/DataFactory.h \
     Data/Image/LayerGroup.h \
     Data/Image/Stack.h \
     Data/Image/Layer.h \
     Data/Image/LayerData.h \
-    Data/Image/CoordinateSystems.h \
     Data/Image/DataSource.h \
-    Data/Image/LayerCompositionModes.h \
-    Data/Image/Render/RenderRequest.h \
-    Data/Image/Render/RenderResponse.h \
-    Data/Selection.h \
-    Data/LinkableImpl.h \
     Data/Util.h \
     Data/ViewManager.h \
     Data/ViewPlugins.h \
     Data/FitsHeaderExtractor.h \
-    ImageRenderService.h \
     Algorithms/percentileAlgorithms.h \
-    Algorithms/percentileManku99.h \
     coreMain.h
 
 SOURCES += \
@@ -62,30 +49,21 @@ SOURCES += \
     CmdLine.cpp \
     MainConfig.cpp \
     State/ObjectManager.cpp\
-    State/StateInterface.cpp \
     State/UtilState.cpp \
-    ImageView.cpp \
     Data/Image/Controller.cpp \
     Data/Image/DataFactory.cpp \
     Data/Image/LayerData.cpp \
     Data/Image/Layer.cpp \
     Data/Image/LayerGroup.cpp \
     Data/Image/Stack.cpp \
-    Data/Image/CoordinateSystems.cpp \
     Data/Image/DataSource.cpp \
-    Data/Image/LayerCompositionModes.cpp \
-    Data/Image/Render/RenderRequest.cpp \
-    Data/Image/Render/RenderResponse.cpp \
     Data/DataLoader.cpp \
     Data/Error/ErrorReport.cpp \
     Data/Error/ErrorManager.cpp \
-    Data/LinkableImpl.cpp \
-    Data/Selection.cpp \
     Data/Util.cpp \
     Data/ViewManager.cpp \
     Data/ViewPlugins.cpp \
     Data/FitsHeaderExtractor.cpp \
-    ImageRenderService.cpp \
     Algorithms/percentileAlgorithms.cpp \
     coreMain.cpp
 
@@ -98,7 +76,7 @@ SOURCES += \
 #PRECOMPILED_HEADER = stable.h
 #QMAKE_CXXFLAGS += -H
 
-INCLUDEPATH += $$absolute_path(../../../ThirdParty/rapidjson/include)
+#INCLUDEPATH += $$absolute_path(../../../ThirdParty/rapidjson/include)
 
 #INCLUDEPATH += ../../../ThirdParty/qwt/include
 #LIBS += -L../../../ThirdParty/qwt/lib -lqwt

@@ -5,7 +5,6 @@
 #pragma once
 
 #include "State/ObjectManager.h"
-#include "State/StateInterface.h"
 #include "ErrorReport.h"
 #include <queue>
 #include <memory>

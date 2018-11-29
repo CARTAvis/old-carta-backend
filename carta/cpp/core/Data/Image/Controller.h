@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <State/StateInterface.h>
 #include <State/ObjectManager.h>
 #include "CartaLib/CartaLib.h"
 #include "CartaLib/AxisInfo.h"
@@ -50,11 +49,6 @@ class Controller: public QObject, public Carta::State::CartaObject {
     Q_OBJECT
 
 public:
-
-    /**
-     * Clear the view.
-     */
-    void clear();
 
     /**
      * Add data to this controller.
@@ -167,17 +161,6 @@ public:
       * @return a string representing the state of this controller.
       */
     virtual QString getStateString( const QString& sessionId, SnapshotType type ) const Q_DECL_OVERRIDE;
-
-    /**
-     * Force a state refresh.
-     */
-    virtual void refreshState() Q_DECL_OVERRIDE;
-
-    /**
-     * Restore the state from a string representation.
-     * @param state- a json representation of state.
-     */
-    void resetState( const QString& state ) Q_DECL_OVERRIDE;
 
     /**
      * Reset the images that are loaded and other data associated state.

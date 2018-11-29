@@ -10,7 +10,6 @@
 #include <map>
 #include <QString>
 #include <QTextStream>
-#include "StateInterface.h"
 #include "../IConnector.h"
 #include <QMutex>
 
@@ -49,32 +48,12 @@ public:
     QString getId () const;
     QString getPath () const;
 
-    virtual void refreshState();
-
-    /**
-     * Reset the state of this object.
-     * @param state a QString representing a new state for this object.
-     */
-    void resetState( const QString& state, SnapshotType type );
-
     /**
      * Reset the data state of this object.
      * @param state a QString representing the data state of the object.
      */
     //By default; does nothing.  Override for objects containing a data state.
     virtual void resetStateData( const QString& state );
-
-    /**
-     * Reset the user preferences for this object.
-     * @param state - the user preferences for the object.
-     */
-    virtual void resetState( const QString& state );
-
-    /**
-     * Return the index of the object (withen its type).
-     * @return index the index of the object.
-     */
-    int getIndex() const;
 
     /**
      * Set the index of the object.
@@ -107,24 +86,8 @@ protected:
 
     int64_t addStateCallback( const QString& statePath, const IConnector::StateChangedCallback &);
 
-    /// asks the connector to schedule a redraw of the view
-    void refreshView( IView * view);
-
-    /// registers a view with the connector
-    void registerView( IView * view);
-
-    /// unregister a view with the connector
-    void unregisterView();
-
-    /**
-     * Construct a layered view and return it.
-     * @param path - a unique identifier for the remote view.
-     */
-    Carta::Lib::LayeredViewArbitrary* makeRemoteView( const QString& path );
-
     //Return the full location for the state with the given name.
     QString getStateLocation( const QString& name ) const;
-
 
     QString removeId (const QString & commandAndId);
 
@@ -150,13 +113,13 @@ protected:
     static IConnector * conn();
 
 protected:
-    StateInterface m_state;
 
 private:
 
     QString m_className;
     QString m_id;
     QString m_path;
+    int m_index = 0;
 
     static const char CommandDelimiter = ':';
 
@@ -258,36 +221,10 @@ public:
      */
     CartaObject * getObject (const QString & id);
 
-    /**
-     * Return the object of the given type an index if one exists; otherwise return a nullptr.
-     * @param index - the index of the object withen its type.
-     * @param typeStr - an identifier for the type of object.
-     * @return the corresponding CartaObject or a nullptr if none exists.
-     */
-    CartaObject* getObject( int index, const QString & typeStr );
-
-    /**
-     * Returns a string containing the state of all managed objects as JSON array of strings.
-     * @param sessionId - an identifier for a user's session.
-     * @param snapName - the name of the snapshot.
-     * @param type - the type of state needed.
-     * @return a QString containing the entire state of managed objects.
-     */
-    QString getStateString( const QString& sessionId, const QString& snapName, CartaObject::SnapshotType type ) const;
-
-
     void initialize();
 
     void printObjects();
     bool registerClass (const QString & className, CartaObjectFactory * factory);
-
-    /**
-     * Restore a snapshot of the application state.
-     * @param stateStr - a string representation of the state to restore.
-     * @param snapType - the type of application state to restore.
-     * @return true if the state was successfully restored; false otherwise.
-     */
-    bool restoreSnapshot(const QString stateStr, CartaObject::SnapshotType snapType ) const;
 
     /**
      * Returns the singleton instance of the object manager.

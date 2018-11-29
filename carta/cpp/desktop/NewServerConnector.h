@@ -9,9 +9,7 @@
 #include <QList>
 #include <QByteArray>
 
-#include "CartaLib/IRemoteVGView.h"
 #include "CartaLib/IPercentileCalculator.h"
-#include "CartaLib/LinearMap.h"
 
 #include "core/IConnector.h"
 #include "core/CallbackList.h"
@@ -37,12 +35,6 @@
 #include "CartaLib/Proto/close_file.pb.h"
 #include "CartaLib/Proto/animation.pb.h"
 
-class IView;
-
-/// private info we keep with each view
-/// unfortunately it needs to live as it's own class because we need to give it slots...
-//class ViewInfo;
-
 class NewServerConnector : public QObject, public IConnector
 {
     Q_OBJECT
@@ -54,13 +46,8 @@ public:
     // implementation of IConnector interface
     virtual void initialize( const InitializeCallback & cb) override;
     virtual void setState(const QString& state, const QString & newValue) override;
-    virtual QString getState(const QString&) override;
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) override;
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) override;
-    virtual CallbackID addStateCallback(CSR path, const StateChangedCallback &cb) override;
-    virtual void registerView(IView * view) override;
-    void unregisterView( const QString& viewName ) override;
-    virtual qint64 refreshView( IView * view) override;
     virtual void removeStateCallback( const CallbackID & id) override;
     virtual Carta::Lib::IRemoteVGView * makeRemoteVGView( QString viewName) override;
 
@@ -113,18 +100,6 @@ signals:
     void fileListRequestSignal(uint32_t eventId, CARTA::FileListRequest fileListRequest);
     void fileInfoRequestSignal(uint32_t eventId, CARTA::FileInfoRequest fileInfoRequest);
 
-    // /// we emit this signal when state is changed (either by c++ or by javascript)
-    // /// we listen to this signal, and so does javascript
-    // /// our listener then calls callbacks registered for this value
-    // /// javascript listener caches the new value and also calls registered callbacks
-    // void stateChangedSignal( const QString & key, const QString & value);
-
-    // /// we emit this signal when command results are ready
-    // /// javascript listens to it
-    // void jsCommandResultsSignal(const QString & sessionID, const QString & senderSession, const QString & cmd, const QString & results, const QString & subIdentifier);
-    // /// emitted by c++ when we want javascript to repaint the view
-    // void jsViewUpdatedSignal(const QString & sessionID, const QString & viewName, const QString & img, qint64 id);
-
 public:
 
     typedef std::vector<CommandCallback> CommandCallbackList;
@@ -136,21 +111,8 @@ public:
     // list of callbacks
     typedef CallbackList<CSR, CSR> StateCBList;
 
-    /// for each state we maintain a list of callbacks
-    std::map<QString, StateCBList *> m_stateCallbackList;
-
     /// IDs for command callbacks
     CallbackID m_callbackNextId;
-
-    /// private info we keep with each view
-    struct ViewInfo;
-
-    /// map of view names to view infos
-    std::map< QString, ViewInfo *> m_views;
-
-    ViewInfo * findViewInfo(const QString &viewName);
-
-    // virtual void refreshViewNow(IView *view);
 
     IConnector* getConnectorInMap(const QString & sessionID) override;
     void setConnectorInMap(const QString & sessionID, IConnector *connector) override;
@@ -162,7 +124,6 @@ public:
 protected:
 
     InitializeCallback m_initializeCallback;
-    std::map< QString, QString > m_state;
 
     Carta::Data::Controller* _getController();
 

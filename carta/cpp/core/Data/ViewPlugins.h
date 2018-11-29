@@ -6,7 +6,6 @@
 #pragma once
 
 #include "State/ObjectManager.h"
-#include "State/StateInterface.h"
 
 namespace Carta {
 
@@ -20,10 +19,6 @@ public:
     const static QString CLASS_NAME;
 
 private:
-
-    void _initializeDefaultState();
-    void _insertPlugin( int ind, const QString& name, const QString& description,
-                        const QString& type, const QString& version, const QString& errors );
 
     static bool m_registered;
     ViewPlugins( const QString& path, const QString& id );

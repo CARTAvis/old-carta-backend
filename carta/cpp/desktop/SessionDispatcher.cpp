@@ -3,7 +3,6 @@
  **/
 
 #include "SessionDispatcher.h"
-#include "CartaLib/LinearMap.h"
 #include "core/MyQApp.h"
 #include <iostream>
 #include <QXmlInputSource>
@@ -16,9 +15,6 @@
 #include <QStringList>
 
 #include <thread>
-//#include "websocketclientwrapper.h"
-//#include "websockettransport.h"
-//#include "qwebchannel.h"
 #include <QBuffer>
 #include <QThread>
 #include <QUuid>
@@ -448,10 +444,6 @@ void SessionDispatcher::setState(const QString& path, const QString & newValue) 
 
 }
 
-QString SessionDispatcher::getState(const QString & path) {
-    return "";
-}
-
 QString SessionDispatcher::getStateLocation(const QString& saveName) const {
     return "";
 }
@@ -465,24 +457,6 @@ IConnector::CallbackID SessionDispatcher::addCommandCallback (
 IConnector::CallbackID SessionDispatcher::addMessageCallback (
         const QString & cmd,
         const IConnector::MessageCallback & cb) {
-    return 0;
-}
-
-IConnector::CallbackID SessionDispatcher::addStateCallback (
-        IConnector::CSR path,
-        const IConnector::StateChangedCallback & cb) {
-    return 0;
-}
-
-void SessionDispatcher::registerView(IView * view) {
-
-}
-
-void SessionDispatcher::unregisterView(const QString& viewName) {
-
-}
-
-qint64 SessionDispatcher::refreshView(IView * view) {
     return 0;
 }
 

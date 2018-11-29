@@ -11,7 +11,6 @@
 #include "NewServerConnector.h"
 
 #include "core/IConnector.h"
-#include "CartaLib/IRemoteVGView.h"
 #include "QtWebSockets/qwebsocketserver.h"
 #include "QtWebSockets/qwebsocket.h"
 
@@ -19,8 +18,6 @@ QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 
 QT_FORWARD_DECLARE_CLASS(WebSocketClientWrapper)
 QT_FORWARD_DECLARE_CLASS(QWebChannel)
-
-class IView;
 
 class SessionDispatcher : public QObject, public IConnector
 {
@@ -36,13 +33,8 @@ public:
 
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) override;
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) override;
-    virtual CallbackID addStateCallback(CSR path, const StateChangedCallback &cb) override;
 
     virtual void setState(const QString& state, const QString & newValue) override;
-    virtual QString getState(const QString&) override;
-    virtual void registerView(IView * view) override;
-    void unregisterView( const QString& viewName ) override;
-    virtual qint64 refreshView( IView * view) override;
     virtual void removeStateCallback( const CallbackID & id) override;
     virtual Carta::Lib::IRemoteVGView * makeRemoteVGView( QString viewName) override;
     virtual QString getStateLocation( const QString& saveName ) const override;

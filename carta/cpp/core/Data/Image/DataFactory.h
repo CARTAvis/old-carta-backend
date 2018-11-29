@@ -8,14 +8,11 @@
 #include <vector>
 
 namespace Carta {
-
 namespace Data {
 
 class Controller;
-//class Region;
 
 class DataFactory {
-
 
 public:
     /**
@@ -31,20 +28,9 @@ public:
     static QString
     addData( Controller* controller, const QString& fileName, bool* success, int fileId);
 
-
     virtual ~DataFactory();
 
 private:
-
-    /**
-     * Returns true if the file is a recognized region file; false otherwise.
-     * @param fileName - an identifier for a file.
-     * @return - true if the file is a recognized format for region files; false otherwise.
-     */
-//    static bool _isRegion( const QString& fileName );
-
-//    static std::vector<std::shared_ptr<Region> > _loadRegions( Controller* controller,
-//            const QString& fileName, bool* success, QString& errorMsg );
 
     /**
      * Constructor.
@@ -55,5 +41,6 @@ private:
     DataFactory& operator=( const DataFactory& other );
 
 };
+
 }
 }

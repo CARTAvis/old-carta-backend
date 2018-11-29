@@ -1,16 +1,12 @@
 #include "State/ObjectManager.h"
 #include "State/UtilState.h"
 #include "Data/Image/Controller.h"
-#include "Data/Image/CoordinateSystems.h"
 #include "Data/Image/DataFactory.h"
 #include "Data/Image/Stack.h"
 #include "Data/Image/DataSource.h"
 #include "Data/DataLoader.h"
 #include "Data/Error/ErrorManager.h"
-#include "../../ImageRenderService.h"
-
 #include "Data/Util.h"
-#include "ImageView.h"
 #include "CartaLib/IImage.h"
 #include "Globals.h"
 
@@ -42,7 +38,6 @@ const QString Controller::CLASS_NAME = "Controller";
 bool Controller::m_registered = Carta::State::ObjectManager::objectManager()->registerClass (CLASS_NAME, new Controller::Factory());
 
 using Carta::State::UtilState;
-using Carta::State::StateInterface;
 using Carta::Lib::AxisInfo;
 
 Controller::Controller( const QString& path, const QString& id ) :
@@ -75,10 +70,6 @@ QString Controller::_addDataImage(const QString& fileName, bool* success, int fi
         qDebug() << "[Controller] fail to open file!";
     }
     return result;
-}
-
-void Controller::clear(){
-    unregisterView();
 }
 
 QString Controller::closeImage( const QString& id ){
@@ -157,18 +148,10 @@ QString Controller::getSnapType(CartaObject::SnapshotType snapType) const {
     return objType;
 }
 
-void Controller::refreshState() {
-}
-
-void Controller::resetState( const QString& state ) {
-}
-
 void Controller::resetStateData( const QString& state ) {
 }
 
-Controller::~Controller(){
-    //unregisterView();
-    clear();
+Controller::~Controller() {
 }
 
 }

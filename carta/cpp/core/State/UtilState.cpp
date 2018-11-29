@@ -1,5 +1,4 @@
 #include "UtilState.h"
-#include "StateInterface.h"
 #include <QDebug>
 
 namespace Carta {
@@ -10,14 +9,6 @@ namespace State {
 
 UtilState::UtilState( ) {
 
-}
-
-QString UtilState::getLookup( const QString& arrayName, int index ){
-    return arrayName + StateInterface::DELIMITER + QString::number( index );
-}
-
-QString UtilState::getLookup( const QString& baseName, const QString& subName ){
-    return baseName + StateInterface::DELIMITER + subName;
 }
 
 std::map < QString, QString >
