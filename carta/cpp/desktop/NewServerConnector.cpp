@@ -15,9 +15,10 @@
 #include <QBuffer>
 #include <QThread>
 
-NewServerConnector::NewServerConnector()
-{
+NewServerConnector::NewServerConnector():
+    m_dataLoader(nullptr) {
     m_callbackNextId = 0;
+    _makeDataLoader();
 }
 
 NewServerConnector::~NewServerConnector()
@@ -175,20 +176,14 @@ void NewServerConnector::onBinaryMessageSignalSlot(const char *message, size_t l
 }
 
 void NewServerConnector::fileListRequestSignalSlot(uint32_t eventId, CARTA::FileListRequest fileListRequest) {
-    // get DataLoader obj
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    Carta::Data::DataLoader *dataLoader = objMan->createObject<Carta::Data::DataLoader>();
-    PBMSharedPtr msg = dataLoader->getFileList(fileListRequest);
+    PBMSharedPtr msg = m_dataLoader->getFileList(fileListRequest);
 
     // send the serialized message to the frontend
     sendSerializedMessage("FILE_LIST_RESPONSE", eventId, msg);
 }
 
 void NewServerConnector::fileInfoRequestSignalSlot(uint32_t eventId, CARTA::FileInfoRequest fileInfoRequest) {
-    // get DataLoader obj
-    Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
-    Carta::Data::DataLoader *dataLoader = objMan->createObject<Carta::Data::DataLoader>();
-    PBMSharedPtr msg = dataLoader->getFileInfo(fileInfoRequest);
+    PBMSharedPtr msg = m_dataLoader->getFileInfo(fileInfoRequest);
 
     // send the serialized message to the frontend
     sendSerializedMessage("FILE_INFO_RESPONSE", eventId, msg);
@@ -253,9 +248,7 @@ void NewServerConnector::openFileSignalSlot(uint32_t eventId, QString fileDir, Q
     m_lastFrame[fileId] = lastFrame;
 
     // FileInfoExtended: return all entries (MUST all) for frontend to render (AST)
-    Carta::State::ObjectManager* objMan2 = Carta::State::ObjectManager::objectManager();
-    Carta::Data::DataLoader *dataLoader = objMan2->createObject<Carta::Data::DataLoader>();
-    if (false == dataLoader->getFitsHeaders(fileInfoExt, image)) {
+    if (false == m_dataLoader->getFitsHeaders(fileInfoExt, image)) {
         qDebug() << "[NewServerConnector] Get fits headers error!";
     }
 
@@ -486,3 +479,11 @@ Carta::Data::Controller* NewServerConnector::_getController() {
 
     return controller;
 }
+
+void NewServerConnector::_makeDataLoader() {
+    if ( m_dataLoader == nullptr ){
+        Carta::State::ObjectManager* objMan = Carta::State::ObjectManager::objectManager();
+        m_dataLoader = objMan->createObject<Carta::Data::DataLoader>();
+    }
+}
+

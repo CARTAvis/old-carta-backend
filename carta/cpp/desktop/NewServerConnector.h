@@ -129,6 +129,9 @@ protected:
 
 private:
 
+    Carta::Data::DataLoader* m_dataLoader;
+    void _makeDataLoader();
+
     std::map<int, std::vector<int> > m_imageBounds; // m_imageBounds[fileId] = {x_min, x_max, y_min, y_max, mip}
     std::map<int, bool> m_isZFP; // whether if ZFP compression is required by the frontend
     std::map<int, std::vector<int> > m_ZFPSet; // m_ZFPSet[fileId] = {precision, numSubsets}
