@@ -13,7 +13,6 @@ namespace Carta {
 namespace Data {
 
 class Controller;
-class DataLoader;
 class ViewPlugins;
 
 class ViewManager : public QObject, public Carta::State::CartaObject {
@@ -42,17 +41,6 @@ public:
      */
     int getColormapCount() const;
 
-    /**
-     * Load the file into the controller with the given id.
-     * @param fileName a locater for the data to load.
-     * @param objectId the unique server side id of the controller which is
-     * responsible for displaying the file.
-     * @param success - set to true if the file was successfully loaded; false otherwise.
-     * @return - the identifier of the server-side object managing the image if the file
-     *      was successfully loaded; otherwise, an error message.
-     */
-    QString loadFile( const QString& objectId, const QString& fileName, bool* success);
-
     static const QString CLASS_NAME;
 
     /**
@@ -60,11 +48,9 @@ public:
      */
     virtual ~ViewManager();
 
-    QString dataLoaded(const QString & params);
     QString registerView(const QString & params);
 
 private slots:
-    void _pluginsChanged( const QStringList& names, const QStringList& oldNames );
 
 private:
     ViewManager( const QString& path, const QString& id);
@@ -77,13 +63,10 @@ private:
 
     QString _makeController( int index );
 
-    void _makeDataLoader();
-
     //A list of Controllers requested by the client.
     QList <Controller* > m_controllers;
 
     static bool m_registered;
-    DataLoader* m_dataLoader;
     ViewPlugins* m_pluginsLoaded;
 
     const static QString SOURCE_ID;
