@@ -55,7 +55,6 @@ class DataSource : public QObject {
 public:
 
     static const QString CLASS_NAME;
-    static const QString DATA_PATH;
 
     virtual ~DataSource();
 
@@ -136,13 +135,6 @@ private:
      * @return the number of image dimensions.
      */
     int _getDimensions() const;
-
-    /**
-     * Returns the number of frames in the horizontal and vertical display directions,
-     * respectively.
-     * @return - a pair consisting of frame counts on the horizontal and vertical axis.
-     */
-    std::pair<int,int> _getDisplayDims() const;
 
     /**
      * Returns the image's file name.
@@ -365,7 +357,6 @@ private:
     DataSource();
 
     QString m_fileName;
-    int m_cmapCacheSize;
 
     //Pointer to image interface.
     std::shared_ptr<Carta::Lib::Image::ImageInterface> m_image;
@@ -389,7 +380,6 @@ private:
     int m_axisIndexX;
     int m_axisIndexY;
 
-    const static bool APPROXIMATION_GET_LOCATION;
     const static bool IS_MULTITHREAD_ZFP;
     const static int MAX_SUBSETS;
 

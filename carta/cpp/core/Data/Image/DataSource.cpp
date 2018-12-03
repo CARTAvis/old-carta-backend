@@ -25,7 +25,6 @@ using Carta::Lib::AxisDisplayInfo;
 namespace Carta {
 namespace Data {
 
-const QString DataSource::DATA_PATH = "file";
 const QString DataSource::CLASS_NAME = "DataSource";
 const bool DataSource::IS_MULTITHREAD_ZFP = true;
 const int DataSource::MAX_SUBSETS = 8;
@@ -36,8 +35,6 @@ DataSource::DataSource() :
     m_coordinateFormatter( nullptr ),
     m_axisIndexX( 0 ),
     m_axisIndexY( 1 ) {
-
-    m_cmapCacheSize = 1000;
 
     // initialize disk cache
     auto res = Globals::instance()-> pluginManager()
@@ -257,15 +254,6 @@ int DataSource::_getDimensions() const {
         imageSize = m_image->dims().size();
     }
     return imageSize;
-}
-
-std::pair<int,int> DataSource::_getDisplayDims() const {
-    std::pair<int,int> displayDims(0,0);
-    if ( m_image ){
-        displayDims.first = m_image->dims()[m_axisIndexX];
-        displayDims.second = m_image->dims()[m_axisIndexY ];
-    }
-    return displayDims;
 }
 
 QString DataSource::_getFileName() const {
