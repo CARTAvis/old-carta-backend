@@ -144,14 +144,6 @@ PBMSharedPtr LayerData::_getRasterImageData(int fileId, int xMin, int xMax, int 
     return results;
 }
 
-QString LayerData::_getPixelValue( double x, double y, const std::vector<int>& frames ) const {
-    QString pixelValue( "" );
-    if ( m_dataSource ){
-        pixelValue = m_dataSource->_getPixelValue( x, y, frames );
-    }
-    return pixelValue;
-}
-
 QString LayerData::_getFileName() {
     return m_dataSource->_getFileName();
 }

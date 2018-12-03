@@ -245,15 +245,6 @@ PBMSharedPtr LayerGroup::_getRasterImageData(int fileId, int xMin, int xMax, int
     return results;
 }
 
-QString LayerGroup::_getPixelValue( double x, double y, const std::vector<int>& frames ) const {
-    QString pixelValue("");
-    int dataIndex = _getIndexCurrent();
-    if ( dataIndex >= 0 ){
-        pixelValue = m_children[dataIndex]->_getPixelValue( x, y, frames );
-    }
-    return pixelValue;
-}
-
 void LayerGroup::_removeData( int index ){
     int childCount = m_children.size();
     if ( 0 <= index && index < childCount ){

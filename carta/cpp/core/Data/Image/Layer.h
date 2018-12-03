@@ -159,18 +159,6 @@ protected:
         Carta::Lib::IntensityUnitConverter::SharedPtr converter) const = 0;
 
     /**
-     * Return the value of the pixel at (x, y).
-     * @param x the x-coordinate of the desired pixel
-     * @param y the y-coordinate of the desired pixel.
-     * @param frames - list of image frames.
-     * @return the value of the pixel at (x, y), or blank if it could not be obtained.
-     *
-     * Note the xy coordinates are expected to be in casa pixel coordinates, i.e.
-     * the CENTER of the left-bottom-most pixel is 0.0,0.0.
-     */
-    virtual QString _getPixelValue( double x, double y, const std::vector<int>& frames ) const = 0;
-
-    /**
      * Attempts to load an image file.
      * @param fileName - an identifier for the location of the image file.
      * @param success - set to true if the file is successfully loaded.

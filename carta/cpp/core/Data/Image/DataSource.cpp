@@ -229,24 +229,6 @@ std::vector<AxisDisplayInfo> DataSource::_getAxisDisplayInfo() const {
     return axisInfo;
 }
 
-QString DataSource::_getPixelValue( double x, double y, const std::vector<int>& frames ) const {
-    QString pixelValue( "" );
-    int valX = (int)(round(x));
-    int valY = (int)(round(y));
-    if ( valX >= 0 && valX < m_image->dims()[m_axisIndexX] && valY >= 0 && valY < m_image->dims()[m_axisIndexY] ) {
-        Carta::Lib::NdArray::RawViewInterface* rawData = _getRawData( frames );
-        if ( rawData != nullptr ){
-            Carta::Lib::NdArray::TypedView<double> view( rawData, true );
-            double val =  view.get( { valX, valY } );
-
-            // set the rounded pixel value to print out
-            pixelValue = QString::number(val, 'E', 3);
-            //pixelValue = QString::number( val );
-        }
-    }
-    return pixelValue;
-}
-
 int DataSource::_getFrameCount( AxisInfo::KnownType type ) const {
     int frameCount = 1;
     if ( m_image ){
