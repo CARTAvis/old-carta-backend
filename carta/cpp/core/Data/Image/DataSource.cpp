@@ -974,54 +974,6 @@ QString DataSource::_getPixelUnits() const {
     return units;
 }
 
-Carta::Lib::NdArray::RawViewInterface* DataSource::_getRawData( int frameStart, int frameEnd, int axisIndex ) const {
-    Carta::Lib::NdArray::RawViewInterface* rawData = nullptr;
-    if ( m_image ){
-        // get the image dimension:
-        // if the image dimension=3, then dim[0]: x-axis, dim[1]: y-axis, and dim[2]: channel-axis
-        // if the image dimension=4, then dim[0]: x-axis, dim[1]: y-axis, dim[2]: stoke-axis,   and dim[3]: channel-axis
-        //                                                            or  dim[2]: channel-axis, and dim[3]: stoke-axis
-        int imageDim =m_image->dims().size();
-
-        SliceND frameSlice = SliceND().next();
-
-        for ( int i = 0; i < imageDim; i++ ){
-
-            // only deal with the extra dimensions other than x-axis and y-axis
-            if ( i != m_axisIndexX && i != m_axisIndexY ){
-
-                // declare and set the variable "sliceSize" as the total number of channel or stoke
-                int sliceSize = m_image->dims()[i];
-                qDebug() << "++++++++ For the image dimension: dim[" << i << "], the total number of slices is " << sliceSize;
-
-                SliceND& slice = frameSlice.next();
-
-                //If it is the target axis,
-                if ( i == axisIndex ){
-                   //Use the passed in frame range
-                   if (0 <= frameStart && frameStart < sliceSize &&
-                        0 <= frameEnd && frameEnd < sliceSize ){
-                        slice.start( frameStart );
-                        slice.end( frameEnd + 1);
-                   }
-                   else {
-                       slice.start(0);
-                       slice.end( sliceSize);
-                   }
-                }
-                //Or the entire range
-                else {
-                   slice.start( 0 );
-                   slice.end( sliceSize );
-                }
-                slice.step( 1 );
-            }
-        }
-        rawData = m_image->getDataSlice( frameSlice );
-    }
-    return rawData;
-}
-
 int DataSource::_getStokeIndicator() {
     int result = Util::getAxisIndex(m_image, AxisInfo::KnownType::STOKES);
     return result;
@@ -1118,59 +1070,6 @@ std::shared_ptr<Carta::Lib::Image::ImageInterface> DataSource::_getPermutedImage
         permuteImage = m_image->getPermuted( indices );
     }
     return permuteImage;
-}
-
-Carta::Lib::NdArray::RawViewInterface* DataSource::_getRawData( const std::vector<int> frames ) const {
-
-    Carta::Lib::NdArray::RawViewInterface* rawData = nullptr;
-    std::vector<int> mFrames = _fitFramesToImage( frames );
-
-    if ( m_permuteImage ){
-        int imageDim =m_permuteImage->dims().size();
-
-        //Build a vector showing the permute order.
-        std::vector<int> indices = _getPermOrder();
-
-        SliceND nextSlice = SliceND();
-        SliceND& slice = nextSlice;
-
-        for ( int i = 0; i < imageDim; i++ ){
-
-            //Since the image has been permuted the first two indices represent the display axes.
-            if ( i != 0 && i != 1 ){
-
-                //Take a slice at the indicated frame.
-                int frameIndex = 0;
-                int thisAxis = indices[i];
-                AxisInfo::KnownType type = _getAxisType( thisAxis );
-
-                // check the type of axis and its indix of slices
-                int axisIndex = -1;
-                if ( type == AxisInfo::KnownType::SPECTRAL ) {
-                    axisIndex = static_cast<int>( type );
-                    frameIndex = mFrames[axisIndex];
-                    // qDebug() << "++++++++ SPECTRAL axis Index with permutation is" << axisIndex << ", the current frame Index is" << frameIndex;
-                } else if ( type == AxisInfo::KnownType::STOKES ) {
-                    axisIndex = static_cast<int>( type );
-                    frameIndex = mFrames[axisIndex];
-                    // qDebug() << "++++++++ STOKE axis Index with permutation is" << axisIndex << ", the current frame Index is" << frameIndex;
-                } else if ( type != AxisInfo::KnownType::OTHER ) {
-                    axisIndex = static_cast<int>( type );
-                    frameIndex = mFrames[axisIndex];
-                    // qDebug() << "++++++++ axis Index with permutation is" << axisIndex << ", the current frame Index is" << frameIndex;
-                }
-
-                slice.start( frameIndex );
-                slice.end( frameIndex + 1);
-            }
-
-            if ( i < imageDim - 1 ){
-                slice.next();
-            }
-        }
-        rawData = m_permuteImage->getDataSlice( nextSlice );
-    }
-    return rawData;
 }
 
 QString DataSource::_getViewIdCurrent( const std::vector<int>& frames ) const {

@@ -308,28 +308,11 @@ private:
      * @param frameLow the lower bound for the frames or -1 for the whole image.
      * @param frameHigh the upper bound for the frames or -1 for the whole image.
      * @param axisIndex - the axis for the frames or -1 for all axes.
-     * @return the raw data or nullptr if there is none.
-     */
-    Carta::Lib::NdArray::RawViewInterface* _getRawData( int frameLow, int frameHigh, int axisIndex ) const;
-
-    /**
-     * Returns the raw data as an array.
-     * @param axisIndex - an index of an image axis.
-     * @param frameLow the lower bound for the frames or -1 for the whole image.
-     * @param frameHigh the upper bound for the frames or -1 for the whole image.
-     * @param axisIndex - the axis for the frames or -1 for all axes.
      * @param axisStokeIndex - the axis for the stoke frame.
      * @param stokeSliceIndex - the index of the stoke frame (-1: no stoke, 0: stoke I, 1: stoke Q, 2: stoke U, 3: stoke V).
      * @return the raw data or nullptr if there is none.
      */
     Carta::Lib::NdArray::RawViewInterface* _getRawDataForStoke(int frameLow, int frameHigh, int stokeFrame) const;
-
-    /**
-     * Returns the raw data for the current view.
-     * @param frames - a list of current image frames.
-     * @return the raw data for the current view or nullptr if there is none.
-     */
-    Carta::Lib::NdArray::RawViewInterface* _getRawData( const std::vector<int> frames ) const;
 
     //Returns an identifier for the current image slice being rendered.
     QString _getViewIdCurrent( const std::vector<int>& frames ) const;
