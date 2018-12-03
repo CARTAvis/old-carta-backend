@@ -49,12 +49,12 @@ class DataSource : public QObject {
     friend class LayerData;
     friend class DataFactory;
     friend class Controller;
+
     Q_OBJECT
 
 public:
 
     static const QString CLASS_NAME;
-    static const double ZOOM_DEFAULT;
     static const QString DATA_PATH;
 
     virtual ~DataSource();
@@ -268,15 +268,6 @@ private:
     bool _addProfile(std::shared_ptr<CARTA::SpatialProfileData> spatialProfileData,
         const std::vector<float> & profile, const std::string coordinate) const;
 
-    /**
-     * Return percentiles corresponding to the given intensities.
-     * @param frameLow a lower bound for the channel range or -1 if there is no lower bound.
-     * @param frameHigh an upper bound for the channel range or -1 if there is no upper bound.
-     * @param intensities values for which percentiles are needed.
-     * @return the percentiles corresponding to the intensities.
-     */
-    std::vector<double> _getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const;
-
     std::shared_ptr<Carta::Lib::Image::ImageInterface> _getPermutedImage() const;
 
     /**
@@ -427,11 +418,6 @@ private:
     int m_axisIndexX;
     int m_axisIndexY;
 
-    const static int INDEX_LOCATION;
-    const static int INDEX_INTENSITY;
-    const static int INDEX_PERCENTILE;
-    const static int INDEX_FRAME_LOW;
-    const static int INDEX_FRAME_HIGH;
     const static bool APPROXIMATION_GET_LOCATION;
     const static bool IS_MULTITHREAD_ZFP;
     const static int MAX_SUBSETS;

@@ -159,15 +159,6 @@ protected:
         Carta::Lib::IntensityUnitConverter::SharedPtr converter) const = 0;
 
     /**
-     * Return percentiles corresponding to the given intensities.
-     * @param frameLow a lower bound for the channel range or -1 if there is no lower bound.
-     * @param frameHigh an upper bound for the channel range or -1 if there is no upper bound.
-     * @param intensities values for which percentiles are needed.
-     * @return the percentiles corresponding to the intensities.
-     */
-    virtual std::vector<double> _getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const = 0;
-
-    /**
      * Return the value of the pixel at (x, y).
      * @param x the x-coordinate of the desired pixel
      * @param y the y-coordinate of the desired pixel.

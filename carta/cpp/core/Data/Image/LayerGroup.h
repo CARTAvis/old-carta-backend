@@ -157,15 +157,6 @@ protected:
         Lib::IntensityUnitConverter::SharedPtr converter) const Q_DECL_OVERRIDE;
 
     /**
-     * Return the percentile corresponding to the given intensity.
-     * @param frameLow a lower bound for the frame index or -1 if there is no lower bound.
-     * @param frameHigh an upper bound for the frame index or -1 if there is no upper bound.
-     * @param intensity a value for which a percentile is needed.
-     * @return the percentile corresponding to the intensity.
-     */
-    virtual std::vector<double> _getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const Q_DECL_OVERRIDE;
-
-    /**
      * Return the value of the pixel at (x, y).
      * @param x the x-coordinate of the desired pixel
      * @param y the y-coordinate of the desired pixel.

@@ -144,14 +144,6 @@ PBMSharedPtr LayerData::_getRasterImageData(int fileId, int xMin, int xMax, int 
     return results;
 }
 
-std::vector<double> LayerData::_getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const {
-    std::vector<double> percentiles(intensities.size());
-    if ( m_dataSource ){
-        percentiles = m_dataSource->_getPercentiles( frameLow, frameHigh, intensities, converter );
-    }
-    return percentiles;
-}
-
 QString LayerData::_getPixelValue( double x, double y, const std::vector<int>& frames ) const {
     QString pixelValue( "" );
     if ( m_dataSource ){

@@ -27,12 +27,6 @@ namespace Data {
 
 const QString DataSource::DATA_PATH = "file";
 const QString DataSource::CLASS_NAME = "DataSource";
-const double DataSource::ZOOM_DEFAULT = 1.0;
-const int DataSource::INDEX_LOCATION = 0;
-const int DataSource::INDEX_INTENSITY = 1;
-const int DataSource::INDEX_PERCENTILE = 2;
-const int DataSource::INDEX_FRAME_LOW = 3;
-const int DataSource::INDEX_FRAME_HIGH = 4;
 const bool DataSource::IS_MULTITHREAD_ZFP = true;
 const int DataSource::MAX_SUBSETS = 8;
 
@@ -74,7 +68,6 @@ std::vector<int> DataSource::_getPermOrder() const
             vectorIndex++;
         }
     }
-
     return indices;
 }
 
@@ -948,27 +941,6 @@ std::vector<int32_t> DataSource::_getNanEncodingsBlock(std::vector<float>& array
         } // end of i loop
     }
     return encodedArray;
-}
-
-std::vector<double> DataSource::_getPercentiles( int frameLow, int frameHigh, std::vector<double> intensities, Carta::Lib::IntensityUnitConverter::SharedPtr converter ) const {
-    std::vector<double> percentiles(intensities.size());
-    int spectralIndex = Util::getAxisIndex( m_image, AxisInfo::KnownType::SPECTRAL);
-    // TODO: do we need to modify this to take the stokes frame into account, like the percentile -> intensity calculation
-    Carta::Lib::NdArray::RawViewInterface* rawData = _getRawData( frameLow, frameHigh, spectralIndex );
-    if ( rawData != nullptr ){
-        Carta::Lib::NdArray::Double view( rawData, false );
-
-        std::vector<double> hertzValues;
-
-//        if (converter && converter->frameDependent) {
-//            hertzValues = _getHertzValues(view.dims());
-//        }
-
-        Carta::Lib::IPixelsToPercentiles<double>::SharedPtr calculator = std::make_shared<Carta::Core::Algorithms::PixelsToPercentiles<double> >();
-
-        percentiles = calculator->pixels2percentiles(view, intensities, spectralIndex, converter, hertzValues);
-    }
-    return percentiles;
 }
 
 QPointF DataSource::_getPixelCoordinates( double ra, double dec, bool* valid ) const{
