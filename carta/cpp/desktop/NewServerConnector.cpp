@@ -25,11 +25,6 @@ NewServerConnector::~NewServerConnector()
 {
 }
 
-void NewServerConnector::initialize(const InitializeCallback & cb)
-{
-    m_initializeCallback = cb;
-}
-
 IConnector::CallbackID NewServerConnector::addCommandCallback(
         const QString & cmd,
         const IConnector::CommandCallback & cb)
@@ -44,16 +39,6 @@ IConnector::CallbackID NewServerConnector::addMessageCallback(
 {
     m_messageCallbackMap[cmd].push_back( cb);
     return m_callbackNextId++;
-}
-
-void NewServerConnector::removeStateCallback(const IConnector::CallbackID & /*id*/)
-{
-    qCritical( "not implemented");
-}
-
-Carta::Lib::IRemoteVGView * NewServerConnector::makeRemoteVGView(QString viewName)
-{
-    return nullptr;
 }
 
 IConnector* NewServerConnector::getConnectorInMap(const QString & sessionID){

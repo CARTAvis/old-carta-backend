@@ -29,13 +29,8 @@ public:
 
     //** will comment later
     // implementation of IConnector interface
-    virtual void initialize( const InitializeCallback & cb) override;
-
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) override;
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) override;
-
-    virtual void removeStateCallback( const CallbackID & id) override;
-    virtual Carta::Lib::IRemoteVGView * makeRemoteVGView( QString viewName) override;
     //**
 
     void startWebSocket() override;

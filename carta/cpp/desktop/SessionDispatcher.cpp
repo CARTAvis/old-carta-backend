@@ -429,16 +429,7 @@ std::vector<char> SessionDispatcher::_serializeToArray(QString respName, uint32_
     return result;
 }
 
-// //TODO implement later
-// void SessionDispatcher::jsSendKeepAlive(){
-// //    qDebug() << "get keepalive packet !!!!";
-// }
-
 //********* will comment the below later
-
-void SessionDispatcher::initialize(const InitializeCallback & cb) {
-
-}
 
 IConnector::CallbackID SessionDispatcher::addCommandCallback (
         const QString & cmd,
@@ -450,12 +441,4 @@ IConnector::CallbackID SessionDispatcher::addMessageCallback (
         const QString & cmd,
         const IConnector::MessageCallback & cb) {
     return 0;
-}
-
-void SessionDispatcher::removeStateCallback(const IConnector::CallbackID & /*id*/) {
-    qCritical( "not implemented");
-}
-
-Carta::Lib::IRemoteVGView * SessionDispatcher::makeRemoteVGView(QString viewName) {
-    return nullptr;
 }

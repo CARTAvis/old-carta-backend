@@ -52,11 +52,6 @@ public:
     /// callback ID type (needed to remove callbacks)
     typedef int64_t CallbackID;
 
-    /// establish a connection to the html5 client
-    /// callback is executed when connection is established or failed
-    /// callback receives a boolean indicating whether connection is valid or not
-    virtual void initialize( const InitializeCallback & cb) = 0;
-
     /// add a callback for a command
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) = 0;
 
@@ -64,15 +59,6 @@ public:
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) = 0;
 
     /// add a callback for a tree change
-
-    /// remove a callback for a state change event
-    /// \todo maybe we can have a universal 'removeCallback' for commands/states
-    virtual void removeStateCallback( const CallbackID & id ) = 0;
-
-    /// create a vector graphics view
-//    virtual Carta::Lib::IRemoteVGView::SharedPtr
-    virtual Carta::Lib::IRemoteVGView *
-    makeRemoteVGView( QString viewName) = 0;
 
     virtual IConnector* getConnectorInMap(const QString & sessionID) =0;
 
