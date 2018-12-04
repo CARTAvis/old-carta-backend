@@ -270,8 +270,6 @@ PixelsToPercentiles<Scalar>::pixels2percentiles(
 }
 
 
-
-
 ///
 /// C.C. Chiang: compute the minimum and maximum pixel values
 ///              with respect to their spectral channels
@@ -314,7 +312,6 @@ MinMaxPercentiles<Scalar>::percentile2pixels(
     // scan the raw data from the view to get the minimum and maximum pixel values
     // with respect to their spectral channels
     
-    
     if (converter && converter->frameDependent) {
         // we need to apply the frame-dependent conversion to each intensity value before using it   
         // to avoid calculating the frame index repeatedly we use slices to iterate over the image one frame at a time
@@ -342,12 +339,6 @@ MinMaxPercentiles<Scalar>::percentile2pixels(
             }
         });
     }
-
-    //// is there a sufficiently good reason to count the values?
-    //// We may be able to use currentPos() to check if we iterated over anything.
-    //if (index == 0) {
-        //qFatal( "The size of raw data is zero !!" );
-    //}
 
     for ( double q : percentiles ) {
         if (q==0) result[q] = minPixel;
