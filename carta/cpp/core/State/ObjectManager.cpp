@@ -101,11 +101,6 @@ CartaObject::addMessageCallback (const QString & messageType, IConnector::Messag
     // conn() -> addMessageCallback( messageType, callback);
 }
 
-QString CartaObject::getStateLocation( const QString& name ) const
-{
-    return conn()-> getStateLocation( name );
-}
-
 QString
 CartaObject::removeId (const QString & commandAndId)
 {

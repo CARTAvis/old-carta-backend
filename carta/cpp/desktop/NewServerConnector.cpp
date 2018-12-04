@@ -30,18 +30,6 @@ void NewServerConnector::initialize(const InitializeCallback & cb)
     m_initializeCallback = cb;
 }
 
-// The function was initially implemented for flushstate()
-// Deprecated since newArch, remove the func after removing Hack directory
-void NewServerConnector::setState(const QString& path, const QString & newValue)
-{
-}
-
-/// Return the location where the state is saved.
-QString NewServerConnector::getStateLocation( const QString& saveName ) const {
-	// \todo Generalize this.
-	return "/tmp/"+saveName+".json";
-}
-
 IConnector::CallbackID NewServerConnector::addCommandCallback(
         const QString & cmd,
         const IConnector::CommandCallback & cb)

@@ -57,10 +57,6 @@ public:
     /// callback receives a boolean indicating whether connection is valid or not
     virtual void initialize( const InitializeCallback & cb) = 0;
 
-    // Deprecated, remove the func after removing Hack directory
-    /// set state to a new value
-    virtual void setState( const QString & path,  const QString & value) = 0;
-
     /// add a callback for a command
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) = 0;
 
@@ -72,11 +68,6 @@ public:
     /// remove a callback for a state change event
     /// \todo maybe we can have a universal 'removeCallback' for commands/states
     virtual void removeStateCallback( const CallbackID & id ) = 0;
-
-    /// return filename where state is saved/restored.
-    /// \todo this should not be part of connector, as it has nothing to do with communication
-    /// between C++ and JavaScript
-    virtual QString getStateLocation( const QString& saveName ) const = 0;
 
     /// create a vector graphics view
 //    virtual Carta::Lib::IRemoteVGView::SharedPtr

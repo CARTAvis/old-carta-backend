@@ -440,14 +440,6 @@ void SessionDispatcher::initialize(const InitializeCallback & cb) {
 
 }
 
-void SessionDispatcher::setState(const QString& path, const QString & newValue) {
-
-}
-
-QString SessionDispatcher::getStateLocation(const QString& saveName) const {
-    return "";
-}
-
 IConnector::CallbackID SessionDispatcher::addCommandCallback (
         const QString & cmd,
         const IConnector::CommandCallback & cb) {

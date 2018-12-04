@@ -45,14 +45,10 @@ public:
 
     // implementation of IConnector interface
     virtual void initialize( const InitializeCallback & cb) override;
-    virtual void setState(const QString& state, const QString & newValue) override;
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) override;
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) override;
     virtual void removeStateCallback( const CallbackID & id) override;
     virtual Carta::Lib::IRemoteVGView * makeRemoteVGView( QString viewName) override;
-
-    /// Return the location where the state is saved.
-    virtual QString getStateLocation( const QString& saveName ) const override;
 
      ~NewServerConnector();
 

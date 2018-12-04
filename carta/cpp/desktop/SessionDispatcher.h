@@ -34,10 +34,8 @@ public:
     virtual CallbackID addCommandCallback( const QString & cmd, const CommandCallback & cb) override;
     virtual CallbackID addMessageCallback( const QString & cmd, const MessageCallback & cb) override;
 
-    virtual void setState(const QString& state, const QString & newValue) override;
     virtual void removeStateCallback( const CallbackID & id) override;
     virtual Carta::Lib::IRemoteVGView * makeRemoteVGView( QString viewName) override;
-    virtual QString getStateLocation( const QString& saveName ) const override;
     //**
 
     void startWebSocket() override;
