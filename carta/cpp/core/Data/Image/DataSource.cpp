@@ -288,8 +288,8 @@ std::vector<double> DataSource::_getMinMaxIntensity(int frameLow, int frameHigh,
     // Pick a calculator
     Carta::Lib::IPercentilesToPixels<double>::SharedPtr calculator = nullptr;
 
+    // get min/max calculator
     calculator = std::make_shared<Carta::Core::Algorithms::MinMaxPercentiles<double> >();
-
     qDebug() << "++++++++ Chosen percentile calculator:" << calculator->label;
 
     std::vector<double> intensities(percentiles.size(), 0);
@@ -1058,36 +1058,6 @@ std::shared_ptr<Carta::Lib::Image::ImageInterface> DataSource::_getPermutedImage
         permuteImage = m_image->getPermuted( indices );
     }
     return permuteImage;
-}
-
-QString DataSource::_getViewIdCurrent( const std::vector<int>& frames ) const {
-   // We create an identifier consisting of the file name and -1 for the two display axes
-   // and frame indices for the other axes.
-   QString renderId = m_fileName;
-   if ( m_image ){
-       int imageSize = m_image->dims().size();
-       for ( int i = 0; i < imageSize; i++ ){
-           AxisInfo::KnownType axisType = _getAxisType( i );
-           int axisFrame = frames[static_cast<int>(axisType)];
-           QString prefix;
-           //Hidden axis identified with an "f" and the index of the frame.
-           if ( i != m_axisIndexX && i != m_axisIndexY ){
-               prefix = "h";
-           }
-           //Display axis identified by a "d" plus the actual axis in the image.
-           else {
-               if ( i == m_axisIndexX ){
-                   prefix = "dX";
-               }
-               else {
-                   prefix = "dY";
-               }
-               axisFrame = i;
-           }
-           renderId = renderId + "//"+prefix + QString::number(axisFrame );
-       }
-   }
-   return renderId;
 }
 
 bool DataSource::_isLoadable( std::vector<int> frames ) const {

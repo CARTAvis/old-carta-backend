@@ -306,9 +306,6 @@ private:
      */
     Carta::Lib::NdArray::RawViewInterface* _getRawDataForStoke(int frameLow, int frameHigh, int stokeFrame) const;
 
-    //Returns an identifier for the current image slice being rendered.
-    QString _getViewIdCurrent( const std::vector<int>& frames ) const;
-
     ///Returns whether the frames actually exist in the image.
     bool _isLoadable( std::vector<int> frames ) const;
 
