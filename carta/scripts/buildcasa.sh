@@ -167,39 +167,21 @@ fi
 
 cd $cartawork/CARTAvis-externals/ThirdParty
 
-#### cascore and code
-# in the other instruction to build carta + casa, usually
-# casa
-# cartabuild(cartawork) / CARTAvis(carta, git root folder)
-# but we put casa inside $cartawork/CARTAvis-externals/ThirdParty
 DIR="$cartawork/CARTAvis-externals/ThirdParty/casa"
 if [ -d $DIR ]; then
     echo "$DIR Exists! Remove and clone again."
     rm -rf $DIR
 fi
 
-mkdir casa
-cd casa
+mkdir -p casa/trunk
+cd casa/trunk
 
-git clone --recursive https://github.com/CARTAvis/New-casa.git trunk
-cd trunk
+git clone https://github.com/casacore/casacore.git
 
-############################ casacore
+############################ build casacore
 
 cd casacore
 mkdir build && cd build
-
-###  two more official build refernece
-# https://github.com/casacore/casacore
-# https://github.com/casacore/casacore/wiki/CmakeInstructions
-# https://safe.nrao.edu/wiki/bin/view/Software/CASA/CasaCMakeFlagsOSX1010
-# https://safe.nrao.edu/wiki/bin/view/Software/CASA/CartaBuildInstructionsForUbuntu
-###
-
-## it is better to rm -rf * in build folder if rebuild manually + dependency changes
-## can use your own compiler and gfortan here
-## use $cartawork may be better for -DCMAKE_INSTALL_PREFIX=../../linux
-## After checking, /usr/lib64/casa/01 does not exist but build OK
 
 if [ "$(uname)" == "Darwin" ]; then
     cmake -DBoost_NO_BOOST_CMAKE=1 -DCASA_BUILD=1 \
@@ -244,93 +226,6 @@ fi
 make -j2
 make install
 
-############################ casa-submodule: code/imageanalysis
-
-cd ../../code
-
-### old:
-# # Apply https://safe.nrao.edu/wiki/pub/Software/CASA/CartaBuildInstructionsForUbuntu/imageanalysisonubuntu.diff
-# # to Code to build imageanalysis only. Reduce build time a lot !!!!!
-# curl -O http://www.asiaa.sinica.edu.tw/~tckang/casa/casacodereduce1.diff
-# svn patch casacodereduce1.diff
-#
-# ## if no insert NO_LINK, casa will try to use the libraries to run and will not find out their shared libraries,
-# # since no more yum/apt version which is easily searchable without using rpath or LD_LIBRARY_PATH.
-# perl -pi -e '$_ .= qq(NO_LINK\n) if /casa_find\( WCSLIB/' CMakeLists.txt
-# perl -pi -e '$_ .= qq(NO_LINK\n) if /casa_find\( CASACORE/' CMakeLists.txt
-# perl -pi -e '$_ .= qq(NO_LINK\n) if /casa_find\( QWT/' CMakeLists.txt
-#
-# perl -pi.bak -e 's/QtGui QtDBus QtXml/QtGui QtXml/g' CMakeLists.txt
-#
-# if [ "$(uname)" == "Darwin" ]; then
-#   sed -i "" 's/.*casa_add_module( graphics/#&/' CMakeLists.txt
-#   sed -i "" 's/.*casa_add_module( atmosphere/#&/' CMakeLists.txt
-#   sed -i "" 's/.*casa_add_module( parallel/#&/' CMakeLists.txt
-#   sed -i "" 's/.*casa_add_module( casadbus/#&/' CMakeLists.txt
-# else
-#   sed -i 's/.*casa_add_module( graphics/#&/' CMakeLists.txt
-#   sed -i 's/.*casa_add_module( atmosphere/#&/' CMakeLists.txt
-#   sed -i 's/.*casa_add_module( parallel/#&/' CMakeLists.txt
-#   sed -i 's/.*casa_add_module( casadbus/#&/' CMakeLists.txt
-# fi
-### new:  for new git way/repo, will improve later. 201705
-# curl -O https://raw.githubusercontent.com/grimmer0125/tmp/master/casacodereduce201707.diff
-# git apply casacodereduce201707.diff
-###
-
-mkdir build && cd build
-
-# TODO: check what this means? -DEXTRA_C_FLAGS=-DPG_PPU -I/opt/casa/02/include/wcslib
-
-## it is better to rm -rf * in build folder if rebuild manually + dependency changes
-## DSKIP_PGPLOT is used by display, qtviewer/guitools?, or some imageanalysis/test
-if [ "$(uname)" == "Darwin" ]; then
-    cmake -DUseCrashReporter=0 -DBoost_NO_BOOST_CMAKE=1 \
-    -DUseCasacoreNamespace=1 \
-    -DCMAKE_Fortran_COMPILER=/usr/local/bin/gfortran \
-    -Darch=$TARGETOS -DCMAKE_BUILD_TYPE=Release -DCXX11=1 \
-    -DWCSLIB_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/wcslib \
-    -DCFITSIO_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/cfitsio \
-    -DREADLINE_ROOT_DIR=/usr/local/opt/readline \
-    -DPGPLOT_ROOT_DIR=/usr/local/opt/pgplot \
-    -DBOOST_ROOT=/usr/local/opt/boost \
-    -DPGPLOT_INCLUDE_DIRS=/usr/local/opt/pgplot/include \
-    -DPGPLOT_LIBRARIES=/usr/local/opt/pgplot/lib \
-    -DSKIP_PGPLOT=1 \
-    -DLIBXML2_ROOT_DIR=/usr/local/opt/libxml2 \
-    -DQWT_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/qwt-6.1.0 \
-    -DXERCES_ROOT_DIR=/usr/local/opt/xerces-c \
-    -DRPFITS_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/rpfits \
-    -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
-    -DCMAKE_C_COMPILER=/usr/bin/clang \
-    -DLLVMCOMPILER=1 \
-    -DINTERACTIVE_ITERATION=1  ..
-elif [ "$isCentOS" = true ] ; then
-    cmake -DUseCrashReporter=0 -DBoost_NO_BOOST_CMAKE=1 -DEXTRA_C_FLAGS=-DPG_PPU \
-    -DUseCasacoreNamespace=1 \
-    -DWCSLIB_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/wcslib \
-    -DCFITSIO_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/cfitsio \
-    -DQWT_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/qwt-6.1.0 \
-    -DLIBSAKURA_ROOT_DIR=/opt/casa/01/lib/libsakura/default/ \
-    -Darch=$TARGETOS -DCMAKE_BUILD_TYPE=Release ..
-    ## -DCXX11=1
-    # -DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-3/root/usr/bin/g++ \
-    # -DCMAKE_C_COMPILER=/opt/rh/devtoolset-3/root/usr/bin/gcc \
-    # -DCMAKE_Fortran_COMPILER=/opt/rh/devtoolset-3/root/usr/bin/gfortran ..
-else
-    # -DWCSLIB_ROOT_DIR=/media/workdrive/CARTA/CARTAvis-externals/ThirdParty/wcslib
-    cmake -DUseCrashReporter=0 -DBoost_NO_BOOST_CMAKE=1 '-DEXTRA_C_FLAGS=-DPG_PPU' \
-    -DUseCasacoreNamespace=1 \
-    -DWCSLIB_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/wcslib \
-    -DCFITSIO_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/cfitsio \
-    -DQWT_ROOT_DIR=$cartawork/CARTAvis-externals/ThirdParty/qwt-6.1.0 \
-    -DLIBSAKURA_ROOT_DIR=/opt/casa/01/lib/libsakura/default/ \
-    -Darch=$TARGETOS -DCMAKE_BUILD_TYPE=Release ..
-fi
-
-# it may build fail due to no official parallel build support of casa
-make -j2
-
 DIR="$cartawork/CARTAvis-externals/ThirdParty/casacore"
 if [ -d $DIR ]; then
     echo "$DIR Exists! Remove & create again."
@@ -353,7 +248,3 @@ ln -s $cartawork/CARTAvis-externals/ThirdParty/casa/trunk/$TARGETOS/lib lib
 cd ../casacore
 ln -s $cartawork/CARTAvis-externals/ThirdParty/casa/trunk/$TARGETOS/include/ include
 ln -s $cartawork/CARTAvis-externals/ThirdParty/casa/trunk/$TARGETOS/lib lib
-
-# if [ "$isCentOS" = true ] ; then
-#     unalias qmake
-# fi

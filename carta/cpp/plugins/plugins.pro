@@ -4,5 +4,5 @@ TEMPLATE = subdirs
 SUBDIRS += casaCore
 SUBDIRS += CasaImageLoader
 SUBDIRS += ImageAnalysis
-SUBDIRS += ProfileCASA
+#SUBDIRS += ProfileCASA
 SUBDIRS += PCacheSqlite3
